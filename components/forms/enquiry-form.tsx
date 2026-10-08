@@ -86,7 +86,7 @@ function EnquiryFormInner() {
         </label>
         <label>
           Phone number
-          <input required name="phone" type="tel" placeholder="+27 64 953 1145" />
+          <input required name="phone" type="tel" placeholder="+27 00 000 0000" />
           {errors.phone && <span className="field-error"><AlertCircle size={12} /> {errors.phone}</span>}
         </label>
       </div>
