@@ -878,6 +878,9 @@ export interface PortfolioProject {
   codeUrl: string
   cardBg: string
   demo: boolean
+  challenge?: string
+  approach?: string
+  features?: string[]
 }
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -887,14 +890,17 @@ export const portfolioProjects: PortfolioProject[] = [
     subtitle: 'A complete car rental platform with intuitive booking flows.',
     industry: 'Mobility',
     type: 'Full-stack web application',
-    role: 'Full-stack developer · Solo project',
+    role: 'Full-stack development · Solo project',
     description:
-      'A complete car rental platform with intuitive booking flows, fleet management, and an admin dashboard. Built end to end with secure JWT authentication and a production-ready data layer.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'JWT Auth'],
+      'A complete car rental platform with intuitive booking flows, fleet management and an administrative dashboard. Built end to end with authentication, structured data management and a responsive customer experience.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'JWT'],
     liveUrl: 'https://roadwheelssa.vercel.app',
     codeUrl: 'https://github.com/MlungisiMahlangu/RoadWheels',
     cardBg: '#dce2ff',
     demo: false,
+    challenge: 'Build a complete car rental platform that handles the full customer journey — from browsing available vehicles to booking, payment and fleet management — while remaining intuitive for non-technical users.',
+    approach: 'The platform was structured around three core experiences: a customer-facing booking flow, a fleet management dashboard for administrators and a secure authentication layer. The UI was designed to be clean and mobile-first, with clear calls to action at every stage of the rental process.',
+    features: ['Vehicle browsing and search', 'Booking flow with date selection', 'User authentication and accounts', 'Admin dashboard for fleet management', 'Responsive customer interface', 'Structured data layer with MongoDB'],
   },
   {
     slug: 'e-safetyrides',
@@ -902,14 +908,17 @@ export const portfolioProjects: PortfolioProject[] = [
     subtitle: 'A safety-first platform helping riders check driver records.',
     industry: 'Safety',
     type: 'Team project',
-    role: 'Full-stack developer',
+    role: 'Full-stack development · Collaborative project',
     description:
-      'A safety-first platform helping e-hailing riders check a driver\'s record history before getting in the car. Built collaboratively with a modular Route-Controller-Service architecture across auth, search, reports, and notifications.',
-    technologies: ['React (Vite)', 'Node.js', 'Express', 'Firebase / Firestore'],
+      'A safety-focused platform designed to help e-hailing riders check driver records before getting into a vehicle. The project combines authentication, search, reporting and notification functionality within a structured full-stack architecture.',
+    technologies: ['React', 'Vite', 'Node.js', 'Express', 'Firebase', 'Firestore'],
     liveUrl: 'https://e-safetyridessa.vercel.app',
     codeUrl: 'https://github.com/Ronzasa/E-SafetyRides',
     cardBg: '#16181d',
     demo: false,
+    challenge: 'Create a platform that helps e-hailing riders make informed safety decisions by checking driver records, while handling authentication, real-time data and reporting in a collaborative development environment.',
+    approach: 'The team built a modular Route-Controller-Service architecture separating concerns across authentication, search, reports and notifications. Firebase and Firestore were used for real-time data and authentication, while the frontend was built with React and Vite for a fast development experience.',
+    features: ['Driver record search', 'User authentication', 'Incident reporting system', 'Notification functionality', 'Real-time data with Firestore', 'Collaborative full-stack architecture'],
   },
   {
     slug: 'grip-on',
@@ -917,14 +926,17 @@ export const portfolioProjects: PortfolioProject[] = [
     subtitle: 'A gym-apparel concept storefront with clean product presentation.',
     industry: 'Retail',
     type: 'E-commerce frontend',
-    role: 'Frontend developer · Solo project',
+    role: 'Frontend development · Solo project',
     description:
-      'A gym-apparel concept storefront focused on clean product presentation and a smooth, responsive browsing experience from landing page to product discovery.',
+      'A gym-apparel storefront concept focused on strong product presentation, responsive layouts and a smooth browsing experience from the landing page through product discovery.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     liveUrl: 'https://mlungisimahlangu.github.io/grip-on-website',
     codeUrl: 'https://github.com/MlungisiMahlangu/grip-on-website',
     cardBg: '#f1e8d8',
     demo: false,
+    challenge: 'Design a gym-apparel storefront that communicates brand quality through strong product imagery, clean typography and a browsing experience that feels premium without relying on a backend or e-commerce platform.',
+    approach: 'The site was built with vanilla HTML, CSS and JavaScript to keep it lightweight and fast. The design focused on large product imagery, generous whitespace and a clear visual hierarchy that guides visitors from the landing page through product discovery.',
+    features: ['Strong product presentation', 'Responsive layout across devices', 'Smooth browsing experience', 'Clean visual hierarchy', 'Lightweight vanilla implementation', 'Mobile-first design'],
   },
   {
     slug: 'countryscope',
@@ -932,14 +944,17 @@ export const portfolioProjects: PortfolioProject[] = [
     subtitle: 'An interactive country explorer powered by REST API.',
     industry: 'Education',
     type: 'Web application',
-    role: 'Frontend developer · Solo project',
+    role: 'Frontend development · Solo project',
     description:
-      'An interactive country explorer that uses a REST API for filtering, searching and navigating between countries with a responsive, data-driven UI.',
+      'An interactive country explorer that uses a REST API to provide searching, filtering and country information through a responsive, data-driven interface.',
     technologies: ['JavaScript', 'REST API', 'Responsive UI'],
     liveUrl: 'https://mlungisimahlangu.github.io/CountryScope',
     codeUrl: 'https://github.com/MlungisiMahlangu/CountryScope',
     cardBg: '#dce2ff',
     demo: false,
+    challenge: 'Build an interactive data-driven interface that lets users explore, search and filter country information from a REST API while maintaining a responsive and performant experience.',
+    approach: 'The application fetches country data from a public REST API and renders it through a clean, filterable interface. Search and region filtering are handled client-side for instant feedback, with a responsive grid that adapts from desktop to mobile.',
+    features: ['REST API data integration', 'Real-time search and filtering', 'Region-based filtering', 'Responsive grid layout', 'Country detail views', 'Performant client-side rendering'],
   },
 ]
 
