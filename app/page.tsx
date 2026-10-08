@@ -16,13 +16,6 @@ import { ScrollReveal } from '@/components/ui/scroll-reveal'
 
 const homepageProjects = portfolioProjects.slice(0, 2)
 
-const projectColors: Record<string, string> = {
-  'roadwheels': 'linear-gradient(140deg, #1a2332, #2d4a5e)',
-  'e-safetyrides': 'linear-gradient(140deg, #1f3631, #3a5a4a)',
-  'grip-on': 'linear-gradient(160deg, #2c2c2c, #5a5a5a)',
-  'countryscope': 'linear-gradient(140deg, #1b3a4b, #4a7c8f)',
-}
-
 export const metadata = {
   title: undefined,
 }
@@ -150,16 +143,35 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
           <ScrollReveal variant="stagger" delay={150}>
-            <div className="work-feature">
-              {homepageProjects.map((project) => (
-                <Link className="work-art work-project" href={`/work/${project.slug}`} key={project.slug} style={{ background: projectColors[project.slug] || 'var(--accent)', color: 'white' }}>
-                  <span className="art-label">{project.industry} / {project.type}</span>
-                  <div className="art-type">
-                    {project.title.split(' ').map((word, i) => (
-                      i === 0 ? <span key={word}>{word}<br /></span> : <em key={word}>{word}</em>
-                    ))}
+            <div className="home-work-grid">
+              {homepageProjects.map((project, index) => (
+                <Link className="home-work-card" href={`/work/${project.slug}`} key={project.slug}>
+                  <div className="home-work-visual" style={{ background: project.cardBg }}>
+                    <div className="portfolio-browser-bar">
+                      <span /><span /><span />
+                      <span className="portfolio-browser-url">{new URL(project.liveUrl).hostname}</span>
+                    </div>
+                    <div className="portfolio-browser-image">
+                      <div className="portfolio-browser-placeholder">
+                        <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 8 }}>
+                          {project.industry}
+                        </div>
+                        <div style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9' }}>
+                          {project.title}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <span className="art-caption">{project.subtitle}</span>
+                  <div className="home-work-body">
+                    <p className="portfolio-card-number">{String(index + 1).padStart(2, '0')} / {project.type}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.subtitle}</p>
+                    <div className="home-work-meta">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span className="portfolio-tag" key={tech}>{tech}</span>
+                      ))}
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>

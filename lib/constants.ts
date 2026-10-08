@@ -618,8 +618,12 @@ export interface PortfolioProject {
   subtitle: string
   industry: string
   type: string
+  role: string
   description: string
   technologies: string[]
+  liveUrl: string
+  codeUrl: string
+  cardBg: string
   demo: boolean
 }
 
@@ -627,34 +631,46 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: 'roadwheels',
     title: 'RoadWheels',
-    subtitle: 'A full-stack car rental platform built for scale.',
+    subtitle: 'A complete car rental platform with intuitive booking flows.',
     industry: 'Mobility',
-    type: 'Web Application',
+    type: 'Full-stack web application',
+    role: 'Full-stack developer · Solo project',
     description:
-      'A complete car rental platform with booking flows, fleet management, an admin dashboard and authentication. Built end-to-end with React, Node.js, Express, MongoDB and Tailwind CSS.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+      'A complete car rental platform with intuitive booking flows, fleet management, and an admin dashboard. Built end to end with secure JWT authentication and a production-ready data layer.',
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'JWT Auth'],
+    liveUrl: 'https://roadwheelssa.vercel.app',
+    codeUrl: 'https://github.com/MlungisiMahlangu/RoadWheels',
+    cardBg: '#dce2ff',
     demo: false,
   },
   {
     slug: 'e-safetyrides',
     title: 'E-SafetyRides',
-    subtitle: 'Safety-first e-hailing that checks driver records.',
+    subtitle: 'A safety-first platform helping riders check driver records.',
     industry: 'Safety',
-    type: 'Web Application',
+    type: 'Team project',
+    role: 'Full-stack developer',
     description:
-      'A rider-focused safety platform that verifies driver records before every trip. Built with React, Node.js, Express and Firebase for real-time data.',
-    technologies: ['React', 'Node.js', 'Express', 'Firebase'],
+      'A safety-first platform helping e-hailing riders check a driver\'s record history before getting in the car. Built collaboratively with a modular Route-Controller-Service architecture across auth, search, reports, and notifications.',
+    technologies: ['React (Vite)', 'Node.js', 'Express', 'Firebase / Firestore'],
+    liveUrl: 'https://e-safetyridessa.vercel.app',
+    codeUrl: 'https://github.com/Ronzasa/E-SafetyRides',
+    cardBg: '#16181d',
     demo: false,
   },
   {
     slug: 'grip-on',
     title: 'Grip On',
-    subtitle: 'Gym-apparel e-commerce with clean product presentation.',
+    subtitle: 'A gym-apparel concept storefront with clean product presentation.',
     industry: 'Retail',
-    type: 'Online Store',
+    type: 'E-commerce frontend',
+    role: 'Frontend developer · Solo project',
     description:
-      'A gym-apparel storefront focused on clean product presentation, responsive layout and a streamlined shopping experience.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+      'A gym-apparel concept storefront focused on clean product presentation and a smooth, responsive browsing experience from landing page to product discovery.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
+    liveUrl: 'https://mlungisimahlangu.github.io/grip-on-website',
+    codeUrl: 'https://github.com/MlungisiMahlangu/grip-on-website',
+    cardBg: '#f1e8d8',
     demo: false,
   },
   {
@@ -662,10 +678,14 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'CountryScope',
     subtitle: 'An interactive country explorer powered by REST API.',
     industry: 'Education',
-    type: 'Web Application',
+    type: 'Web application',
+    role: 'Frontend developer · Solo project',
     description:
       'An interactive country explorer that uses a REST API for filtering, searching and navigating between countries with a responsive, data-driven UI.',
     technologies: ['JavaScript', 'REST API', 'Responsive UI'],
+    liveUrl: 'https://mlungisimahlangu.github.io/CountryScope',
+    codeUrl: 'https://github.com/MlungisiMahlangu/CountryScope',
+    cardBg: '#dce2ff',
     demo: false,
   },
 ]
