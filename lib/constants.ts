@@ -23,8 +23,11 @@ export const STUDIO_NAME = 'WEB-IN'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
   'WEB-IN is an independent web development studio based in South Africa, creating modern websites and web solutions for small businesses, professionals, entrepreneurs and growing brands.'
-export const STUDIO_EMAIL = 'hello@web-in.co.za'
+export const STUDIO_EMAIL = 'shaunmlungisi4@gmail.com'
+export const STUDIO_PHONE = '+27 64 953 1145'
+export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'South Africa'
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/your-form-id'
 
 export interface Service {
   slug: string
@@ -1331,6 +1334,17 @@ export const enquiryServiceOptions = [
   'Website Redesign',
   'Custom Web Application',
   'Not Sure Yet',
+]
+
+export const referralSourceOptions = [
+  'Google Search',
+  'Social Media',
+  'Friend or Colleague',
+  'Saw our work online',
+  'LinkedIn',
+  'Instagram',
+  'Facebook',
+  'Other',
 ]
 
 export const enquiryFeatureOptions = [
