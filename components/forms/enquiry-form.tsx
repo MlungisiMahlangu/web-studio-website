@@ -3,7 +3,7 @@
 import { useState, FormEvent, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, AlertCircle } from 'lucide-react'
 import { enquiryServiceOptions, referralSourceOptions, FORMSPREE_ENDPOINT } from '@/lib/constants'
 
 function EnquiryFormInner() {
@@ -11,12 +11,49 @@ function EnquiryFormInner() {
   const searchParams = useSearchParams()
   const preselectedService = searchParams.get('service') || ''
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  function validateForm(formData: FormData): boolean {
+    const newErrors: Record<string, string> = {}
+
+    const name = formData.get('name') as string
+    const phone = formData.get('phone') as string
+    const email = formData.get('email') as string
+    const consent = formData.get('consent')
+
+    if (!name || name.trim().length < 2) {
+      newErrors.name = 'Please enter your full name'
+    }
+
+    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+    if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number'
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email || !emailRegex.test(email)) {
+      newErrors.email = 'Please enter a valid email address'
+    }
+
+    if (!consent) {
+      newErrors.consent = 'You must agree to be contacted'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setIsSubmitting(true)
+    setErrors({})
 
     const formData = new FormData(event.currentTarget)
+
+    if (!validateForm(formData)) {
+      return
+    }
+
+    setIsSubmitting(true)
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -40,21 +77,24 @@ function EnquiryFormInner() {
   }
 
   return (
-    <form className="contact-form" onSubmit={submit}>
+    <form className="contact-form" onSubmit={submit} noValidate>
       <div className="form-row">
         <label>
           Name
           <input required name="name" placeholder="Your full name" />
+          {errors.name && <span className="field-error"><AlertCircle size={12} /> {errors.name}</span>}
         </label>
         <label>
           Phone number
-          <input required name="phone" type="tel" placeholder="+27 000 000 0000" />
+          <input required name="phone" type="tel" placeholder="+27 64 953 1145" />
+          {errors.phone && <span className="field-error"><AlertCircle size={12} /> {errors.phone}</span>}
         </label>
       </div>
 
       <label>
         Email address
         <input required name="email" type="email" placeholder="you@company.com" />
+        {errors.email && <span className="field-error"><AlertCircle size={12} /> {errors.email}</span>}
       </label>
 
       <div className="form-row">
@@ -96,12 +136,13 @@ function EnquiryFormInner() {
         <input type="checkbox" required name="consent" />
         <span>
           I agree that WEB-IN may contact me regarding my enquiry. View our{' '}
-          <a href="/privacy" target="_blank">
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">
             Privacy Policy
           </a>
           .
         </span>
       </label>
+      {errors.consent && <span className="field-error checkbox-error"><AlertCircle size={12} /> {errors.consent}</span>}
 
       <button className="button button-dark" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Send message'} <CheckCircle2 />
