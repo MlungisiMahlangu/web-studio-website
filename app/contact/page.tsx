@@ -30,9 +30,24 @@ export default function ContactPage() {
       </section>
 
       <section className="container contact-layout">
+        <div className="contact-form-wrapper">
+          <div className="contact-form-intro">
+            <p className="eyebrow">02 / Send a message</p>
+            <h2>
+              Tell us about
+              <br />
+              <em>your project.</em>
+            </h2>
+            <p>
+              Fill in the form below and we&apos;ll get back to you within 1–2 business days with a thoughtful response.
+            </p>
+          </div>
+          <EnquiryForm />
+        </div>
+
         <div className="contact-info">
           <div className="contact-info-intro">
-            <p className="eyebrow">02 / Reach out directly</p>
+            <p className="eyebrow">03 / Reach out directly</p>
             <h2>
               We&apos;re here
               <br />
@@ -68,21 +83,6 @@ export default function ContactPage() {
               </div>
             </a>
           </div>
-        </div>
-
-        <div className="contact-form-wrapper">
-          <div className="contact-form-intro">
-            <p className="eyebrow">03 / Send a message</p>
-            <h2>
-              Tell us about
-              <br />
-              <em>your project.</em>
-            </h2>
-            <p>
-              Fill in the form below and we&apos;ll get back to you within 1–2 business days with a thoughtful response.
-            </p>
-          </div>
-          <EnquiryForm />
         </div>
       </section>
 
