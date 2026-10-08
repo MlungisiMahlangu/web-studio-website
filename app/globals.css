@@ -201,8 +201,8 @@ button, input, select, textarea { font: inherit; }
 .portfolio-browser-bar > span:nth-child(2) { width: 8px; height: 8px; border-radius: 50%; background: #febc2e; }
 .portfolio-browser-bar > span:nth-child(3) { width: 8px; height: 8px; border-radius: 50%; background: #28c840; }
 .portfolio-browser-url { font-size: 11px; color: var(--muted); margin-left: 8px; font-family: var(--mono); }
-.portfolio-browser-image { flex: 1; display: grid; place-items: center; padding: 32px; }
-.portfolio-browser-placeholder { text-align: center; color: white; opacity: .85; }
+.portfolio-browser-image { flex: 1; overflow: hidden; }
+.portfolio-screenshot { width: 100%; height: 100%; object-fit: cover; display: block; }
 .portfolio-card-body { padding: 28px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
 .portfolio-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .portfolio-card-number { font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
@@ -226,7 +226,8 @@ button, input, select, textarea { font: inherit; }
 .project-hero-browser-bar > span:nth-child(2) { width: 8px; height: 8px; border-radius: 50%; background: #febc2e; }
 .project-hero-browser-bar > span:nth-child(3) { width: 8px; height: 8px; border-radius: 50%; background: #28c840; }
 .project-hero-browser-bar > span:nth-child(4) { font-size: 11px; color: var(--muted); margin-left: 8px; font-family: var(--mono); }
-.project-hero-content { padding: 60px 48px; min-height: 340px; display: grid; place-items: center; }
+.project-hero-image { overflow: hidden; }
+.project-hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 340px; }
 .project-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12%; }
 .project-detail-actions { display: flex; align-items: center; gap: 16px; margin-top: 28px; }
 .project-link-primary { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: white; background: var(--ink); padding: 10px 22px; border-radius: 20px; transition: transform .2s, box-shadow .2s; }

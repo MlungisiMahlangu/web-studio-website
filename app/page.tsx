@@ -129,7 +129,7 @@ export default function HomePage() {
       <section className="work-section" id="work">
         <div className="container">
           <ScrollReveal>
-            <div className="section-intro work-intro">
+            <div className="section-intro">
               <p className="eyebrow">02 / Selected direction</p>
               <h2>
                 Make an impression
@@ -152,14 +152,7 @@ export default function HomePage() {
                       <span className="portfolio-browser-url">{new URL(project.liveUrl).hostname}</span>
                     </div>
                     <div className="portfolio-browser-image">
-                      <div className="portfolio-browser-placeholder">
-                        <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 8 }}>
-                          {project.industry}
-                        </div>
-                        <div style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9' }}>
-                          {project.title}
-                        </div>
-                      </div>
+                      <img src={`/screenshots/${project.slug}.png`} alt={`${project.title} screenshot`} className="portfolio-screenshot" />
                     </div>
                   </div>
                   <div className="home-work-body">

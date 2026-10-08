@@ -37,14 +37,7 @@ export default function WorkPage() {
                   <span className="portfolio-browser-url">{new URL(project.liveUrl).hostname}</span>
                 </div>
                 <div className="portfolio-browser-image">
-                  <div className="portfolio-browser-placeholder">
-                    <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 8 }}>
-                      {project.industry}
-                    </div>
-                    <div style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9' }}>
-                      {project.title}
-                    </div>
-                  </div>
+                  <img src={`/screenshots/${project.slug}.png`} alt={`${project.title} screenshot`} className="portfolio-screenshot" />
                 </div>
               </div>
               <div className="portfolio-card-body">

@@ -50,13 +50,8 @@ export default async function ProjectDetailPage({ params }: Props) {
             <span /><span /><span />
             <span>{new URL(project.liveUrl).hostname}</span>
           </div>
-          <div className="project-hero-content">
-            <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.6, marginBottom: 16 }}>
-              {project.industry}
-            </div>
-            <div style={{ fontSize: 'clamp(48px, 8vw, 96px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9', color: 'white' }}>
-              {project.title}
-            </div>
+          <div className="project-hero-image">
+            <img src={`/screenshots/${project.slug}.png`} alt={`${project.title} screenshot`} className="portfolio-screenshot" />
           </div>
         </div>
 
