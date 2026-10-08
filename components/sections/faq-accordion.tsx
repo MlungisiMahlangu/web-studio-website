@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Search, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import type { FaqCategory } from '@/lib/constants'
@@ -8,8 +8,6 @@ import type { FaqCategory } from '@/lib/constants'
 export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeCategory, setActiveCategory] = useState(categories[0]?.id ?? '')
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
 
   const toggleItem = (key: string) => {
     setOpenItems((prev) => {
@@ -19,35 +17,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
       return next
     })
   }
-
-  const scrollToCategory = (id: string) => {
-    setActiveCategory(id)
-    const el = sectionRefs.current[id]
-    if (el) {
-      const offset = 100
-      const top = el.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveCategory(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: '-120px 0px -60% 0px', threshold: 0 }
-    )
-
-    Object.values(sectionRefs.current).forEach((el) => {
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [categories])
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return categories
@@ -66,21 +35,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
 
   return (
     <>
-      {/* Category Navigation */}
-      <nav className="faq-category-nav container">
-        <div className="faq-category-scroll">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => scrollToCategory(cat.id)}
-              className={`faq-category-btn ${activeCategory === cat.id ? 'active' : ''}`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-      </nav>
-
       {/* Search */}
       <div className="faq-search container">
         <div className="faq-search-inner">
@@ -104,8 +58,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         {filteredCategories.map((category) => (
           <section
             key={category.id}
-            id={category.id}
-            ref={(el) => { sectionRefs.current[category.id] = el }}
             className="faq-section"
           >
             <div className="faq-section-header">
@@ -170,28 +122,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="faq-cta container">
-        <p className="eyebrow">Ready when you are</p>
-        <h2>
-          Have a question?
-          <br />
-          <em>Let&apos;s talk.</em>
-        </h2>
-        <p>
-          If you didn&apos;t find what you were looking for, we&apos;re happy to
-          help. Reach out through the contact form or WhatsApp and we&apos;ll get
-          back to you.
-        </p>
-        <div className="faq-cta-actions">
-          <Link className="button button-dark" href="/contact">
-            Contact WEB-IN <ArrowUpRight />
-          </Link>
-          <Link className="button button-outline" href="/start-a-project">
-            Start Your Project <ArrowUpRight />
-          </Link>
-        </div>
-      </section>
     </>
   )
 }
