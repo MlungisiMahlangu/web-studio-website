@@ -24,7 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/process',
     '/faq',
     '/contact',
-    '/start-a-project',
     '/privacy-policy',
     '/terms-and-conditions',
     '/cookie-policy',

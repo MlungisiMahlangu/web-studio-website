@@ -5,7 +5,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/start-a-project'],
     },
     sitemap: 'https://studiowebsite.co.za/sitemap.xml',
   }
