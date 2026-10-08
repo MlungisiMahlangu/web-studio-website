@@ -1021,6 +1021,194 @@ export const processFaqs: [string, string][] = [
   ],
 ]
 
+export interface FaqItem {
+  question: string
+  answer: string
+}
+
+export interface FaqCategory {
+  id: string
+  number: string
+  label: string
+  heading: string
+  intro: string
+  items: FaqItem[]
+  cta?: { text: string; href: string }
+}
+
+export const faqCategories: FaqCategory[] = [
+  {
+    id: 'getting-started',
+    number: '01',
+    label: 'GETTING STARTED',
+    heading: 'Starting a project',
+    intro: 'Everything you need to know before your first enquiry.',
+    items: [
+      {
+        question: 'What happens after I submit the project enquiry?',
+        answer: 'Once you submit the enquiry, we review the information you\'ve provided to understand your goals, requirements, budget and timeline. If we need clarification, we\'ll get in touch. From there, we can determine the appropriate scope and discuss the best way forward.',
+      },
+      {
+        question: 'Do I need to know exactly what I want before contacting you?',
+        answer: 'No. You can give us as much or as little information as you currently have. The initial conversation is an opportunity to explain what you\'re trying to achieve. We can help clarify the website type, functionality and direction based on your requirements.',
+      },
+      {
+        question: 'How do I get a quote?',
+        answer: 'Start by submitting the project enquiry. We review your requirements and use the information provided to determine the appropriate project scope and quotation. The final price depends on the scope, functionality, content, integrations and other project requirements.',
+      },
+      {
+        question: 'Can I contact WEB-IN before submitting the form?',
+        answer: 'Yes. If you have questions before starting, you can contact us through the contact page or WhatsApp.',
+      },
+    ],
+  },
+  {
+    id: 'pricing-payments',
+    number: '02',
+    label: 'PRICING & PAYMENTS',
+    heading: 'Understanding the investment',
+    intro: 'Transparent pricing with no hidden surprises.',
+    items: [
+      {
+        question: 'How much does a website cost?',
+        answer: 'Our website packages start from R1,500, depending on the type and scope of the project.\n\nLanding Page — R1,500\nPortfolio Website — from R2,000\nStarter Website — R2,500\nBusiness Website — R4,500\nProfessional Website — R7,500\nBooking Website — from R6,500\nOnline Store — from R8,500\nCustom Web Application — from R10,000\nWebsite Redesign — from R2,500\n\nPrices are based on the described package scope. Projects requiring additional functionality, integrations, pages, content, payment systems or custom development may have a different final price.',
+      },
+      {
+        question: 'Is the price fixed?',
+        answer: 'Package prices are based on the scope described on the pricing page. If your project requires additional functionality, pages, integrations or custom requirements, the final quotation may differ. We confirm the agreed scope before development begins.',
+      },
+      {
+        question: 'When do I pay?',
+        answer: 'The required deposit is paid after the project scope and quotation have been approved and before development begins. The exact payment arrangement is communicated as part of the project quotation.',
+      },
+      {
+        question: 'Are there any additional costs?',
+        answer: 'Some third-party services may have separate costs. Examples include domain renewals, hosting renewals, payment processing fees, business email subscriptions, premium plugins or services, and external software subscriptions. Any relevant third-party costs are communicated as part of the project scope where applicable.',
+      },
+    ],
+    cta: { text: 'View Full Pricing', href: '/pricing' },
+  },
+  {
+    id: 'website-hosting',
+    number: '03',
+    label: 'WEBSITE & INFRASTRUCTURE',
+    heading: 'The things behind the website',
+    intro: 'Domains, hosting, ownership and the technical foundations.',
+    items: [
+      {
+        question: 'Do you provide the domain?',
+        answer: 'For selected packages, WEB-IN includes a .co.za domain for the first year. This currently applies to Business Website, Professional Website, Booking Website and Online Store.\n\nThe domain is owned by the client. Domain availability is required, and premium or previously registered domains may have additional costs. From the second year, domain renewal fees apply.',
+      },
+      {
+        question: 'Do I own my website?',
+        answer: 'Yes. The website belongs to the client once the project has been completed and paid for according to the agreed terms. Where WEB-IN manages domain or hosting services, the client remains the owner of their website and domain.',
+      },
+      {
+        question: 'Do I need hosting?',
+        answer: 'Yes, a website needs somewhere to run. Hosting requirements depend on the type of website and technology used. Where hosting is included or arranged as part of a package, the relevant terms will be communicated clearly. Third-party hosting renewal costs may apply after any included period.',
+      },
+      {
+        question: 'Can I use a domain I already own?',
+        answer: 'Yes. If you already have a domain, we can work with the existing domain and assist with the relevant configuration.',
+      },
+      {
+        question: 'Can you help me set up business email?',
+        answer: 'Yes. WEB-IN can assist with setting up professional email such as hello@yourbusiness.co.za. Business email setup is available as an optional service. The email provider\'s subscription costs are separate.',
+      },
+    ],
+  },
+  {
+    id: 'design-development',
+    number: '04',
+    label: 'DESIGN & DEVELOPMENT',
+    heading: 'What we can build',
+    intro: 'From landing pages to custom systems.',
+    items: [
+      {
+        question: 'Can you redesign my existing website?',
+        answer: 'Yes. WEB-IN offers website redesign services. We can review the existing website and improve areas such as visual design, layout, navigation, mobile responsiveness, typography, user experience, performance and content structure. The final price depends on the size of the existing website and the scope of the redesign.',
+      },
+      {
+        question: 'Do you build online stores?',
+        answer: 'Yes. WEB-IN offers online store development from R8,500. Depending on the project, an online store can include a product catalogue, product pages, categories, shopping cart, checkout, payment gateway integration, order management and mobile-responsive design.\n\nThe final price depends on the number of products, variations, payment provider, shipping requirements and other functionality. Third-party payment processing fees are separate.',
+      },
+      {
+        question: 'Can you set up online payments?',
+        answer: 'Yes. Where appropriate, we can integrate online payment functionality into websites and online stores. The specific payment provider depends on the project and requirements. Payment providers may charge their own transaction or subscription fees, which are separate from WEB-IN\'s development fee.',
+      },
+      {
+        question: 'Can customers contact me through WhatsApp?',
+        answer: 'Yes. WhatsApp integration can be included where appropriate. This can allow visitors to contact a business directly from the website.',
+      },
+      {
+        question: 'Can you build booking websites?',
+        answer: 'Yes. WEB-IN offers booking websites from R6,500. Depending on the requirements, booking functionality can include services, staff/service information, date and time selection, booking forms, notifications and booking management.\n\nMore advanced requirements such as automated reminders, payments, customer accounts, recurring bookings or staff calendars may increase the project cost.',
+      },
+      {
+        question: 'Can you build custom systems?',
+        answer: 'Yes. WEB-IN offers custom web applications from R10,000. Examples include dashboards, client portals, inventory systems, school systems, employee portals, membership platforms, booking management, customer management, internal tools, reporting dashboards, custom databases and automation.\n\nCustom application pricing depends heavily on the required features, users, database architecture, authentication, APIs, integrations, administration and security requirements.',
+      },
+    ],
+    cta: { text: 'Explore Booking Websites', href: '/services/booking-websites' },
+  },
+  {
+    id: 'content-collaboration',
+    number: '05',
+    label: 'CONTENT & COLLABORATION',
+    heading: 'What we need from you',
+    intro: 'How we work together to build your website.',
+    items: [
+      {
+        question: 'Do you write website content?',
+        answer: 'Content requirements depend on the project. WEB-IN can structure and present the content on the website, but full professional copywriting or content creation is not automatically included unless specifically agreed. If you need help with content, we can discuss the requirements and scope it appropriately.',
+      },
+      {
+        question: 'Do I need to provide images?',
+        answer: 'Where the project requires business-specific images, logos, product photography or other brand assets, the client may need to provide them. We can optimise website imagery for performance. If additional design assets or image creation are required, they can be discussed separately.',
+      },
+      {
+        question: 'Can you help if I don\'t have a logo?',
+        answer: 'Yes. Logo design is available as an optional add-on.',
+      },
+    ],
+  },
+  {
+    id: 'review-revisions',
+    number: '06',
+    label: 'REVIEW & REVISIONS',
+    heading: 'Your feedback matters',
+    intro: 'How we refine the website together.',
+    items: [
+      {
+        question: 'How many revisions do I get?',
+        answer: 'Revision rounds depend on the package selected.\n\nLanding Page — 1 revision round\nPortfolio Website — 1 revision round\nStarter Website — 1 revision round\nBusiness Website — 2 revision rounds\nProfessional Website — 3 revision rounds\nBooking Website — 2 revision rounds\nOnline Store — 2 revision rounds\nWebsite Redesign — 1–2 revision rounds depending on scope\n\nThe exact revision allowance is shown on the relevant package.',
+      },
+      {
+        question: 'What counts as a revision?',
+        answer: 'A revision is feedback or changes to the agreed website scope and design during the review stage. New pages, major new functionality, redesigning an approved direction or significant changes outside the agreed scope may require additional work. This is communicated clearly rather than making the client feel restricted.',
+      },
+    ],
+  },
+  {
+    id: 'after-launch',
+    number: '07',
+    label: 'AFTER LAUNCH',
+    heading: 'What happens after the website goes live?',
+    intro: 'Support and maintenance options for the long run.',
+    items: [
+      {
+        question: 'Do you provide website maintenance?',
+        answer: 'Yes. WEB-IN offers optional maintenance plans for businesses that want ongoing support.\n\nBasic Care — R299/month\nBusiness Care — R499/month\nPriority Care — R999/month\n\nMaintenance can include things such as minor content updates, minor fixes, technical checks, performance and security checks, and ongoing support.\n\nMaintenance does not automatically include new pages, major redesigns, new systems, payment integrations or substantial new functionality. Those requirements can be quoted separately.',
+      },
+      {
+        question: 'Do I get support after launch?',
+        answer: 'Selected packages include a defined period of minor post-launch support. The duration depends on the package. For longer-term support, optional maintenance plans are available.',
+      },
+    ],
+    cta: { text: 'View Maintenance Plans', href: '/pricing' },
+  },
+]
+
 export interface PortfolioProject {
   slug: string
   title: string
