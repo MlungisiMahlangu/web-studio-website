@@ -6,6 +6,16 @@ import {
   Layers3,
   Code2,
   Paintbrush,
+  Palette,
+  Briefcase,
+  BarChart3,
+  Rocket,
+  Layout,
+  MessageSquare,
+  Calendar,
+  ShoppingCart,
+  Search,
+  Users,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -85,6 +95,12 @@ export const services: Service[] = [
   },
 ]
 
+export interface FeatureGroup {
+  title: string
+  icon: LucideIcon
+  items: string[]
+}
+
 export interface ServiceDetail {
   slug: string
   name: string
@@ -92,7 +108,9 @@ export interface ServiceDetail {
   price: string
   timeframe: string
   description: string
-  features: string[]
+  whyUs: string
+  featureGroups: FeatureGroup[]
+  idealFor: string[]
   domain: string
   cta: string
 }
@@ -107,28 +125,60 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '2\u20133 weeks',
     description:
       'Your business deserves a website that works as hard as you do. We build professional, mobile-first websites that communicate trust, showcase your services and make it easy for customers to take the next step.',
-    features: [
-      'Up to 7 pages',
-      'Custom UI/UX design',
-      'Mobile-first responsive design',
-      'Professional navigation',
-      'Custom branded sections',
-      'WhatsApp integration',
-      'Contact form',
-      'Google Maps integration',
-      'Image gallery',
-      'Testimonials section',
-      'Social media integration',
-      'Basic SEO setup',
-      'Google Analytics setup',
-      'Google Search Console setup',
-      'Google Business Profile setup assistance',
-      'Image optimisation',
-      'Performance optimisation',
-      'SSL',
-      'Website deployment',
-      '2 revision rounds',
-      '3 months minor post-launch support',
+    whyUs:
+      'A great business website does more than look good \u2014 it earns trust in the first few seconds, answers the questions your customers actually have, and guides them toward calling, emailing or booking you. We design every page with that outcome in mind.',
+    featureGroups: [
+      {
+        title: 'Design & Experience',
+        icon: Palette,
+        items: [
+          'Up to 7 pages',
+          'Custom UI/UX design',
+          'Mobile-first responsive design',
+          'Professional navigation',
+          'Custom branded sections',
+        ],
+      },
+      {
+        title: 'Business Essentials',
+        icon: Briefcase,
+        items: [
+          'WhatsApp integration',
+          'Contact form',
+          'Google Maps integration',
+          'Image gallery',
+          'Testimonials section',
+          'Social media integration',
+        ],
+      },
+      {
+        title: 'Visibility & Performance',
+        icon: BarChart3,
+        items: [
+          'Basic SEO setup',
+          'Google Analytics setup',
+          'Google Search Console setup',
+          'Google Business Profile setup assistance',
+          'Image optimisation',
+          'Performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          '2 revision rounds',
+          '3 months minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Small and medium businesses ready for a credible online presence',
+      'Service providers who want customers to find and contact them easily',
+      'Companies outgrowing a social-media-only presence',
+      'Brands that need a professional home for testimonials, galleries and case studies',
     ],
     domain: 'FREE .co.za domain \u2014 first year included',
     cta: 'Build my business website',
@@ -142,23 +192,56 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '7\u201315 days',
     description:
       'Whether you are a student, creative, developer or professional, your portfolio should open doors. We build clean, confident portfolio websites that put your best work front and centre.',
-    features: [
-      'Home, About, Skills/Services, Projects, Contact',
-      'CV/Resume download',
-      'GitHub integration',
-      'LinkedIn integration',
-      'Social media links',
-      'Custom UI design',
-      'Mobile-first responsive design',
-      'Contact form',
-      'WhatsApp integration',
-      'Basic SEO setup',
-      'Image optimisation',
-      'SSL',
-      'Deployment',
-      'Basic performance optimisation',
-      '1 revision round',
-      '14 days minor post-launch support',
+    whyUs:
+      'Your portfolio is often the first thing a recruiter, client or collaborator sees. We make sure it loads fast, reads clearly and leaves a strong impression \u2014 so the work speaks for itself and opportunities come to you.',
+    featureGroups: [
+      {
+        title: 'Portfolio Structure',
+        icon: Layout,
+        items: [
+          'Home, About, Skills/Services, Projects, Contact',
+          'CV/Resume download',
+          'Custom page layout',
+        ],
+      },
+      {
+        title: 'Online Presence',
+        icon: Users,
+        items: [
+          'GitHub integration',
+          'LinkedIn integration',
+          'Social media links',
+          'Contact form',
+          'WhatsApp integration',
+        ],
+      },
+      {
+        title: 'Design & Performance',
+        icon: Palette,
+        items: [
+          'Custom UI design',
+          'Mobile-first responsive design',
+          'Basic SEO setup',
+          'Image optimisation',
+          'Basic performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Deployment',
+          '1 revision round',
+          '14 days minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Students and graduates entering the job market',
+      'Developers, designers and creatives showcasing their work',
+      'Freelancers and consultants building a personal brand',
+      'Professionals who want a polished alternative to LinkedIn alone',
     ],
     domain: 'Existing domain supported. .co.za available separately.',
     cta: 'Build my portfolio',
@@ -172,24 +255,56 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '5\u201310 days',
     description:
       'Sometimes you do not need a full website \u2014 you need one sharp page that communicates a clear offer and drives action. Perfect for campaigns, product launches or single-service businesses.',
-    features: [
-      '1 professionally designed page',
-      'Custom UI design',
-      'Mobile-first responsive design',
-      'Hero section',
-      'About/service section',
-      'Benefits/features section',
-      'Call-to-action sections',
-      'WhatsApp integration',
-      'Contact form',
-      'Social media links',
-      'Basic SEO setup',
-      'Image optimisation',
-      'SSL',
-      'Website deployment',
-      'Basic performance optimisation',
-      '1 revision round',
-      '14 days minor post-launch support',
+    whyUs:
+      'A well-built landing page removes every distraction between your visitor and the action you want them to take. We design each section to build momentum \u2014 from the first headline to the final call-to-action \u2014 so visitors convert instead of bounce.',
+    featureGroups: [
+      {
+        title: 'Page Structure',
+        icon: Layout,
+        items: [
+          '1 professionally designed page',
+          'Hero section',
+          'About/service section',
+          'Benefits/features section',
+          'Call-to-action sections',
+        ],
+      },
+      {
+        title: 'Engagement',
+        icon: MessageSquare,
+        items: [
+          'WhatsApp integration',
+          'Contact form',
+          'Social media links',
+        ],
+      },
+      {
+        title: 'Design & Performance',
+        icon: Palette,
+        items: [
+          'Custom UI design',
+          'Mobile-first responsive design',
+          'Basic SEO setup',
+          'Image optimisation',
+          'Basic performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          '1 revision round',
+          '14 days minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Businesses running a specific campaign or promotion',
+      'Product launches that need a focused, high-converting page',
+      'Single-service providers who want a fast online presence',
+      'Event pages, waitlists and lead-capture campaigns',
     ],
     domain: 'Domain not included. Client may use existing or purchase separately.',
     cta: 'Build my landing page',
@@ -203,26 +318,64 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '2\u20135 weeks',
     description:
       'For businesses that run on appointments, classes or consultations. We build booking experiences that make it effortless for customers to find you, understand your services and book.',
-    features: [
-      'Custom UI/UX design',
-      'Service pages',
-      'Staff/service information',
-      'Booking/enquiry system',
-      'Date and time selection',
-      'Booking form',
-      'Email notifications',
-      'WhatsApp integration',
-      'Mobile-first responsive design',
-      'Basic admin/booking management',
-      'Contact form',
-      'Basic SEO',
-      'Google Analytics setup',
-      'Google Maps where applicable',
-      'SSL',
-      'Website deployment',
-      'Performance optimisation',
-      '2 revision rounds',
-      '3 months minor post-launch support',
+    whyUs:
+      'Every missed booking is lost revenue. We build scheduling experiences that remove friction \u2014 clear service pages, intuitive date selection, instant confirmations \u2014 so customers can go from discovery to booked in under a minute.',
+    featureGroups: [
+      {
+        title: 'Design & Experience',
+        icon: Palette,
+        items: [
+          'Custom UI/UX design',
+          'Service pages',
+          'Staff/service information',
+          'Mobile-first responsive design',
+        ],
+      },
+      {
+        title: 'Booking System',
+        icon: Calendar,
+        items: [
+          'Booking/enquiry system',
+          'Date and time selection',
+          'Booking form',
+          'Email notifications',
+          'Basic admin/booking management',
+        ],
+      },
+      {
+        title: 'Business Essentials',
+        icon: Briefcase,
+        items: [
+          'WhatsApp integration',
+          'Contact form',
+          'Google Maps where applicable',
+        ],
+      },
+      {
+        title: 'Visibility & Performance',
+        icon: BarChart3,
+        items: [
+          'Basic SEO',
+          'Google Analytics setup',
+          'Performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          '2 revision rounds',
+          '3 months minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Salons, barbershops and beauty studios',
+      'Consultants, coaches and therapists',
+      'Tutors, trainers and class providers',
+      'Any business that runs on appointments and needs online scheduling',
     ],
     domain: 'FREE .co.za domain \u2014 first year included',
     cta: 'Build my booking website',
@@ -236,28 +389,66 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '3\u20136 weeks',
     description:
       'Sell your products online with a store that looks professional, loads fast and makes checkout effortless. From product catalogues to payment gateways, we build e-commerce experiences ready for growth.',
-    features: [
-      'Custom e-commerce UI/UX',
-      'Homepage',
-      'Product catalogue',
-      'Product categories',
-      'Product pages',
-      'Shopping cart',
-      'Checkout',
-      'Payment gateway integration',
-      'Order management',
-      'Mobile-first responsive design',
-      'WhatsApp integration',
-      'Contact form',
-      'Basic SEO',
-      'Google Analytics setup',
-      'Google Search Console setup',
-      'Image optimisation',
-      'Performance optimisation',
-      'SSL',
-      'Website deployment',
-      '2 revision rounds',
-      '5 months minor post-launch support',
+    whyUs:
+      'An online store lives or dies by how easily customers can find products and complete a purchase. We build stores that feel premium, load fast and make checkout frictionless \u2014 so you can focus on your products while your store handles the selling.',
+    featureGroups: [
+      {
+        title: 'Storefront Design',
+        icon: Layout,
+        items: [
+          'Custom e-commerce UI/UX',
+          'Homepage',
+          'Product catalogue',
+          'Product categories',
+          'Product pages',
+        ],
+      },
+      {
+        title: 'Shopping Experience',
+        icon: ShoppingCart,
+        items: [
+          'Shopping cart',
+          'Checkout',
+          'Payment gateway integration',
+          'Order management',
+        ],
+      },
+      {
+        title: 'Business Essentials',
+        icon: Briefcase,
+        items: [
+          'WhatsApp integration',
+          'Contact form',
+          'Mobile-first responsive design',
+        ],
+      },
+      {
+        title: 'Visibility & Performance',
+        icon: BarChart3,
+        items: [
+          'Basic SEO',
+          'Google Analytics setup',
+          'Google Search Console setup',
+          'Image optimisation',
+          'Performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          '2 revision rounds',
+          '5 months minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Brands ready to sell products directly online',
+      'Businesses moving from WhatsApp or Instagram orders to a proper store',
+      'Artisans and makers expanding their reach beyond physical markets',
+      'Companies that want full control over their product catalogue and checkout',
     ],
     domain: 'FREE .co.za domain \u2014 first year included',
     cta: 'Build my online store',
@@ -271,19 +462,45 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '4\u20138+ weeks',
     description:
       'When your business needs more than a website, we build custom web applications \u2014 dashboards, portals, management systems and internal tools designed around your specific workflow.',
-    features: [
-      'Requirements analysis',
-      'Custom UI/UX design',
-      'Responsive interface',
-      'Custom functionality',
-      'Database architecture',
-      'Authentication where required',
-      'Admin functionality',
-      'API integration',
-      'Testing',
-      'Deployment',
-      'Basic documentation',
-      'Project-specific support period',
+    whyUs:
+      'Off-the-shelf tools rarely fit perfectly. We build applications around your actual workflow \u2014 not the other way around. Every screen, every interaction is designed for the people who use it daily, so your team works faster and with fewer workarounds.',
+    featureGroups: [
+      {
+        title: 'Discovery & Design',
+        icon: Search,
+        items: [
+          'Requirements analysis',
+          'Custom UI/UX design',
+          'Responsive interface',
+        ],
+      },
+      {
+        title: 'Development',
+        icon: Code2,
+        items: [
+          'Custom functionality',
+          'Database architecture',
+          'Authentication where required',
+          'Admin functionality',
+          'API integration',
+        ],
+      },
+      {
+        title: 'Delivery',
+        icon: Rocket,
+        items: [
+          'Testing',
+          'Deployment',
+          'Basic documentation',
+          'Project-specific support period',
+        ],
+      },
+    ],
+    idealFor: [
+      'Businesses that have outgrown spreadsheets and manual processes',
+      'Teams that need internal dashboards, portals or management tools',
+      'Companies with specific workflows that off-the-shelf software cannot handle',
+      'Founders building a product or platform that needs custom development',
     ],
     domain: 'Quoted individually based on requirements.',
     cta: 'Discuss my application',
@@ -297,24 +514,62 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     timeframe: '1\u20133 weeks',
     description:
       'Your existing website may have served its purpose, but if it no longer reflects the quality of your business, it is time for a change. We redesign websites to be modern, fast and conversion-focused.',
-    features: [
-      'Existing website assessment',
-      'UX/UI review',
-      'Modern visual redesign',
-      'Mobile responsiveness improvements',
-      'Improved navigation',
-      'Improved typography',
-      'Improved spacing and layout',
-      'Modernised branding implementation',
-      'Performance improvements',
-      'Basic SEO preservation/setup',
-      'WhatsApp integration',
-      'Contact form improvements',
-      'Image optimisation',
-      'SSL configuration',
-      'Website deployment',
-      '1\u20132 revision rounds',
-      'Minor post-launch support',
+    whyUs:
+      'A redesign is not just a fresh coat of paint. We look at what is working, what is not and where your visitors are dropping off \u2014 then rebuild with better design, cleaner code and a structure that actually moves people toward taking action.',
+    featureGroups: [
+      {
+        title: 'Assessment',
+        icon: Search,
+        items: [
+          'Existing website assessment',
+          'UX/UI review',
+        ],
+      },
+      {
+        title: 'Visual Design',
+        icon: Paintbrush,
+        items: [
+          'Modern visual redesign',
+          'Modernised branding implementation',
+          'Improved typography',
+          'Improved spacing and layout',
+        ],
+      },
+      {
+        title: 'Technical Improvements',
+        icon: Code2,
+        items: [
+          'Mobile responsiveness improvements',
+          'Performance improvements',
+          'Improved navigation',
+          'Image optimisation',
+        ],
+      },
+      {
+        title: 'Business Essentials',
+        icon: Briefcase,
+        items: [
+          'Basic SEO preservation/setup',
+          'WhatsApp integration',
+          'Contact form improvements',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL configuration',
+          'Website deployment',
+          '1\u20132 revision rounds',
+          'Minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Businesses with an outdated website that no longer reflects their brand',
+      'Websites that are slow, not mobile-friendly or hard to navigate',
+      'Companies rebranding and needing their digital presence to catch up',
+      'Anyone who is embarrassed to share their current website URL',
     ],
     domain: 'Final price depends on number of pages, current technology and scope.',
     cta: 'Redesign my website',
