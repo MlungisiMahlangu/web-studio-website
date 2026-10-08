@@ -1,0 +1,12 @@
+import type { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: ['/start-a-project'],
+    },
+    sitemap: 'https://studiowebsite.co.za/sitemap.xml',
+  }
+}
