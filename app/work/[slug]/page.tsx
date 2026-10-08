@@ -25,11 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const projectColors: Record<string, string> = {
-  'luxe-cuts': 'linear-gradient(140deg, #1f3631, #3a5a4a)',
-  'mkhize-construction': 'linear-gradient(140deg, #2c3e50, #5d7a94)',
-  'urbanwear': 'linear-gradient(160deg, #e8b99d, #efddc1)',
-  'thando-photography': 'linear-gradient(140deg, #3a3a3a, #6a6a6a)',
-  'johannesburg-fitness': 'linear-gradient(140deg, #c0392b, #e67e22)',
+  'roadwheels': 'linear-gradient(140deg, #1a2332, #2d4a5e)',
+  'e-safetyrides': 'linear-gradient(140deg, #1f3631, #3a5a4a)',
+  'grip-on': 'linear-gradient(160deg, #2c2c2c, #5a5a5a)',
+  'countryscope': 'linear-gradient(140deg, #1b3a4b, #4a7c8f)',
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
@@ -43,7 +42,6 @@ export default async function ProjectDetailPage({ params }: Props) {
       <section className="inner-hero container">
         <p className="eyebrow">
           Work / {project.type}
-          {project.demo && ' · Demo project'}
         </p>
         <h1>
           {project.title}
@@ -78,12 +76,6 @@ export default async function ProjectDetailPage({ params }: Props) {
             <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: 16 }}>
               {project.description}
             </p>
-            {project.demo && (
-              <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 16, fontStyle: 'italic' }}>
-                This is a demo project created to showcase design direction and
-                capability. It is not a real client project.
-              </p>
-            )}
           </div>
           <div>
             <p className="eyebrow">Details</p>

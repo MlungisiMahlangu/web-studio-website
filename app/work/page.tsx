@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
 import { portfolioProjects } from '@/lib/constants'
+import { ScrollReveal } from '@/components/ui/scroll-reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -11,11 +12,10 @@ export const metadata: Metadata = {
 }
 
 const projectColors: Record<string, string> = {
-  'luxe-cuts': 'linear-gradient(140deg, #1f3631, #3a5a4a)',
-  'mkhize-construction': 'linear-gradient(140deg, #2c3e50, #5d7a94)',
-  'urbanwear': 'linear-gradient(160deg, #e8b99d, #efddc1)',
-  'thando-photography': 'linear-gradient(140deg, #3a3a3a, #6a6a6a)',
-  'johannesburg-fitness': 'linear-gradient(140deg, #c0392b, #e67e22)',
+  'roadwheels': 'linear-gradient(140deg, #1a2332, #2d4a5e)',
+  'e-safetyrides': 'linear-gradient(140deg, #1f3631, #3a5a4a)',
+  'grip-on': 'linear-gradient(160deg, #2c2c2c, #5a5a5a)',
+  'countryscope': 'linear-gradient(140deg, #1b3a4b, #4a7c8f)',
 }
 
 export default function WorkPage() {
@@ -35,36 +35,37 @@ export default function WorkPage() {
         </p>
       </section>
       <section className="inner-content container">
-        <div className="portfolio-grid">
-          {portfolioProjects.map((project) => (
-            <Link className="portfolio-card" href={`/work/${project.slug}`} key={project.slug}>
-              <div
-                className="portfolio-art"
-                style={{ background: projectColors[project.slug] || 'var(--accent)' }}
-              >
-                {project.demo && <span className="demo-badge">Demo project</span>}
-                <div style={{ textAlign: 'center', color: 'white' }}>
-                  <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.7, marginBottom: 12 }}>
-                    {project.industry}
-                  </div>
-                  <div style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9' }}>
-                    {project.title}
+        <ScrollReveal variant="stagger">
+          <div className="portfolio-grid">
+            {portfolioProjects.map((project) => (
+              <Link className="portfolio-card" href={`/work/${project.slug}`} key={project.slug}>
+                <div
+                  className="portfolio-art"
+                  style={{ background: projectColors[project.slug] || 'var(--accent)' }}
+                >
+                  <div style={{ textAlign: 'center', color: 'white' }}>
+                    <div style={{ fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', opacity: 0.7, marginBottom: 12 }}>
+                      {project.industry}
+                    </div>
+                    <div style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 500, letterSpacing: '-.06em', lineHeight: '.9' }}>
+                      {project.title}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="portfolio-info">
-                <h3>{project.title}</h3>
-                <p>{project.subtitle}</p>
-                <div className="portfolio-meta">
-                  <span className="portfolio-tag">{project.type}</span>
-                  {project.technologies.map((tech) => (
-                    <span className="portfolio-tag" key={tech}>{tech}</span>
-                  ))}
+                <div className="portfolio-info">
+                  <h3>{project.title}</h3>
+                  <p>{project.subtitle}</p>
+                  <div className="portfolio-meta">
+                    <span className="portfolio-tag">{project.type}</span>
+                    {project.technologies.map((tech) => (
+                      <span className="portfolio-tag" key={tech}>{tech}</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        </ScrollReveal>
         <div className="offer-banner">
           <h2>Have a project in mind?</h2>
           <p>
