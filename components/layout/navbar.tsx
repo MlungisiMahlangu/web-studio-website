@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Menu, MessageCircle, X } from 'lucide-react'
-import { STUDIO_NAME, WHATSAPP_LINK } from '@/lib/constants'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { STUDIO_NAME } from '@/lib/constants'
 
 const navLinks = [
   { label: 'Services', href: '/services' },
@@ -25,7 +25,7 @@ export default function Navbar() {
       <header className="nav-wrap">
         <nav className="nav container" aria-label="Main navigation">
           <Link className="brand" href="/">
-            <span className="brand-mark">/</span>
+            <span className="brand-mark">W</span>
             {STUDIO_NAME}
           </Link>
           <div className="nav-links">
@@ -36,9 +36,9 @@ export default function Navbar() {
             ))}
           </div>
           <div className="nav-actions">
-            <a className="whatsapp-link" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
-              <MessageCircle aria-hidden="true" /> WhatsApp
-            </a>
+            <Link className="nav-contact-link" href="/contact">
+              Contact
+            </Link>
             <Link className="button button-dark button-small" href="/start-a-project">
               Start your project <ArrowUpRight aria-hidden="true" />
             </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
       <div className={`mobile-nav ${menuOpen ? 'is-open' : ''}`}>
         <div className="mobile-nav-header">
           <Link className="brand" href="/" onClick={() => setMenuOpen(false)}>
-            <span className="brand-mark">/</span>
+            <span className="brand-mark">W</span>
             {STUDIO_NAME}
           </Link>
           <button
@@ -79,15 +79,13 @@ export default function Navbar() {
           <Link className="button button-dark" href="/start-a-project" onClick={() => setMenuOpen(false)}>
             Start your project <ArrowUpRight aria-hidden="true" />
           </Link>
-          <a
+          <Link
             className="button button-outline"
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noreferrer"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
           >
-            <MessageCircle aria-hidden="true" /> WhatsApp us
-          </a>
+            Contact us
+          </Link>
         </div>
       </div>
     </>

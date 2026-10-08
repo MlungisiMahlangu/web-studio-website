@@ -38,7 +38,7 @@ export default function PricingPage() {
                 <p className="package-name">{pack.name}</p>
                 <h3>{pack.price}</h3>
                 <p className="package-description">{pack.description}</p>
-                <p style={{ fontSize: 12, color: pack.popular ? '#b7c4bd' : 'var(--muted)', margin: '8px 0 0' }}>
+                <p style={{ fontSize: 12, color: pack.popular ? '#9CA3AF' : 'var(--muted)', margin: '8px 0 0' }}>
                   {pack.timeframe}
                 </p>
               </div>

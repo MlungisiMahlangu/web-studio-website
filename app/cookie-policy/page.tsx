@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Cookie policy',
-  description: 'Cookie policy for [STUDIO NAME].',
+  description: `Cookie policy for ${STUDIO_NAME}.`,
 }
 
 export default function CookiePolicyPage() {

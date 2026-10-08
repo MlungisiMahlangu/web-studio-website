@@ -9,13 +9,11 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
-export const STUDIO_NAME = '[STUDIO NAME]'
-export const STUDIO_TAGLINE = 'Websites for modern businesses'
+export const STUDIO_NAME = 'WEB-IN'
+export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
-  'Independent web development studio creating thoughtful websites, online stores and digital experiences for ambitious South African businesses.'
-export const WHATSAPP_NUMBER = '27000000000'
-export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`
-export const STUDIO_EMAIL = 'hello@[domain].co.za'
+  'WEB-IN is an independent web development studio based in South Africa, creating modern websites and web solutions for small businesses, professionals, entrepreneurs and growing brands.'
+export const STUDIO_EMAIL = 'hello@web-in.co.za'
 export const STUDIO_LOCATION = 'South Africa'
 
 export interface Service {

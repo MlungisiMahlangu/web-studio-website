@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { STUDIO_NAME, STUDIO_EMAIL, WHATSAPP_LINK } from '@/lib/constants'
+import { STUDIO_NAME, STUDIO_EMAIL } from '@/lib/constants'
 
 const footerLinks = {
   Services: [
@@ -34,22 +34,21 @@ export default function Footer() {
         <div className="footer-top">
           <div>
             <Link className="brand" href="/" style={{ color: 'white' }}>
-              <span className="brand-mark">/</span>
+              <span className="brand-mark">W</span>
               {STUDIO_NAME}
             </Link>
             <p style={{ marginTop: 16 }}>
-              Thoughtful websites for modern businesses.
-              <br />
-              South Africa, and everywhere next.
+              Modern websites and web solutions for South African
+              businesses, professionals and growing brands.
             </p>
             <p style={{ marginTop: 16 }}>
-              <a href={`mailto:${STUDIO_EMAIL}`} style={{ color: '#c9f25a' }}>
+              <a href={`mailto:${STUDIO_EMAIL}`} style={{ color: '#2563EB' }}>
                 {STUDIO_EMAIL}
               </a>
             </p>
           </div>
           <div>
-            <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 16, color: '#7e8b84' }}>
+            <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 16, color: '#6B7280' }}>
               Navigation
             </p>
             <div className="footer-links">
@@ -59,7 +58,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 16, color: '#7e8b84' }}>
+            <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 16, color: '#6B7280' }}>
               Studio & Legal
             </p>
             <div className="footer-links">

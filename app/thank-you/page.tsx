@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import { ArrowUpRight, MessageCircle } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
-import { WHATSAPP_LINK } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -29,9 +28,6 @@ export default function ThankYouPage() {
           <Link className="button button-dark" href="/">
             Back to home <ArrowUpRight />
           </Link>
-          <a className="button button-outline" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
-            <MessageCircle /> Chat on WhatsApp
-          </a>
         </div>
       </section>
       <section className="inner-content container" style={{ paddingTop: 40 }}>

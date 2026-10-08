@@ -1,14 +1,14 @@
 import Link from 'next/link'
-import { ArrowUpRight, MessageCircle } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
 import { EnquiryForm } from '@/components/forms/enquiry-form'
-import { STUDIO_EMAIL, WHATSAPP_LINK } from '@/lib/constants'
+import { STUDIO_EMAIL } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch about your project. Send an enquiry or chat with us on WhatsApp.',
+  description: 'Get in touch about your project. Send an enquiry and we will respond within 1–2 business days.',
 }
 
 export default function ContactPage() {
@@ -40,19 +40,6 @@ export default function ContactPage() {
               </p>
               <a href={`mailto:${STUDIO_EMAIL}`} style={{ fontSize: 16, fontWeight: 500 }}>
                 {STUDIO_EMAIL}
-              </a>
-            </div>
-            <div>
-              <p style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--muted)', margin: '0 0 6px' }}>
-                WhatsApp
-              </p>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 16, fontWeight: 500 }}
-              >
-                <MessageCircle style={{ width: 18 }} /> Chat with us
               </a>
             </div>
             <div>

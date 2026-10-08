@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
-import FloatingWhatsApp from '@/components/layout/floating-whatsapp'
+import FloatingContact from '@/components/layout/floating-contact'
 import { services, packages, faqs, STUDIO_NAME, portfolioProjects } from '@/lib/constants'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
 import { HomeContactForm } from '@/components/forms/home-contact-form'
@@ -27,14 +27,15 @@ export default function HomePage() {
 
       <section className="hero container" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">Digital experiences for ambitious businesses</p>
+          <p className="eyebrow">Independent web development studio</p>
           <h1>
-            Websites that make your business look{' '}
-            <em>as good</em> as it actually is.
+            Built for your business.
+            <br />
+            <em>Designed for the web.</em>
           </h1>
           <p className="hero-lede">
-            Modern websites, online stores and digital experiences designed and
-            built for ambitious South African businesses.
+            Modern, high-performance websites designed to help South African
+            businesses build credibility, reach more customers, and grow online.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/start-a-project">
@@ -48,7 +49,7 @@ export default function HomePage() {
             <span className="note-avatars">
               <i /><i /><i />
             </span>
-            <span>A considered process, from first idea to final launch.</span>
+            <span>From first idea to final launch — a considered process.</span>
           </div>
         </div>
         <div className="hero-visual" aria-label="Abstract preview of a premium website interface">
@@ -57,14 +58,14 @@ export default function HomePage() {
             <div className="browser-bar">
               <span /><span /><span />
               <small>{STUDIO_NAME} <b>Work</b> About</small>
-              <i>Let&apos;s talk ↗</i>
+              <i>Let&apos;s talk </i>
             </div>
             <div className="browser-content">
-              <div className="mini-label">INDEPENDENT DIGITAL STUDIO</div>
+              <div className="mini-label">WEB-IN DIGITAL STUDIO</div>
               <strong>
-                Good work
+                Built for business.
                 <br />
-                <em>speaks louder.</em>
+                <em>Designed to convert.</em>
               </strong>
               <div className="mini-line" />
               <div className="browser-footer">
@@ -73,9 +74,9 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="floating-tag tag-one">Strategy <span>↗</span></div>
+          <div className="floating-tag tag-one">Strategy <span></span></div>
           <div className="floating-tag tag-two">
-            Built to convert <span>✦</span>
+            Built to convert <span></span>
           </div>
         </div>
       </section>
@@ -306,7 +307,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingContact />
     </>
   )
 }

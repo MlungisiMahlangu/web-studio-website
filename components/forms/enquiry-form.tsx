@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
-import { enquiryServiceOptions, WHATSAPP_LINK } from '@/lib/constants'
+import { enquiryServiceOptions } from '@/lib/constants'
 
 export function EnquiryForm() {
   const [sent, setSent] = useState(false)
@@ -62,12 +62,6 @@ export function EnquiryForm() {
       <button className="button button-dark" type="submit">
         Send enquiry <ArrowUpRight />
       </button>
-      <small>
-        Prefer WhatsApp?{' '}
-        <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
-          Start a chat instead →
-        </a>
-      </small>
     </form>
   )
 }

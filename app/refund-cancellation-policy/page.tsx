@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Refund and cancellation policy',
-  description: 'Refund and cancellation policy for [STUDIO NAME].',
+  description: `Refund and cancellation policy for ${STUDIO_NAME}.`,
 }
 
 export default function RefundPolicyPage() {

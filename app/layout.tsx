@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: `%s | ${STUDIO_NAME}`,
   },
   description: STUDIO_DESCRIPTION,
-  metadataBase: new URL('https://studiowebsite.co.za'),
+  metadataBase: new URL('https://web-in.co.za'),
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f7f7f4' },
-    { media: '(prefers-color-scheme: dark)', color: '#20231f' },
+    { media: '(prefers-color-scheme: light)', color: '#FAFBFC' },
+    { media: '(prefers-color-scheme: dark)', color: '#111827' },
   ],
 }
 

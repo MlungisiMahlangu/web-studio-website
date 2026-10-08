@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms and conditions',
-  description: 'Terms and conditions for working with [STUDIO NAME].',
+  description: `Terms and conditions for working with ${STUDIO_NAME}.`,
 }
 
 export default function TermsPage() {
