@@ -130,15 +130,16 @@ export default function HomePage() {
         <div className="container">
           <ScrollReveal>
             <div className="section-intro">
-              <p className="eyebrow">02 / Selected direction</p>
+              <p className="eyebrow">02 / Selected work</p>
               <h2>
-                Make an impression
+                Let your work
                 <br />
-                <em>before you meet.</em>
+                <em>speak first.</em>
               </h2>
               <p>
-                A website should do more than exist. It should make the right people
-                stop, understand and take the next step.
+                Before a client calls or a meeting happens, your website is already
+                making the case. We build sites that say the right things — clearly,
+                confidently, and at the right moment.
               </p>
             </div>
           </ScrollReveal>
