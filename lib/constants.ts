@@ -42,7 +42,7 @@ export const services: Service[] = [
     number: '01',
     title: 'Business websites',
     text: 'Professional websites for companies and service businesses.',
-    price: 'From R2,500',
+    price: 'From R4,500',
     href: '/services/business-websites',
   },
   {
@@ -82,7 +82,7 @@ export const services: Service[] = [
     number: '06',
     title: 'Custom applications',
     text: 'Dashboards, portals, systems and custom functionality.',
-    price: "Let's talk",
+    price: 'From R10,000',
     href: '/services/custom-web-applications',
   },
   {

@@ -66,10 +66,11 @@ button, input, select, textarea { font: inherit; }
 .tag-one { left: -5%; top: 23%; transform: rotate(-5deg); }
 .tag-two { right: -2%; bottom: 17%; transform: rotate(4deg); background: var(--ink); color: white; }
 
-.proof-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
-.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-.proof-grid p { text-align: center; padding: 24px 10px; margin: 0; font-size: 12px; color: #6B7280; border-right: 1px solid var(--line); }
-.proof-grid p:last-child { border-right: none; }
+.positioning-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; padding: 64px 0; }
+.positioning-lede { font-size: clamp(20px, 2.5vw, 26px); font-weight: 400; color: var(--text); max-width: 680px; line-height: 1.5; margin: 0 0 48px; }
+.positioning-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.positioning-principles h4 { font-size: 14px; font-weight: 600; color: var(--accent-blue); margin: 0 0 12px; letter-spacing: .02em; }
+.positioning-principles p { font-size: 15px; color: var(--muted); line-height: 1.6; margin: 0; }
 
 .section { padding-top: 135px; padding-bottom: 135px; }
 .section-intro { max-width: 650px; }
@@ -310,7 +311,7 @@ button, input, select, textarea { font: inherit; }
   .hero h1 { font-size: 49px; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
   .hero-visual { min-height: 320px; }
-  .proof-grid, .services-grid, .pricing-grid, .work-feature { grid-template-columns: 1fr; }
+  .positioning-principles, .services-grid, .pricing-grid, .work-feature { grid-template-columns: 1fr; }
   .section { padding-top: 88px; padding-bottom: 88px; }
   .pricing-card.is-popular { transform: none; }
   .work-art, .art-two { min-height: 300px; margin-top: 0; }
@@ -343,7 +344,7 @@ button, input, select, textarea { font: inherit; }
 .hero { animation: fadeIn .6s ease both; }
 .hero-copy { animation: fadeInUp .8s ease both; animation-delay: .1s; }
 .hero-visual { animation: scaleIn .9s ease both; animation-delay: .3s; }
-.proof-strip { animation: fadeIn .6s ease both; animation-delay: .4s; }
+.positioning-strip { animation: fadeIn .6s ease both; animation-delay: .4s; }
 
 .floating-tag { --tag-rotate: 0deg; animation: floatTag 4s ease-in-out infinite; }
 .tag-one { --tag-rotate: -5deg; animation-delay: 0s; }

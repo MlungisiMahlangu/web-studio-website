@@ -82,12 +82,25 @@ export default function HomePage() {
       </section>
 
       <ScrollReveal>
-        <section className="proof-strip">
-          <div className="container proof-grid">
-            <p>Designed around your business</p>
-            <p>Mobile-first by default</p>
-            <p>Built to convert</p>
-            <p>Transparent pricing</p>
+        <section className="positioning-strip">
+          <div className="container">
+            <p className="positioning-lede">
+              From the first conversation to the final launch, we keep the work focused, thoughtful and clear.
+            </p>
+            <div className="positioning-principles">
+              <div>
+                <h4>Strategy</h4>
+                <p>Built around your business and what you need the website to achieve.</p>
+              </div>
+              <div>
+                <h4>Design</h4>
+                <p>Clear, considered interfaces that make your business easier to understand.</p>
+              </div>
+              <div>
+                <h4>Development</h4>
+                <p>Responsive, reliable websites built for the real world.</p>
+              </div>
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -100,7 +113,7 @@ export default function HomePage() {
               Digital work with <em>purpose.</em>
             </h2>
             <p>
-              From a sharp one-page launch to a custom web application, we create
+              From a focused one-page launch to a custom web application, we create
               considered digital experiences that help good businesses move forward.
             </p>
           </div>
@@ -125,6 +138,13 @@ export default function HomePage() {
             ))}
           </div>
         </ScrollReveal>
+        <ScrollReveal delay={200}>
+          <div style={{ textAlign: 'center', marginTop: 48 }}>
+            <Link className="text-link" href="/services">
+              Explore our services <MoveUpRight aria-hidden="true" />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
 
       <section className="work-section" id="work">
@@ -133,14 +153,14 @@ export default function HomePage() {
             <div className="section-intro">
               <p className="eyebrow">02 / Selected work</p>
               <h2>
-                Let your work
+                Work that speaks
                 <br />
-                <em>speak first.</em>
+                <em>for itself.</em>
               </h2>
               <p>
-                Before a client calls or a meeting happens, your website is already
-                making the case. We build sites that say the right things — clearly,
-                confidently, and at the right moment.
+                A selection of digital experiences we've designed and built — from
+                full-stack platforms to polished interfaces. Explore the live projects
+                and see how WEB-IN approaches design, development and the details in between.
               </p>
             </div>
           </ScrollReveal>
@@ -188,7 +208,7 @@ export default function HomePage() {
             <h2>
               Premium work, <em>without the mystery.</em>
             </h2>
-            <p>Clear services and scope. No confusing agency pricing, no hidden surprises.</p>
+            <p>Clear services, defined scope and straightforward pricing. Every project receives a tailored quotation based on what you actually need.</p>
           </div>
         </ScrollReveal>
         <ScrollReveal variant="stagger" delay={100}>
@@ -236,24 +256,24 @@ export default function HomePage() {
             <div className="process-copy">
               <p className="eyebrow">04 / How it works</p>
               <h2>
-                A clear path from <em>idea to live.</em>
+                From first conversation <em>to live website.</em>
               </h2>
               <p>
-                Good projects feel collaborative, not complicated. We keep the process
-                focused, transparent and personal.
+                A clear process makes better projects. We keep every stage focused,
+                transparent and easy to understand.
               </p>
-              <Link className="button button-light" href="/start-a-project">
-                Start a conversation <ArrowUpRight aria-hidden="true" />
+              <Link className="button button-light" href="/process">
+                Explore our process <ArrowUpRight aria-hidden="true" />
               </Link>
             </div>
           </ScrollReveal>
           <ScrollReveal variant="right" delay={150}>
             <div className="steps">
               {[
-                ['01', 'Discover', 'We learn about your business, your audience and what success should look like.'],
-                ['02', 'Define', 'You receive a clear recommendation, scope and quote before we begin.'],
-                ['03', 'Design & build', 'We shape the experience, refine the details and turn it into a fast, responsive website.'],
-                ['04', 'Launch', 'After a final review, we get you live and stay close for the support period included.'],
+                ['01', 'Discover', 'We learn about your business, goals, audience and requirements.'],
+                ['02', 'Define', 'We establish the scope, direction, timeline and quotation before development begins.'],
+                ['03', 'Create', 'We design, build and refine the website around the agreed scope.'],
+                ['04', 'Launch', 'We complete final checks, deploy the website and get it ready for the real world.'],
               ].map(([num, title, desc]) => (
                 <div className="step" key={num}>
                   <b>{num}</b>
@@ -278,8 +298,14 @@ export default function HomePage() {
                 <br />
                 <em>deserve clear answers.</em>
               </h2>
+              <p>Before you start, here are a few of the questions we hear most often.</p>
             </div>
             <HomePageFAQ />
+            <div style={{ marginTop: 32 }}>
+              <Link className="text-link" href="/faq">
+                View all FAQs <MoveUpRight aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
       </section>
@@ -288,7 +314,7 @@ export default function HomePage() {
         <div className="container contact-layout">
           <ScrollReveal variant="left">
             <div>
-              <p className="eyebrow">06 / Your next chapter</p>
+              <p className="eyebrow">06 / Your next project</p>
               <h2>
                 Have a good idea?
                 <br />
