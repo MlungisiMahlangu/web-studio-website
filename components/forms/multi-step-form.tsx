@@ -121,7 +121,7 @@ export function MultiStepForm() {
       {step === 2 && (
         <div className="form-step">
           <h3>What is your budget?</h3>
-          <p>This helps us recommend the right package.</p>
+          <p>This helps us recommend the right service.</p>
           <div className="form-options">
             {enquiryBudgetOptions.map((option) => (
               <div

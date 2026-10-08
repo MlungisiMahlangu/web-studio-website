@@ -188,7 +188,7 @@ export default function HomePage() {
             <h2>
               Premium work, <em>without the mystery.</em>
             </h2>
-            <p>Clear packages and scope. No confusing agency pricing, no hidden surprises.</p>
+            <p>Clear services and scope. No confusing agency pricing, no hidden surprises.</p>
           </div>
         </ScrollReveal>
         <ScrollReveal variant="stagger" delay={100}>
@@ -214,7 +214,7 @@ export default function HomePage() {
                 </ul>
                 <Link
                   className={pack.popular ? 'button button-light' : 'button button-outline'}
-                  href="/start-a-project"
+                  href={pack.href}
                 >
                   Choose {pack.name} <ArrowUpRight aria-hidden="true" />
                 </Link>
@@ -225,7 +225,7 @@ export default function HomePage() {
         <ScrollReveal delay={200}>
           <p className="pricing-note">
             Need something more specific?{' '}
-            <Link href="/pricing">Explore all packages →</Link>
+            <Link href="/pricing">Explore all services →</Link>
           </p>
         </ScrollReveal>
       </section>

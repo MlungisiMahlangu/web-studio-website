@@ -1,12 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { enquiryServiceOptions } from '@/lib/constants'
 
-export function HomeContactForm() {
+function HomeContactFormInner() {
   const [submitted, setSubmitted] = useState(false)
+  const searchParams = useSearchParams()
+  const preselectedService = searchParams.get('service') || ''
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -37,7 +40,7 @@ export function HomeContactForm() {
       </label>
       <label>
         What do you need?
-        <select defaultValue="" required>
+        <select defaultValue={preselectedService} required>
           <option value="" disabled>
             Select a service
           </option>
@@ -58,5 +61,13 @@ export function HomeContactForm() {
         <Link href="/contact">Start a chat instead →</Link>
       </small>
     </form>
+  )
+}
+
+export function HomeContactForm() {
+  return (
+    <Suspense fallback={<div className="contact-form" style={{ padding: 40, textAlign: 'center', color: 'var(--muted)' }}>Loading form...</div>}>
+      <HomeContactFormInner />
+    </Suspense>
   )
 }

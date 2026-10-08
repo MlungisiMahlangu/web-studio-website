@@ -1,12 +1,15 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 import { enquiryServiceOptions } from '@/lib/constants'
 
-export function EnquiryForm() {
+function EnquiryFormInner() {
   const [sent, setSent] = useState(false)
+  const searchParams = useSearchParams()
+  const preselectedService = searchParams.get('service') || ''
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -41,7 +44,7 @@ export function EnquiryForm() {
       </label>
       <label>
         What do you need?
-        <select name="service" defaultValue="" required>
+        <select name="service" defaultValue={preselectedService} required>
           <option value="" disabled>
             Select a service
           </option>
@@ -63,5 +66,13 @@ export function EnquiryForm() {
         Send enquiry <ArrowUpRight />
       </button>
     </form>
+  )
+}
+
+export function EnquiryForm() {
+  return (
+    <Suspense fallback={<div className="contact-form" style={{ padding: 40, textAlign: 'center', color: 'var(--muted)' }}>Loading form...</div>}>
+      <EnquiryFormInner />
+    </Suspense>
   )
 }

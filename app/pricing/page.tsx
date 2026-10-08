@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: 'Transparent pricing for websites starting from R1,500. Clear packages, no hidden costs. Landing pages, business websites, online stores and more.',
+  description: 'Transparent pricing for websites starting from R1,500. Clear services, no hidden costs. Landing pages, business websites, online stores and more.',
 }
 
 export default function PricingPage() {
@@ -61,7 +61,7 @@ export default function PricingPage() {
         </div>
 
         <div className="offer-banner">
-          <h2>Selected packages include a free .co.za domain for the first year.</h2>
+          <h2>Selected services include a free .co.za domain for the first year.</h2>
           <p>
             Domain availability is checked before registration. Renewal fees apply
             from year two; hosting and third-party services are always disclosed.
@@ -74,7 +74,7 @@ export default function PricingPage() {
             Extend your project
           </h2>
           <p style={{ color: 'var(--muted)', maxWidth: 500, lineHeight: 1.7 }}>
-            Add extra features to any package. All add-ons are quoted before work begins.
+            Add extra features to any service. All add-ons are quoted before work begins.
           </p>
           <div className="addons-grid">
             {addons.map((addon) => (
@@ -117,7 +117,7 @@ export default function PricingPage() {
         </div>
 
         <div style={{ marginTop: 100 }}>
-          <p className="eyebrow">Compare packages</p>
+          <p className="eyebrow">Compare services</p>
           <h2 style={{ fontSize: 'clamp(30px, 4vw, 48px)', marginBottom: 8 }}>
             Side by side
           </h2>
@@ -127,9 +127,9 @@ export default function PricingPage() {
                 <tr>
                   <th>Feature</th>
                   <th>Landing</th>
-                  <th>Portfolio</th>
-                  <th>Starter</th>
                   <th>Business</th>
+                  <th>Starter</th>
+                  <th>Portfolio</th>
                   <th>Professional</th>
                 </tr>
               </thead>
@@ -137,7 +137,7 @@ export default function PricingPage() {
                 {comparisonFeatures.map((row) => (
                   <tr key={row.feature}>
                     <td>{row.feature}</td>
-                    {(['landing', 'portfolio', 'starter', 'business', 'professional'] as const).map((col) => {
+                    {(['landing', 'business', 'starter', 'portfolio', 'professional'] as const).map((col) => {
                       const val = row[col]
                       if (val === true) return <td key={col}><Check style={{ display: 'inline' }} /></td>
                       if (val === false) return <td key={col}>—</td>
