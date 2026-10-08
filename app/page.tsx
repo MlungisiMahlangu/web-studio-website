@@ -38,7 +38,7 @@ export default function HomePage() {
             businesses build credibility, reach more customers, and grow online.
           </p>
           <div className="hero-actions">
-            <Link className="button button-dark" href="/start-a-project">
+            <Link className="button button-dark" href="/contact">
               Start your project <ArrowUpRight aria-hidden="true" />
             </Link>
             <Link className="text-link" href="/work">

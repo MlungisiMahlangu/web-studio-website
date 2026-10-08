@@ -915,6 +915,8 @@ button, input, select, textarea { font: inherit; }
 
 .contact-form button { width: 100%; justify-content: center; }
 
+.field-helper-link { display: inline-block; font-size: 12px; color: var(--accent-blue); margin-top: 6px; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.field-helper-link:hover { border-bottom-color: var(--accent-blue); }
 .field-error { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #dc2626; margin-top: 4px; font-weight: 500; }
 .checkbox-error { margin-top: 8px; }
 

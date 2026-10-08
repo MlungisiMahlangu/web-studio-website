@@ -117,7 +117,7 @@ export default function AboutPage() {
             digital experiences for businesses, professionals and ambitious ideas.
           </p>
           <div className="about-hero-actions">
-            <Link className="button button-dark" href="/start-a-project">
+            <Link className="button button-dark" href="/contact">
               Start Your Project <ArrowUpRight />
             </Link>
             <Link className="text-link" href="/work">
@@ -354,7 +354,7 @@ export default function AboutPage() {
               experience to get there.
             </p>
             <div className="about-cta-actions">
-              <Link className="button button-dark" href="/start-a-project">
+              <Link className="button button-dark" href="/contact">
                 Start Your Project <ArrowUpRight />
               </Link>
               <Link className="text-link" href="/work">

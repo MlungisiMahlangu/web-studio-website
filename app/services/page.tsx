@@ -25,7 +25,7 @@ export default function ServicesPage() {
           From a focused landing page to a feature-rich company website, we balance
           strong visual direction with a clear next step.
         </p>
-        <Link className="button button-dark" href="/start-a-project">
+        <Link className="button button-dark" href="/contact">
           Start your project <ArrowUpRight />
         </Link>
       </section>
@@ -54,7 +54,7 @@ export default function ServicesPage() {
             Tell us about your project and we will recommend the right approach.
             Every project receives a tailored scope and transparent quote.
           </p>
-          <Link className="button button-dark" href="/start-a-project" style={{ marginTop: 24 }}>
+          <Link className="button button-dark" href="/contact" style={{ marginTop: 24 }}>
             Start a conversation <ArrowUpRight />
           </Link>
         </div>

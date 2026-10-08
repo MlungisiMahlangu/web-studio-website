@@ -41,7 +41,7 @@ export default function ProcessPage() {
           Clear process · Thoughtful work · No unnecessary complexity
         </p>
         <div className="process-hero-actions">
-          <Link className="button button-dark" href="/start-a-project">
+          <Link className="button button-dark" href="/contact">
             Start your project <ArrowUpRight />
           </Link>
           <Link className="text-link" href="/services">
@@ -256,7 +256,7 @@ export default function ProcessPage() {
                 requirements and help you understand the best way forward.
               </p>
               <div className="process-cta-actions">
-                <Link className="button button-dark" href="/start-a-project">
+                <Link className="button button-dark" href="/contact">
                   Start your project <ArrowUpRight />
                 </Link>
                 <Link className="text-link" href="/work">

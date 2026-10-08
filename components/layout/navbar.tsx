@@ -39,7 +39,7 @@ export default function Navbar() {
             <Link className="nav-contact-link" href="/contact">
               Contact
             </Link>
-            <Link className="button button-dark button-small" href="/start-a-project">
+            <Link className="button button-dark button-small" href="/contact">
               Start your project <ArrowUpRight aria-hidden="true" />
             </Link>
           </div>
@@ -76,7 +76,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="mobile-nav-cta">
-          <Link className="button button-dark" href="/start-a-project" onClick={() => setMenuOpen(false)}>
+          <Link className="button button-dark" href="/contact" onClick={() => setMenuOpen(false)}>
             Start your project <ArrowUpRight aria-hidden="true" />
           </Link>
           <Link

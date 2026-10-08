@@ -108,6 +108,9 @@ function EnquiryFormInner() {
               <option key={option}>{option}</option>
             ))}
           </select>
+          <a href="/pricing" className="field-helper-link" target="_blank" rel="noopener noreferrer">
+            View our services
+          </a>
         </label>
         <label>
           How did you learn about us?
