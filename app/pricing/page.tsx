@@ -156,8 +156,8 @@ export default function PricingPage() {
             Tell us about your project and we will send a tailored quote with clear
             deliverables and timeline.
           </p>
-          <Link className="button button-dark" href="/contact" style={{ marginTop: 24 }}>
-            Start your project <ArrowUpRight />
+          <Link className="button button-light" href="/contact" style={{ marginTop: 24 }}>
+            Get your quote <ArrowUpRight />
           </Link>
         </div>
       </section>

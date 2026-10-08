@@ -45,7 +45,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </h1>
           <p className="service-hero-lede">{detail.description}</p>
           <div className="service-hero-actions">
-            <Link className="button button-dark" href={serviceHref}>
+            <Link className="button button-light" href={serviceHref}>
               {detail.cta} <ArrowUpRight />
             </Link>
             <div className="service-hero-meta">
@@ -62,30 +62,15 @@ export default async function ServiceDetailPage({ params }: Props) {
         </ScrollReveal>
       </section>
 
-      {/* Why this service */}
-      <section className="service-why container">
-        <ScrollReveal>
-          <div className="service-why-inner">
-            <p className="eyebrow">Why this matters</p>
-            <h2>
-              A website should work
-              <br />
-              <em>as hard as you do.</em>
-            </h2>
-            <p>{detail.whyUs}</p>
-          </div>
-        </ScrollReveal>
-      </section>
-
       {/* What's included — grouped features */}
       <section className="service-features container">
         <ScrollReveal>
           <div className="section-intro centered">
             <p className="eyebrow">What you get</p>
             <h2>
-              Everything included,
+              All the essentials,
               <br />
-              <em>nothing you do not need.</em>
+              <em>ready to go.</em>
             </h2>
           </div>
         </ScrollReveal>
@@ -172,29 +157,6 @@ export default async function ServiceDetailPage({ params }: Props) {
             </Link>
           </div>
         </ScrollReveal>
-      </section>
-
-      {/* Final CTA */}
-      <section className="service-cta">
-        <div className="container" style={{ textAlign: 'center' }}>
-          <ScrollReveal>
-            <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', marginBottom: 16 }}>
-              Ready to get started?
-            </h2>
-            <p style={{ color: 'var(--muted)', maxWidth: 520, margin: '0 auto 28px', lineHeight: 1.7, fontSize: 16 }}>
-              Tell us about your project and we will come back with a clear plan,
-              timeline and quote. No pressure, no jargon.
-            </p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
-              <Link className="button button-dark" href={serviceHref}>
-                {detail.cta} <ArrowUpRight />
-              </Link>
-              <Link href="/pricing" style={{ fontSize: 14, fontWeight: 600, color: 'var(--muted)' }}>
-                Compare all services →
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
       </section>
 
       <Footer />

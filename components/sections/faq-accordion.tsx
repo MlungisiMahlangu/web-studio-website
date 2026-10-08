@@ -116,8 +116,8 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
             us what you&apos;re working with. We&apos;ll help you understand what is
             possible and what the project would require.
           </p>
-          <Link className="button button-dark" href="/contact">
-            Talk to WEB-IN <ArrowUpRight />
+          <Link className="button button-light" href="/contact">
+            Get in touch <ArrowUpRight />
           </Link>
         </div>
       </section>

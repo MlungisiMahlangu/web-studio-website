@@ -25,8 +25,8 @@ export default function ServicesPage() {
           From a focused landing page to a feature-rich company website, we balance
           strong visual direction with a clear next step.
         </p>
-        <Link className="button button-dark" href="/contact">
-          Start your project <ArrowUpRight />
+        <Link className="button button-light" href="/contact">
+          Get a quote <ArrowUpRight />
         </Link>
       </section>
       <section className="inner-content container">
@@ -54,8 +54,8 @@ export default function ServicesPage() {
             Tell us about your project and we will recommend the right approach.
             Every project receives a tailored scope and transparent quote.
           </p>
-          <Link className="button button-dark" href="/contact" style={{ marginTop: 24 }}>
-            Start a conversation <ArrowUpRight />
+          <Link className="button button-light" href="/contact" style={{ marginTop: 24 }}>
+            Let's talk <ArrowUpRight />
           </Link>
         </div>
       </section>

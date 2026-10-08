@@ -11,7 +11,6 @@ import Footer from '@/components/layout/footer'
 import FloatingContact from '@/components/layout/floating-contact'
 import { services, packages, faqs, STUDIO_NAME, portfolioProjects } from '@/lib/constants'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
-import { HomeContactForm } from '@/components/forms/home-contact-form'
 import { ScrollReveal } from '@/components/ui/scroll-reveal'
 
 const homepageProjects = portfolioProjects.slice(0, 2)
@@ -38,8 +37,8 @@ export default function HomePage() {
             businesses build credibility, reach more customers, and grow online.
           </p>
           <div className="hero-actions">
-            <Link className="button button-dark" href="/contact">
-              Start your project <ArrowUpRight aria-hidden="true" />
+            <Link className="button button-light" href="/contact">
+              Get a quote <ArrowUpRight aria-hidden="true" />
             </Link>
             <Link className="text-link" href="/work">
               Explore our work <MoveUpRight aria-hidden="true" />
@@ -120,7 +119,7 @@ export default function HomePage() {
         </ScrollReveal>
         <ScrollReveal variant="stagger" delay={100}>
           <div className="services-grid">
-            {services.map(({ icon: Icon, number, title, text, price, href }) => (
+            {[services[1], services[0], services[2]].map(({ icon: Icon, number, title, text, price, href }) => (
               <Link className="service-card" href={href} key={title}>
                 <div>
                   <div className="service-top">
@@ -140,8 +139,8 @@ export default function HomePage() {
         </ScrollReveal>
         <ScrollReveal delay={200}>
           <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link className="text-link" href="/services">
-              Explore our services <MoveUpRight aria-hidden="true" />
+            <Link className="button button-light" href="/services">
+              View all services <ArrowUpRight aria-hidden="true" />
             </Link>
           </div>
         </ScrollReveal>
@@ -178,8 +177,15 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="home-work-body">
-                    <p className="portfolio-card-number">{String(index + 1).padStart(2, '0')} / {project.type}</p>
-                    <h3>{project.title}</h3>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+                      <div>
+                        <p className="portfolio-card-number">{String(index + 1).padStart(2, '0')} / {project.type}</p>
+                        <h3>{project.title}</h3>
+                      </div>
+                      <div className="portfolio-card-external" aria-hidden="true">
+                        <ArrowUpRight size={18} />
+                      </div>
+                    </div>
                     <p>{project.subtitle}</p>
                     <div className="home-work-meta">
                       {project.technologies.slice(0, 3).map((tech) => (
@@ -308,28 +314,6 @@ export default function HomePage() {
             </div>
           </div>
         </ScrollReveal>
-      </section>
-
-      <section className="contact-section" id="contact">
-        <div className="container contact-layout">
-          <ScrollReveal variant="left">
-            <div>
-              <p className="eyebrow">06 / Your next project</p>
-              <h2>
-                Have a good idea?
-                <br />
-                <em>Let&apos;s make it real.</em>
-              </h2>
-              <p>
-                Tell us a little about what you&apos;re building. We&apos;ll get back
-                to you with a thoughtful next step.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal variant="right" delay={150}>
-            <HomeContactForm />
-          </ScrollReveal>
-        </div>
       </section>
 
       <Footer />

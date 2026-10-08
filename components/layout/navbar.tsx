@@ -39,8 +39,8 @@ export default function Navbar() {
             <Link className="nav-contact-link" href="/contact">
               Contact
             </Link>
-            <Link className="button button-dark button-small" href="/contact">
-              Start your project <ArrowUpRight aria-hidden="true" />
+            <Link className="button button-light button-small" href="/contact">
+              Get a quote <ArrowUpRight aria-hidden="true" />
             </Link>
           </div>
           <button
@@ -76,8 +76,8 @@ export default function Navbar() {
           ))}
         </div>
         <div className="mobile-nav-cta">
-          <Link className="button button-dark" href="/contact" onClick={() => setMenuOpen(false)}>
-            Start your project <ArrowUpRight aria-hidden="true" />
+          <Link className="button button-light" href="/contact" onClick={() => setMenuOpen(false)}>
+            Get a quote <ArrowUpRight aria-hidden="true" />
           </Link>
           <Link
             className="button button-outline"

@@ -245,12 +245,12 @@ export function MultiStepForm() {
           <span />
         )}
         {step < TOTAL_STEPS - 1 ? (
-          <button type="button" className="button button-dark button-small" onClick={next}>
+          <button type="button" className="button button-light button-small" onClick={next}>
             Continue <ArrowUpRight />
           </button>
         ) : (
-          <button type="submit" className="button button-dark">
-            Submit enquiry <ArrowUpRight />
+          <button type="submit" className="button button-light">
+            Send brief <ArrowUpRight />
           </button>
         )}
       </div>

@@ -118,8 +118,8 @@ export default function WorkPage() {
               are working on.
             </p>
             <div className="work-cta-actions">
-              <Link className="button button-dark" href="/contact">
-                Start Your Project <ArrowUpRight />
+              <Link className="button button-light" href="/contact">
+                Let's talk <ArrowUpRight />
               </Link>
               <Link className="text-link" href="/services">
                 Explore Our Services <ArrowUpRight />

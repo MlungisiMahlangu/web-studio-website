@@ -147,7 +147,7 @@ function EnquiryFormInner() {
       </label>
       {errors.consent && <span className="field-error checkbox-error"><AlertCircle size={12} /> {errors.consent}</span>}
 
-      <button className="button button-dark" type="submit" disabled={isSubmitting}>
+      <button className="button button-light" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Send message'} <CheckCircle2 />
       </button>
     </form>

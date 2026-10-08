@@ -41,8 +41,8 @@ export default function ProcessPage() {
           Clear process · Thoughtful work · No unnecessary complexity
         </p>
         <div className="process-hero-actions">
-          <Link className="button button-dark" href="/contact">
-            Start your project <ArrowUpRight />
+          <Link className="button button-light" href="/contact">
+            Get a quote <ArrowUpRight />
           </Link>
           <Link className="text-link" href="/services">
             View our services <ArrowUpRight />
@@ -256,8 +256,8 @@ export default function ProcessPage() {
                 requirements and help you understand the best way forward.
               </p>
               <div className="process-cta-actions">
-                <Link className="button button-dark" href="/contact">
-                  Start your project <ArrowUpRight />
+                <Link className="button button-light" href="/contact">
+                  Let's talk <ArrowUpRight />
                 </Link>
                 <Link className="text-link" href="/work">
                   View our work <ArrowUpRight />

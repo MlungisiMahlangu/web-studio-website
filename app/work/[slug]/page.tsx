@@ -160,8 +160,8 @@ export default async function ProjectDetailPage({ params }: Props) {
               about your project.
             </p>
             <div className="detail-cta-actions">
-              <Link className="button button-dark" href="/contact">
-                Start Your Project <ArrowUpRight />
+              <Link className="button button-light" href="/contact">
+                Let's talk <ArrowUpRight />
               </Link>
               <Link className="text-link" href="/work">
                 View All Work <ArrowUpRight />
