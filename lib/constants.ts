@@ -865,6 +865,162 @@ export const processSteps = [
   },
 ]
 
+export interface ProcessPhase {
+  number: string
+  label: string
+  heading: string
+  description: string
+  items: { title: string; description: string }[]
+}
+
+export const processPhases: ProcessPhase[] = [
+  {
+    number: '01',
+    label: 'DISCOVER',
+    heading: 'Start with the idea.',
+    description:
+      'Every project begins with a conversation. Tell us about your business, idea or existing website, what you want to achieve and what you need the website to do. You don\'t need to have everything figured out before getting in touch.',
+    items: [
+      { title: 'Project enquiry', description: 'Tell us about the project through the enquiry form.' },
+      { title: 'Goals & requirements', description: 'We understand what the website needs to achieve.' },
+      { title: 'Initial direction', description: 'We identify the type of website and functionality that best fits your needs.' },
+    ],
+  },
+  {
+    number: '02',
+    label: 'DEFINE',
+    heading: 'Turn the idea into a clear plan.',
+    description:
+      'Once we understand the project, we define what needs to be built. We prepare a clear project scope and quotation so you understand what is included before development begins.',
+    items: [
+      { title: 'Project scope', description: 'The pages, features and functionality included in the project.' },
+      { title: 'Timeline', description: 'An estimated delivery timeframe based on the agreed scope.' },
+      { title: 'Investment', description: 'A clear quotation based on the requirements.' },
+      { title: 'Questions answered', description: 'Anything unclear is discussed before the project begins.' },
+    ],
+  },
+  {
+    number: '03',
+    label: 'CREATE',
+    heading: 'Design it. Build it. Refine it.',
+    description:
+      'Once the project is approved and the required deposit has been paid, the work begins. We turn the agreed direction into a responsive, functional website and keep quality in focus throughout development.',
+    items: [
+      { title: 'Design', description: 'We establish the visual direction, layout, hierarchy and user experience.' },
+      { title: 'Development', description: 'We build the website and implement the required functionality.' },
+      { title: 'Review', description: 'You see the website, provide feedback and we refine it within the revision rounds included in your package.' },
+    ],
+  },
+  {
+    number: '04',
+    label: 'LAUNCH',
+    heading: 'Ready for the real world.',
+    description:
+      'Once the website has been reviewed and approved, we prepare everything for launch. We handle the agreed deployment, domain/DNS configuration and final production checks before taking the website live.',
+    items: [
+      { title: 'Final checks', description: 'Everything is reviewed before launch.' },
+      { title: 'Deployment', description: 'The website is moved into its production environment.' },
+      { title: 'Launch', description: 'The website goes live.' },
+    ],
+  },
+]
+
+export const processExpectations = [
+  {
+    number: '01',
+    title: 'Clear communication',
+    description: 'We keep you informed about what is happening and what comes next.',
+  },
+  {
+    number: '02',
+    title: 'Defined scope',
+    description: 'You know what the agreed project includes before development begins.',
+  },
+  {
+    number: '03',
+    title: 'Collaboration',
+    description: 'Your input matters throughout the design and review stages.',
+  },
+  {
+    number: '04',
+    title: 'Attention to detail',
+    description: 'We care about the experience users see and the technical foundation underneath it.',
+  },
+]
+
+export const processClientNeeds = [
+  {
+    number: '01',
+    title: 'Direction',
+    description: 'Tell us what you want the website to achieve.',
+  },
+  {
+    number: '02',
+    title: 'Content',
+    description: 'Provide the relevant text, images, branding and information required for the project.',
+  },
+  {
+    number: '03',
+    title: 'Feedback',
+    description: 'Review the work and provide feedback during the agreed review stages.',
+  },
+  {
+    number: '04',
+    title: 'Decisions',
+    description: 'Approve the agreed direction and final website so the project can continue moving forward.',
+  },
+]
+
+export const processSupportLevels = [
+  {
+    title: 'Minor post-launch support',
+    description: 'For the small adjustments covered by the selected package.',
+  },
+  {
+    title: 'Ongoing maintenance',
+    description: 'For businesses that want continued technical and content support.',
+  },
+  {
+    title: 'Future improvements',
+    description: 'For new pages, features, functionality or larger changes that fall outside maintenance.',
+  },
+]
+
+export const processFaqs: [string, string][] = [
+  [
+    'Can I contact WEB-IN before I know exactly what I need?',
+    'Yes. The initial enquiry is there to help us understand what you\'re trying to achieve and determine the best direction.',
+  ],
+  [
+    'How do I get a quote?',
+    'Submit the project enquiry. We review your requirements and use the information provided to determine the appropriate scope and quotation.',
+  ],
+  [
+    'Do I need to provide all the content?',
+    'Content requirements depend on the project. We\'ll clarify what is needed during the planning stage.',
+  ],
+  [
+    'How many revisions are included?',
+    'Revision rounds depend on the package selected.',
+  ],
+  [
+    'When do I pay?',
+    'The required deposit is paid after the project scope and quotation are approved and before development begins.',
+  ],
+  [
+    'Can I request changes after launch?',
+    'Yes. Minor changes may be covered by applicable post-launch support, while larger changes or new functionality are quoted separately.',
+  ],
+  [
+    'Do you provide ongoing maintenance?',
+    'Yes. Optional maintenance plans are available depending on your needs.',
+  ],
+  [
+    'Will you handle the domain and hosting?',
+    'Where included in the selected package or agreed scope, WEB-IN can assist with the relevant setup. Third-party renewal and subscription costs are separate unless explicitly included.',
+  ],
+]
+
 export interface PortfolioProject {
   slug: string
   title: string
