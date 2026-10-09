@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import { STUDIO_NAME, STUDIO_TAGLINE, STUDIO_DESCRIPTION } from '@/lib/constants'
 import Navbar from '@/components/layout/navbar'
@@ -18,6 +18,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap',
+})
+
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
   display: 'swap',
 })
 
@@ -60,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cream text-ink`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased bg-cream text-ink`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-medium"

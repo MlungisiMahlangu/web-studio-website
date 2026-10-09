@@ -17,7 +17,7 @@
   --color-white: #FFFFFF;
   --color-black: #000000;
 
-  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-display: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -61,22 +61,6 @@
   --container-page: min(1280px, calc(100% - 64px));
   --container-narrow: min(900px, calc(100% - 64px));
   --container-text: min(680px, calc(100% - 48px));
-}
-
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/j8ko3fPcnEpVfB1BcREGyMhLaZbI.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/j8kn3fPcnEpVfB1BcREGyMhLaZbLBYg.woff2') format('woff2');
 }
 
 @layer base {
@@ -279,6 +263,12 @@
   @keyframes spin-slow {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) skewX(-12deg); }
+    50% { transform: translateX(200%) skewX(-12deg); }
+    100% { transform: translateX(200%) skewX(-12deg); }
   }
 
   .animate-fade-up {

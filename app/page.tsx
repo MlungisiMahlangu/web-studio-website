@@ -4,6 +4,7 @@ import {
   Check,
   MoveUpRight,
   CircleArrowOutUpRight,
+  MessageCircle,
 } from 'lucide-react'
 import {
   services,
@@ -20,7 +21,11 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import { Marquee } from '@/components/ui/marquee'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
+import { AuroraBackground } from '@/components/sections/aurora-background'
+import { FloatingChip } from '@/components/ui/floating-chip'
+import { WordRotator } from '@/components/ui/word-rotator'
 import { HeroShowcase } from '@/components/sections/hero-showcase'
+import { ScrollCue } from '@/components/ui/scroll-cue'
 
 const homepageProjects = portfolioProjects.slice(0, 2)
 
@@ -56,80 +61,129 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* ─── HERO ─── */}
-      <section className="relative min-h-[100svh] flex items-center bg-ink text-cream overflow-hidden">
-        <div className="absolute inset-0 grain grain-dark" />
-        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink to-[#0a0e1a]" />
+      <section className="relative min-h-[100svh] flex flex-col justify-center bg-ink text-cream overflow-hidden">
+        <AuroraBackground />
 
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }} />
-
-        <Container className="relative z-10 pt-28 pb-16 sm:pt-36 sm:pb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-8 items-center">
+        <Container className="relative z-10 pt-28 pb-16 sm:pt-32 sm:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-6 items-center">
             {/* Left: Copy */}
-            <div className="max-w-[640px]">
+            <div className="max-w-[600px] order-2 lg:order-1">
+              {/* Badge */}
               <Reveal>
-                <p className="font-mono text-xs uppercase tracking-wider text-accent mb-6">
-                  Independent web development studio
-                </p>
+                <div className="inline-flex items-center gap-2.5 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 mb-8">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  </span>
+                  <span className="text-xs font-medium text-cream/70">Taking on new projects</span>
+                </div>
               </Reveal>
 
+              {/* H1 */}
               <Reveal delay={100}>
-                <h1 className="font-display text-display-xl leading-tight tracking-tight mb-8">
-                  Built for your <em className="text-accent">business.</em>
-                  <br />
-                  Designed for the web.
+                <h1 className="font-display text-display-xl leading-tight tracking-tight mb-3">
+                  <span className="block overflow-hidden">
+                    <span className="block animate-[fade-up_0.8s_ease-out_both]">Built for your</span>
+                  </span>
+                  <span className="block overflow-hidden">
+                    <span className="block animate-[fade-up_0.8s_ease-out_0.15s_both]">
+                      <em className="text-accent relative">
+                        business.
+                        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-[shimmer_3s_ease-in-out_infinite]" />
+                      </em>
+                    </span>
+                  </span>
+                  <span className="block overflow-hidden">
+                    <span className="block animate-[fade-up_0.8s_ease-out_0.3s_both]">Designed for the web.</span>
+                  </span>
                 </h1>
               </Reveal>
 
+              {/* Rotating line */}
               <Reveal delay={200}>
-                <p className="text-lg sm:text-xl text-cream/60 leading-relaxed max-w-[540px] mb-10">
+                <p className="text-lg sm:text-xl text-cream/50 mb-8">
+                  Websites that <WordRotator />
+                </p>
+              </Reveal>
+
+              {/* Sub copy */}
+              <Reveal delay={300}>
+                <p className="text-base text-cream/50 leading-relaxed max-w-[500px] mb-10">
                   Modern, high-performance websites designed to help South African
                   businesses build credibility, reach more customers, and grow online.
                 </p>
               </Reveal>
 
-              <Reveal delay={300}>
-                <div className="flex flex-wrap items-center gap-4">
-                  <Link
+              {/* CTAs */}
+              <Reveal delay={400}>
+                <div className="flex flex-wrap items-center gap-5">
+                  {/* Primary button with gradient border */}
+                  <a
                     href="/contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark hover:shadow-[0_0_24px_rgba(67,97,238,0.25)]"
+                    className="group relative inline-flex items-center gap-2 rounded-full p-[1px] bg-gradient-to-r from-accent via-blue-400 to-accent text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(67,97,238,0.3)]"
                   >
-                    Get a quote
-                    <ArrowUpRight size={18} />
-                  </Link>
-                  <Link
+                    <span className="flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium transition-all duration-300 group-hover:bg-ink-light">
+                      <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">Get a quote</span>
+                      <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </a>
+
+                  {/* Secondary link with underline draw */}
+                  <a
                     href="/work"
-                    className="inline-flex items-center gap-2 text-cream/60 hover:text-cream transition-colors duration-200 text-sm"
+                    className="group relative inline-flex items-center gap-2 text-cream/60 hover:text-cream transition-colors duration-200 text-sm"
                   >
-                    Explore our work
-                    <MoveUpRight size={16} />
-                  </Link>
+                    <span className="relative">
+                      Explore our work
+                      <span className="absolute bottom-0 left-0 w-0 h-px bg-cream/40 transition-all duration-300 group-hover:w-full" />
+                    </span>
+                    <MoveUpRight size={14} />
+                  </a>
+
+                  {/* WhatsApp */}
+                  <a
+                    href={`https://wa.me/${STUDIO_WHATSAPP}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-emerald-400/70 hover:text-emerald-400 transition-colors duration-200 text-sm"
+                  >
+                    <MessageCircle size={14} />
+                    <span>or WhatsApp us</span>
+                  </a>
                 </div>
               </Reveal>
 
-              <Reveal delay={400}>
-                <div className="mt-14 flex items-center gap-3 text-sm text-cream/40">
-                  <span className="flex -space-x-2">
-                    <i className="w-6 h-6 rounded-full bg-accent/20 border border-accent/30" />
-                    <i className="w-6 h-6 rounded-full bg-accent/15 border border-accent/20" />
-                    <i className="w-6 h-6 rounded-full bg-accent/10 border border-accent/15" />
-                  </span>
-                  From first idea to final launch — a considered process.
+              {/* Proof chips */}
+              <Reveal delay={500}>
+                <div className="mt-12 flex flex-wrap items-center gap-3">
+                  <FloatingChip label="Mobile-first" index={0} />
+                  <FloatingChip label="SEO-ready" index={1} />
+                  <FloatingChip label="Built in South Africa" index={2} />
                 </div>
               </Reveal>
             </div>
 
             {/* Right: Showcase */}
-            <div className="hidden lg:flex h-[480px] items-center justify-center">
-              <Reveal variant="scale" delay={400}>
+            <div className="order-1 lg:order-2 relative">
+              <Reveal variant="scale" delay={300}>
                 <HeroShowcase />
               </Reveal>
+
+              {/* Floating chips around showcase (desktop only) */}
+              <div className="hidden lg:block absolute -top-4 -left-8">
+                <FloatingChip label="Fast loading" index={3} />
+              </div>
+              <div className="hidden lg:block absolute -bottom-4 -right-4">
+                <FloatingChip label="Online booking" index={4} />
+              </div>
             </div>
           </div>
         </Container>
+
+        {/* Scroll cue */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
+          <ScrollCue />
+        </div>
 
         {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-ink to-transparent" />
