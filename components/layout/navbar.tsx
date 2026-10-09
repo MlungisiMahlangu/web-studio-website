@@ -24,15 +24,6 @@ export default function Navbar() {
     setMounted(true)
   }, [])
 
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
-
   const isHidden = scrollDirection === 'down' && scrollY > 400 && !menuOpen
 
   return (
@@ -49,7 +40,7 @@ export default function Navbar() {
               <span className="flex h-8 w-8 items-center justify-center rounded-md bg-ink text-cream text-sm font-display transition-transform duration-300 group-hover:scale-105">
                 W
               </span>
-              <span className="font-mono text-xs uppercase tracking-wider hidden sm:inline">{STUDIO_NAME}</span>
+              <span className="font-display text-lg font-semibold tracking-tight text-ink hidden sm:inline">{STUDIO_NAME}</span>
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
@@ -57,7 +48,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-muted hover:text-ink transition-colors duration-200"
+                  className="text-sm font-medium text-ink/70 hover:text-ink transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -90,51 +81,39 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown */}
       <div
         className={clsx(
-          'fixed inset-0 z-40 bg-cream transition-all duration-500 ease-out-expo lg:hidden',
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+          'fixed top-[73px] left-4 right-4 z-40 lg:hidden transition-all duration-300 ease-out-expo',
+          menuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none',
         )}
-        style={{ top: 0 }}
       >
-        <div className="flex flex-col h-full pt-24 pb-8 px-8">
-          <nav className="flex flex-col gap-1">
-            {navLinks.map((link, i) => (
+        <div className="rounded-2xl bg-cream/95 backdrop-blur-xl border border-line shadow-lg overflow-hidden">
+          <nav className="flex flex-col p-4 gap-1">
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={clsx(
-                  'text-3xl font-display py-3 border-b border-line transition-all duration-500 ease-out-expo',
-                  menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
-                )}
-                style={{ transitionDelay: menuOpen ? `${100 + i * 60}ms` : '0ms' }}
+                className="text-base font-medium text-ink/80 hover:text-ink hover:bg-ink/5 rounded-xl px-4 py-3 transition-all duration-200"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-
-          <div
-            className={clsx(
-              'mt-auto flex flex-col gap-3 transition-all duration-500 ease-out-expo',
-              menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
-            )}
-            style={{ transitionDelay: menuOpen ? '400ms' : '0ms' }}
-          >
+          <div className="border-t border-line p-4 flex flex-col gap-2">
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-4 text-base font-medium"
+              className="flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-medium transition-colors hover:bg-accent-dark"
             >
-              Get a quote <ArrowUpRight size={18} />
+              Get a quote <ArrowUpRight size={15} />
             </Link>
             <a
               href={`https://wa.me/${'27649531145'}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center gap-2 rounded-full border border-ink/10 px-6 py-4 text-base font-medium"
+              className="flex items-center justify-center gap-2 rounded-full border border-ink/10 px-6 py-3 text-sm font-medium text-ink/70 hover:text-ink hover:bg-ink/5 transition-colors"
             >
               WhatsApp us
             </a>
