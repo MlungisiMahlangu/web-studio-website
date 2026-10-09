@@ -30,7 +30,6 @@ export const STUDIO_LOCATION = 'South Africa'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
 
 export interface Service {
-  slug: string
   icon: LucideIcon
   number: string
   title: string
@@ -606,7 +605,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/contact?service=Landing%20Page',
+    href: '/services/landing-pages',
   },
   {
     name: 'Business',
@@ -626,7 +625,7 @@ export const packages: PricingPackage[] = [
       '2 revision rounds',
       '3 months support',
     ],
-    href: '/contact?service=Business%20Website',
+    href: '/services/business-websites',
   },
   {
     name: 'Starter',
@@ -644,7 +643,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/contact?service=Starter%20Website',
+    href: '/services/starter-websites',
   },
   {
     name: 'Portfolio',
@@ -662,7 +661,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/contact?service=Portfolio%20Website',
+    href: '/services/portfolio-websites',
   },
   {
     name: 'Professional',
@@ -681,7 +680,7 @@ export const packages: PricingPackage[] = [
       '3 revision rounds',
       '5 months support',
     ],
-    href: '/contact?service=Professional%20Website',
+    href: '/services/professional-websites',
   },
   {
     name: 'Online Store',
@@ -700,7 +699,7 @@ export const packages: PricingPackage[] = [
       '2 revision rounds',
       '5 months support',
     ],
-    href: '/contact?service=Online%20Store',
+    href: '/services/online-stores',
   },
 ]
 

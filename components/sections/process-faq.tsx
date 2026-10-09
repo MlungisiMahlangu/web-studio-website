@@ -8,22 +8,35 @@ export function ProcessFAQ() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   return (
-    <div className="process-faq-list">
-      {processFaqs.map(([question, answer], index) => (
-        <div
-          className={`process-faq-item ${openFaq === index ? 'open' : ''}`}
-          key={question}
-        >
-          <button
-            onClick={() => setOpenFaq(openFaq === index ? null : index)}
-            aria-expanded={openFaq === index}
+    <div className="flex flex-col">
+      {processFaqs.map(([question, answer], index) => {
+        const isOpen = openFaq === index
+        return (
+          <div
+            key={question}
+            className={`border-b border-line transition-colors duration-200 ${isOpen ? 'bg-cream-light' : ''}`}
           >
-            <span>{question}</span>
-            <ChevronDown aria-hidden="true" />
-          </button>
-          {openFaq === index && <p>{answer}</p>}
-        </div>
-      ))}
+            <button
+              onClick={() => setOpenFaq(isOpen ? null : index)}
+              aria-expanded={isOpen}
+              className="flex items-center justify-between w-full py-5 px-4 text-left gap-4"
+            >
+              <span className="text-base font-medium">{question}</span>
+              <ChevronDown
+                size={18}
+                className={`flex-shrink-0 text-muted transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-out-expo ${
+                isOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <p className="px-4 pb-5 text-sm text-muted leading-relaxed">{answer}</p>
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

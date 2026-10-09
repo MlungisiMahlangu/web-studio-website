@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { STUDIO_NAME } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://studiowebsite.co.za'
+  const baseUrl = 'https://web-in.co.za'
 
   const staticPages = [
     '',

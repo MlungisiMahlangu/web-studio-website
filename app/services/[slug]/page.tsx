@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowUpRight, Check, Clock, Banknote, Globe } from 'lucide-react'
-import Navbar from '@/components/layout/navbar'
-import Footer from '@/components/layout/footer'
-import { ScrollReveal } from '@/components/ui/scroll-reveal'
+import { Container } from '@/components/ui/container'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import { serviceDetails } from '@/lib/constants'
 import type { Metadata } from 'next'
 
@@ -34,60 +35,91 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   return (
     <>
-      <Navbar />
+      {/* ─── HERO ─── */}
+      <section className="relative bg-ink text-cream overflow-hidden">
+        <div className="absolute inset-0 grain grain-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink to-ink-light/30" />
 
-      {/* Hero */}
-      <section className="service-hero container">
-        <ScrollReveal>
-          <p className="eyebrow">{detail.name}</p>
-          <h1>
-            {detail.intro}
-          </h1>
-          <p className="service-hero-lede">{detail.description}</p>
-          <div className="service-hero-actions">
-            <Link className="button button-light" href={serviceHref}>
-              {detail.cta} <ArrowUpRight />
-            </Link>
-            <div className="service-hero-meta">
-              <span>
-                <Banknote aria-hidden="true" />
-                From <strong>{detail.price}</strong>
-              </span>
-              <span>
-                <Clock aria-hidden="true" />
-                <strong>{detail.timeframe}</strong>
-              </span>
-            </div>
+        <Container className="relative z-10 py-28 sm:py-36 md:py-44">
+          <div className="max-w-[800px]">
+            <Reveal>
+              <p className="font-mono text-xs uppercase tracking-wider text-accent mb-6">
+                {detail.name}
+              </p>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <h1 className="font-display text-display-xl leading-tight tracking-tight mb-8">
+                {detail.intro}
+              </h1>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <p className="text-lg sm:text-xl text-cream/60 leading-relaxed max-w-[600px] mb-10">
+                {detail.description}
+              </p>
+            </Reveal>
+
+            <Reveal delay={300}>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                <Link
+                  href={serviceHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
+                >
+                  {detail.cta}
+                  <ArrowUpRight size={18} />
+                </Link>
+                <div className="flex items-center gap-6 text-cream/50 text-sm">
+                  <span className="flex items-center gap-2">
+                    <Banknote aria-hidden="true" size={16} />
+                    From <strong className="text-cream font-semibold">{detail.price}</strong>
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Clock aria-hidden="true" size={16} />
+                    <strong className="text-cream font-semibold">{detail.timeframe}</strong>
+                  </span>
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </ScrollReveal>
+        </Container>
       </section>
 
-      {/* What's included — grouped features */}
-      <section className="service-features container">
-        <ScrollReveal>
-          <div className="section-intro centered">
-            <p className="eyebrow">What you get</p>
-            <h2>
-              All the essentials,
-              <br />
-              <em>ready to go.</em>
-            </h2>
-          </div>
-        </ScrollReveal>
-        <ScrollReveal variant="stagger" delay={100}>
-          <div className="feature-group-grid">
+      {/* ─── FEATURE GROUPS ─── */}
+      <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="What you get"
+              title={<>All the essentials,<br /><em>ready to go.</em></>}
+              center
+              className="mx-auto mb-14"
+            />
+          </Reveal>
+
+          <RevealStagger
+            stagger={80}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
             {detail.featureGroups.map((group) => {
               const Icon = group.icon
               return (
-                <div className="feature-group-card" key={group.title}>
-                  <div className="feature-group-icon">
-                    <Icon aria-hidden="true" />
+                <div
+                  key={group.title}
+                  className="rounded-2xl border border-line bg-cream-light p-7 transition-all duration-300 ease-out-expo hover:border-ink/20 hover:shadow-[0_0_0_1px_rgba(12,12,14,0.08)]"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-ink/5">
+                      <Icon aria-hidden="true" size={20} className="text-muted" />
+                    </div>
+                    <h3 className="font-display text-display-sm leading-snug tracking-tight">
+                      {group.title}
+                    </h3>
                   </div>
-                  <h3>{group.title}</h3>
-                  <ul>
+                  <ul className="space-y-3">
                     {group.items.map((item) => (
-                      <li key={item}>
-                        <Check aria-hidden="true" />
+                      <li key={item} className="flex items-start gap-3 text-[15px] text-muted leading-snug">
+                        <Check aria-hidden="true" size={16} className="mt-0.5 shrink-0 text-accent-dark" />
                         {item}
                       </li>
                     ))}
@@ -95,71 +127,132 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </div>
               )
             })}
-          </div>
-        </ScrollReveal>
-      </section>
+          </RevealStagger>
+        </Container>
+      </Section>
 
-      {/* Ideal for */}
-      <section className="service-ideal container">
-        <ScrollReveal>
-          <div className="service-ideal-inner">
-            <div>
-              <p className="eyebrow">Built for</p>
-              <h2>
-                Is this
-                <br />
-                <em>right for you?</em>
-              </h2>
-            </div>
-            <ul className="service-ideal-list">
-              {detail.idealFor.map((item) => (
-                <li key={item}>
-                  <Check aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Investment */}
-      <section className="service-investment container">
-        <ScrollReveal>
-          <div className="service-investment-card">
-            <div>
-              <p className="eyebrow" style={{ color: '#9CA3AF' }}>Investment</p>
-              <h2 style={{ color: 'white', fontSize: 'clamp(32px, 4vw, 52px)', margin: '12px 0 0' }}>
-                {detail.price}
-              </h2>
-              <p style={{ color: '#9CA3AF', marginTop: 8, fontSize: 15 }}>
-                Final scope is confirmed before work begins.
-              </p>
-            </div>
-            <div className="service-investment-details">
-              <div>
-                <Clock aria-hidden="true" />
+      {/* ─── IDEAL FOR ─── */}
+      <Section className="!pt-0">
+        <Container>
+          <Reveal>
+            <div className="rounded-2xl border border-line bg-cream-light p-8 sm:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                 <div>
-                  <p style={{ color: '#9CA3AF', fontSize: 12, margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Timeline</p>
-                  <p style={{ color: 'white', fontSize: 16, margin: '4px 0 0', fontWeight: 600 }}>{detail.timeframe}</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+                    Built for
+                  </p>
+                  <h2 className="font-display text-display-md leading-tight tracking-tight">
+                    Is this
+                    <br />
+                    <em>right for you?</em>
+                  </h2>
                 </div>
-              </div>
-              <div>
-                <Globe aria-hidden="true" />
-                <div>
-                  <p style={{ color: '#9CA3AF', fontSize: 12, margin: 0, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Domain</p>
-                  <p style={{ color: 'white', fontSize: 14, margin: '4px 0 0' }}>{detail.domain}</p>
-                </div>
+                <ul className="space-y-4">
+                  {detail.idealFor.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-base leading-snug">
+                      <Check aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-accent-dark" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <Link className="button button-light" href={serviceHref}>
-              {detail.cta} <ArrowUpRight />
-            </Link>
-          </div>
-        </ScrollReveal>
-      </section>
+          </Reveal>
+        </Container>
+      </Section>
 
-      <Footer />
+      {/* ─── INVESTMENT / DOMAIN ─── */}
+      <Section className="!pt-0">
+        <Container>
+          <Reveal>
+            <div className="rounded-2xl bg-ink text-cream px-8 py-14 sm:px-14 sm:py-18 overflow-hidden relative">
+              <div className="absolute inset-0 grain grain-dark opacity-40" />
+              <div className="relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-wider text-cream/40 mb-3">
+                      Investment
+                    </p>
+                    <h2 className="font-display text-display-md leading-tight tracking-tight mb-2">
+                      {detail.price}
+                    </h2>
+                    <p className="text-cream/50 text-[15px] leading-relaxed">
+                      Final scope is confirmed before work begins.
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-cream/10">
+                        <Clock aria-hidden="true" size={18} className="text-cream/60" />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[11px] uppercase tracking-wider text-cream/40 mb-1">
+                          Timeline
+                        </p>
+                        <p className="text-base font-semibold text-cream">
+                          {detail.timeframe}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-cream/10">
+                        <Globe aria-hidden="true" size={18} className="text-cream/60" />
+                      </div>
+                      <div>
+                        <p className="font-mono text-[11px] uppercase tracking-wider text-cream/40 mb-1">
+                          Domain
+                        </p>
+                        <p className="text-sm text-cream/80">
+                          {detail.domain}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ─── WHY US ─── */}
+      <Section className="!pt-0">
+        <Container text>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Why choose us"
+              title="Built with your outcome in mind"
+              description={detail.whyUs}
+            />
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ─── FINAL CTA ─── */}
+      <Section className="!pt-0">
+        <Container>
+          <Reveal>
+            <div className="rounded-2xl bg-ink text-cream px-8 py-16 sm:px-14 sm:py-20 text-center overflow-hidden relative">
+              <div className="absolute inset-0 grain grain-dark opacity-40" />
+              <div className="relative z-10">
+                <h2 className="font-display text-display-md leading-tight tracking-tight mb-5">
+                  Ready to get started?
+                </h2>
+                <p className="text-cream/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
+                  Let&rsquo;s discuss your project and put together a scope that fits your goals and budget.
+                </p>
+                <Link
+                  href={serviceHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
+                >
+                  {detail.cta}
+                  <ArrowUpRight size={18} />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
     </>
   )
 }

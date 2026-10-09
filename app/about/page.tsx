@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { ArrowUpRight, Check } from 'lucide-react'
-import Navbar from '@/components/layout/navbar'
-import Footer from '@/components/layout/footer'
-import { ScrollReveal } from '@/components/ui/scroll-reveal'
+import { Container } from '@/components/ui/container'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -98,110 +99,124 @@ const processSteps = [
 export default function AboutPage() {
   return (
     <>
-      <Navbar />
-
       {/* Hero */}
-      <section className="about-hero container">
-        <ScrollReveal>
-          <div className="about-hero-top">
-            <p className="eyebrow">About WEB-IN</p>
-            <span className="about-hero-label">Independent web development studio &middot; South Africa</span>
-          </div>
-          <h1>
-            Independent by choice.
-            <br />
-            <em>Serious about the work.</em>
-          </h1>
-          <p className="about-hero-lede">
-            WEB-IN is an independent web development studio creating thoughtful
-            digital experiences for businesses, professionals and ambitious ideas.
-          </p>
-          <div className="about-hero-actions">
-            <Link className="button button-light" href="/contact">
-              Get a quote <ArrowUpRight />
-            </Link>
-            <Link className="text-link" href="/work">
-              View Our Work <ArrowUpRight />
-            </Link>
-          </div>
-        </ScrollReveal>
-      </section>
+      <Section dark className="!pb-24 sm:!pb-32">
+        <Container>
+          <Reveal>
+            <div className="flex items-center gap-4 mb-6">
+              <p className="font-mono text-xs uppercase tracking-wider text-accent">About WEB-IN</p>
+              <span className="h-px w-10 bg-cream/20" />
+              <span className="text-sm text-cream/50">Independent web development studio &middot; South Africa</span>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <h1 className="font-display text-display-xl leading-tight tracking-tight text-cream">
+              Independent by choice.
+              <br />
+              <span className="italic text-accent">Serious about the work.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mt-8 max-w-[640px] text-lg leading-relaxed text-cream/60">
+              WEB-IN is an independent web development studio creating thoughtful
+              digital experiences for businesses, professionals and ambitious ideas.
+            </p>
+          </Reveal>
+          <Reveal delay={300}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
+              >
+                Get a quote <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-7 py-3 text-sm font-medium text-cream transition-colors hover:border-cream/40 hover:bg-cream/5"
+              >
+                View Our Work <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* Philosophy */}
-      <section className="about-philosophy">
-        <div className="container">
-          <ScrollReveal>
-            <div className="about-philosophy-copy">
-              <h2>
+      <Section>
+        <Container>
+          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <h2 className="font-display text-display-md leading-tight tracking-tight">
                 Good websites are not just designed.
                 <br />
-                <em>They are considered.</em>
+                <span className="italic text-accent">They are considered.</span>
               </h2>
-              <p>
-                We believe a great website starts with understanding. Understanding
-                the business behind it, the people it needs to reach, and the
-                experience those people should have when they arrive.
-              </p>
-              <p>
-                That means thinking beyond how a website looks. We consider
-                structure, content, usability, performance, responsiveness and the
-                small details that make a digital experience feel effortless.
-              </p>
-              <p>
-                Then we bring those decisions together through thoughtful design and
-                development.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal variant="stagger" delay={100}>
-            <div className="about-pillars">
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+                <p>
+                  We believe a great website starts with understanding. Understanding
+                  the business behind it, the people it needs to reach, and the
+                  experience those people should have when they arrive.
+                </p>
+                <p>
+                  That means thinking beyond how a website looks. We consider
+                  structure, content, usability, performance, responsiveness and the
+                  small details that make a digital experience feel effortless.
+                </p>
+                <p>
+                  Then we bring those decisions together through thoughtful design and
+                  development.
+                </p>
+              </div>
+            </Reveal>
+            <RevealStagger stagger={100} className="grid gap-6">
               {philosophyPillars.map((pillar) => (
-                <div className="about-pillar" key={pillar.number}>
-                  <span className="about-pillar-number">{pillar.number}</span>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.text}</p>
+                <div
+                  key={pillar.number}
+                  className="rounded-2xl border border-line bg-cream-light p-8"
+                >
+                  <span className="font-mono text-xs text-accent">{pillar.number}</span>
+                  <h3 className="mt-3 font-display text-xl tracking-tight">{pillar.title}</h3>
+                  <p className="mt-3 leading-relaxed text-muted">{pillar.text}</p>
                 </div>
               ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+            </RevealStagger>
+          </div>
+        </Container>
+      </Section>
 
       {/* Approach */}
-      <section className="about-approach container">
-        <ScrollReveal>
-          <p className="eyebrow">Our approach</p>
-          <h2>The way we work matters.</h2>
-        </ScrollReveal>
-        <ScrollReveal variant="stagger" delay={80}>
-          <div className="about-principles">
-            {approachPrinciples.map((p, i) => (
-              <div className="about-principle" key={p.number}>
-                <div className="about-principle-top">
-                  <span className="about-principle-number">{p.number}</span>
-                  <h3>{p.title}</h3>
+      <Section className="bg-cream-dark">
+        <Container>
+          <Reveal>
+            <SectionHeading eyebrow="Our approach" title="The way we work matters." />
+          </Reveal>
+          <RevealStagger stagger={80} className="mt-14 divide-y divide-line">
+            {approachPrinciples.map((p) => (
+              <div key={p.number} className="grid gap-4 py-8 sm:grid-cols-[80px_1fr] sm:gap-8">
+                <span className="font-mono text-sm text-accent">{p.number}</span>
+                <div>
+                  <h3 className="font-display text-xl tracking-tight">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-muted">{p.text}</p>
                 </div>
-                <p>{p.text}</p>
-                {i < approachPrinciples.length - 1 && <div className="about-principle-divider" />}
               </div>
             ))}
-          </div>
-        </ScrollReveal>
-      </section>
+          </RevealStagger>
+        </Container>
+      </Section>
 
       {/* South African Context */}
-      <section className="about-sa">
-        <div className="container">
-          <ScrollReveal>
-            <div className="about-sa-inner">
+      <Section dark>
+        <Container>
+          <Reveal>
+            <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
               <div>
-                <p className="eyebrow">Local context</p>
-                <h2>
+                <p className="font-mono text-xs uppercase tracking-wider text-accent mb-4">Local context</p>
+                <h2 className="font-display text-display-md leading-tight tracking-tight text-cream">
                   Built in South Africa.
                   <br />
-                  <em>Ready for the wider web.</em>
+                  <span className="italic text-accent">Ready for the wider web.</span>
                 </h2>
-                <p>
+                <p className="mt-8 text-lg leading-relaxed text-cream/60">
                   We build with the realities of modern South African businesses in
                   mind. That means creating experiences that work beautifully across
                   mobile devices, make it easy for customers to get in touch, support
@@ -209,163 +224,182 @@ export default function AboutPage() {
                   future growth.
                 </p>
               </div>
-              <div className="about-sa-highlights">
+              <div className="grid gap-5 sm:grid-cols-2">
                 {saHighlights.map((h) => (
-                  <div className="about-sa-highlight" key={h.title}>
-                    <h3>{h.title}</h3>
-                    <p>{h.text}</p>
+                  <div
+                    key={h.title}
+                    className="rounded-2xl border border-cream/10 bg-cream/5 p-7"
+                  >
+                    <h3 className="font-display text-lg tracking-tight text-cream">{h.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-cream/50">{h.text}</p>
                   </div>
                 ))}
               </div>
             </div>
-          </ScrollReveal>
-        </div>
-      </section>
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* WEB-IN Difference */}
-      <section className="about-difference container">
-        <ScrollReveal>
-          <div className="about-difference-top">
-            <p className="eyebrow">The WEB-IN difference</p>
-            <h2>
-              You will not be passed
-              <br />
-              <em>from person to person.</em>
-            </h2>
-            <p>
-              WEB-IN is intentionally independent. That means projects receive direct
-              attention from the people building them. Communication stays clear,
-              decisions move faster and the process remains personal without
-              sacrificing professionalism.
-            </p>
-            <p>
-              We believe clients should understand what is happening with their
-              project, what comes next and why decisions are being made.
-            </p>
-          </div>
-        </ScrollReveal>
-        <ScrollReveal variant="stagger" delay={80}>
-          <div className="about-difference-grid">
-            {differencePoints.map((d) => (
-              <div className="about-difference-item" key={d.title}>
-                <h3>{d.title}</h3>
-                <p>{d.text}</p>
+      <Section className="bg-cream-dark">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">The WEB-IN difference</p>
+              <h2 className="font-display text-display-md leading-tight tracking-tight">
+                You will not be passed
+                <br />
+                <span className="italic text-accent">from person to person.</span>
+              </h2>
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+                <p>
+                  WEB-IN is intentionally independent. That means projects receive direct
+                  attention from the people building them. Communication stays clear,
+                  decisions move faster and the process remains personal without
+                  sacrificing professionalism.
+                </p>
+                <p>
+                  We believe clients should understand what is happening with their
+                  project, what comes next and why decisions are being made.
+                </p>
               </div>
-            ))}
+            </Reveal>
+            <RevealStagger stagger={80} className="grid gap-5 content-start">
+              {differencePoints.map((d) => (
+                <div
+                  key={d.title}
+                  className="rounded-2xl border border-line bg-cream p-6"
+                >
+                  <h3 className="font-display text-lg tracking-tight">{d.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{d.text}</p>
+                </div>
+              ))}
+            </RevealStagger>
           </div>
-        </ScrollReveal>
-      </section>
+        </Container>
+      </Section>
 
       {/* Details Matter */}
-      <section className="about-details">
-        <div className="container">
-          <ScrollReveal>
-            <div className="about-details-top">
-              <p className="eyebrow">Quality standards</p>
-              <h2>
+      <Section>
+        <Container>
+          <Reveal>
+            <div className="max-w-[680px]">
+              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">Quality standards</p>
+              <h2 className="font-display text-display-md leading-tight tracking-tight">
                 We care about the details people notice
                 <br />
-                <em>and the ones they do not.</em>
+                <span className="italic text-accent">and the ones they do not.</span>
               </h2>
-              <p>
+              <p className="mt-6 text-lg leading-relaxed text-muted">
                 From the spacing between elements to the speed at which a page loads,
                 quality lives in the details.
               </p>
             </div>
-          </ScrollReveal>
-          <ScrollReveal variant="stagger" delay={60}>
-            <div className="about-details-list">
-              {qualityDetails.map((item) => (
-                <div className="about-detail-row" key={item}>
-                  <Check aria-hidden="true" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Who We Build For */}
-      <section className="about-audience container">
-        <ScrollReveal>
-          <p className="eyebrow">Who we build for</p>
-          <h2>
-            Built for people
-            <br />
-            <em>building something.</em>
-          </h2>
-          <p className="about-audience-lede">
-            WEB-IN works with people and organisations that need more than a website
-            that simply exists.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal variant="stagger" delay={80}>
-          <div className="about-audience-grid">
-            {audienceTypes.map((a) => (
-              <div className="about-audience-item" key={a.title}>
-                <h3>{a.title}</h3>
-                <p>{a.text}</p>
+          </Reveal>
+          <RevealStagger stagger={60} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {qualityDetails.map((item) => (
+              <div key={item} className="flex items-center gap-3 rounded-xl border border-line bg-cream-light px-5 py-4">
+                <Check className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                <span className="text-sm font-medium">{item}</span>
               </div>
             ))}
-          </div>
-        </ScrollReveal>
-      </section>
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      {/* Who We Build For */}
+      <Section className="bg-cream-dark">
+        <Container>
+          <Reveal>
+            <div className="max-w-[680px]">
+              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">Who we build for</p>
+              <h2 className="font-display text-display-md leading-tight tracking-tight">
+                Built for people
+                <br />
+                <span className="italic text-accent">building something.</span>
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-muted">
+                WEB-IN works with people and organisations that need more than a website
+                that simply exists.
+              </p>
+            </div>
+          </Reveal>
+          <RevealStagger stagger={80} className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {audienceTypes.map((a) => (
+              <div
+                key={a.title}
+                className="rounded-2xl border border-line bg-cream p-7"
+              >
+                <h3 className="font-display text-lg tracking-tight">{a.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{a.text}</p>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
 
       {/* Process */}
-      <section className="about-process">
-        <div className="container">
-          <ScrollReveal>
-            <p className="eyebrow">Our process</p>
-            <h2>From first conversation to launch.</h2>
-          </ScrollReveal>
-          <ScrollReveal variant="stagger" delay={80}>
-            <div className="about-process-steps">
-              {processSteps.map((step) => (
-                <div className="about-process-step" key={step.number}>
-                  <span className="about-process-number">{step.number}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
-                  </div>
+      <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading eyebrow="Our process" title="From first conversation to launch." />
+          </Reveal>
+          <RevealStagger stagger={80} className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {processSteps.map((step) => (
+              <div key={step.number} className="flex gap-5">
+                <span className="font-mono text-sm text-accent shrink-0 pt-1">{step.number}</span>
+                <div>
+                  <h3 className="font-display text-lg tracking-tight">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{step.text}</p>
                 </div>
-              ))}
+              </div>
+            ))}
+          </RevealStagger>
+          <Reveal delay={100}>
+            <div className="mt-14">
+              <Link
+                href="/process"
+                className="inline-flex items-center gap-2 font-mono text-sm text-accent transition-colors hover:text-accent-dark"
+              >
+                Explore our process <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <Link className="about-process-link" href="/process">
-              Explore our process <ArrowUpRight />
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* Final CTA */}
-      <section className="about-cta">
-        <div className="container">
-          <ScrollReveal>
-            <h2>
-              Your next website should feel
-              <br />
-              <em>like your business.</em>
-            </h2>
-            <p>
-              Tell us where you are going. We will help you build the digital
-              experience to get there.
-            </p>
-            <div className="about-cta-actions">
-              <Link className="button button-light" href="/contact">
-                Let's talk <ArrowUpRight />
-              </Link>
-              <Link className="text-link" href="/work">
-                View Our Work <ArrowUpRight />
-              </Link>
+      <Section dark>
+        <Container>
+          <Reveal>
+            <div className="max-w-[680px]">
+              <h2 className="font-display text-display-md leading-tight tracking-tight text-cream">
+                Your next website should feel
+                <br />
+                <span className="italic text-accent">like your business.</span>
+              </h2>
+              <p className="mt-8 text-lg leading-relaxed text-cream/60">
+                Tell us where you are going. We will help you build the digital
+                experience to get there.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
+                >
+                  Let's talk <ArrowUpRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/work"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-7 py-3 text-sm font-medium text-cream transition-colors hover:border-cream/40 hover:bg-cream/5"
+                >
+                  View Our Work <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <Footer />
+          </Reveal>
+        </Container>
+      </Section>
     </>
   )
 }
