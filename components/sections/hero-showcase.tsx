@@ -1,18 +1,18 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react'
-import { BrowserWindow, PhoneFrame } from './browser-window'
-import { EmberAndOakDesktop, EmberAndOakPhone } from './sample-sites/restaurant'
-import { SterlingLawDesktop, SterlingLawPhone } from './sample-sites/law-firm'
-import { ForgeAthleticDesktop, ForgeAthleticPhone } from './sample-sites/fitness'
-import { LumiereDesktop, LumierePhone } from './sample-sites/beauty-booking'
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, animate } from 'motion/react'
+import { BrowserWindow, TabletFrame, PhoneFrame } from './browser-window'
+import { EmberAndOakDesktop, EmberAndOakTablet, EmberAndOakPhone } from './sample-sites/restaurant'
+import { SterlingLawDesktop, SterlingLawTablet, SterlingLawPhone } from './sample-sites/law-firm'
+import { ForgeAthleticDesktop, ForgeAthleticTablet, ForgeAthleticPhone } from './sample-sites/fitness'
+import { LumiereDesktop, LumiereTablet, LumierePhone } from './sample-sites/beauty-booking'
 
 const samples = [
-  { name: 'Ember & Oak', url: 'emberandoak.co.za', Desktop: EmberAndOakDesktop, Phone: EmberAndOakPhone },
-  { name: 'Sterling Law', url: 'sterlinglaw.co.za', Desktop: SterlingLawDesktop, Phone: SterlingLawPhone },
-  { name: 'Forge Athletic', url: 'forgeathletic.co.za', Desktop: ForgeAthleticDesktop, Phone: ForgeAthleticPhone },
-  { name: 'Lumière Studio', url: 'lumierebeauty.co.za', Desktop: LumiereDesktop, Phone: LumierePhone },
+  { name: 'Ember & Oak', url: 'emberandoak.co.za', Desktop: EmberAndOakDesktop, Tablet: EmberAndOakTablet, Phone: EmberAndOakPhone },
+  { name: 'Sterling Law', url: 'sterlinglaw.co.za', Desktop: SterlingLawDesktop, Tablet: SterlingLawTablet, Phone: SterlingLawPhone },
+  { name: 'Forge Athletic', url: 'forgeathletic.co.za', Desktop: ForgeAthleticDesktop, Tablet: ForgeAthleticTablet, Phone: ForgeAthleticPhone },
+  { name: 'Lumière Studio', url: 'lumierebeauty.co.za', Desktop: LumiereDesktop, Tablet: LumiereTablet, Phone: LumierePhone },
 ]
 
 export function HeroShowcase() {
@@ -27,6 +27,27 @@ export function HeroShowcase() {
   const mouseY = useMotionValue(0)
   const rotateX = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 })
   const rotateY = useSpring(useMotionValue(0), { stiffness: 100, damping: 30 })
+
+  // Floating animation
+  const floatY = useMotionValue(0)
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const controls = animate(floatY, [0, -6, 0], {
+      duration: 4,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    })
+    return () => controls.stop()
+  }, [floatY, prefersReducedMotion])
+
+  // Spotlight position (reactive)
+  const spotlightX = useMotionValue(50)
+  const spotlightY = useMotionValue(50)
+  const spotlightBg = useTransform(
+    [spotlightX, spotlightY],
+    ([x, y]) => `radial-gradient(600px circle at ${x}% ${y}%, rgba(67,97,238,0.06), transparent 40%)`
+  )
 
   // Check if mobile
   useEffect(() => {
@@ -45,7 +66,7 @@ export function HeroShowcase() {
     return () => clearInterval(interval)
   }, [isPaused, prefersReducedMotion])
 
-  // Mouse move handler for 3D tilt
+  // Mouse move handler for 3D tilt and spotlight
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (isMobile || prefersReducedMotion) return
     const rect = containerRef.current?.getBoundingClientRect()
@@ -59,7 +80,10 @@ export function HeroShowcase() {
 
     rotateX.set((y - 0.5) * -8)
     rotateY.set((x - 0.5) * 8)
-  }, [isMobile, prefersReducedMotion, mouseX, rotateX, rotateY])
+
+    spotlightX.set(x * 100)
+    spotlightY.set(y * 100)
+  }, [isMobile, prefersReducedMotion, mouseX, mouseY, rotateX, rotateY, spotlightX, spotlightY])
 
   const handleMouseLeave = useCallback(() => {
     rotateX.set(0)
@@ -69,10 +93,6 @@ export function HeroShowcase() {
   const togglePause = useCallback(() => setIsPaused((p) => !p), [])
 
   const currentSample = samples[currentIndex]
-
-  const spotlightStyle = {
-    background: `radial-gradient(600px circle at ${mouseX.get() * 100}% ${mouseY.get() * 100}%, rgba(67,97,238,0.06), transparent 40%)`,
-  }
 
   // Swipe handling for mobile
   const [touchStart, setTouchStart] = useState(0)
@@ -96,77 +116,84 @@ export function HeroShowcase() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Spotlight effect */}
+      {/* Spotlight effect - now reactive via useTransform */}
       {!isMobile && !prefersReducedMotion && (
         <motion.div
           className="absolute inset-0 pointer-events-none z-0"
-          style={spotlightStyle}
+          style={{ background: spotlightBg }}
         />
       )}
 
-      {/* 3D tilt wrapper */}
-      <motion.div
-        className="relative z-10"
-        style={{
-          perspective: isMobile ? 'none' : 1200,
-        }}
-      >
-        <motion.div
-          style={{
-            rotateX: isMobile || prefersReducedMotion ? 0 : rotateX,
-            rotateY: isMobile || prefersReducedMotion ? 0 : rotateY,
-            transformStyle: 'preserve-3d',
-          }}
-        >
-          {isMobile ? (
-            /* Mobile layout: stacked */
-            <div className="flex flex-col gap-6 items-center">
-              <div className="w-full max-w-[340px]">
-                <BrowserWindow
-                  DesktopComponent={currentSample.Desktop}
-                  url={currentSample.url}
-                  isPaused={isPaused}
-                  onTogglePause={togglePause}
-                />
-              </div>
-              <div className="w-full max-w-[200px]">
-                <PhoneFrame
-                  PhoneComponent={currentSample.Phone}
-                  url={currentSample.url}
-                />
-              </div>
-              <div className="text-center mt-2">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-white/25">
-                  {currentSample.name}
-                </span>
-              </div>
-            </div>
-          ) : (
-            /* Desktop layout: side by side with overlapping phone */
-            <div className="relative flex items-end justify-center gap-6">
-              <div className="flex-1 max-w-[640px]">
-                <BrowserWindow
-                  DesktopComponent={currentSample.Desktop}
-                  url={currentSample.url}
-                  isPaused={isPaused}
-                  onTogglePause={togglePause}
-                />
-                <div className="text-center mt-3">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-white/25">
-                    {currentSample.name}
-                  </span>
+      {/* Device showcase with 3D tilt */}
+      <div className="relative z-10" style={{ perspective: isMobile || prefersReducedMotion ? 'none' : 1200 }}>
+        <div className="flex items-end justify-center">
+          <motion.div
+            className={isMobile ? 'flex flex-col gap-4 items-center' : 'flex items-end gap-0'}
+            style={{
+              rotateX: isMobile || prefersReducedMotion ? 0 : rotateX,
+              rotateY: isMobile || prefersReducedMotion ? 0 : rotateY,
+              y: prefersReducedMotion ? 0 : floatY,
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {isMobile ? (
+              <div className="flex flex-col gap-4 items-center">
+                <div className="w-full max-w-[320px]">
+                  <BrowserWindow
+                    DesktopComponent={currentSample.Desktop}
+                    url={currentSample.url}
+                    isPaused={isPaused}
+                    onTogglePause={togglePause}
+                  />
+                </div>
+                <div className="flex gap-3 justify-center">
+                  <div className="w-[140px]">
+                    <TabletFrame
+                      TabletComponent={currentSample.Tablet}
+                      url={currentSample.url}
+                    />
+                  </div>
+                  <div className="w-[100px]">
+                    <PhoneFrame
+                      PhoneComponent={currentSample.Phone}
+                      url={currentSample.url}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="absolute -right-8 bottom-0 w-[200px]">
-                <PhoneFrame
-                  PhoneComponent={currentSample.Phone}
-                  url={currentSample.url}
-                />
+            ) : (
+              <div className="flex items-end gap-0">
+                <div className="relative z-10 shrink-0" style={{ width: '500px' }}>
+                  <BrowserWindow
+                    DesktopComponent={currentSample.Desktop}
+                    url={currentSample.url}
+                    isPaused={isPaused}
+                    onTogglePause={togglePause}
+                  />
+                </div>
+                <div className="relative z-20 shrink-0" style={{ width: '150px', marginLeft: '-80px' }}>
+                  <TabletFrame
+                    TabletComponent={currentSample.Tablet}
+                    url={currentSample.url}
+                  />
+                </div>
+                <div className="relative z-30 shrink-0" style={{ width: '100px', marginLeft: '-50px' }}>
+                  <PhoneFrame
+                    PhoneComponent={currentSample.Phone}
+                    url={currentSample.url}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </motion.div>
-      </motion.div>
+            )}
+          </motion.div>
+        </div>
+        {/* Site name caption */}
+        <div className="text-center mt-4">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-white/25">
+            {currentSample.name}
+          </span>
+        </div>
+      </div>
 
       {/* Screen reader description */}
       <div className="sr-only">
