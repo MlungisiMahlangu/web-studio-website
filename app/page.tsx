@@ -28,28 +28,56 @@ import { ScrollCue } from '@/components/ui/scroll-cue'
 const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
-  title: undefined,
+  title: 'Website Design & Development in South Africa | WEB-IN',
+  description: 'Professional web development studio in South Africa. Modern websites from R1,500. Business sites, portfolios, landing pages, online stores. Fast, SEO-ready, mobile-first.',
+  alternates: {
+    canonical: 'https://web-in.co.za',
+  },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: STUDIO_NAME,
-  description: 'Independent web development studio building modern websites for businesses in South Africa and beyond.',
-  url: 'https://web-in.co.za',
-  email: STUDIO_EMAIL,
-  telephone: STUDIO_PHONE,
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'ZA',
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': ['Organization', 'WebSite', 'LocalBusiness'],
+    name: STUDIO_NAME,
+    alternateName: 'WEB-IN Web Studio',
+    url: 'https://web-in.co.za',
+    logo: 'https://web-in.co.za/icon.svg',
+    description: 'Independent web development studio building modern websites for businesses in South Africa.',
+    email: STUDIO_EMAIL,
+    telephone: STUDIO_PHONE,
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'ZA',
+      addressRegion: 'Gauteng',
+    },
+    areaServed: [
+      {
+        '@type': 'Country',
+        name: 'South Africa',
+      },
+      {
+        '@type': 'State',
+        name: 'Gauteng',
+      },
+      {
+        '@type': 'City',
+        name: 'Johannesburg',
+      },
+    ],
+    priceRange: 'R1,500 - R10,000+',
+    sameAs: [],
+    knowsAbout: [
+      'Web Development',
+      'Website Design',
+      'Business Websites',
+      'E-commerce',
+      'Landing Pages',
+      'Portfolio Websites',
+      'Custom Web Applications',
+    ],
   },
-  areaServed: {
-    '@type': 'Country',
-    name: 'South Africa',
-  },
-  priceRange: 'R1,500 - R10,000+',
-  sameAs: [],
-}
+]
 
 export default function HomePage() {
   return (

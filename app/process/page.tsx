@@ -14,9 +14,11 @@ import {
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Process',
-  description:
-    'From first conversation to live website. A clear path from enquiry to launch with communication and decisions kept clear along the way.',
+  title: 'Our Process | Web Development Workflow',
+  description: 'From first conversation to live website. A clear 5-phase process: discover, design, build, test, launch. Transparent communication throughout your project.',
+  alternates: {
+    canonical: 'https://web-in.co.za/process',
+  },
 }
 
 export default function ProcessPage() {

@@ -7,8 +7,11 @@ import { Reveal } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Work',
-  description: 'A selection of digital experiences we have designed and built — from full-stack platforms to polished interfaces.',
+  title: 'Our Work | Website Portfolio South Africa',
+  description: 'View our portfolio of websites and web applications. Business sites, e-commerce, portfolios, and custom solutions built for South African clients.',
+  alternates: {
+    canonical: 'https://web-in.co.za/work',
+  },
 }
 
 export default function WorkPage() {

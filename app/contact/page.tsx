@@ -7,8 +7,11 @@ import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Get in touch about your project. Reach out via email, phone or WhatsApp, or send us a message and we will respond within 1–2 business days.',
+  title: 'Contact WEB-IN | Get a Website Quote',
+  description: 'Get in touch about your web project. Request a quote, ask questions, or discuss your ideas. Response within 1-2 business days. Email, phone, or WhatsApp.',
+  alternates: {
+    canonical: 'https://web-in.co.za/contact',
+  },
 }
 
 export default function ContactPage() {

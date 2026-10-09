@@ -5,7 +5,7 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
-import { serviceDetails } from '@/lib/constants'
+import { serviceDetails, SITE_URL, STUDIO_NAME } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -21,8 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const detail = serviceDetails[slug]
   if (!detail) return {}
   return {
-    title: detail.name,
-    description: detail.intro,
+    title: `${detail.name} | Web Development Services`,
+    description: `${detail.intro} Professional ${detail.name.toLowerCase()} in South Africa. From ${detail.price}. Clear scope, no hidden costs.`,
+    alternates: {
+      canonical: `${SITE_URL}/services/${slug}`,
+    },
   }
 }
 
@@ -33,8 +36,34 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   const serviceHref = `/contact?service=${encodeURIComponent(detail.name)}`
 
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: detail.name,
+    description: detail.description,
+    provider: {
+      '@type': 'Organization',
+      name: STUDIO_NAME,
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'South Africa',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: detail.price.replace(/[^0-9,]/g, ''),
+      priceCurrency: 'ZAR',
+      availability: 'https://schema.org/InStock',
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {/* ─── HERO ─── */}
       <section className="relative bg-ink text-cream overflow-hidden">
         <div className="absolute inset-0 grain grain-dark" />

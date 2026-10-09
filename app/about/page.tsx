@@ -7,8 +7,11 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About',
-  description: 'Independent web development studio based in South Africa. We build thoughtful digital experiences for businesses, professionals and ambitious ideas.',
+  title: 'About WEB-IN | Web Developers South Africa',
+  description: 'Independent web development studio based in South Africa. We build modern, fast websites for businesses, professionals and growing brands. Strategy, design, development.',
+  alternates: {
+    canonical: 'https://web-in.co.za/about',
+  },
 }
 
 const philosophyPillars = [
