@@ -16,6 +16,12 @@ function EnquiryFormInner() {
   function validateForm(formData: FormData): boolean {
     const newErrors: Record<string, string> = {}
 
+    // Honeypot check - if filled, it's a bot
+    const honeypot = formData.get('website') as string
+    if (honeypot) {
+      return false
+    }
+
     const name = formData.get('name') as string
     const phone = formData.get('phone') as string
     const email = formData.get('email') as string
@@ -80,6 +86,14 @@ function EnquiryFormInner() {
 
   return (
     <form className="contact-form" onSubmit={submit} noValidate>
+      {/* Honeypot field for spam protection */}
+      <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
+        <label>
+          Website (leave blank)
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
+
       <div className="form-row">
         <label>
           Name
