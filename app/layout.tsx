@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from 'next'
 import { STUDIO_NAME, STUDIO_TAGLINE, STUDIO_DESCRIPTION } from '@/lib/constants'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
-import MobileBar from '@/components/layout/mobile-bar'
 import { SmoothScroll } from '@/components/ui/smooth-scroll'
 import CookieBanner from '@/components/ui/cookie-banner'
 import './globals.css'
@@ -79,7 +78,6 @@ export default function RootLayout({
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
-          <MobileBar />
           <CookieBanner />
         </SmoothScroll>
         {process.env.NODE_ENV === 'production' && <Analytics />}
