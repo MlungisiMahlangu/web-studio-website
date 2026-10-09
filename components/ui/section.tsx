@@ -4,18 +4,20 @@ export function Section({
   children,
   className,
   dark,
+  tight,
   id,
 }: {
   children: React.ReactNode
   className?: string
   dark?: boolean
+  tight?: boolean
   id?: string
 }) {
   return (
     <section
       id={id}
       className={clsx(
-        'py-20 sm:py-28 md:py-32',
+        tight ? 'py-8 sm:py-12' : 'py-12 sm:py-16 lg:py-20',
         dark ? 'bg-ink text-cream' : 'bg-cream text-ink',
         className,
       )}

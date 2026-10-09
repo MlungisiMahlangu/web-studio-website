@@ -96,6 +96,82 @@ export function EmberAndOakDesktop() {
   )
 }
 
+export function EmberAndOakTablet() {
+  return (
+    <div className="h-full bg-[#1a1410] text-white" style={{ fontFamily: 'Georgia, serif' }}>
+      {/* Nav */}
+      <div className="flex items-center justify-between px-8 py-4 border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center">
+            <Flame size={12} className="text-white" />
+          </div>
+          <span className="text-base tracking-wide">Ember & Oak</span>
+        </div>
+        <span className="text-[10px] bg-amber-600 text-white px-4 py-2 rounded-full tracking-wider">Reserve</span>
+      </div>
+
+      {/* Hero */}
+      <div className="relative px-8 py-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-transparent to-orange-950/30" />
+        <div className="absolute top-8 right-8 w-48 h-48 rounded-full bg-amber-600/10 blur-3xl" />
+        <div className="relative">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-4">Wood-fired kitchen · Cape Town</p>
+          <h1 className="text-4xl leading-tight mb-4" style={{ fontFamily: 'Georgia, serif' }}>
+            Where fire<br />meets flavour.
+          </h1>
+          <p className="text-sm text-white/50 leading-relaxed mb-6 max-w-md">
+            Seasonal ingredients, open-flame cooking and an intimate dining experience rooted in the Mediterranean tradition.
+          </p>
+          <div className="flex gap-3">
+            <span className="text-[11px] bg-amber-600 text-white px-5 py-2.5 rounded-full tracking-wider">Book a table</span>
+            <span className="text-[11px] border border-white/20 text-white/70 px-5 py-2.5 rounded-full tracking-wider">View menu</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Dishes */}
+      <div className="px-8 py-8 border-t border-white/5">
+        <div className="flex items-center gap-3 mb-6">
+          <Utensils size={12} className="text-amber-400" />
+          <p className="text-[10px] tracking-[0.2em] uppercase text-white/40">Signature dishes</p>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { name: 'Wood-roasted bone marrow', price: 'R185', desc: 'Herb gremolata, sourdough', color: 'from-amber-900/40 to-amber-950/60' },
+            { name: 'Charred octopus', price: 'R220', desc: 'Romesco, crispy potatoes', color: 'from-orange-900/40 to-red-950/60' },
+            { name: 'Burnt basque cheesecake', price: 'R95', desc: 'Fig compote, honeycomb', color: 'from-yellow-900/40 to-amber-950/60' },
+          ].map((dish) => (
+            <div key={dish.name} className={`rounded-xl bg-gradient-to-br ${dish.color} border border-white/5 p-4`}>
+              <div className="w-full aspect-[4/3] rounded-lg bg-white/5 mb-3 flex items-center justify-center">
+                <Leaf size={20} className="text-white/10" />
+              </div>
+              <p className="text-sm font-medium mb-1">{dish.name}</p>
+              <p className="text-[10px] text-white/40 mb-2">{dish.desc}</p>
+              <p className="text-sm text-amber-400">{dish.price}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="px-8 py-5 border-t border-white/5 space-y-2">
+        <div className="flex items-center gap-2 text-white/40">
+          <MapPin size={10} />
+          <span className="text-[10px]">21 Bree Street, Cape Town</span>
+        </div>
+        <div className="flex items-center gap-2 text-white/40">
+          <Clock size={10} />
+          <span className="text-[10px]">Tue–Sun · 12:00–22:00</span>
+        </div>
+      </div>
+
+      <div className="absolute bottom-3 right-4">
+        <span className="text-[8px] tracking-wider uppercase text-white/20 bg-white/5 px-2 py-0.5 rounded">Sample design</span>
+      </div>
+    </div>
+  )
+}
+
 export function EmberAndOakPhone() {
   return (
     <div className="h-full bg-[#1a1410] text-white" style={{ fontFamily: 'Georgia, serif' }}>

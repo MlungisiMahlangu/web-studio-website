@@ -98,6 +98,79 @@ export function ForgeAthleticDesktop() {
   )
 }
 
+export function ForgeAthleticTablet() {
+  return (
+    <div className="h-full bg-[#0a0a0a] text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>
+      {/* Nav */}
+      <div className="flex items-center justify-between px-8 py-4 border-b border-white/5">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded bg-red-600 flex items-center justify-center">
+            <Zap size={12} className="text-white" />
+          </div>
+          <span className="text-sm font-black tracking-[0.15em] uppercase">Forge Athletic</span>
+        </div>
+        <span className="text-[10px] bg-red-600 text-white px-4 py-2 rounded tracking-wider font-bold">Join now</span>
+      </div>
+
+      {/* Hero */}
+      <div className="relative px-8 py-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-950/30 via-transparent to-black" />
+        <div className="absolute top-0 left-1/3 w-72 h-72 rounded-full bg-red-600/5 blur-3xl" />
+        <div className="relative">
+          <p className="text-[9px] tracking-[0.3em] uppercase text-red-400 mb-4">No excuses. Just results.</p>
+          <h1 className="text-4xl font-black leading-none uppercase mb-4">
+            Forge your<br />
+            <span className="text-red-500">strongest</span><br />
+            self.
+          </h1>
+          <p className="text-xs text-white/40 leading-relaxed mb-6 max-w-md">
+            Premium training facilities. Expert coaches. A community that pushes you further.
+          </p>
+          <div className="flex gap-3">
+            <span className="text-[11px] bg-red-600 text-white px-5 py-2.5 rounded font-bold tracking-wider">Start free trial</span>
+            <span className="text-[11px] border border-white/15 text-white/60 px-5 py-2.5 rounded tracking-wider">View classes</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Classes */}
+      <div className="px-8 py-8 border-t border-white/5">
+        <div className="flex items-center gap-3 mb-5">
+          <Clock size={12} className="text-red-400" />
+          <p className="text-[10px] tracking-[0.2em] uppercase text-white/40">Today&apos;s classes</p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {[
+            { time: '06:00', name: 'HIIT Blast', trainer: 'Coach Dave', spots: '3 spots left' },
+            { time: '08:30', name: 'Strength Lab', trainer: 'Coach Amy', spots: '8 spots left' },
+            { time: '17:00', name: 'Boxing', trainer: 'Coach Mike', spots: '5 spots left' },
+          ].map((cls) => (
+            <div key={cls.time} className="bg-white/[0.03] rounded-xl p-4 border border-white/5">
+              <p className="text-base font-black text-white mb-1">{cls.time}</p>
+              <p className="text-sm font-medium mb-1">{cls.name}</p>
+              <p className="text-[10px] text-white/30 mb-2">{cls.trainer}</p>
+              <span className="text-[10px] text-red-400">{cls.spots}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Membership */}
+      <div className="px-8 py-6 border-t border-white/5">
+        <div className="bg-gradient-to-r from-red-950/30 to-transparent rounded-xl p-5 border border-red-900/20">
+          <p className="text-[10px] tracking-wider uppercase text-red-400 mb-1">Unlimited membership</p>
+          <p className="text-xl font-black">R499<span className="text-xs text-white/30 font-normal">/month</span></p>
+          <p className="text-[10px] text-white/30 mt-1">All classes · All facilities · No contract</p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-3 right-4">
+        <span className="text-[8px] tracking-wider uppercase text-white/15 bg-white/5 px-2 py-0.5 rounded">Sample design</span>
+      </div>
+    </div>
+  )
+}
+
 export function ForgeAthleticPhone() {
   return (
     <div className="h-full bg-[#0a0a0a] text-white" style={{ fontFamily: 'system-ui, sans-serif' }}>
