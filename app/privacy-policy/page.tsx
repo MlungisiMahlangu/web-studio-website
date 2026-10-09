@@ -6,8 +6,11 @@ import { STUDIO_NAME, STUDIO_EMAIL } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy policy',
-  description: `Privacy policy for ${STUDIO_NAME}.`,
+  title: 'Privacy Policy | WEB-IN South Africa',
+  description: `Privacy policy for ${STUDIO_NAME}. POPIA compliant. How we collect, use and protect your personal information.`,
+  alternates: {
+    canonical: 'https://web-in.co.za/privacy-policy',
+  },
 }
 
 export default function PrivacyPolicyPage() {
@@ -99,6 +102,19 @@ export default function PrivacyPolicyPage() {
                 {STUDIO_EMAIL}
               </a>{' '}
               to make a request.
+            </p>
+
+            <h2 className="font-display text-2xl text-ink mt-12 mb-4">
+              POPIA compliance
+            </h2>
+            <p>
+              As a South African business, we comply with the Protection of Personal
+              Information Act (POPIA). We process personal information lawfully,
+              reasonably and in a manner that protects your privacy. We only collect
+              information for specific, legitimate purposes related to our web
+              development services. You may at any time request access to your personal
+              information, ask for corrections, or request deletion, subject to legal
+              and contractual restrictions.
             </p>
 
             <h2 className="font-display text-2xl text-ink mt-12 mb-4">
