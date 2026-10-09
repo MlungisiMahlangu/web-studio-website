@@ -13,6 +13,7 @@ import {
   STUDIO_EMAIL,
   STUDIO_PHONE,
   STUDIO_WHATSAPP,
+  homepageFaqs,
 } from '@/lib/constants'
 
 const minPrice = Math.min(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
@@ -85,32 +86,14 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How much does a website cost in South Africa?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Website costs in South Africa vary based on complexity and scope. We offer packages for landing pages, business websites, portfolios and online stores. Every project gets a custom quote based on your specific requirements. Visit our pricing page for a clear breakdown of what is included at each level.',
-        },
+    mainEntity: homepageFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
       },
-      {
-        '@type': 'Question',
-        name: 'How long does it take to build a website?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Most projects take 2-4 weeks from start to launch. Landing pages can be completed in 1-2 weeks, while complex business websites or online stores may take 4-6 weeks.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Do I own my website after it is built?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, absolutely. Once your website is complete and paid for, you own everything - the design, code, content and domain. Full ownership, no lock-in.',
-        },
-      },
-    ],
+    })),
   },
 ]
 

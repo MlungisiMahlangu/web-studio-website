@@ -578,6 +578,137 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     domain: 'Final price depends on number of pages, current technology and scope.',
     cta: 'Redesign my website',
   },
+  'starter-websites': {
+    slug: 'starter-websites',
+    name: 'Starter websites',
+    intro:
+      'A clean, professional website to get your business or personal brand online.',
+    price: 'R2,500',
+    timeframe: '7\u201315 days',
+    description:
+      'Perfect for individuals, freelancers and small businesses that need a credible online presence without the complexity of a full business website. We build simple, effective websites that cover the essentials.',
+    whyUs:
+      'Getting online should not be complicated or expensive. A starter website gives you the foundation you need \u2014 a professional design, clear information about what you offer, and easy ways for people to contact you. It is the right first step before scaling to a larger site.',
+    featureGroups: [
+      {
+        title: 'Website Structure',
+        icon: Layout,
+        items: [
+          '1\u20133 pages',
+          'Home, About, Services/Contact',
+          'Custom page layout',
+        ],
+      },
+      {
+        title: 'Design & Experience',
+        icon: Palette,
+        items: [
+          'Custom UI/UX design',
+          'Mobile-first responsive design',
+          'Professional navigation',
+          'WhatsApp integration',
+          'Contact form',
+          'Social media links',
+        ],
+      },
+      {
+        title: 'Visibility & Performance',
+        icon: BarChart3,
+        items: [
+          'Basic SEO setup',
+          'Image optimisation',
+          'Basic performance optimisation',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          '1 revision round',
+          '14 days minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Individuals and freelancers building their first professional website',
+      'Small businesses that need a simple online presence',
+      'Service providers who want customers to find and contact them',
+      'Anyone testing an idea or offer before committing to a larger website',
+    ],
+    domain: 'Existing domain supported. .co.za available separately.',
+    cta: 'Build my starter website',
+  },
+  'professional-websites': {
+    slug: 'professional-websites',
+    name: 'Professional websites',
+    intro:
+      'A premium, feature-rich website for businesses that want more.',
+    price: 'R7,500',
+    timeframe: '2\u20135 weeks',
+    description:
+      'For businesses that need a comprehensive online presence with advanced features, premium design and conversion-focused structure. We build professional websites that stand out and deliver results.',
+    whyUs:
+      'A professional website is an investment in your business credibility and growth. We combine advanced design, strategic structure and technical excellence to create a website that not only looks exceptional but also guides visitors toward taking action \u2014 whether that is calling, booking, buying or enquiring.',
+    featureGroups: [
+      {
+        title: 'Design & Experience',
+        icon: Palette,
+        items: [
+          'Up to 10 pages',
+          'Advanced UI/UX design',
+          'Premium animations and interactions',
+          'Mobile-first responsive design',
+          'Custom branded sections',
+          'Professional navigation',
+        ],
+      },
+      {
+        title: 'Content & Engagement',
+        icon: MessageSquare,
+        items: [
+          'Blog/CMS functionality',
+          'WhatsApp integration',
+          'Contact form',
+          'Image gallery',
+          'Testimonials section',
+          'Social media integration',
+        ],
+      },
+      {
+        title: 'Visibility & Performance',
+        icon: BarChart3,
+        items: [
+          'Advanced SEO foundations',
+          'Google Analytics setup',
+          'Google Search Console setup',
+          'Image optimisation',
+          'Performance optimisation',
+          'Conversion-focused structure',
+        ],
+      },
+      {
+        title: 'Launch & Support',
+        icon: Rocket,
+        items: [
+          'SSL',
+          'Website deployment',
+          'FREE .co.za domain \u2014 first year included',
+          '3 revision rounds',
+          '5 months minor post-launch support',
+        ],
+      },
+    ],
+    idealFor: [
+      'Established businesses ready for a premium online presence',
+      'Companies that need advanced features like a blog or CMS',
+      'Brands that want a website with premium design and animations',
+      'Businesses focused on conversion and lead generation',
+    ],
+    domain: 'FREE .co.za domain \u2014 first year included',
+    cta: 'Build my professional website',
+  },
 }
 
 export interface PricingPackage {
@@ -645,7 +776,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/services/portfolio-websites',
+    href: '/services/starter-websites',
   },
   {
     name: 'Portfolio',
@@ -682,7 +813,7 @@ export const packages: PricingPackage[] = [
       '3 revision rounds',
       '5 months support',
     ],
-    href: '/services/business-websites',
+    href: '/services/professional-websites',
   },
   {
     name: 'Online Store',
@@ -1405,6 +1536,34 @@ export const enquiryDesignOptions = [
   'Bold',
   'Dark',
   'Light',
+]
+
+export const homepageFaqs = [
+  {
+    question: 'How much does a website cost?',
+    answer:
+      'Our websites range from landing pages to full business sites and online stores. Final costs depend on the scope, pages, functionality, integrations and project requirements. Visit our pricing page for a clear breakdown.',
+  },
+  {
+    question: 'How long does a website take?',
+    answer:
+      'Most projects take between one and six weeks depending on the website type, scope, functionality and feedback process.',
+  },
+  {
+    question: 'Do I own my website?',
+    answer:
+      'Yes. Once the project is completed and paid according to the agreed terms, the client owns the website. Third-party software, subscriptions and licences remain subject to their respective terms.',
+  },
+  {
+    question: 'Do you provide the domain?',
+    answer:
+      'Selected packages include a .co.za domain for the first year. Existing domains can also be used and configured.',
+  },
+  {
+    question: 'Do you provide ongoing maintenance?',
+    answer:
+      'Yes. Optional maintenance plans are available for businesses that want continued technical support, updates and website care after launch.',
+  },
 ]
 
 export { blogArticles } from './blog-data'

@@ -2,34 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-
-const homepageFaqs = [
-  {
-    question: 'How much does a website cost?',
-    answer:
-      'Our websites range from landing pages to full business sites and online stores. Final costs depend on the scope, pages, functionality, integrations and project requirements. Visit our pricing page for a clear breakdown.',
-  },
-  {
-    question: 'How long does a website take?',
-    answer:
-      'Most projects take between one and six weeks depending on the website type, scope, functionality and feedback process.',
-  },
-  {
-    question: 'Do I own my website?',
-    answer:
-      'Yes. Once the project is completed and paid according to the agreed terms, the client owns the website. Third-party software, subscriptions and licences remain subject to their respective terms.',
-  },
-  {
-    question: 'Do you provide the domain?',
-    answer:
-      'Selected packages include a .co.za domain for the first year. Existing domains can also be used and configured.',
-  },
-  {
-    question: 'Do you provide ongoing maintenance?',
-    answer:
-      'Yes. Optional maintenance plans are available for businesses that want continued technical support, updates and website care after launch.',
-  },
-]
+import { homepageFaqs } from '@/lib/constants'
 
 export function HomePageFAQ() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)

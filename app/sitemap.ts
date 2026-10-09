@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/services/online-stores', priority: 0.8 },
     { url: '/services/custom-web-applications', priority: 0.8 },
     { url: '/services/website-redesigns', priority: 0.8 },
+    { url: '/services/starter-websites', priority: 0.8 },
+    { url: '/services/professional-websites', priority: 0.8 },
     { url: '/pricing', priority: 0.9 },
     { url: '/work', priority: 0.8 },
     { url: '/work/roadwheels', priority: 0.6 },
