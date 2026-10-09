@@ -21,7 +21,7 @@ const studioLinks = [
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
   { label: 'Work', href: '/work' },
-  { label: 'Services', href: '/pricing' },
+  { label: 'Services', href: '/services' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -56,10 +56,18 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
-                  href="/pricing"
+                  href="/services"
                   className="text-sm text-cream/60 hover:text-cream transition-colors duration-200"
                 >
                   View all services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/pricing"
+                  className="text-sm text-cream/60 hover:text-cream transition-colors duration-200"
+                >
+                  Pricing
                 </Link>
               </li>
             </ul>

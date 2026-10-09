@@ -8,8 +8,11 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Services',
-  description: 'Our services and transparent starting points for websites from R1,500. Clear scope, no hidden costs. Landing pages, business websites, online stores and more.',
+  title: 'Website Design Prices in South Africa | WEB-IN',
+  description: 'Compare website design packages in South Africa. Landing pages, business websites, portfolios and online stores with clear pricing and no hidden costs from WEB-IN.',
+  alternates: {
+    canonical: 'https://web-in.co.za/pricing',
+  },
 }
 
 export default function PricingPage() {

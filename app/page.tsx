@@ -30,7 +30,7 @@ const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
   title: 'Website Design & Development in South Africa | WEB-IN',
-  description: 'Professional web development studio in South Africa. Modern websites from R1,500. Business sites, portfolios, landing pages, online stores. Fast, SEO-ready, mobile-first.',
+  description: 'Independent web design and development studio in South Africa. Business websites, portfolios, landing pages and online stores that are fast, mobile-first and SEO-ready.',
   alternates: {
     canonical: 'https://web-in.co.za',
   },
@@ -39,7 +39,7 @@ export const metadata = {
 const jsonLd = [
   {
     '@context': 'https://schema.org',
-    '@type': ['Organization', 'WebSite', 'LocalBusiness'],
+    '@type': ['Organization', 'WebSite', 'LocalBusiness', 'ProfessionalService'],
     name: STUDIO_NAME,
     alternateName: 'WEB-IN Web Studio',
     url: 'https://web-in.co.za',
@@ -51,6 +51,7 @@ const jsonLd = [
       '@type': 'PostalAddress',
       addressCountry: 'ZA',
       addressRegion: 'Gauteng',
+      addressLocality: 'Johannesburg',
     },
     areaServed: [
       {
@@ -76,6 +77,36 @@ const jsonLd = [
       'Landing Pages',
       'Portfolio Websites',
       'Custom Web Applications',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How much does a website cost in South Africa?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Website costs in South Africa vary based on complexity. Landing pages start from R1,500, business websites from R4,500, and online stores from R8,500. Every project gets a custom quote based on your specific requirements.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How long does it take to build a website?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most projects take 2-4 weeks from start to launch. Landing pages can be completed in 1-2 weeks, while complex business websites or online stores may take 4-6 weeks.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I own my website after it is built?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, absolutely. Once your website is complete and paid for, you own everything - the design, code, content and domain. Full ownership, no lock-in.',
+        },
+      },
     ],
   },
 ]
@@ -124,6 +155,9 @@ export default function HomePage() {
                     <span className="block animate-[fade-up_0.8s_ease-out_0.3s_both]">Designed for the web.</span>
                   </span>
                 </h1>
+                <p className="font-mono text-xs sm:text-sm uppercase tracking-wider text-cream/40 mt-4 animate-[fade-up_0.8s_ease-out_0.45s_both]">
+                  Website design & development for South African businesses
+                </p>
               </Reveal>
 
               {/* Rotating line */}

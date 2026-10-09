@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { services } from '@/lib/constants'
+import { services, SITE_URL, STUDIO_NAME } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -8,16 +8,55 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Services | Web Development South Africa',
-  description: 'Professional web development services in South Africa. Business websites, portfolios, landing pages, online stores, booking systems and custom applications. From R1,500.',
+  title: 'Website Design Services in South Africa | WEB-IN',
+  description: 'Professional website design services in South Africa. Business websites, portfolios, landing pages, online stores, booking systems and custom web applications.',
   alternates: {
     canonical: 'https://web-in.co.za/services',
   },
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: SITE_URL,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Services',
+      item: `${SITE_URL}/services`,
+    },
+  ],
+}
+
+const serviceJsonLd = services.map((service) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.title,
+  description: service.text,
+  provider: {
+    '@type': 'Organization',
+    name: STUDIO_NAME,
+    url: SITE_URL,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'South Africa',
+  },
+}))
+
 export default function ServicesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbJsonLd, ...serviceJsonLd]) }}
+      />
       <Section dark className="pb-20 sm:pb-28">
         <Container>
           <Reveal>
@@ -25,9 +64,9 @@ export default function ServicesPage() {
               What we build
             </p>
             <h1 className="font-display text-display-xl leading-tight tracking-tight">
-              Web development services
+              Website Design Services
               <br />
-              <em className="italic text-accent">tailored to you.</em>
+              <em className="italic text-accent">in South Africa.</em>
             </h1>
             <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-cream/60">
               From a simple landing page to a full business website or custom
@@ -88,6 +127,120 @@ export default function ServicesPage() {
               )
             })}
           </RevealStagger>
+        </Container>
+      </Section>
+
+      {/* How We Work Section */}
+      <Section className="!pt-0">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="How we work"
+              title="A clear process from start to finish"
+              description="Every project follows our proven 5-phase process: discover, design, build, test, launch. Transparent communication and no surprises."
+              center
+              className="mx-auto mb-14"
+            />
+          </Reveal>
+
+          <RevealStagger
+            stagger={80}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {[
+              { number: '01', title: 'Discover', text: 'We learn about your business, goals and audience.' },
+              { number: '02', title: 'Design', text: 'We create a custom design tailored to your brand.' },
+              { number: '03', title: 'Build', text: 'We develop your website with clean, modern code.' },
+              { number: '04', title: 'Launch', text: 'We test everything and deploy your live website.' },
+            ].map((step) => (
+              <div
+                key={step.number}
+                className="rounded-2xl border border-line bg-cream-light p-6"
+              >
+                <p className="font-mono text-xs text-muted mb-3">{step.number}</p>
+                <h3 className="font-display text-xl leading-snug tracking-tight mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted leading-relaxed">
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </RevealStagger>
+
+          <Reveal>
+            <div className="mt-10 text-center">
+              <Link
+                href="/process"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+              >
+                Learn more about our process
+                <ArrowUpRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* FAQs Section */}
+      <Section className="bg-cream-light !pt-0">
+        <Container narrow>
+          <Reveal>
+            <SectionHeading
+              eyebrow="FAQs"
+              title="Common questions about our services"
+              center
+              className="mx-auto mb-10"
+            />
+          </Reveal>
+
+          <RevealStagger stagger={80} className="space-y-4">
+            {[
+              {
+                q: 'How long does it take to build a website?',
+                a: 'Most projects take 2-4 weeks from start to launch. Landing pages can be completed in 1-2 weeks, while complex business websites or online stores may take 4-6 weeks.',
+              },
+              {
+                q: 'Do I own my website after it\'s built?',
+                a: 'Yes, absolutely. Once your website is complete and paid for, you own everything — the design, code, content and domain. Full ownership, no lock-in.',
+              },
+              {
+                q: 'Can you help with hosting and domain names?',
+                a: 'Yes. We can help you register a domain name and set up hosting. We recommend reliable South African or international hosting providers based on your needs.',
+              },
+              {
+                q: 'Do you provide ongoing support after launch?',
+                a: 'Yes. Every project includes 30 days of post-launch support. We also offer monthly maintenance plans for ongoing updates, security and backups.',
+              },
+            ].map((faq) => (
+              <details
+                key={faq.q}
+                className="group rounded-2xl border border-line bg-cream p-6 open:shadow-sm"
+              >
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <h3 className="font-display text-lg leading-snug tracking-tight pr-4">
+                    {faq.q}
+                  </h3>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-ink/5 flex items-center justify-center group-open:rotate-45 transition-transform">
+                    <ArrowUpRight size={14} className="text-muted" />
+                  </span>
+                </summary>
+                <p className="mt-4 text-muted leading-relaxed">{faq.a}</p>
+              </details>
+            ))}
+          </RevealStagger>
+
+          <Reveal>
+            <div className="mt-10 text-center">
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+              >
+                View all frequently asked questions
+                <ArrowUpRight size={14} />
+              </Link>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
