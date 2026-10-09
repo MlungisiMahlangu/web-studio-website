@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowUpRight,
   Check,
@@ -369,11 +370,14 @@ export default function HomePage() {
                       </div>
                       {/* Screenshot */}
                       <div className="p-4">
-                        <img
+                        <Image
                           src={`/screenshots/${project.slug}.png`}
                           alt={`${project.title} website screenshot`}
+                          width={1200}
+                          height={800}
                           className="w-full rounded-lg shadow-sm"
                           loading="lazy"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                         />
                       </div>
                     </Link>

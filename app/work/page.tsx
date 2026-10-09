@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { portfolioProjects } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
@@ -64,11 +65,14 @@ export default function WorkPage() {
                       </div>
                       {/* Screenshot */}
                       <div className="p-4">
-                        <img
+                        <Image
                           src={`/screenshots/${project.slug}.png`}
                           alt={`${project.title} website screenshot`}
+                          width={1200}
+                          height={800}
                           className="w-full rounded-lg shadow-sm"
                           loading={index === 0 ? 'eager' : 'lazy'}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                         />
                       </div>
                     </Link>

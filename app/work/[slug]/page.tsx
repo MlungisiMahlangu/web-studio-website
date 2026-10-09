@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowUpRight, Check } from 'lucide-react'
 import { portfolioProjects } from '@/lib/constants'
@@ -82,10 +83,14 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
               {/* Screenshot */}
               <div className="p-4">
-                <img
+                <Image
                   src={`/screenshots/${project.slug}.png`}
                   alt={`${project.title} website screenshot`}
+                  width={1200}
+                  height={800}
                   className="w-full rounded-lg shadow-sm"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
                 />
               </div>
             </div>
