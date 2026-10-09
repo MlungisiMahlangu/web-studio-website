@@ -3,6 +3,7 @@ export interface BlogArticle {
   title: string
   description: string
   publishedAt: string
+  updatedAt?: string
   readingTime: string
   content: string
 }
@@ -13,8 +14,11 @@ export const blogArticles: BlogArticle[] = [
     title: 'How much does a website cost in South Africa?',
     description: 'A practical guide to website costs in South Africa. Understand what affects pricing, what you should expect at different budget levels, and how to avoid surprises.',
     publishedAt: '2026-10-09',
+    updatedAt: '2026-10-10',
     readingTime: '8 min read',
     content: `
+> **Pricing note:** The figures below are estimates as of October 2026 and may change. For current pricing, see our [pricing page](/pricing).
+
 ## Understanding website costs in South Africa
 
 One of the first questions business owners ask when considering a new website is: "How much will it cost?" The answer depends on several factors, and there is no single price that fits every project. In this guide, we break down what affects website costs in South Africa and what you can expect at different budget levels.
@@ -204,8 +208,11 @@ If you have a project in mind and want to understand the timeline, reach out to 
     title: 'Do I need a website or is a Facebook page enough?',
     description: 'Should your business have a website, or is a Facebook page sufficient? We compare the benefits and limitations of each option for South African businesses.',
     publishedAt: '2026-10-09',
+    updatedAt: '2026-10-10',
     readingTime: '9 min read',
     content: `
+> **Pricing note:** The figures below are estimates as of October 2026 and may change. For current pricing, see our [pricing page](/pricing).
+
 ## The website vs social media debate
 
 Many small business owners in South Africa ask themselves: "Do I really need a website, or is a Facebook page enough?" It is a valid question, especially when social media platforms are free and seem to offer everything a business needs to connect with customers. The answer depends on your goals, but for most businesses serious about growth, a website provides significant advantages that social media alone cannot match.

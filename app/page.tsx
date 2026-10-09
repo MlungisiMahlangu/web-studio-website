@@ -14,6 +14,9 @@ import {
   STUDIO_PHONE,
   STUDIO_WHATSAPP,
 } from '@/lib/constants'
+
+const minPrice = Math.min(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
+const maxPrice = Math.max(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -67,7 +70,7 @@ const jsonLd = [
         name: 'Johannesburg',
       },
     ],
-    priceRange: 'R1,500 - R10,000+',
+    priceRange: `R${minPrice} - R${maxPrice}+`,
     sameAs: [],
     knowsAbout: [
       'Web Development',
@@ -88,7 +91,7 @@ const jsonLd = [
         name: 'How much does a website cost in South Africa?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Website costs in South Africa vary based on complexity. Landing pages start from R1,500, business websites from R4,500, and online stores from R8,500. Every project gets a custom quote based on your specific requirements.',
+          text: 'Website costs in South Africa vary based on complexity and scope. We offer packages for landing pages, business websites, portfolios and online stores. Every project gets a custom quote based on your specific requirements. Visit our pricing page for a clear breakdown of what is included at each level.',
         },
       },
       {

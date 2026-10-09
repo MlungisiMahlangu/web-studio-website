@@ -65,7 +65,14 @@ function renderContent(content: string) {
       if (part.startsWith('**') && part.endsWith('**')) {
         return <strong key={i} className="text-cream font-semibold">{part.slice(2, -2)}</strong>
       }
-      return part
+      const linkParts = part.split(/(\[[^\]]+\]\([^)]+\))/g)
+      return linkParts.map((segment, j) => {
+        const match = segment.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+        if (match) {
+          return <Link key={`${i}-${j}`} href={match[2]} className="text-accent hover:underline">{match[1]}</Link>
+        }
+        return segment
+      })
     })
   }
 
@@ -82,6 +89,13 @@ function renderContent(content: string) {
         <h2 key={key++} className="font-display text-2xl sm:text-3xl leading-tight tracking-tight text-cream mt-10 mb-4">
           {line.slice(3)}
         </h2>
+      )
+    } else if (line.startsWith('> ')) {
+      flushList()
+      elements.push(
+        <blockquote key={key++} className="border-l-2 border-accent/40 pl-5 py-3 mb-6 text-cream/60 text-sm leading-relaxed italic">
+          {formatInline(line.slice(2))}
+        </blockquote>
       )
     } else if (line.startsWith('- ')) {
       currentList.push(line.slice(2))
@@ -110,6 +124,7 @@ export default async function BlogArticlePage({ params }: Props) {
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     author: {
       '@type': 'Organization',
       name: STUDIO_NAME,

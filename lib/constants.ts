@@ -28,6 +28,7 @@ export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'Johannesburg, Gauteng, South Africa'
+export const LAST_UPDATED = '2026-10-10'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
 
 export interface Service {
@@ -644,7 +645,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/services/starter-websites',
+    href: '/services/portfolio-websites',
   },
   {
     name: 'Portfolio',
@@ -681,7 +682,7 @@ export const packages: PricingPackage[] = [
       '3 revision rounds',
       '5 months support',
     ],
-    href: '/services/professional-websites',
+    href: '/services/business-websites',
   },
   {
     name: 'Online Store',

@@ -7,7 +7,7 @@ const homepageFaqs = [
   {
     question: 'How much does a website cost?',
     answer:
-      'Our websites start from R1,500 for a landing page. Final costs depend on the scope, pages, functionality, integrations and project requirements.',
+      'Our websites range from landing pages to full business sites and online stores. Final costs depend on the scope, pages, functionality, integrations and project requirements. Visit our pricing page for a clear breakdown.',
   },
   {
     question: 'How long does a website take?',
