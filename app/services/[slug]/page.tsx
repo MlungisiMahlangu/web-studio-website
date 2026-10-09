@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowUpRight, Check, Clock, Banknote, Globe } from 'lucide-react'
+import { ArrowUpRight, Check, Clock, Globe } from 'lucide-react'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -55,31 +55,9 @@ export default async function ServiceDetailPage({ params }: Props) {
             </Reveal>
 
             <Reveal delay={200}>
-              <p className="text-lg sm:text-xl text-cream/60 leading-relaxed max-w-[600px] mb-10">
+              <p className="text-lg sm:text-xl text-cream/60 leading-relaxed max-w-[600px]">
                 {detail.description}
               </p>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-                <Link
-                  href={serviceHref}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
-                >
-                  {detail.cta}
-                  <ArrowUpRight size={18} />
-                </Link>
-                <div className="flex items-center gap-6 text-cream/50 text-sm">
-                  <span className="flex items-center gap-2">
-                    <Banknote aria-hidden="true" size={16} />
-                    From <strong className="text-cream font-semibold">{detail.price}</strong>
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Clock aria-hidden="true" size={16} />
-                    <strong className="text-cream font-semibold">{detail.timeframe}</strong>
-                  </span>
-                </div>
-              </div>
             </Reveal>
           </div>
         </Container>
