@@ -33,7 +33,6 @@ export default function Navbar() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const isScrolled = scrollY > 50
   const isHidden = scrollDirection === 'down' && scrollY > 400 && !menuOpen
 
   return (
@@ -44,14 +43,7 @@ export default function Navbar() {
           mounted && isHidden && '-translate-y-full',
         )}
       >
-        <div
-          className={clsx(
-            'transition-all duration-300 ease-out-expo',
-            isScrolled
-              ? 'bg-cream/80 backdrop-blur-xl border-b border-line'
-              : 'bg-transparent',
-          )}
-        >
+        <div className="bg-cream/80 backdrop-blur-xl border-b border-line">
           <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-8 py-4 sm:px-10" aria-label="Main navigation">
             <Link href="/" className="flex items-center gap-2.5 group" aria-label="WEB-IN home">
               <span className="flex h-8 w-8 items-center justify-center rounded-md bg-ink text-cream text-sm font-display transition-transform duration-300 group-hover:scale-105">
