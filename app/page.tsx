@@ -14,6 +14,7 @@ import {
   STUDIO_PHONE,
   STUDIO_WHATSAPP,
   homepageFaqs,
+  SOCIAL_LINKS,
 } from '@/lib/constants'
 
 const minPrice = Math.min(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
@@ -48,6 +49,7 @@ const jsonLd = [
     alternateName: 'WEB-IN Web Studio',
     url: 'https://web-in.co.za',
     logo: 'https://web-in.co.za/icon.svg',
+    image: 'https://web-in.co.za/opengraph-image',
     description: 'Independent web development studio building modern websites for businesses in South Africa.',
     email: STUDIO_EMAIL,
     telephone: STUDIO_PHONE,
@@ -72,7 +74,7 @@ const jsonLd = [
       },
     ],
     priceRange: `R${minPrice} - R${maxPrice}+`,
-    sameAs: [],
+    ...(SOCIAL_LINKS.length > 0 && { sameAs: SOCIAL_LINKS }),
     knowsAbout: [
       'Web Development',
       'Website Design',

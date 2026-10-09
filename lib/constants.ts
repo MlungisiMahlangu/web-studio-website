@@ -30,6 +30,7 @@ export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'Johannesburg, Gauteng, South Africa'
 export const LAST_UPDATED = '2026-10-10'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
+export const SOCIAL_LINKS: string[] = []
 
 export interface Service {
   icon: LucideIcon
