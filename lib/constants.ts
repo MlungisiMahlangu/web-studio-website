@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 
 export const STUDIO_NAME = 'WEB-IN'
+export const SITE_URL = 'https://web-in.co.za'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
   'WEB-IN is an independent web development studio based in South Africa, creating modern websites and web solutions for small businesses, professionals, entrepreneurs and growing brands.'
