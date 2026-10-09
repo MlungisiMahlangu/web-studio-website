@@ -8,7 +8,6 @@ import {
   STUDIO_PHONE,
   STUDIO_WHATSAPP,
   STUDIO_LOCATION,
-  services,
 } from '@/lib/constants'
 
 const legalLinks = [
@@ -22,7 +21,7 @@ const studioLinks = [
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
   { label: 'Work', href: '/work' },
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Services', href: '/pricing' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ]
@@ -53,18 +52,16 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider text-cream/40 mb-5">Services</h4>
+            <h4 className="font-mono text-xs uppercase tracking-wider text-cream/40 mb-5">What we offer</h4>
             <ul className="flex flex-col gap-3">
-              {services.map((s) => (
-                <li key={s.href}>
-                  <Link
-                    href={s.href}
-                    className="text-sm text-cream/60 hover:text-cream transition-colors duration-200"
-                  >
-                    {s.title}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/pricing"
+                  className="text-sm text-cream/60 hover:text-cream transition-colors duration-200"
+                >
+                  View all services
+                </Link>
+              </li>
             </ul>
           </div>
 

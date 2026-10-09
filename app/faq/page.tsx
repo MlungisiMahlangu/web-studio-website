@@ -8,14 +8,14 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'FAQ',
   description:
-    'Everything you need to know before starting a project with WEB-IN — from pricing and timelines to domains, ownership, support and what happens after you get in touch.',
+    'Everything you need to know before starting a project with WEB-IN — from services and timelines to domains, ownership, support and what happens after you get in touch.',
 }
 
 export default function FAQPage() {
   return (
     <>
       {/* Hero */}
-      <Section dark className="relative overflow-hidden">
+      <Section dark className="relative overflow-hidden py-16 sm:py-20 md:py-24">
         {/* Grain overlay */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -41,7 +41,7 @@ export default function FAQPage() {
           <Reveal delay={160}>
             <p className="mt-8 text-lg sm:text-xl text-cream/60 max-w-2xl leading-relaxed">
               Everything you need to know before starting a project with WEB-IN — from
-              pricing and timelines to domains, ownership, support and what happens
+              services and timelines to domains, ownership, support and what happens
               after you get in touch.
             </p>
           </Reveal>

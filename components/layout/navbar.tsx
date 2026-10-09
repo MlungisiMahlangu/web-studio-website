@@ -8,9 +8,8 @@ import { useScrollDirection } from '@/components/ui/hooks'
 import { clsx } from 'clsx'
 
 const navLinks = [
-  { label: 'Services', href: '/services' },
+  { label: 'Services', href: '/pricing' },
   { label: 'Work', href: '/work' },
-  { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
   { label: 'FAQ', href: '/faq' },

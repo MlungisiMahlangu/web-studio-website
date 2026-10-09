@@ -39,7 +39,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   return (
     <>
       {/* Search */}
-      <Section className="pb-0 sm:pb-0">
+      <Section className="py-12 sm:py-16">
         <Container narrow>
           <Reveal>
             <div className="relative">
@@ -70,11 +70,11 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
 
       {/* FAQ Sections */}
       {filteredCategories.map((category, idx) => (
-        <Section key={category.id} className={idx === 0 ? 'pt-12 sm:pt-14' : ''}>
+        <Section key={category.id} className="py-12 sm:py-16">
           <Container>
             {/* Category header */}
             <Reveal>
-              <div className="max-w-3xl mb-12 sm:mb-16">
+              <div className="max-w-3xl mb-8 sm:mb-10">
                 <p className="font-mono text-xs tracking-widest uppercase text-accent mb-4">
                   {category.number} / {category.label}
                 </p>
@@ -162,7 +162,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
       ))}
 
       {/* Still Not Sure */}
-      <Section dark>
+      <Section dark className="py-16 sm:py-20 md:py-24">
         <Container>
           <Reveal>
             <div className="max-w-3xl">

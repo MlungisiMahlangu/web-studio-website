@@ -3,11 +3,9 @@ import {
   ArrowUpRight,
   Check,
   MoveUpRight,
-  CircleArrowOutUpRight,
   MessageCircle,
 } from 'lucide-react'
 import {
-  services,
   packages,
   portfolioProjects,
   STUDIO_NAME,
@@ -130,11 +128,11 @@ export default function HomePage() {
 
                   {/* Secondary link with underline draw */}
                   <a
-                    href="/work"
+                    href="/about"
                     className="group relative inline-flex items-center gap-2 text-cream/60 hover:text-cream transition-colors duration-200 text-sm"
                   >
                     <span className="relative">
-                      Explore our work
+                      About us
                       <span className="absolute bottom-0 left-0 w-0 h-px bg-cream/40 transition-all duration-300 group-hover:w-full" />
                     </span>
                     <MoveUpRight size={14} />
@@ -227,45 +225,73 @@ export default function HomePage() {
         />
       </div>
 
-      {/* ─── SERVICES ─── */}
-      <Section id="services">
+      {/* ─── PRICING TEASER ─── */}
+      <Section>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="What we build"
-              title="Digital work with purpose."
-              description="From a focused one-page launch to a custom web application, we create considered digital experiences that help good businesses move forward."
+              eyebrow="What we offer"
+              title="Services built around your project."
+              description="From a simple landing page to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
               className="mx-auto"
               center
             />
           </Reveal>
 
-          <RevealStagger stagger={100} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
-            {services.slice(0, 3).map(({ icon: Icon, number, title, text, price, href }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group relative rounded-2xl border border-line bg-cream-light p-7 h-full flex flex-col transition-all duration-300 ease-out-expo hover:border-accent/30 hover:shadow-lg"
+          <RevealStagger stagger={100} className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
+            {packages.slice(0, 3).map((pack) => (
+              <article
+                key={pack.name}
+                className={`relative rounded-2xl p-7 transition-all duration-300 ${
+                  pack.popular
+                    ? 'bg-ink text-cream shadow-xl'
+                    : 'bg-cream-light border border-line hover:border-ink/20'
+                }`}
               >
-                <div className="w-11 h-11 rounded-xl bg-ink/5 flex items-center justify-center mb-5 transition-colors duration-300 group-hover:bg-accent/10">
-                  <Icon size={20} className="text-ink/50 transition-colors duration-300 group-hover:text-accent" />
+                {pack.popular && (
+                  <span className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-1 rounded-full">
+                    Most popular
+                  </span>
+                )}
+                <div className="mb-6">
+                  <p className={`font-mono text-xs uppercase tracking-wider mb-2 ${pack.popular ? 'text-cream/40' : 'text-muted'}`}>
+                    {pack.name}
+                  </p>
+                  <p className="font-display text-4xl">{pack.price}</p>
+                  <p className={`text-sm mt-2 leading-relaxed ${pack.popular ? 'text-cream/60' : 'text-muted'}`}>
+                    {pack.description}
+                  </p>
                 </div>
-                <p className="font-mono text-[10px] uppercase tracking-wider text-muted mb-2">{number}</p>
-                <h3 className="font-display text-2xl leading-snug mb-3">{title}</h3>
-                <p className="text-sm text-muted leading-relaxed mb-6 flex-1">{text}</p>
-                <div className="flex items-center justify-between pt-5 border-t border-line">
-                  <span className="text-sm font-medium">{price}</span>
-                  <CircleArrowOutUpRight size={16} className="text-muted group-hover:text-accent transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
-              </Link>
+                <ul className="flex flex-col gap-3 mb-8">
+                  {pack.features.slice(0, 5).map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-sm">
+                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${pack.popular ? 'text-accent' : 'text-ink'}`} />
+                      <span className={pack.popular ? 'text-cream/70' : 'text-muted'}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={pack.href}
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium transition-all duration-300 ${
+                    pack.popular
+                      ? 'bg-accent text-white hover:bg-accent-dark'
+                      : 'border border-ink/15 text-ink hover:bg-ink/5'
+                  }`}
+                >
+                  Choose {pack.name}
+                  <ArrowUpRight size={15} />
+                </Link>
+              </article>
             ))}
           </RevealStagger>
 
           <Reveal delay={200}>
-            <div className="text-center mt-12">
+            <div className="mt-12 rounded-2xl border border-line bg-cream-light p-8 text-center">
+              <p className="font-display text-2xl mb-2">Need something more specific?</p>
+              <p className="text-sm text-muted mb-5">We build custom solutions for unique requirements. Let us scope it properly.</p>
               <Link
-                href="/services"
-                className="inline-flex items-center gap-2 rounded-full border border-ink/15 text-ink px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink/5"
+                href="/pricing"
+                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
               >
                 View all services
                 <ArrowUpRight size={16} />
@@ -287,69 +313,100 @@ export default function HomePage() {
               center
             />
           </Reveal>
+        </Container>
+      </Section>
 
-          <RevealStagger stagger={150} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-            {homepageProjects.map((project, index) => (
-              <Link
-                key={project.slug}
-                href={`/work/${project.slug}`}
-                className="group rounded-3xl overflow-hidden border border-line bg-cream-light transition-all duration-300 ease-out-expo hover:shadow-xl"
-              >
-                <div
-                  className="relative overflow-hidden"
-                  style={{ background: project.cardBg }}
-                >
-                  <div className="flex items-center gap-2 px-4 py-3 border-b border-black/10">
-                    <span className="w-3 h-3 rounded-full bg-red-400/60" />
-                    <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
-                    <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-                    <span className="ml-3 font-mono text-xs text-ink/50 truncate">
-                      {new URL(project.liveUrl).hostname}
-                    </span>
-                  </div>
-                  <img
-                    src={`/screenshots/${project.slug}.png`}
-                    alt={`${project.title} website screenshot`}
-                    className="w-full h-auto"
-                    loading="lazy"
-                  />
+      {homepageProjects.map((project, index) => {
+        const isEven = index % 2 === 0
+        return (
+          <Section key={project.slug} className="bg-cream">
+            <Container>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                {/* Image side */}
+                <div className={`${!isEven ? 'lg:order-2' : ''}`}>
+                  <Reveal>
+                    <Link
+                      href={`/work/${project.slug}`}
+                      className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      style={{ background: project.cardBg }}
+                    >
+                      {/* Browser bar */}
+                      <div className="flex items-center gap-2 px-4 py-3 border-b border-black/10">
+                        <span className="w-3 h-3 rounded-full bg-red-400/60" />
+                        <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                        <span className="w-3 h-3 rounded-full bg-blue-400/60" />
+                        <span className="ml-3 font-mono text-xs text-ink/50 truncate">
+                          {new URL(project.liveUrl).hostname}
+                        </span>
+                      </div>
+                      {/* Screenshot */}
+                      <div className="p-4">
+                        <img
+                          src={`/screenshots/${project.slug}.png`}
+                          alt={`${project.title} website screenshot`}
+                          className="w-full rounded-lg shadow-sm"
+                          loading="lazy"
+                        />
+                      </div>
+                    </Link>
+                  </Reveal>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <div>
-                      <p className="font-mono text-xs text-muted mb-1">
-                        {String(index + 1).padStart(2, '0')} / {project.type}
-                      </p>
-                      <h3 className="font-display text-2xl">{project.title}</h3>
+
+                {/* Info side */}
+                <div className={`${!isEven ? 'lg:order-1' : ''}`}>
+                  <Reveal>
+                    <p className="font-mono text-sm text-muted uppercase tracking-widest mb-4">
+                      {String(index + 1).padStart(2, '0')} / {project.type}
+                    </p>
+                    <h2 className="text-display-lg font-display text-ink leading-tight mb-3">
+                      {project.title}
+                    </h2>
+                    <p className="text-ink-light leading-relaxed mb-6 max-w-lg">
+                      {project.description}
+                    </p>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 rounded-full bg-cream-dark text-ink-light font-mono text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-line flex items-center justify-center group-hover:bg-ink group-hover:text-cream group-hover:border-ink transition-all duration-300">
-                      <ArrowUpRight size={14} />
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted leading-relaxed mb-4">{project.subtitle}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-mono px-2.5 py-1 rounded-full bg-cream-dark text-muted"
+
+                    {/* Action links */}
+                    <div className="flex items-center gap-6">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
                       >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                        View Live Site
+                        <ArrowUpRight size={16} />
+                      </a>
+                    </div>
+                  </Reveal>
                 </div>
-              </Link>
-            ))}
-          </RevealStagger>
+              </div>
+            </Container>
+          </Section>
+        )
+      })}
 
-          <Reveal delay={200}>
-            <div className="text-center mt-12">
+      <Section className="bg-cream-dark">
+        <Container>
+          <Reveal>
+            <div className="text-center">
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors duration-200"
+                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
               >
                 View all work
-                <MoveUpRight size={16} />
+                <ArrowUpRight size={16} />
               </Link>
             </div>
           </Reveal>
@@ -388,7 +445,7 @@ export default function HomePage() {
                   text: 'Every project starts with understanding your business, audience and goals — not a blank Figma file.',
                 },
                 {
-                  title: 'Transparent pricing',
+                  title: 'Clear packages',
                   text: 'Clear quotations, defined scope and no surprises. You know exactly what you are getting and what it costs.',
                 },
                 {
@@ -462,82 +519,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* ─── PRICING TEASER ─── */}
-      <Section className="bg-cream-dark">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Clear from the start"
-              title="Premium work, without the mystery."
-              description="Clear services, defined scope and straightforward pricing. Every project receives a tailored quotation based on what you actually need."
-              className="mx-auto"
-              center
-            />
-          </Reveal>
-
-          <RevealStagger stagger={100} className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
-            {packages.slice(0, 3).map((pack) => (
-              <article
-                key={pack.name}
-                className={`relative rounded-2xl p-7 transition-all duration-300 ${
-                  pack.popular
-                    ? 'bg-ink text-cream shadow-xl'
-                    : 'bg-cream-light border border-line hover:border-ink/20'
-                }`}
-              >
-                {pack.popular && (
-                  <span className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-1 rounded-full">
-                    Most popular
-                  </span>
-                )}
-                <div className="mb-6">
-                  <p className={`font-mono text-xs uppercase tracking-wider mb-2 ${pack.popular ? 'text-cream/40' : 'text-muted'}`}>
-                    {pack.name}
-                  </p>
-                  <p className="font-display text-4xl">{pack.price}</p>
-                  <p className={`text-sm mt-2 leading-relaxed ${pack.popular ? 'text-cream/60' : 'text-muted'}`}>
-                    {pack.description}
-                  </p>
-                </div>
-                <ul className="flex flex-col gap-3 mb-8">
-                  {pack.features.slice(0, 5).map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm">
-                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${pack.popular ? 'text-accent' : 'text-ink'}`} />
-                      <span className={pack.popular ? 'text-cream/70' : 'text-muted'}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={pack.href}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium transition-all duration-300 ${
-                    pack.popular
-                      ? 'bg-accent text-white hover:bg-accent-dark'
-                      : 'border border-ink/15 text-ink hover:bg-ink/5'
-                  }`}
-                >
-                  Choose {pack.name}
-                  <ArrowUpRight size={15} />
-                </Link>
-              </article>
-            ))}
-          </RevealStagger>
-
-          <Reveal delay={200}>
-            <div className="mt-12 rounded-2xl border border-line bg-cream-light p-8 text-center">
-              <p className="font-display text-2xl mb-2">Need something more specific?</p>
-              <p className="text-sm text-muted mb-5">We build custom solutions for unique requirements. Let us scope it properly.</p>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
-              >
-                View pricing
-                <ArrowUpRight size={16} />
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
-
       {/* ─── FAQ PREVIEW ─── */}
       <Section>
         <Container>
@@ -556,10 +537,10 @@ export default function HomePage() {
               </p>
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors duration-200"
+                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
               >
                 View all FAQs
-                <MoveUpRight size={16} />
+                <ArrowUpRight size={16} />
               </Link>
             </Reveal>
 

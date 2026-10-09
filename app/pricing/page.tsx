@@ -8,8 +8,8 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'Transparent pricing for websites starting from R1,500. Clear services, no hidden costs. Landing pages, business websites, online stores and more.',
+  title: 'Services',
+  description: 'Our services and transparent starting points for websites from R1,500. Clear scope, no hidden costs. Landing pages, business websites, online stores and more.',
 }
 
 export default function PricingPage() {
@@ -20,16 +20,17 @@ export default function PricingPage() {
         <Container>
           <Reveal>
             <p className="mb-4 font-mono text-xs uppercase tracking-wider text-accent">
-              Clear from the start
+              What we offer
             </p>
             <h1 className="font-display text-display-xl leading-tight tracking-tight">
-              Premium work,
+              Services built around
               <br />
-              <em className="italic text-accent">without the mystery.</em>
+              <em className="italic text-accent">your project.</em>
             </h1>
             <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-cream/60">
-              Transparent starting points for thoughtful digital experiences. Every
-              project receives a tailored scope and quotation.
+              From a simple landing page to a full business website or custom
+              application — pick a starting point or let us scope something
+              tailored to exactly what you need.
             </p>
           </Reveal>
         </Container>

@@ -760,7 +760,7 @@ export const maintenancePlans = [
 export const faqs: [string, string][] = [
   [
     'How much does a website cost?',
-    'Our websites start from R1,500 for a landing page and range up to R10,000+ for custom web applications. Final pricing depends on the number of pages, functionality, integrations and project requirements. A final quotation is always provided after reviewing your project.',
+    'Our websites start from R1,500 for a landing page and range up to R10,000+ for custom web applications. Final costs depend on the number of pages, functionality, integrations and project requirements. A final quotation is always provided after reviewing your project.',
   ],
   [
     'How long does a website take?',
@@ -1067,9 +1067,9 @@ export const faqCategories: FaqCategory[] = [
   {
     id: 'pricing-payments',
     number: '02',
-    label: 'PRICING & PAYMENTS',
+    label: 'PACKAGES & PAYMENTS',
     heading: 'Understanding the investment',
-    intro: 'Transparent pricing with no hidden surprises.',
+    intro: 'Clear packages with no hidden surprises.',
     items: [
       {
         question: 'How much does a website cost?',
@@ -1077,7 +1077,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'Is the price fixed?',
-        answer: 'Package prices are based on the scope described on the pricing page. If your project requires additional functionality, pages, integrations or custom requirements, the final quotation may differ. We confirm the agreed scope before development begins.',
+        answer: 'Package prices are based on the scope described on the services page. If your project requires additional functionality, pages, integrations or custom requirements, the final quotation may differ. We confirm the agreed scope before development begins.',
       },
       {
         question: 'When do I pay?',
@@ -1088,7 +1088,7 @@ export const faqCategories: FaqCategory[] = [
         answer: 'Some third-party services may have separate costs. Examples include domain renewals, hosting renewals, payment processing fees, business email subscriptions, premium plugins or services, and external software subscriptions. Any relevant third-party costs are communicated as part of the project scope where applicable.',
       },
     ],
-    cta: { text: 'View Full Pricing', href: '/pricing' },
+    cta: { text: 'View All Services', href: '/pricing' },
   },
   {
     id: 'website-hosting',

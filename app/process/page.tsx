@@ -57,25 +57,6 @@ export default function ProcessPage() {
                 Clear process · Thoughtful work · No unnecessary complexity
               </p>
             </Reveal>
-
-            <Reveal delay={300}>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
-                >
-                  Get a quote
-                  <ArrowUpRight size={18} />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-1.5 text-cream/60 hover:text-cream transition-colors duration-300"
-                >
-                  View our services
-                  <ArrowUpRight size={16} />
-                </Link>
-              </div>
-            </Reveal>
           </div>
         </Container>
       </section>
@@ -308,7 +289,7 @@ export default function ProcessPage() {
               href="/pricing"
               className="inline-flex items-center gap-1.5 text-ink hover:text-accent-dark transition-colors duration-300"
             >
-              View pricing
+              View all services
               <ArrowUpRight size={16} />
             </Link>
           </Reveal>

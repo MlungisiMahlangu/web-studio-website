@@ -25,9 +25,11 @@ function EnquiryFormInner() {
       newErrors.name = 'Please enter your full name'
     }
 
-    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
-    if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Please enter a valid phone number'
+    const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}$/
+    const phoneCleaned = phone.replace(/\s/g, '')
+    const phoneDigits = phoneCleaned.replace(/[\+\-\(\)\.]/g, '')
+    if (!phone || phoneDigits.length < 10 || phoneDigits.length > 12 || !phoneRegex.test(phoneCleaned)) {
+      newErrors.phone = 'Please enter a valid 10-digit phone number'
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

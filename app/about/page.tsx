@@ -43,7 +43,7 @@ const approachPrinciples = [
   {
     number: '03',
     title: 'Honest from the start',
-    text: 'We believe good business starts with clear communication. We keep our process, pricing and expectations understandable and avoid inflated promises.',
+    text: 'We believe good business starts with clear communication. We keep our process, packages and expectations understandable and avoid inflated promises.',
   },
   {
     number: '04',
@@ -121,22 +121,6 @@ export default function AboutPage() {
               WEB-IN is an independent web development studio creating thoughtful
               digital experiences for businesses, professionals and ambitious ideas.
             </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
-              >
-                Get a quote <ArrowUpRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-7 py-3 text-sm font-medium text-cream transition-colors hover:border-cream/40 hover:bg-cream/5"
-              >
-                View Our Work <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
           </Reveal>
         </Container>
       </Section>
