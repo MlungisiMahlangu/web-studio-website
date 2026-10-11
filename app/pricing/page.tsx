@@ -19,19 +19,6 @@ export const metadata: Metadata = {
   },
 }
 
-const jumpLinks = [
-  { label: 'Business Websites', href: '#pricing-business-websites' },
-  { label: 'Portfolio', href: '#pricing-portfolio-websites' },
-  { label: 'Landing Pages', href: '#pricing-landing-pages' },
-  { label: 'Booking', href: '#pricing-booking-websites' },
-  { label: 'Online Stores', href: '#pricing-online-stores' },
-  { label: 'Custom Apps', href: '#pricing-custom-web-applications' },
-  { label: 'Redesigns', href: '#pricing-website-redesigns' },
-  { label: 'Packages', href: '#packages' },
-  { label: 'Compare', href: '#comparison' },
-  { label: 'FAQ', href: '#pricing-faq' },
-]
-
 const everyWebsiteFeatures = [
   { icon: Smartphone, title: 'Mobile-first design', desc: 'Looks great on every device, from phones to desktops.' },
   { icon: Search, title: 'SEO basics', desc: 'Meta tags, sitemap, search console — found on Google from day one.' },
@@ -98,23 +85,6 @@ export default function PricingPage() {
           </div>
         }
       />
-
-      {/* Sticky Jump List */}
-      <div className="sticky z-30 bg-background/80 backdrop-blur border-b border-line" style={{ top: 'var(--sticky-top)' }}>
-        <Container>
-          <div className="flex gap-2 overflow-x-auto py-3 no-scrollbar">
-            {jumpLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="shrink-0 rounded-full bg-surface px-4 py-2 text-xs font-medium text-body transition-colors hover:bg-blue-tint hover:text-brand"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </Container>
-      </div>
 
       {/* 7 Service Sections */}
       {services.map((service, idx) => {
