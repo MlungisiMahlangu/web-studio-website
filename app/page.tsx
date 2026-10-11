@@ -117,8 +117,8 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* ─── HERO ─── */}
-      <section className="relative bg-background overflow-hidden">
-        <Container className="pt-24 pb-10 sm:pt-28 sm:pb-14 lg:pb-14">
+      <section className="relative bg-background overflow-hidden" style={{ paddingTop: 'calc(6rem - var(--header-h))' }}>
+        <Container className="pb-10 sm:pb-14 lg:pb-14">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-6 items-center">
             {/* Left: Copy */}
             <div className="max-w-[600px] order-1">

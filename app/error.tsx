@@ -12,7 +12,7 @@ export default function Error({
   reset: () => void
 }) {
   return (
-    <section className="min-h-[80svh] flex items-center bg-surface" style={{ paddingTop: 'var(--header-h)' }}>
+    <section className="min-h-[80svh] flex items-center bg-surface">
       <Container className="py-32">
         <div className="max-w-[600px]">
           <p className="text-xs font-semibold uppercase text-muted mb-6" style={{ letterSpacing: '0.14em' }}>

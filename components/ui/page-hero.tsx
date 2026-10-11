@@ -144,8 +144,8 @@ export function PageHero({
       <Container
         className={`relative z-10 ${
           compact
-            ? 'pt-[calc(var(--header-h)+3.5rem)] pb-10 sm:pt-[calc(var(--header-h)+4rem)] sm:pb-12 lg:pt-[calc(var(--header-h)+5rem)] lg:pb-14'
-            : 'pt-[calc(var(--header-h)+3.5rem)] pb-10 sm:pt-[calc(var(--header-h)+4.5rem)] sm:pb-14 lg:pt-[calc(var(--header-h)+5.5rem)] lg:pb-20'
+            ? 'pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14'
+            : 'pt-14 pb-10 sm:pt-18 sm:pb-14 lg:pt-22 lg:pb-20'
         }`}
       >
         {/* Breadcrumb */}
