@@ -255,14 +255,11 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <RevealStagger stagger={120} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          <RevealStagger stagger={120} className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12">
             {homepageProjects.map((project) => (
-              <a
+              <article
                 key={project.slug}
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-2xl bg-white border border-line overflow-hidden shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5"
+                className="rounded-xl bg-white border border-line overflow-hidden shadow-card"
               >
                 <div className="overflow-hidden">
                   <Image
@@ -270,22 +267,27 @@ export default function HomePage() {
                     alt={`${project.title} website screenshot`}
                     width={1200}
                     height={800}
-                    className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="w-full h-auto"
                     loading="lazy"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="p-5">
-                  <p className="text-xs font-semibold uppercase text-brand mb-2" style={{ letterSpacing: '0.14em' }}>
+                <div className="p-4">
+                  <p className="text-xs font-semibold uppercase text-brand mb-1.5" style={{ letterSpacing: '0.14em' }}>
                     {project.type}
                   </p>
-                  <h3 className="text-lg font-bold text-navy mb-1.5">{project.title}</h3>
+                  <h3 className="text-base font-bold text-navy mb-1">{project.title}</h3>
                   <p className="text-sm text-body leading-relaxed mb-3">{project.subtitle}</p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand group-hover:gap-2.5 transition-all duration-300">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
+                  >
                     Visit live site <ArrowUpRight size={14} />
-                  </span>
+                  </a>
                 </div>
-              </a>
+              </article>
             ))}
           </RevealStagger>
 
