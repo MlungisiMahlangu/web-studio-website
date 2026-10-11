@@ -118,7 +118,7 @@ export default function HomePage() {
       />
       {/* ─── HERO ─── */}
       <section className="relative bg-background overflow-hidden">
-        <Container className="pt-36 pb-10 sm:pt-40 sm:pb-14 lg:pb-14">
+        <Container className="pt-36 pb-20 sm:pt-40 sm:pb-24 lg:pb-28">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-6 items-center">
             {/* Left: Copy */}
             <div className="max-w-[600px] order-1">
