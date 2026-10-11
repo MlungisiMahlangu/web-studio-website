@@ -24,15 +24,92 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return categories
-    const q = searchQuery.toLowerCase()
+    // Split query into individual words for broader matching
+    const words = searchQuery.toLowerCase().split(/\s+/).filter(w => w.length > 1)
+    if (words.length === 0) return categories
+
+    // Synonym map — catches common variations users might type
+    const synonyms: Record<string, string[]> = {
+      'price': ['price', 'pricing', 'cost', 'costs', 'expensive', 'cheap', 'quote', 'rates', 'fee', 'fees', 'how much', 'afford', 'payment', 'pay'],
+      'cost': ['price', 'pricing', 'cost', 'costs', 'expensive', 'cheap', 'quote', 'rates', 'fee', 'fees', 'how much', 'afford', 'payment', 'pay'],
+      'pay': ['price', 'pricing', 'cost', 'costs', 'payment', 'pay', 'deposit', 'instalment', 'installment'],
+      'time': ['time', 'timeline', 'how long', 'duration', 'days', 'weeks', 'turnaround', 'fast', 'quick', 'when'],
+      'long': ['time', 'timeline', 'how long', 'duration', 'days', 'weeks', 'turnaround'],
+      'domain': ['domain', 'domain name', '.co.za', '.com', 'url', 'web address', 'hosting'],
+      'host': ['host', 'hosting', 'server', 'domain', 'ssl', 'deploy', 'deployment', 'live', 'online'],
+      'logo': ['logo', 'branding', 'brand', 'design'],
+      'design': ['design', 'look', 'style', 'layout', 'template', 'theme', 'custom', 'branding', 'logo'],
+      'content': ['content', 'text', 'copy', 'writing', 'images', 'photos', 'pictures'],
+      'change': ['change', 'edit', 'update', 'modify', 'revision', 'revisions', 'amend'],
+      'edit': ['change', 'edit', 'update', 'modify', 'revision', 'revisions'],
+      'mobile': ['mobile', 'phone', 'responsive', 'tablet', 'device', 'devices', 'screen'],
+      'phone': ['mobile', 'phone', 'responsive', 'tablet', 'cellphone', 'smartphone'],
+      'seo': ['seo', 'google', 'search', 'ranking', 'rank', 'found', 'index', 'organic'],
+      'google': ['seo', 'google', 'search', 'ranking', 'rank', 'found', 'index'],
+      'support': ['support', 'help', 'after', 'maintenance', 'fix', 'bug', 'issue', 'problem'],
+      'fix': ['fix', 'bug', 'issue', 'problem', 'broken', 'error', 'support', 'maintenance'],
+      'own': ['own', 'ownership', 'code', 'source', 'intellectual property'],
+      'code': ['code', 'source code', 'ownership', 'own', 'github', 'repository'],
+      'ecommerce': ['ecommerce', 'e-commerce', 'shop', 'store', 'online store', 'sell', 'selling', 'woocommerce', 'payment gateway'],
+      'shop': ['ecommerce', 'e-commerce', 'shop', 'store', 'online store', 'sell', 'selling'],
+      'store': ['ecommerce', 'e-commerce', 'shop', 'store', 'online store', 'sell', 'selling'],
+      'whatsapp': ['whatsapp', 'chat', 'message', 'contact', 'form', 'enquiry'],
+      'contact': ['contact', 'whatsapp', 'email', 'form', 'enquiry', 'reach', 'call', 'phone'],
+      'start': ['start', 'begin', 'start a project', 'get started', 'kick off', 'commence'],
+      'blog': ['blog', 'cms', 'content management', 'article', 'articles', 'posts', 'news'],
+      'social': ['social', 'social media', 'facebook', 'instagram', 'twitter', 'linkedin', 'tiktok'],
+      'email': ['email', 'e-mail', 'mail', 'inbox', 'contact form'],
+      'security': ['security', 'secure', 'ssl', 'https', 'safe', 'po pia', 'po pia', 'privacy', 'data'],
+      'po pia': ['po pia', 'po pia', 'privacy', 'protection', 'data', 'gdpr', 'security'],
+      'revision': ['revision', 'revisions', 'change', 'changes', 'edit', 'edits', 'round', 'feedback'],
+      'website': ['website', 'web site', 'site', 'web', 'page', 'pages'],
+      'app': ['app', 'application', 'web app', 'web application', 'platform', 'system'],
+      'landing': ['landing', 'landing page', 'one page', 'single page', 'squeeze page'],
+      'portfolio': ['portfolio', 'cv', 'resume', 'personal', 'freelancer'],
+      'booking': ['booking', 'appointment', 'reservation', 'schedule', 'calendar'],
+      'redesign': ['redesign', 'rebuild', 'revamp', 'refresh', 'update', 'new look', 'modernise', 'modernize'],
+      'quote': ['quote', 'estimate', 'pricing', 'cost', 'how much', 'price'],
+      'deploy': ['deploy', 'deployment', 'launch', 'live', 'publish', 'go live', 'hosting'],
+      'launch': ['launch', 'deploy', 'deployment', 'live', 'publish', 'go live'],
+      'image': ['image', 'images', 'photo', 'photos', 'picture', 'pictures', 'img'],
+      'photo': ['image', 'images', 'photo', 'photos', 'picture', 'pictures'],
+      'font': ['font', 'typography', 'text style'],
+      'color': ['color', 'colour', 'colors', 'colours', 'palette', 'theme'],
+      'colour': ['color', 'colour', 'colors', 'colours', 'palette', 'theme'],
+      'money': ['money', 'price', 'cost', 'payment', 'pay', 'afford', 'budget'],
+      'budget': ['budget', 'price', 'cost', 'afford', 'cheap', 'expensive', 'money'],
+      'package': ['package', 'plan', 'tier', 'option', 'deal', 'bundle'],
+      'cancel': ['cancel', 'cancellation', 'refund', 'money back', 'stop'],
+      'refund': ['refund', 'money back', 'cancel', 'cancellation', 'return'],
+    }
+
+    // Expand search words with synonyms
+    const expandedWords = new Set<string>(words)
+    for (const word of words) {
+      for (const [key, syns] of Object.entries(synonyms)) {
+        if (key.includes(word) || syns.some(s => s.includes(word))) {
+          syns.forEach(s => expandedWords.add(s))
+          expandedWords.add(key)
+        }
+      }
+    }
+
+    const searchFields = (cat: typeof categories[0], item: typeof categories[0]['items'][0]) => {
+      const text = [
+        item.question,
+        item.answer,
+        cat.label,
+        cat.heading,
+        cat.intro,
+      ].join(' ').toLowerCase()
+      // Match if ANY expanded word is found in any field
+      return Array.from(expandedWords).some(word => text.includes(word))
+    }
+
     return categories
       .map((cat) => ({
         ...cat,
-        items: cat.items.filter(
-          (item) =>
-            item.question.toLowerCase().includes(q) ||
-            item.answer.toLowerCase().includes(q)
-        ),
+        items: cat.items.filter((item) => searchFields(cat, item)),
       }))
       .filter((cat) => cat.items.length > 0)
   }, [categories, searchQuery])
