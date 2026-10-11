@@ -4,7 +4,7 @@ import { Container } from '@/components/ui/container'
 
 export default function NotFound() {
   return (
-    <section className="min-h-[80svh] flex items-center bg-dark-panel text-white">
+    <section className="min-h-[80svh] flex items-center bg-dark-panel text-white pt-[var(--header-h)]">
       <Container className="py-32">
         <div className="max-w-[600px]">
           <p className="text-6xl font-extrabold text-brand mb-4">404</p>

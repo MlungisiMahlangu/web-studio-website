@@ -3,14 +3,8 @@
 
 /* Header height variables */
 :root {
-  --header-h: 64px;
+  --header-h: 72px;
   --sticky-top: var(--header-h);
-}
-
-@media (min-width: 1024px) {
-  :root {
-    --header-h: 72px;
-  }
 }
 
 @theme {

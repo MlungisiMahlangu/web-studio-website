@@ -60,7 +60,7 @@ export default function RootLayout({
         </a>
         <SmoothScroll>
           <Navbar />
-          <main id="main-content" style={{ paddingTop: 'var(--header-h)' }}>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
           <CookieBanner />
         </SmoothScroll>
