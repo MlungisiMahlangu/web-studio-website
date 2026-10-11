@@ -22,10 +22,10 @@ export function Marquee({
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="font-mono text-sm uppercase tracking-wider text-muted-light shrink-0"
+            className="text-sm font-medium uppercase tracking-wider text-muted shrink-0"
           >
             {item}
-            <span className="ml-8 text-accent">&bull;</span>
+            <span className="ml-8 text-brand">&bull;</span>
           </span>
         ))}
       </div>

@@ -52,12 +52,12 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
                 placeholder="Search your question..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-line bg-cream-light py-4 pl-13 pr-12 font-sans text-base text-ink placeholder:text-muted outline-none transition-colors focus:border-accent"
+                className="w-full rounded-full border border-line bg-surface py-4 pl-13 pr-12 font-sans text-base text-navy placeholder:text-muted outline-none transition-colors focus:border-brand"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-cream-dark text-muted hover:text-ink transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-surface text-muted hover:text-navy transition-colors"
                   aria-label="Clear search"
                 >
                   <X size={14} />
@@ -75,13 +75,13 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
             {/* Category header */}
             <Reveal>
               <div className="max-w-3xl mb-8 sm:mb-10">
-                <p className="font-mono text-xs tracking-widest uppercase text-accent mb-4">
+                <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
                   {category.number} / {category.label}
                 </p>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight text-ink">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-navy">
                   {category.heading}
                 </h2>
-                <p className="mt-4 text-lg text-ink-light leading-relaxed">
+                <p className="mt-4 text-lg text-body leading-relaxed">
                   {category.intro}
                 </p>
               </div>
@@ -99,11 +99,11 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
                       className="flex items-center justify-between w-full py-6 sm:py-7 text-left group cursor-pointer"
                       aria-expanded={isOpen}
                     >
-                      <span className="font-display text-lg sm:text-xl text-ink pr-8 group-hover:text-accent transition-colors">
+                      <span className="text-lg sm:text-xl font-bold text-navy pr-8 group-hover:text-brand transition-colors">
                         {item.question}
                       </span>
                       <span
-                        className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border border-line text-muted group-hover:border-accent group-hover:text-accent transition-colors"
+                        className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border border-line text-muted group-hover:border-brand group-hover:text-brand transition-colors"
                         aria-hidden="true"
                       >
                         <svg
@@ -131,7 +131,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
                         {item.answer.split('\n\n').map((paragraph, i) => (
                           <p
                             key={i}
-                            className="text-base sm:text-lg text-ink-light leading-relaxed mt-0 first:mt-0 [&+&]:mt-4"
+                            className="text-base sm:text-lg text-body leading-relaxed mt-0 first:mt-0 [&+&]:mt-4"
                           >
                             {paragraph}
                           </p>
@@ -149,7 +149,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
                 <div className="mt-8 sm:mt-10">
                   <Link
                     href={category.cta.href}
-                    className="inline-flex items-center gap-2 font-mono text-sm text-accent hover:text-accent-dark transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-hover transition-colors"
                   >
                     {category.cta.text}
                     <ArrowUpRight size={16} />
@@ -166,13 +166,13 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         <Container>
           <Reveal>
             <div className="max-w-3xl">
-              <p className="font-mono text-xs tracking-widest uppercase text-cream/50 mb-4">
+              <p className="text-xs font-semibold uppercase text-white/50 mb-4" style={{ letterSpacing: '0.14em' }}>
                 Can&apos;t find your answer?
               </p>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight text-cream">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-white">
                 Your project might be a little different.
               </h2>
-              <p className="mt-6 text-lg text-cream/60 leading-relaxed max-w-2xl">
+              <p className="mt-6 text-lg text-white/60 leading-relaxed max-w-2xl">
                 Not every project fits neatly into a package. If you have a specific
                 requirement, unusual idea or existing website you want to improve, tell
                 us what you&apos;re working with. We&apos;ll help you understand what is
@@ -181,7 +181,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 font-mono text-sm text-ink hover:bg-cream-light transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-navy hover:bg-surface transition-colors"
                 >
                   Get in touch
                   <ArrowUpRight size={16} />

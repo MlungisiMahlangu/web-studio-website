@@ -50,7 +50,7 @@ export function MultiStepForm() {
   if (submitted) {
     return (
       <div className="success-card" style={{ textAlign: 'center', padding: 60 }}>
-        <Check style={{ width: 40, height: 40, color: '#3B82F6' }} />
+        <Check style={{ width: 40, height: 40, color: '#0061FD' }} />
         <h3 style={{ fontSize: 28 }}>Your project brief is on its way.</h3>
         <p>
           We will review your requirements and get back to you within 1–2 business
@@ -202,7 +202,7 @@ export function MultiStepForm() {
         <div className="form-step">
           <h3>Your details</h3>
           <p>Tell us who you are and a bit about your project.</p>
-          <label style={{ fontSize: 11, color: '#6B7280', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
+          <label style={{ fontSize: 11, color: 'var(--muted)', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
             Name
             <input
               required
@@ -212,7 +212,7 @@ export function MultiStepForm() {
               style={{ border: 0, borderBottom: '1px solid var(--line)', background: 'transparent', padding: '9px 0', outline: 'none', fontSize: 15 }}
             />
           </label>
-          <label style={{ fontSize: 11, color: '#6B7280', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
+          <label style={{ fontSize: 11, color: 'var(--muted)', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
             Email
             <input
               required
@@ -223,7 +223,7 @@ export function MultiStepForm() {
               style={{ border: 0, borderBottom: '1px solid var(--line)', background: 'transparent', padding: '9px 0', outline: 'none', fontSize: 15 }}
             />
           </label>
-          <label style={{ fontSize: 11, color: '#6B7280', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
+          <label style={{ fontSize: 11, color: 'var(--muted)', display: 'grid', gap: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>
             Project details (optional)
             <textarea
               rows={4}

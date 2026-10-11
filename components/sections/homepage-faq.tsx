@@ -14,14 +14,14 @@ export function HomePageFAQ() {
         return (
           <div
             key={question}
-            className={`border-b border-line transition-colors duration-200 ${isOpen ? 'bg-cream-light' : ''}`}
+            className={`border-b border-line transition-colors duration-200 ${isOpen ? 'bg-blue-tint/40' : ''}`}
           >
             <button
               onClick={() => setOpenFaq(isOpen ? null : index)}
               aria-expanded={isOpen}
               className="flex items-center justify-between w-full py-5 px-4 text-left gap-4"
             >
-              <span className="text-base font-medium">{question}</span>
+              <span className="text-base font-semibold text-navy">{question}</span>
               <ChevronDown
                 size={18}
                 className={`flex-shrink-0 text-muted transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -32,7 +32,7 @@ export function HomePageFAQ() {
                 isOpen ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <p className="px-4 pb-5 text-sm text-muted leading-relaxed">{answer}</p>
+              <p className="px-4 pb-5 text-sm text-body leading-relaxed">{answer}</p>
             </div>
           </div>
         )

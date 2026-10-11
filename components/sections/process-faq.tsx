@@ -14,7 +14,7 @@ export function ProcessFAQ() {
         return (
           <div
             key={question}
-            className={`border-b border-line transition-colors duration-200 ${isOpen ? 'bg-cream-light' : ''}`}
+            className={`border-b border-line transition-colors duration-200 ${isOpen ? 'bg-blue-tint/40' : ''}`}
           >
             <button
               onClick={() => setOpenFaq(isOpen ? null : index)}

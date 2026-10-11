@@ -37,17 +37,16 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <>
       {/* ── Hero ── */}
-      <Section className="bg-ink text-cream relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-40 pointer-events-none" />
+      <Section dark className="relative overflow-hidden">
         <Container>
           <Reveal>
-            <p className="font-mono text-sm text-cream/60 uppercase tracking-widest mb-6">
+            <p className="text-sm text-white/60 uppercase tracking-widest mb-6" style={{ letterSpacing: '0.14em' }}>
               Work / {String(projectIndex + 1).padStart(2, '0')} — {project.type}
             </p>
-            <h1 className="text-display-xl font-display text-cream leading-tight">
+            <h1 className="text-hero font-extrabold leading-tight tracking-tight text-white">
               {project.title}
             </h1>
-            <p className="mt-6 text-lg text-cream/70 max-w-2xl leading-relaxed">
+            <p className="mt-6 text-lg text-white/70 max-w-2xl leading-relaxed">
               {project.subtitle}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
@@ -55,7 +54,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cream text-ink font-medium text-sm hover:bg-cream-dark transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-navy font-semibold text-sm hover:bg-surface transition-colors"
               >
                 Visit {project.title} <ArrowUpRight size={16} />
               </a>
@@ -65,7 +64,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </Section>
 
       {/* ── Browser mockup ── */}
-      <Section className="bg-cream py-16 sm:py-20">
+      <Section alt className="py-16 sm:py-20">
         <Container narrow>
           <Reveal variant="scale">
             <div
@@ -77,7 +76,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <span className="w-3 h-3 rounded-full bg-red-400/60" />
                 <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
                 <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-                <span className="ml-3 font-mono text-xs text-ink/50 truncate">
+                <span className="ml-3 text-xs text-navy/50 truncate">
                   {new URL(project.liveUrl).hostname}
                 </span>
               </div>
@@ -99,23 +98,23 @@ export default async function ProjectDetailPage({ params }: Props) {
       </Section>
 
       {/* ── Description + Sidebar ── */}
-      <Section className="bg-cream">
+      <Section>
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Main content */}
             <div className="lg:col-span-2 space-y-16">
               {/* Overview */}
               <Reveal>
-                <p className="font-mono text-xs text-muted uppercase tracking-wider mb-4">Overview</p>
-                <p className="text-lg text-ink-light leading-relaxed">{project.description}</p>
+                <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>Overview</p>
+                <p className="text-lg text-body leading-relaxed">{project.description}</p>
               </Reveal>
 
               {/* Challenge */}
               {project.challenge && (
                 <Reveal>
-                  <div className="border-l-2 border-accent pl-6">
-                    <p className="font-mono text-xs text-muted uppercase tracking-wider mb-4">The challenge</p>
-                    <p className="text-lg text-ink-light leading-relaxed">{project.challenge}</p>
+                  <div className="border-l-2 border-brand pl-6">
+                    <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>The challenge</p>
+                    <p className="text-lg text-body leading-relaxed">{project.challenge}</p>
                   </div>
                 </Reveal>
               )}
@@ -123,9 +122,9 @@ export default async function ProjectDetailPage({ params }: Props) {
               {/* Approach */}
               {project.approach && (
                 <Reveal>
-                  <div className="border-l-2 border-accent pl-6">
-                    <p className="font-mono text-xs text-muted uppercase tracking-wider mb-4">The approach</p>
-                    <p className="text-lg text-ink-light leading-relaxed">{project.approach}</p>
+                  <div className="border-l-2 border-brand pl-6">
+                    <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>The approach</p>
+                    <p className="text-lg text-body leading-relaxed">{project.approach}</p>
                   </div>
                 </Reveal>
               )}
@@ -133,12 +132,12 @@ export default async function ProjectDetailPage({ params }: Props) {
               {/* Key features */}
               {project.features && project.features.length > 0 && (
                 <Reveal>
-                  <p className="font-mono text-xs text-muted uppercase tracking-wider mb-6">Key features</p>
+                  <p className="text-xs font-semibold uppercase text-muted mb-6" style={{ letterSpacing: '0.14em' }}>Key features</p>
                   <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {project.features.map((feature) => (
                       <div key={feature} className="flex items-start gap-3">
-                        <Check size={16} className="text-accent mt-0.5 shrink-0" />
-                        <span className="text-ink-light text-sm leading-relaxed">{feature}</span>
+                        <Check size={16} className="text-brand mt-0.5 shrink-0" />
+                        <span className="text-body text-sm leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </RevealStagger>
@@ -149,22 +148,22 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Sidebar */}
             <aside>
               <Reveal variant="right">
-                <div className="rounded-2xl border border-line bg-cream-light p-6 space-y-6 sticky top-28">
+                <div className="rounded-2xl border border-line bg-white p-6 shadow-card space-y-6 sticky top-28">
                   <div>
-                    <span className="font-mono text-xs text-muted uppercase tracking-wider">Type</span>
-                    <p className="mt-1 text-ink text-sm">{project.type}</p>
+                    <span className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Type</span>
+                    <p className="mt-1 text-navy text-sm font-medium">{project.type}</p>
                   </div>
                   <div className="border-t border-line">
-                    <span className="font-mono text-xs text-muted uppercase tracking-wider">Industry</span>
-                    <p className="mt-1 text-ink text-sm">{project.industry}</p>
+                    <span className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Industry</span>
+                    <p className="mt-1 text-navy text-sm font-medium">{project.industry}</p>
                   </div>
                   <div className="border-t border-line">
-                    <span className="font-mono text-xs text-muted uppercase tracking-wider">Technologies</span>
+                    <span className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Technologies</span>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-full bg-cream-dark text-ink-light font-mono text-xs"
+                          className="px-3 py-1 rounded-full bg-blue-tint/60 text-navy text-xs font-medium"
                         >
                           {tech}
                         </span>
@@ -179,7 +178,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </Section>
 
       {/* ── Next project ── */}
-      <Section className="bg-cream-dark border-t border-line">
+      <Section alt className="border-t border-line">
         <Container>
           <Reveal>
             <Link
@@ -187,40 +186,39 @@ export default async function ProjectDetailPage({ params }: Props) {
               className="group flex items-center justify-between gap-6"
             >
               <div>
-                <p className="font-mono text-xs text-muted uppercase tracking-wider mb-2">Next project</p>
-                <p className="text-display-sm font-display text-ink group-hover:text-accent-dark transition-colors">
+                <p className="text-xs font-semibold uppercase text-muted mb-2" style={{ letterSpacing: '0.14em' }}>Next project</p>
+                <p className="text-2xl font-bold text-navy group-hover:text-brand transition-colors">
                   {nextProject.title}
                 </p>
-                <p className="mt-1 text-sm text-ink-light">{nextProject.subtitle}</p>
+                <p className="mt-1 text-sm text-body">{nextProject.subtitle}</p>
               </div>
-              <ArrowUpRight size={24} className="shrink-0 text-ink group-hover:text-accent-dark transition-colors" />
+              <ArrowUpRight size={24} className="shrink-0 text-navy group-hover:text-brand transition-colors" />
             </Link>
           </Reveal>
         </Container>
       </Section>
 
       {/* ── Final CTA ── */}
-      <Section className="bg-ink text-cream relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-40 pointer-events-none" />
+      <Section dark className="relative overflow-hidden">
         <Container>
           <Reveal>
-            <p className="font-mono text-sm text-cream/60 uppercase tracking-widest mb-6">Have something in mind?</p>
-            <h2 className="text-display-xl font-display text-cream leading-tight">
+            <p className="text-sm text-white/60 uppercase tracking-widest mb-6" style={{ letterSpacing: '0.14em' }}>Have something in mind?</p>
+            <h2 className="text-hero font-extrabold leading-tight tracking-tight text-white">
               Like what you see?
             </h2>
-            <p className="mt-6 text-lg text-cream/70 max-w-xl leading-relaxed">
+            <p className="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
               We would love to build something similar for your business. Tell us
               about your project.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
               <Link
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cream text-ink font-medium text-sm hover:bg-cream-dark transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-navy font-semibold text-sm hover:bg-surface transition-colors"
                 href="/contact"
               >
                 Let&apos;s talk <ArrowUpRight size={16} />
               </Link>
               <Link
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-cream/70 hover:text-cream transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-white transition-colors"
                 href="/work"
               >
                 View All Work <ArrowUpRight size={16} />

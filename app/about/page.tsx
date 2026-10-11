@@ -107,20 +107,20 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <div className="flex items-center gap-4 mb-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-accent">About WEB-IN</p>
-              <span className="h-px w-10 bg-cream/20" />
-              <span className="text-sm text-cream/50">Independent web development studio &middot; South Africa</span>
+              <p className="text-xs font-semibold uppercase text-brand" style={{ letterSpacing: '0.14em' }}>About WEB-IN</p>
+              <span className="h-px w-10 bg-white/20" />
+              <span className="text-sm text-white/50">Independent web development studio &middot; South Africa</span>
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <h1 className="font-display text-display-xl leading-tight tracking-tight text-cream">
+            <h1 className="text-display-lg leading-tight font-extrabold text-white">
               Independent by choice.
               <br />
-              <span className="italic text-accent">Serious about the work.</span>
+              Serious about the work.
             </h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="mt-8 max-w-[640px] text-lg leading-relaxed text-cream/60">
+            <p className="mt-8 max-w-[640px] text-lg leading-relaxed text-white/60">
               WEB-IN is an independent web development studio creating thoughtful
               digital experiences for businesses, professionals and ambitious ideas.
             </p>
@@ -133,12 +133,12 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
             <Reveal>
-              <h2 className="font-display text-display-md leading-tight tracking-tight">
+              <h2 className="text-display-md leading-tight font-bold text-navy">
                 Good websites are not just designed.
                 <br />
-                <span className="italic text-accent">They are considered.</span>
+                They are considered.
               </h2>
-              <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-body">
                 <p>
                   We believe a great website starts with understanding. Understanding
                   the business behind it, the people it needs to reach, and the
@@ -159,11 +159,11 @@ export default function AboutPage() {
               {philosophyPillars.map((pillar) => (
                 <div
                   key={pillar.number}
-                  className="rounded-2xl border border-line bg-cream-light p-8"
+                  className="rounded-2xl border border-line bg-white shadow-card p-8"
                 >
-                  <span className="font-mono text-xs text-accent">{pillar.number}</span>
-                  <h3 className="mt-3 font-display text-xl tracking-tight">{pillar.title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted">{pillar.text}</p>
+                  <span className="text-xs font-semibold text-brand">{pillar.number}</span>
+                  <h3 className="mt-3 text-xl font-bold text-navy">{pillar.title}</h3>
+                  <p className="mt-3 leading-relaxed text-body">{pillar.text}</p>
                 </div>
               ))}
             </RevealStagger>
@@ -172,7 +172,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Approach */}
-      <Section className="bg-cream-dark">
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading eyebrow="Our approach" title="The way we work matters." />
@@ -180,10 +180,10 @@ export default function AboutPage() {
           <RevealStagger stagger={80} className="mt-14 divide-y divide-line">
             {approachPrinciples.map((p) => (
               <div key={p.number} className="grid gap-4 py-8 sm:grid-cols-[80px_1fr] sm:gap-8">
-                <span className="font-mono text-sm text-accent">{p.number}</span>
+                <span className="text-sm font-semibold text-brand">{p.number}</span>
                 <div>
-                  <h3 className="font-display text-xl tracking-tight">{p.title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted">{p.text}</p>
+                  <h3 className="text-xl font-bold text-navy">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-body">{p.text}</p>
                 </div>
               </div>
             ))}
@@ -197,13 +197,13 @@ export default function AboutPage() {
           <Reveal>
             <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-accent mb-4">Local context</p>
-                <h2 className="font-display text-display-md leading-tight tracking-tight text-cream">
+                <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>Local context</p>
+                <h2 className="text-display-md leading-tight font-bold text-white">
                   Built in South Africa.
                   <br />
-                  <span className="italic text-accent">Ready for the wider web.</span>
+                  Ready for the wider web.
                 </h2>
-                <p className="mt-8 text-lg leading-relaxed text-cream/60">
+                <p className="mt-8 text-lg leading-relaxed text-white/60">
                   We build with the realities of modern South African businesses in
                   mind. That means creating experiences that work beautifully across
                   mobile devices, make it easy for customers to get in touch, support
@@ -215,10 +215,10 @@ export default function AboutPage() {
                 {saHighlights.map((h) => (
                   <div
                     key={h.title}
-                    className="rounded-2xl border border-cream/10 bg-cream/5 p-7"
+                    className="rounded-2xl border border-white/10 bg-white/5 p-7"
                   >
-                    <h3 className="font-display text-lg tracking-tight text-cream">{h.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-cream/50">{h.text}</p>
+                    <h3 className="text-lg font-bold text-white">{h.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-white/50">{h.text}</p>
                   </div>
                 ))}
               </div>
@@ -228,17 +228,17 @@ export default function AboutPage() {
       </Section>
 
       {/* WEB-IN Difference */}
-      <Section className="bg-cream-dark">
+      <Section alt>
         <Container>
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal>
-              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">The WEB-IN difference</p>
-              <h2 className="font-display text-display-md leading-tight tracking-tight">
+              <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>The WEB-IN difference</p>
+              <h2 className="text-display-md leading-tight font-bold text-navy">
                 You will not be passed
                 <br />
-                <span className="italic text-accent">from person to person.</span>
+                from person to person.
               </h2>
-              <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-body">
                 <p>
                   WEB-IN is intentionally independent. That means projects receive direct
                   attention from the people building them. Communication stays clear,
@@ -255,10 +255,10 @@ export default function AboutPage() {
               {differencePoints.map((d) => (
                 <div
                   key={d.title}
-                  className="rounded-2xl border border-line bg-cream p-6"
+                  className="rounded-2xl border border-line bg-white shadow-card p-6"
                 >
-                  <h3 className="font-display text-lg tracking-tight">{d.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{d.text}</p>
+                  <h3 className="text-lg font-bold text-navy">{d.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-body">{d.text}</p>
                 </div>
               ))}
             </RevealStagger>
@@ -271,13 +271,13 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <div className="max-w-[680px]">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">Quality standards</p>
-              <h2 className="font-display text-display-md leading-tight tracking-tight">
+              <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>Quality standards</p>
+              <h2 className="text-display-md leading-tight font-bold text-navy">
                 We care about the details people notice
                 <br />
-                <span className="italic text-accent">and the ones they do not.</span>
+                and the ones they do not.
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
+              <p className="mt-6 text-lg leading-relaxed text-body">
                 From the spacing between elements to the speed at which a page loads,
                 quality lives in the details.
               </p>
@@ -285,9 +285,9 @@ export default function AboutPage() {
           </Reveal>
           <RevealStagger stagger={60} className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {qualityDetails.map((item) => (
-              <div key={item} className="flex items-center gap-3 rounded-xl border border-line bg-cream-light px-5 py-4">
-                <Check className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                <span className="text-sm font-medium">{item}</span>
+              <div key={item} className="flex items-center gap-3 rounded-xl border border-line bg-white shadow-card px-5 py-4">
+                <Check className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
+                <span className="text-sm font-medium text-navy">{item}</span>
               </div>
             ))}
           </RevealStagger>
@@ -295,17 +295,17 @@ export default function AboutPage() {
       </Section>
 
       {/* Who We Build For */}
-      <Section className="bg-cream-dark">
+      <Section alt>
         <Container>
           <Reveal>
             <div className="max-w-[680px]">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">Who we build for</p>
-              <h2 className="font-display text-display-md leading-tight tracking-tight">
+              <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>Who we build for</p>
+              <h2 className="text-display-md leading-tight font-bold text-navy">
                 Built for people
                 <br />
-                <span className="italic text-accent">building something.</span>
+                building something.
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
+              <p className="mt-6 text-lg leading-relaxed text-body">
                 WEB-IN works with people and organisations that need more than a website
                 that simply exists.
               </p>
@@ -315,10 +315,10 @@ export default function AboutPage() {
             {audienceTypes.map((a) => (
               <div
                 key={a.title}
-                className="rounded-2xl border border-line bg-cream p-7"
+                className="rounded-2xl border border-line bg-white shadow-card p-7"
               >
-                <h3 className="font-display text-lg tracking-tight">{a.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{a.text}</p>
+                <h3 className="text-lg font-bold text-navy">{a.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-body">{a.text}</p>
               </div>
             ))}
           </RevealStagger>
@@ -334,10 +334,10 @@ export default function AboutPage() {
           <RevealStagger stagger={80} className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {processSteps.map((step) => (
               <div key={step.number} className="flex gap-5">
-                <span className="font-mono text-sm text-accent shrink-0 pt-1">{step.number}</span>
+                <span className="text-sm font-semibold text-brand shrink-0 pt-1">{step.number}</span>
                 <div>
-                  <h3 className="font-display text-lg tracking-tight">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{step.text}</p>
+                  <h3 className="text-lg font-bold text-navy">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-body">{step.text}</p>
                 </div>
               </div>
             ))}
@@ -346,7 +346,7 @@ export default function AboutPage() {
             <div className="mt-14">
               <Link
                 href="/process"
-                className="inline-flex items-center gap-2 font-mono text-sm text-accent transition-colors hover:text-accent-dark"
+                className="inline-flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-brand-hover"
               >
                 Explore our process <ArrowUpRight className="h-4 w-4" />
               </Link>
@@ -360,25 +360,25 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <div className="max-w-[680px]">
-              <h2 className="font-display text-display-md leading-tight tracking-tight text-cream">
+              <h2 className="text-display-md leading-tight font-bold text-white">
                 Your next website should feel
                 <br />
-                <span className="italic text-accent">like your business.</span>
+                like your business.
               </h2>
-              <p className="mt-8 text-lg leading-relaxed text-cream/60">
+              <p className="mt-8 text-lg leading-relaxed text-white/60">
                 Tell us where you are going. We will help you build the digital
                 experience to get there.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-dark"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-hover"
                 >
-                  Let's talk <ArrowUpRight className="h-4 w-4" />
+                  Let&apos;s talk <ArrowUpRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/work"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-7 py-3 text-sm font-medium text-cream transition-colors hover:border-cream/40 hover:bg-cream/5"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3 text-sm font-medium text-white transition-colors hover:border-white/30"
                 >
                   View Our Work <ArrowUpRight className="h-4 w-4" />
                 </Link>

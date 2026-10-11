@@ -48,7 +48,7 @@ export const services: Service[] = [
     title: 'Business websites',
     text: 'Professional websites for companies and service businesses.',
     price: 'From R4,500',
-    href: '/services/business-websites',
+    href: '/pricing#business-websites',
   },
   {
     icon: PenTool,
@@ -56,7 +56,7 @@ export const services: Service[] = [
     title: 'Portfolio websites',
     text: 'Personal brands, professionals, creatives and students.',
     price: 'From R2,000',
-    href: '/services/portfolio-websites',
+    href: '/pricing#portfolio-websites',
   },
   {
     icon: Sparkles,
@@ -64,7 +64,7 @@ export const services: Service[] = [
     title: 'Landing pages',
     text: 'Focused pages built around one offer, product or campaign.',
     price: 'From R1,500',
-    href: '/services/landing-pages',
+    href: '/pricing#landing-pages',
   },
   {
     icon: Compass,
@@ -72,7 +72,7 @@ export const services: Service[] = [
     title: 'Booking websites',
     text: 'Make it easy for customers to enquire or book your services.',
     price: 'From R6,500',
-    href: '/services/booking-websites',
+    href: '/pricing#booking-websites',
   },
   {
     icon: Layers3,
@@ -80,7 +80,7 @@ export const services: Service[] = [
     title: 'Online stores',
     text: 'Product catalogues, shopping carts and online payments.',
     price: 'From R8,500',
-    href: '/services/online-stores',
+    href: '/pricing#online-stores',
   },
   {
     icon: Code2,
@@ -88,7 +88,7 @@ export const services: Service[] = [
     title: 'Custom applications',
     text: 'Dashboards, portals, systems and custom functionality.',
     price: 'From R10,000',
-    href: '/services/custom-web-applications',
+    href: '/pricing#custom-web-applications',
   },
   {
     icon: Paintbrush,
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: 'Website redesigns',
     text: 'Modernise an outdated website into something you are proud of.',
     price: 'From R2,500',
-    href: '/services/website-redesigns',
+    href: '/pricing#website-redesigns',
   },
 ]
 
@@ -739,7 +739,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/services/landing-pages',
+    href: '/pricing#landing-pages',
   },
   {
     name: 'Business',
@@ -759,7 +759,7 @@ export const packages: PricingPackage[] = [
       '2 revision rounds',
       '3 months support',
     ],
-    href: '/services/business-websites',
+    href: '/pricing#business-websites',
   },
   {
     name: 'Starter',
@@ -777,7 +777,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/services/starter-websites',
+    href: '/pricing#starter-websites',
   },
   {
     name: 'Portfolio',
@@ -795,7 +795,7 @@ export const packages: PricingPackage[] = [
       '1 revision round',
       '14 days support',
     ],
-    href: '/services/portfolio-websites',
+    href: '/pricing#portfolio-websites',
   },
   {
     name: 'Professional',
@@ -814,7 +814,7 @@ export const packages: PricingPackage[] = [
       '3 revision rounds',
       '5 months support',
     ],
-    href: '/services/professional-websites',
+    href: '/pricing#professional-websites',
   },
   {
     name: 'Online Store',
@@ -833,7 +833,7 @@ export const packages: PricingPackage[] = [
       '2 revision rounds',
       '5 months support',
     ],
-    href: '/services/online-stores',
+    href: '/pricing#online-stores',
   },
 ]
 

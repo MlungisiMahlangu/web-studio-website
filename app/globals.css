@@ -2,39 +2,36 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  --color-ink: #0C0C0E;
-  --color-ink-light: #1A1A1F;
-  --color-ink-muted: #2A2A30;
-  --color-cream: #F5F0E8;
-  --color-cream-dark: #EBE5D9;
-  --color-cream-light: #FAF8F4;
-  --color-accent: #4361EE;
-  --color-accent-dark: #3A56D4;
-  --color-muted: #7A7A7A;
-  --color-muted-light: #A3A3A3;
-  --color-line: #E5E0D6;
-  --color-line-dark: #2A2A30;
+  --color-background: #FDFCFC;
+  --color-surface: #F5F7FB;
+  --color-navy: #0A1433;
+  --color-body: #475569;
+  --color-muted: #64748B;
+  --color-line: #E2E8F0;
+  --color-brand: #0061FD;
+  --color-brand-hover: #0050D6;
+  --color-blue-tint: #EAF1FF;
+  --color-dark-panel: #071226;
   --color-white: #FFFFFF;
   --color-black: #000000;
 
-  --font-display: var(--font-instrument-serif), 'Instrument Serif', Georgia, serif;
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
-  --text-display-xl: clamp(3.5rem, 8vw, 7.5rem);
-  --text-display-lg: clamp(2.5rem, 6vw, 5.5rem);
-  --text-display-md: clamp(2rem, 4vw, 3.5rem);
-  --text-display-sm: clamp(1.5rem, 3vw, 2.25rem);
+  --text-hero: clamp(1.75rem, 1.2rem + 2.2vw, 3.25rem);
+  --text-display-lg: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+  --text-display-md: clamp(1.75rem, 2.5vw + 0.75rem, 2.75rem);
+  --text-display-sm: clamp(1.5rem, 2vw + 0.5rem, 2.25rem);
 
-  --leading-tight: 1.05;
+  --leading-tight: 1.1;
   --leading-snug: 1.15;
   --leading-normal: 1.5;
   --leading-relaxed: 1.7;
 
-  --tracking-tight: -0.03em;
-  --tracking-normal: -0.01em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
   --tracking-wide: 0.05em;
   --tracking-wider: 0.1em;
+  --tracking-eyebrow: 0.14em;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -45,9 +42,9 @@
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 8px 30px rgba(10, 20, 50, 0.06);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
   --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.12);
-  --shadow-glow: 0 0 40px rgba(67, 97, 238, 0.15);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -77,20 +74,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: 'ss01', 'cv01';
   }
 
   body {
     font-family: var(--font-sans);
-    color: var(--color-ink);
-    background: var(--color-cream);
+    color: var(--color-body);
+    background: var(--color-background);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-normal);
     overflow-x: hidden;
+    font-size: 16px;
   }
 
   ::selection {
-    background: var(--color-accent);
+    background: var(--color-brand);
     color: var(--color-white);
   }
 
@@ -117,7 +114,9 @@
 
   h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
-    font-weight: 400;
+    font-weight: 700;
+    color: var(--color-navy);
+    letter-spacing: var(--tracking-tight);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -141,7 +140,7 @@
   select:focus-visible,
   textarea:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brand);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
   }
@@ -161,34 +160,8 @@
     text-wrap: pretty;
   }
 
-  .grain {
-    position: relative;
-  }
-
-  .grain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.5;
-  }
-
-  .grain-dark::after {
-    opacity: 0.08;
-  }
-
   .hairline {
     border-color: var(--color-line);
-    border-width: 1px;
-    border-style: solid;
-  }
-
-  .hairline-dark {
-    border-color: var(--color-line-dark);
     border-width: 1px;
     border-style: solid;
   }
@@ -213,7 +186,7 @@
   }
 
   .focus-ring {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brand);
     outline-offset: 2px;
   }
 }
@@ -282,10 +255,20 @@
     to { transform: rotate(360deg); }
   }
 
-  @keyframes shimmer {
-    0% { transform: translateX(-100%) skewX(-12deg); }
-    50% { transform: translateX(200%) skewX(-12deg); }
-    100% { transform: translateX(200%) skewX(-12deg); }
+  @keyframes hero-entrance {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 
   .animate-fade-up {
@@ -319,6 +302,14 @@
   .animate-spin-slow {
     animation: spin-slow 20s linear infinite;
   }
+
+  .hero-image-entrance {
+    animation: hero-entrance 0.8s var(--ease-out-expo) both;
+  }
+
+  .hero-image-float {
+    animation: hero-float 6s ease-in-out infinite;
+  }
 }
 
 /* ─── Contact Form ─── */
@@ -334,7 +325,7 @@
   gap: 0.375rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--color-ink);
+  color: var(--color-navy);
 }
 
 .contact-form input,
@@ -345,7 +336,7 @@
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--color-white);
-  color: var(--color-ink);
+  color: var(--color-navy);
   font-size: 0.875rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   outline: none;
@@ -353,19 +344,19 @@
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: var(--color-muted-light);
+  color: var(--color-muted);
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 12%, transparent);
 }
 
 .contact-form select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -404,7 +395,7 @@
 
 .field-helper-link {
   font-size: 0.75rem;
-  color: var(--color-accent);
+  color: var(--color-brand);
   font-weight: 400;
   text-decoration: none;
   margin-top: 0.125rem;
@@ -427,12 +418,12 @@
 .checkbox-label input[type='checkbox'] {
   width: auto;
   margin-top: 0.125rem;
-  accent-color: var(--color-accent);
+  accent-color: var(--color-brand);
   flex-shrink: 0;
 }
 
 .checkbox-label a {
-  color: var(--color-accent);
+  color: var(--color-brand);
   text-decoration: underline;
 }
 
@@ -451,16 +442,16 @@
   width: 100%;
 }
 
-.button-light {
-  background: var(--color-ink);
-  color: var(--color-cream);
+.button-primary {
+  background: var(--color-brand);
+  color: var(--color-white);
 }
 
-.button-light:hover:not(:disabled) {
-  background: var(--color-ink-light);
+.button-primary:hover:not(:disabled) {
+  background: var(--color-brand-hover);
 }
 
-.button-light:disabled {
+.button-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

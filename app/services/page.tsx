@@ -60,15 +60,15 @@ export default function ServicesPage() {
       <Section dark className="pb-20 sm:pb-28">
         <Container>
           <Reveal>
-            <p className="mb-4 font-mono text-xs uppercase tracking-wider text-accent">
+            <p className="mb-4 text-xs font-semibold uppercase text-brand" style={{ letterSpacing: '0.14em' }}>
               What we build
             </p>
-            <h1 className="font-display text-display-xl leading-tight tracking-tight">
+            <h1 className="text-hero font-extrabold leading-tight tracking-tight text-navy">
               Website Design Services
               <br />
-              <em className="italic text-accent">in South Africa.</em>
+              <span className="text-brand">in South Africa.</span>
             </h1>
-            <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-cream/60">
+            <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-white/60">
               From a simple landing page to a full business website or custom
               application — we build modern, fast websites that help South African
               businesses grow online.
@@ -99,28 +99,28 @@ export default function ServicesPage() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="group relative flex flex-col rounded-2xl border border-line bg-cream-light p-8 transition-all duration-300 ease-out-expo hover:border-ink/20 hover:shadow-[0_0_0_1px_rgba(12,12,14,0.08)]"
+                  className="group relative flex flex-col rounded-2xl border border-line bg-white p-8 shadow-card transition-all duration-300 ease-out-expo hover:border-brand/20 hover:shadow-lg"
                 >
                   <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-ink/5 group-hover:bg-ink/10 transition-colors">
-                      <Icon aria-hidden="true" size={24} className="text-muted" />
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-tint/60 group-hover:bg-blue-tint transition-colors">
+                      <Icon aria-hidden="true" size={24} className="text-brand" />
                     </div>
                     <ArrowUpRight
                       aria-hidden="true"
                       size={20}
-                      className="text-muted/40 group-hover:text-ink transition-colors"
+                      className="text-muted/40 group-hover:text-navy transition-colors"
                     />
                   </div>
                   <div className="flex-1">
-                    <p className="font-mono text-xs text-muted mb-2">{service.number}</p>
-                    <h3 className="font-display text-display-sm leading-snug tracking-tight mb-3">
+                    <p className="text-xs text-muted mb-2">{service.number}</p>
+                    <h3 className="text-xl font-bold leading-snug tracking-tight text-navy mb-3">
                       {service.title}
                     </h3>
                     <p className="text-sm text-muted leading-relaxed mb-4">
                       {service.text}
                     </p>
                   </div>
-                  <p className="font-mono text-sm font-semibold text-ink">
+                  <p className="text-sm font-bold text-navy">
                     {service.price}
                   </p>
                 </Link>
@@ -155,10 +155,10 @@ export default function ServicesPage() {
             ].map((step) => (
               <div
                 key={step.number}
-                className="rounded-2xl border border-line bg-cream-light p-6"
+                className="rounded-2xl border border-line bg-white p-6 shadow-card"
               >
-                <p className="font-mono text-xs text-muted mb-3">{step.number}</p>
-                <h3 className="font-display text-xl leading-snug tracking-tight mb-2">
+                <p className="text-xs text-muted mb-3">{step.number}</p>
+                <h3 className="text-xl font-bold leading-snug tracking-tight text-navy mb-2">
                   {step.title}
                 </h3>
                 <p className="text-sm text-muted leading-relaxed">
@@ -172,7 +172,7 @@ export default function ServicesPage() {
             <div className="mt-10 text-center">
               <Link
                 href="/process"
-                className="inline-flex items-center gap-2 text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-navy/70 hover:text-navy transition-colors"
               >
                 Learn more about our process
                 <ArrowUpRight size={14} />
@@ -183,7 +183,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* FAQs Section */}
-      <Section className="bg-cream-light !pt-0">
+      <Section alt className="!pt-0">
         <Container narrow>
           <Reveal>
             <SectionHeading
@@ -215,14 +215,14 @@ export default function ServicesPage() {
             ].map((faq) => (
               <details
                 key={faq.q}
-                className="group rounded-2xl border border-line bg-cream p-6 open:shadow-sm"
+                className="group rounded-2xl border border-line bg-white p-6 open:shadow-sm"
               >
                 <summary className="flex items-center justify-between cursor-pointer list-none">
-                  <h3 className="font-display text-lg leading-snug tracking-tight pr-4">
+                  <h3 className="text-lg font-bold leading-snug tracking-tight text-navy pr-4">
                     {faq.q}
                   </h3>
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-ink/5 flex items-center justify-center group-open:rotate-45 transition-transform">
-                    <ArrowUpRight size={14} className="text-muted" />
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-tint/60 flex items-center justify-center group-open:rotate-45 transition-transform">
+                    <ArrowUpRight size={14} className="text-brand" />
                   </span>
                 </summary>
                 <p className="mt-4 text-muted leading-relaxed">{faq.a}</p>
@@ -234,7 +234,7 @@ export default function ServicesPage() {
             <div className="mt-10 text-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium text-navy/70 hover:text-navy transition-colors"
               >
                 View all frequently asked questions
                 <ArrowUpRight size={14} />
@@ -247,24 +247,21 @@ export default function ServicesPage() {
       <Section className="!pt-0">
         <Container narrow>
           <Reveal>
-            <div className="rounded-2xl bg-ink text-cream px-8 py-14 sm:px-14 sm:py-18 text-center overflow-hidden relative">
-              <div className="absolute inset-0 grain grain-dark opacity-40" />
-              <div className="relative z-10">
-                <h2 className="font-display text-display-md leading-tight tracking-tight mb-5">
-                  Not sure which service you need?
-                </h2>
-                <p className="text-cream/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
-                  Tell us about your project and we'll recommend the best approach
-                  with a clear quote and timeline.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
-                >
-                  Get your quote
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
+            <div className="rounded-2xl bg-dark-panel text-white px-8 py-14 sm:px-14 sm:py-18 text-center">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight mb-5">
+                Not sure which service you need?
+              </h2>
+              <p className="text-white/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
+                Tell us about your project and we'll recommend the best approach
+                with a clear quote and timeline.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-semibold transition-all duration-300 ease-out-expo hover:bg-brand-hover"
+              >
+                Get your quote
+                <ArrowUpRight size={18} />
+              </Link>
             </div>
           </Reveal>
         </Container>

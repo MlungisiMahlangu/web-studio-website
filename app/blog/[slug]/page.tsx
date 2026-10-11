@@ -49,7 +49,7 @@ function renderContent(content: string) {
   const flushList = () => {
     if (currentList.length > 0) {
       elements.push(
-        <ul key={key++} className="list-disc list-inside space-y-2 text-cream/70 mb-6">
+        <ul key={key++} className="list-disc list-inside space-y-2 text-body mb-6">
           {currentList.map((item, i) => (
             <li key={i}>{formatInline(item)}</li>
           ))}
@@ -63,13 +63,13 @@ function renderContent(content: string) {
     const parts = text.split(/(\*\*[^*]+\*\*)/g)
     return parts.map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i} className="text-cream font-semibold">{part.slice(2, -2)}</strong>
+        return <strong key={i} className="text-navy font-semibold">{part.slice(2, -2)}</strong>
       }
       const linkParts = part.split(/(\[[^\]]+\]\([^)]+\))/g)
       return linkParts.map((segment, j) => {
         const match = segment.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
         if (match) {
-          return <Link key={`${i}-${j}`} href={match[2]} className="text-accent hover:underline">{match[1]}</Link>
+          return <Link key={`${i}-${j}`} href={match[2]} className="text-brand hover:underline">{match[1]}</Link>
         }
         return segment
       })
@@ -86,14 +86,14 @@ function renderContent(content: string) {
     if (line.startsWith('## ')) {
       flushList()
       elements.push(
-        <h2 key={key++} className="font-display text-2xl sm:text-3xl leading-tight tracking-tight text-cream mt-10 mb-4">
+        <h2 key={key++} className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-navy mt-10 mb-4">
           {line.slice(3)}
         </h2>
       )
     } else if (line.startsWith('> ')) {
       flushList()
       elements.push(
-        <blockquote key={key++} className="border-l-2 border-accent/40 pl-5 py-3 mb-6 text-cream/60 text-sm leading-relaxed italic">
+        <blockquote key={key++} className="border-l-2 border-brand/40 pl-5 py-3 mb-6 text-muted text-sm leading-relaxed">
           {formatInline(line.slice(2))}
         </blockquote>
       )
@@ -102,7 +102,7 @@ function renderContent(content: string) {
     } else {
       flushList()
       elements.push(
-        <p key={key++} className="text-cream/70 leading-relaxed mb-6">
+        <p key={key++} className="text-body leading-relaxed mb-6">
           {formatInline(line)}
         </p>
       )
@@ -183,31 +183,31 @@ export default async function BlogArticlePage({ params }: Props) {
           <Reveal>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-cream/50 hover:text-cream transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors mb-8"
             >
               <ArrowLeft size={16} />
               Back to blog
             </Link>
 
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-xs text-cream/40">
+              <span className="text-xs text-white/40">
                 {new Date(article.publishedAt).toLocaleDateString('en-ZA', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
                 })}
               </span>
-              <span className="text-cream/20">·</span>
-              <span className="font-mono text-xs text-cream/40">
+              <span className="text-white/20">·</span>
+              <span className="text-xs text-white/40">
                 {article.readingTime}
               </span>
             </div>
 
-            <h1 className="font-display text-display-lg sm:text-display-xl leading-tight tracking-tight mb-6">
+            <h1 className="text-hero font-extrabold leading-tight tracking-tight mb-6">
               {article.title}
             </h1>
 
-            <p className="text-lg text-cream/60 leading-relaxed">
+            <p className="text-lg text-white/60 leading-relaxed">
               {article.description}
             </p>
           </Reveal>
@@ -215,24 +215,24 @@ export default async function BlogArticlePage({ params }: Props) {
       </Section>
 
       {/* Content */}
-      <Section dark tight>
+      <Section className="pt-8 pb-16 sm:pb-20">
         <Container text>
           <div className="prose-custom">
             {renderContent(article.content)}
           </div>
 
           {/* CTA */}
-          <div className="mt-12 pt-8 border-t border-line-dark">
-            <div className="rounded-2xl bg-cream/5 border border-cream/10 p-8 sm:p-10">
-              <h2 className="font-display text-2xl leading-tight tracking-tight text-cream mb-3">
+          <div className="mt-12 pt-8 border-t border-line">
+            <div className="rounded-2xl bg-surface border border-line p-8 sm:p-10">
+              <h2 className="text-2xl font-bold leading-tight tracking-tight text-navy mb-3">
                 Ready to build your website?
               </h2>
-              <p className="text-cream/60 leading-relaxed mb-6">
+              <p className="text-muted leading-relaxed mb-6">
                 Let us discuss your project and provide a clear quote with no surprises.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent-dark"
+                className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-brand-hover"
               >
                 Get your quote
                 <ArrowUpRight size={16} />

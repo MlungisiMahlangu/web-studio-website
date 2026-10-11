@@ -12,25 +12,25 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body className="bg-cream text-ink min-h-screen flex items-center justify-center p-8">
+      <body className="bg-surface text-navy min-h-screen flex items-center justify-center p-8">
         <div className="max-w-[500px] text-center">
-          <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+          <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>
             Critical error
           </p>
-          <h1 className="font-display text-4xl mb-4">Something broke.</h1>
+          <h1 className="text-4xl font-extrabold mb-4">Something broke.</h1>
           <p className="text-muted mb-8">
             We hit an unexpected error. Try refreshing the page.
           </p>
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-6 py-3 text-sm font-medium"
+              className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 text-sm font-semibold"
             >
               Try again
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-muted hover:text-ink"
+              className="inline-flex items-center gap-2 text-sm text-muted hover:text-navy"
             >
               Go home <ArrowLeft size={14} />
             </Link>

@@ -17,23 +17,22 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       {/* Hero */}
-      <Section dark className="relative overflow-hidden pb-16 pt-16 sm:pb-20 sm:pt-20">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-[0.04] mix-blend-overlay pointer-events-none" />
+      <Section dark className="pb-16 pt-16 sm:pb-20 sm:pt-20">
         <Container narrow>
           <Link
             href="/"
-            className="mb-10 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-cream/50 transition-colors hover:text-cream/80"
+            className="mb-10 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-white/50 transition-colors hover:text-white/80"
           >
             <ArrowLeft className="h-3 w-3" />
             Back
           </Link>
-          <p className="mb-4 font-mono text-xs uppercase tracking-widest text-cream/40">
+          <p className="mb-4 text-xs font-semibold uppercase text-white/40" style={{ letterSpacing: '0.14em' }}>
             {STUDIO_NAME} / Legal
           </p>
-          <h1 className="font-display text-display-md sm:text-display-lg text-cream leading-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
             Privacy policy
           </h1>
-          <p className="mt-5 max-w-[520px] text-lg text-cream/60">
+          <p className="mt-5 max-w-[520px] text-lg text-white/60">
             Clear, straightforward information about how we handle your information.
           </p>
         </Container>
@@ -43,7 +42,7 @@ export default function PrivacyPolicyPage() {
       <Section className="pb-24 sm:pb-32">
         <Container text>
           <div className="space-y-6 text-muted">
-            <h2 className="font-display text-2xl text-ink mt-12 first:mt-0 mb-4">
+            <h2 className="text-2xl font-bold text-navy mt-12 first:mt-0 mb-4">
               Information we collect
             </h2>
             <p>
@@ -97,7 +96,7 @@ export default function PrivacyPolicyPage() {
               information. Contact us at{' '}
               <a
                 href={`mailto:${STUDIO_EMAIL}`}
-                className="text-ink font-medium underline decoration-line underline-offset-4 transition-colors hover:text-accent"
+                className="text-navy font-medium underline decoration-line underline-offset-4 transition-colors hover:text-brand"
               >
                 {STUDIO_EMAIL}
               </a>{' '}
@@ -132,7 +131,7 @@ export default function PrivacyPolicyPage() {
               For privacy-related questions, contact us through the{' '}
               <Link
                 href="/contact"
-                className="text-ink font-medium underline decoration-line underline-offset-4 transition-colors hover:text-accent"
+                className="text-navy font-medium underline decoration-line underline-offset-4 transition-colors hover:text-brand"
               >
                 contact form
               </Link>{' '}

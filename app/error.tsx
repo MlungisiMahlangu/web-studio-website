@@ -12,13 +12,13 @@ export default function Error({
   reset: () => void
 }) {
   return (
-    <section className="min-h-[80svh] flex items-center bg-cream">
+    <section className="min-h-[80svh] flex items-center bg-surface">
       <Container className="py-32">
         <div className="max-w-[600px]">
-          <p className="font-mono text-xs uppercase tracking-wider text-muted mb-6">
+          <p className="text-xs font-semibold uppercase text-muted mb-6" style={{ letterSpacing: '0.14em' }}>
             Something went wrong
           </p>
-          <h1 className="font-display text-display-md leading-tight tracking-tight mb-6">
+          <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-navy mb-6">
             An error occurred.
           </h1>
           <p className="text-muted text-lg leading-relaxed mb-10">
@@ -28,14 +28,14 @@ export default function Error({
           <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3.5 text-base font-medium transition-all duration-300 hover:bg-ink-light"
+              className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-semibold transition-all duration-300 hover:bg-brand-hover"
             >
               Try again
               <RefreshCw size={18} />
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 text-ink px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink/5"
+              className="inline-flex items-center gap-2 rounded-full border border-navy/15 text-navy px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-navy/5"
             >
               Back to home
               <ArrowLeft size={16} />

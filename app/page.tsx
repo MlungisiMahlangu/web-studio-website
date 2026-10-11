@@ -3,8 +3,13 @@ import Image from 'next/image'
 import {
   ArrowUpRight,
   Check,
-  MoveUpRight,
-  MessageCircle,
+  Globe2,
+  PenTool,
+  Sparkles,
+  Compass,
+  Layers3,
+  Code2,
+  Paintbrush,
 } from 'lucide-react'
 import {
   packages,
@@ -15,6 +20,7 @@ import {
   STUDIO_WHATSAPP,
   homepageFaqs,
   SOCIAL_LINKS,
+  services,
 } from '@/lib/constants'
 
 const minPrice = Math.min(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
@@ -23,13 +29,7 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
-import { Marquee } from '@/components/ui/marquee'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
-import { AuroraBackground } from '@/components/sections/aurora-background'
-import { FloatingChip } from '@/components/ui/floating-chip'
-import { WordRotator } from '@/components/ui/word-rotator'
-import { HeroShowcase } from '@/components/sections/hero-showcase'
-import { ScrollCue } from '@/components/ui/scroll-cue'
 
 const homepageProjects = portfolioProjects.slice(0, 2)
 
@@ -99,6 +99,16 @@ const jsonLd = [
   },
 ]
 
+const serviceIcons: Record<string, React.ElementType> = {
+  'Business websites': Globe2,
+  'Portfolio websites': PenTool,
+  'Landing pages': Sparkles,
+  'Booking websites': Compass,
+  'Online stores': Layers3,
+  'Custom applications': Code2,
+  'Website redesigns': Paintbrush,
+}
+
 export default function HomePage() {
   return (
     <>
@@ -107,360 +117,184 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* ─── HERO ─── */}
-      <section className="relative min-h-[100svh] flex flex-col justify-center bg-ink text-cream overflow-hidden">
-        <AuroraBackground />
-
-        <Container className="relative z-10 pt-28 pb-16 sm:pt-32 sm:pb-20">
+      <section className="relative bg-background overflow-hidden">
+        <Container className="pt-24 pb-10 sm:pt-28 sm:pb-14 lg:pb-14">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-6 items-center">
             {/* Left: Copy */}
-            <div className="max-w-[600px] order-2 lg:order-1">
-              {/* Badge */}
+            <div className="max-w-[600px] order-1">
+              {/* Eyebrow */}
               <Reveal>
-                <div className="inline-flex items-center gap-2.5 rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 mb-8">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                  </span>
-                  <span className="text-xs font-medium text-cream/70">Taking on new projects</span>
-                </div>
+                <p
+                  className="text-xs font-semibold uppercase text-brand mb-6"
+                  style={{ letterSpacing: '0.14em' }}
+                >
+                  Independent Web Development Studio
+                </p>
               </Reveal>
 
               {/* H1 */}
               <Reveal delay={100}>
-                <h1 className="font-display text-display-xl leading-tight tracking-tight mb-3">
-                  <span className="block overflow-hidden">
-                    <span className="block animate-[fade-up_0.8s_ease-out_both]">Built for your</span>
-                  </span>
-                  <span className="block overflow-hidden">
-                    <span className="block animate-[fade-up_0.8s_ease-out_0.15s_both]">
-                      <em className="text-accent relative">
-                        business.
-                        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-[shimmer_3s_ease-in-out_infinite]" />
-                      </em>
-                    </span>
-                  </span>
-                  <span className="block overflow-hidden">
-                    <span className="block animate-[fade-up_0.8s_ease-out_0.3s_both]">Designed for the web.</span>
-                  </span>
+                <h1
+                  className="text-hero font-extrabold leading-tight text-navy mb-5"
+                  style={{ letterSpacing: '-0.02em' }}
+                >
+                  <span className="block">Built for your business.</span>
+                  <span className="block">Designed for the web.</span>
                 </h1>
-                <p className="font-mono text-xs sm:text-sm uppercase tracking-wider text-cream/40 mt-4 animate-[fade-up_0.8s_ease-out_0.45s_both]">
-                  Website design & development for South African businesses
-                </p>
-              </Reveal>
-
-              {/* Rotating line */}
-              <Reveal delay={200}>
-                <p className="text-lg sm:text-xl text-cream/50 mb-8">
-                  Websites that <WordRotator />
-                </p>
               </Reveal>
 
               {/* Sub copy */}
-              <Reveal delay={300}>
-                <p className="text-base text-cream/50 leading-relaxed max-w-[500px] mb-10">
+              <Reveal delay={200}>
+                <p className="text-base sm:text-lg text-body leading-relaxed max-w-[500px] mb-8">
                   Modern, high-performance websites designed to help South African
                   businesses build credibility, reach more customers, and grow online.
                 </p>
               </Reveal>
 
               {/* CTAs */}
-              <Reveal delay={400}>
-                <div className="flex flex-wrap items-center gap-5">
-                  {/* Primary button with gradient border */}
-                  <a
+              <Reveal delay={300}>
+                <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3">
+                  <Link
                     href="/contact"
-                    className="group relative inline-flex items-center gap-2 rounded-full p-[1px] bg-gradient-to-r from-accent via-blue-400 to-accent text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(67,97,238,0.3)]"
+                    className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
                   >
-                    <span className="flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium transition-all duration-300 group-hover:bg-ink-light">
-                      <span className="bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">Get a quote</span>
-                      <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </span>
-                  </a>
-
-                  {/* Secondary link with underline draw */}
-                  <a
-                    href="/about"
-                    className="group relative inline-flex items-center gap-2 text-cream/60 hover:text-cream transition-colors duration-200 text-sm"
+                    Start Your Project
+                    <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                  <Link
+                    href="/work"
+                    className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
                   >
-                    <span className="relative">
-                      About us
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-cream/40 transition-all duration-300 group-hover:w-full" />
-                    </span>
-                    <MoveUpRight size={14} />
-                  </a>
-
-                  {/* WhatsApp */}
-                  <a
-                    href={`https://wa.me/${STUDIO_WHATSAPP}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-emerald-400/70 hover:text-emerald-400 transition-colors duration-200 text-sm"
-                  >
-                    <MessageCircle size={14} />
-                    <span>or WhatsApp us</span>
-                  </a>
-                </div>
-              </Reveal>
-
-              {/* Proof chips */}
-              <Reveal delay={500}>
-                <div className="mt-12 flex flex-wrap items-center gap-3">
-                  <FloatingChip label="Mobile-first" index={0} />
-                  <FloatingChip label="SEO-ready" index={1} />
-                  <FloatingChip label="Built in South Africa" index={2} />
+                    Explore Our Work
+                    <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </div>
               </Reveal>
             </div>
 
-            {/* Right: Showcase */}
-            <div className="order-1 lg:order-2 relative">
-              <Reveal variant="scale" delay={300}>
-                <HeroShowcase />
-              </Reveal>
-
-              {/* Floating chips around showcase (desktop only) */}
-              <div className="hidden lg:block absolute -top-4 -left-8">
-                <FloatingChip label="Fast loading" index={3} />
-              </div>
-              <div className="hidden lg:block absolute -bottom-4 -right-4">
-                <FloatingChip label="Online booking" index={4} />
+            {/* Right: Hero Image */}
+            <div className="order-2 relative flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[560px] lg:max-w-[680px]">
+                <Reveal variant="scale" delay={200}>
+                  <div className="relative hero-image-entrance">
+                    <Image
+                      src="/images/hero-devices.webp"
+                      width={1397}
+                      height={715}
+                      alt="WEB-IN website shown on desktop, tablet and mobile"
+                      priority
+                      sizes="(min-width:1024px) 640px, 100vw"
+                      className="relative z-10 w-full h-auto hero-image-float"
+                      style={{ animationDelay: '0.8s' }}
+                    />
+                    {/* Blurred ellipse shadow */}
+                    <div
+                      className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[80%] h-[40px] z-0"
+                      style={{
+                        background: 'radial-gradient(ellipse at center, rgba(10,20,50,0.10) 0%, transparent 70%)',
+                        filter: 'blur(12px)',
+                      }}
+                    />
+                  </div>
+                </Reveal>
               </div>
             </div>
           </div>
         </Container>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-          <ScrollCue />
-        </div>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-ink to-transparent" />
       </section>
 
-      {/* ─── CAPABILITIES STRIP ─── */}
-      <Section dark className="py-12 sm:py-16 border-t border-line-dark">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { label: 'Service types', value: '7' },
-              { label: 'Mobile-first', value: 'Always' },
-              { label: 'Based in', value: 'South Africa' },
-              { label: 'Tailored quotes', value: 'Every time' },
-            ].map(({ label, value }, i) => (
-              <Reveal key={label} delay={i * 100}>
-                <div className="text-center">
-                  <p className="font-display text-3xl sm:text-4xl text-accent">{value}</p>
-                  <p className="mt-2 text-sm text-cream/40 font-mono uppercase tracking-wider">
-                    {label}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* ─── MARQUEE ─── */}
-      <div className="bg-ink border-t border-line-dark py-5 overflow-hidden">
-        <Marquee
-          items={[
-            'Business Websites',
-            'Portfolio Sites',
-            'Landing Pages',
-            'Online Stores',
-            'Booking Systems',
-            'Custom Applications',
-            'Website Redesigns',
-          ]}
-        />
-      </div>
-
-      {/* ─── PRICING TEASER ─── */}
-      <Section>
+      {/* ─── SERVICES ─── */}
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="What we offer"
-              title="Services built around your project."
-              description="From a simple landing page to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
-              className="mx-auto"
-              center
+              eyebrow="OUR SERVICES"
+              title="Digital solutions for every business."
+              description="From simple landing pages to custom web applications, we build websites that work for your goals, your audience and your growth."
             />
           </Reveal>
 
-          <RevealStagger stagger={100} className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
-            {packages.slice(0, 3).map((pack) => (
-              <article
-                key={pack.name}
-                className={`relative rounded-2xl p-7 transition-all duration-300 ${
-                  pack.popular
-                    ? 'bg-ink text-cream shadow-xl'
-                    : 'bg-cream-light border border-line hover:border-ink/20'
-                }`}
-              >
-                {pack.popular && (
-                  <span className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-1 rounded-full">
-                    Most popular
-                  </span>
-                )}
-                <div className="mb-6">
-                  <p className={`font-mono text-xs uppercase tracking-wider mb-2 ${pack.popular ? 'text-cream/40' : 'text-muted'}`}>
-                    {pack.name}
-                  </p>
-                  <p className="font-display text-4xl">{pack.price}</p>
-                  <p className={`text-sm mt-2 leading-relaxed ${pack.popular ? 'text-cream/60' : 'text-muted'}`}>
-                    {pack.description}
-                  </p>
-                </div>
-                <ul className="flex flex-col gap-3 mb-8">
-                  {pack.features.slice(0, 5).map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm">
-                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${pack.popular ? 'text-accent' : 'text-ink'}`} />
-                      <span className={pack.popular ? 'text-cream/70' : 'text-muted'}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={pack.href}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium transition-all duration-300 ${
-                    pack.popular
-                      ? 'bg-accent text-white hover:bg-accent-dark'
-                      : 'border border-ink/15 text-ink hover:bg-ink/5'
-                  }`}
+          <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-12">
+            {services.map((service) => {
+              const Icon = service.icon
+              return (
+                <article
+                  key={service.title}
+                  className="group rounded-2xl bg-white border border-line p-6 shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5"
                 >
-                  Choose {pack.name}
-                  <ArrowUpRight size={15} />
-                </Link>
-              </article>
-            ))}
+                  <div className="w-10 h-10 rounded-xl bg-blue-tint flex items-center justify-center mb-4">
+                    <Icon size={20} className="text-brand" />
+                  </div>
+                  <h3 className="text-base font-bold text-navy mb-1.5">{service.title}</h3>
+                  <p className="text-sm text-body leading-relaxed mb-4">{service.text}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-navy">{service.price}</span>
+                    <Link
+                      href={service.href}
+                      className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
+                    >
+                      View service
+                      <ArrowUpRight size={14} />
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
           </RevealStagger>
-
-          <Reveal delay={200}>
-            <div className="mt-12 rounded-2xl border border-line bg-cream-light p-8 text-center">
-              <p className="font-display text-2xl mb-2">Need something more specific?</p>
-              <p className="text-sm text-muted mb-5">We build custom solutions for unique requirements. Let us scope it properly.</p>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
-              >
-                View all services
-                <ArrowUpRight size={16} />
-              </Link>
-            </div>
-          </Reveal>
         </Container>
       </Section>
 
       {/* ─── WORK ─── */}
-      <Section className="bg-cream-dark">
+      <Section>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Selected work"
+              eyebrow="SELECTED WORK"
               title="Work that speaks for itself."
-              description="A selection of digital experiences we've designed and built — from full-stack platforms to polished interfaces. Explore the live projects and see how WEB-IN approaches design, development and the details in between."
-              className="mx-auto"
-              center
+              description="A selection of digital experiences we have designed and built. Explore the live projects and see how WEB-IN approaches design, development and the details in between."
             />
           </Reveal>
-        </Container>
-      </Section>
 
-      {homepageProjects.map((project, index) => {
-        const isEven = index % 2 === 0
-        return (
-          <Section key={project.slug} className="bg-cream">
-            <Container>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                {/* Image side */}
-                <div className={`${!isEven ? 'lg:order-2' : ''}`}>
-                  <Reveal>
-                    <Link
-                      href={`/work/${project.slug}`}
-                      className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                      style={{ background: project.cardBg }}
-                    >
-                      {/* Browser bar */}
-                      <div className="flex items-center gap-2 px-4 py-3 border-b border-black/10">
-                        <span className="w-3 h-3 rounded-full bg-red-400/60" />
-                        <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
-                        <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-                        <span className="ml-3 font-mono text-xs text-ink/50 truncate">
-                          {new URL(project.liveUrl).hostname}
-                        </span>
-                      </div>
-                      {/* Screenshot */}
-                      <div className="p-4">
-                        <Image
-                          src={`/screenshots/${project.slug}.png`}
-                          alt={`${project.title} website screenshot`}
-                          width={1200}
-                          height={800}
-                          className="w-full rounded-lg shadow-sm"
-                          loading="lazy"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                        />
-                      </div>
-                    </Link>
-                  </Reveal>
+          <RevealStagger stagger={120} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            {homepageProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}`}
+                className="group block rounded-2xl bg-white border border-line overflow-hidden shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5"
+              >
+                <div className="overflow-hidden">
+                  <Image
+                    src={`/screenshots/${project.slug}.png`}
+                    alt={`${project.title} website screenshot`}
+                    width={1200}
+                    height={800}
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
-
-                {/* Info side */}
-                <div className={`${!isEven ? 'lg:order-1' : ''}`}>
-                  <Reveal>
-                    <p className="font-mono text-sm text-muted uppercase tracking-widest mb-4">
-                      {String(index + 1).padStart(2, '0')} / {project.type}
-                    </p>
-                    <h2 className="text-display-lg font-display text-ink leading-tight mb-3">
-                      {project.title}
-                    </h2>
-                    <p className="text-ink-light leading-relaxed mb-6 max-w-lg">
-                      {project.description}
-                    </p>
-
-                    {/* Tech tags */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 rounded-full bg-cream-dark text-ink-light font-mono text-xs"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Action links */}
-                    <div className="flex items-center gap-6">
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
-                      >
-                        View Live Site
-                        <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </Reveal>
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase text-brand mb-2" style={{ letterSpacing: '0.14em' }}>
+                    {project.type}
+                  </p>
+                  <h3 className="text-xl font-bold text-navy mb-2">{project.title}</h3>
+                  <p className="text-sm text-body leading-relaxed mb-4">{project.subtitle}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand group-hover:gap-2.5 transition-all duration-300">
+                    View project <ArrowUpRight size={14} />
+                  </span>
                 </div>
-              </div>
-            </Container>
-          </Section>
-        )
-      })}
+              </Link>
+            ))}
+          </RevealStagger>
 
-      <Section className="bg-cream-dark">
-        <Container>
-          <Reveal>
-            <div className="text-center">
+          <Reveal delay={300}>
+            <div className="mt-10 text-center">
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
+                className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
               >
                 View all work
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </Reveal>
@@ -468,31 +302,34 @@ export default function HomePage() {
       </Section>
 
       {/* ─── WHY WEB-IN ─── */}
-      <Section dark>
+      <Section alt>
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <Reveal variant="left">
-              <p className="font-mono text-xs uppercase tracking-wider text-accent mb-4">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-4"
+                style={{ letterSpacing: '0.14em' }}
+              >
                 Why WEB-IN
               </p>
-              <h2 className="font-display text-display-md leading-tight tracking-tight text-cream mb-6">
-                A studio that treats your project <em className="text-accent">like our own.</em>
+              <h2 className="text-display-md leading-tight font-bold text-navy mb-6">
+                A studio that treats your project like our own.
               </h2>
-              <p className="text-cream/60 text-lg leading-relaxed mb-8">
+              <p className="text-body text-lg leading-relaxed mb-8">
                 We are not a template factory or a faceless agency. Every website we
                 build gets our full attention — from the first conversation to the
                 final launch and beyond.
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent-dark"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
               >
                 About our studio
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </Reveal>
 
-            <RevealStagger stagger={120} className="flex flex-col gap-5">
+            <RevealStagger stagger={100} className="flex flex-col gap-4">
               {[
                 {
                   title: 'Strategy-first approach',
@@ -513,10 +350,10 @@ export default function HomePage() {
               ].map(({ title, text }) => (
                 <div
                   key={title}
-                  className="rounded-xl border border-line-dark p-6 transition-colors duration-300 hover:border-accent/30"
+                  className="rounded-2xl bg-white border border-line p-6 shadow-card transition-all duration-300 hover:border-brand/20"
                 >
-                  <h4 className="font-medium text-cream mb-2">{title}</h4>
-                  <p className="text-sm text-cream/50 leading-relaxed">{text}</p>
+                  <h4 className="font-bold text-navy mb-2">{title}</h4>
+                  <p className="text-sm text-body leading-relaxed">{text}</p>
                 </div>
               ))}
             </RevealStagger>
@@ -529,28 +366,31 @@ export default function HomePage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
             <Reveal variant="left">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-4"
+                style={{ letterSpacing: '0.14em' }}
+              >
                 How it works
               </p>
-              <h2 className="font-display text-display-md leading-tight tracking-tight mb-6">
-                From first conversation <em>to live website.</em>
+              <h2 className="text-display-md leading-tight font-bold text-navy mb-6">
+                From first conversation to live website.
               </h2>
-              <p className="text-muted text-lg leading-relaxed mb-8">
+              <p className="text-body text-lg leading-relaxed mb-8">
                 A clear process makes better projects. We keep every stage focused,
                 transparent and easy to understand.
               </p>
               <Link
                 href="/process"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
+                className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
               >
                 Explore our process
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </Reveal>
 
             <div className="relative">
               <div className="absolute left-[19px] top-2 bottom-2 w-px bg-line hidden sm:block" />
-              <RevealStagger stagger={150} className="flex flex-col gap-8">
+              <RevealStagger stagger={120} className="flex flex-col gap-8">
                 {[
                   ['01', 'Discover', 'We learn about your business, goals, audience and requirements.'],
                   ['02', 'Define', 'We establish the scope, direction, timeline and quotation before development begins.'],
@@ -558,12 +398,12 @@ export default function HomePage() {
                   ['04', 'Launch', 'We complete final checks, deploy the website and get it ready for the real world.'],
                 ].map(([num, title, desc]) => (
                   <div key={num} className="relative flex gap-5 sm:gap-6">
-                    <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-ink text-cream flex items-center justify-center text-sm font-mono">
+                    <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center text-sm font-bold">
                       {num}
                     </div>
                     <div className="pt-1.5">
-                      <h3 className="font-display text-xl mb-1.5">{title}</h3>
-                      <p className="text-sm text-muted leading-relaxed">{desc}</p>
+                      <h3 className="text-lg font-bold text-navy mb-1.5">{title}</h3>
+                      <p className="text-sm text-body leading-relaxed">{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -574,27 +414,30 @@ export default function HomePage() {
       </Section>
 
       {/* ─── FAQ PREVIEW ─── */}
-      <Section>
+      <Section alt>
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-16 items-start">
             <Reveal variant="left">
-              <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-4"
+                style={{ letterSpacing: '0.14em' }}
+              >
                 FAQ
               </p>
-              <h2 className="font-display text-display-sm leading-snug tracking-tight mb-6">
+              <h2 className="text-display-sm leading-snug font-bold text-navy mb-6">
                 Good questions
                 <br />
-                <em>deserve clear answers.</em>
+                deserve clear answers.
               </h2>
-              <p className="text-muted leading-relaxed mb-6">
+              <p className="text-body leading-relaxed mb-6">
                 Before you start, here are a few of the questions we hear most often.
               </p>
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-cream px-7 py-3 text-sm font-medium transition-all duration-300 hover:bg-ink-light"
+                className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
               >
                 View all FAQs
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </Reveal>
 
@@ -606,34 +449,36 @@ export default function HomePage() {
       </Section>
 
       {/* ─── FINAL CTA ─── */}
-      <Section dark className="relative overflow-hidden">
-        <div className="absolute inset-0 grain grain-dark" />
+      <Section dark>
         <Container className="relative z-10">
           <Reveal>
             <div className="max-w-[700px] mx-auto text-center">
-              <p className="font-mono text-xs uppercase tracking-wider text-accent mb-6">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-6"
+                style={{ letterSpacing: '0.14em' }}
+              >
                 Ready to begin?
               </p>
-              <h2 className="font-display text-display-lg leading-tight tracking-tight text-cream mb-6">
-                Let&apos;s build something <em className="text-accent">worth visiting.</em>
+              <h2 className="text-display-lg leading-tight font-bold text-white mb-6">
+                Let&apos;s build something worth visiting.
               </h2>
-              <p className="text-cream/50 text-lg leading-relaxed mb-10">
+              <p className="text-white/50 text-lg leading-relaxed mb-10">
                 Tell us about your project and we will get back to you within 1–2
                 business days with a tailored recommendation and quote.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-8 py-4 text-base font-medium transition-all duration-300 hover:bg-accent-dark"
+                  className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-8 text-base font-medium transition-all duration-300 hover:bg-brand-hover"
                 >
-                  Get a quote
-                  <ArrowUpRight size={18} />
+                  Start Your Project
+                  <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
                 <Link
-                  href={`https://wa.me/27649531145`}
+                  href={`https://wa.me/${STUDIO_WHATSAPP}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/15 text-cream/70 px-6 py-3.5 text-sm font-medium transition-all duration-300 hover:border-cream/30 hover:text-cream"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 text-white/70 h-12 px-6 text-sm font-medium transition-all duration-300 hover:border-white/30 hover:text-white"
                 >
                   WhatsApp us
                 </Link>

@@ -20,22 +20,22 @@ export function SectionHeading({
     <div className={clsx('max-w-[680px]', center && 'mx-auto text-center', className)}>
       {eyebrow && (
         <p className={clsx(
-          'mb-4 font-mono text-xs uppercase tracking-wider',
-          light ? 'text-accent' : 'text-muted',
-        )}>
+          'mb-4 text-xs font-semibold uppercase',
+          light ? 'text-brand' : 'text-brand',
+        )} style={{ letterSpacing: '0.14em' }}>
           {eyebrow}
         </p>
       )}
       <h2 className={clsx(
-        'font-display text-display-md leading-tight tracking-tight',
-        light && 'text-cream',
+        'text-display-md leading-tight font-bold',
+        light ? 'text-white' : 'text-navy',
       )}>
         {title}
       </h2>
       {description && (
         <p className={clsx(
           'mt-5 text-lg leading-relaxed',
-          light ? 'text-cream/60' : 'text-muted',
+          light ? 'text-white/60' : 'text-body',
         )}>
           {description}
         </p>

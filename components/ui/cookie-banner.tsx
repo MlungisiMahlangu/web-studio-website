@@ -23,23 +23,23 @@ export default function CookieBanner() {
 
   return (
     <div className="fixed bottom-20 left-4 right-4 lg:bottom-6 lg:left-6 lg:right-auto z-50 max-w-[420px] animate-fade-up">
-      <div className="rounded-2xl bg-ink text-cream p-5 shadow-xl border border-line-dark">
-        <p className="text-sm text-cream/70 leading-relaxed mb-4">
+      <div className="rounded-2xl bg-white text-body p-5 shadow-xl border border-line">
+        <p className="text-sm text-body leading-relaxed mb-4">
           We use cookies to improve your experience. By continuing, you agree to our{' '}
-          <Link href="/cookie-policy" className="text-accent underline underline-offset-2">
+          <Link href="/cookie-policy" className="text-brand underline underline-offset-2">
             cookie policy
           </Link>.
         </p>
         <div className="flex items-center gap-3">
           <button
             onClick={() => dismiss('accepted')}
-            className="rounded-full bg-accent text-white px-4 py-2 text-sm font-medium transition-colors hover:bg-accent-dark"
+            className="rounded-full bg-brand text-white px-4 py-2 text-sm font-medium transition-colors hover:bg-brand-hover"
           >
             Accept
           </button>
           <button
             onClick={() => dismiss('declined')}
-            className="rounded-full border border-cream/15 text-cream/60 px-4 py-2 text-sm font-medium transition-colors hover:border-cream/30"
+            className="rounded-full border border-line text-body px-4 py-2 text-sm font-medium transition-colors hover:bg-surface"
           >
             Decline
           </button>

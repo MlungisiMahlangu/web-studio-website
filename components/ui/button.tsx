@@ -19,10 +19,10 @@ interface ButtonProps {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent-dark',
-  secondary: 'bg-ink text-cream hover:bg-ink-light',
-  outline: 'border border-ink/15 text-ink hover:bg-ink/5',
-  ghost: 'text-ink hover:bg-ink/5',
+  primary: 'bg-brand text-white hover:bg-brand-hover',
+  secondary: 'bg-white border border-line text-navy hover:border-brand/30',
+  outline: 'border border-line text-navy hover:bg-surface',
+  ghost: 'text-navy hover:bg-surface',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -45,9 +45,8 @@ export function Button({
 }: ButtonProps) {
   const classes = clsx(
     'inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 ease-out-expo',
-    'focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2',
+    'focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2',
     'active:scale-[0.97]',
-    variant === 'outline' && 'border-line-dark border',
     variantClasses[variant],
     sizeClasses[size],
     className,

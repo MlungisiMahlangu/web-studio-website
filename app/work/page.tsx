@@ -19,17 +19,16 @@ export default function WorkPage() {
   return (
     <>
       {/* Hero */}
-      <Section className="bg-ink text-cream relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-40 pointer-events-none" />
+      <Section dark className="relative overflow-hidden">
         <Container>
           <Reveal>
-            <p className="font-mono text-sm text-cream/60 uppercase tracking-widest mb-6">02 / Selected work</p>
-            <h1 className="text-display-xl font-display text-cream leading-tight">
+            <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>02 / Selected work</p>
+            <h1 className="text-display-lg leading-tight font-extrabold text-white">
               Work that speaks
               <br />
-              <em className="italic text-accent">for itself.</em>
+              for itself.
             </h1>
-            <p className="mt-8 text-lg text-cream/70 max-w-2xl leading-relaxed">
+            <p className="mt-8 text-lg text-white/70 max-w-2xl leading-relaxed">
               A selection of digital experiences we have designed and built — from
               full-stack platforms to polished interfaces. Explore the live projects
               and see how WEB-IN approaches design, development and the details in
@@ -43,7 +42,7 @@ export default function WorkPage() {
       {portfolioProjects.map((project, index) => {
         const isEven = index % 2 === 0
         return (
-          <Section key={project.slug} className="bg-cream">
+          <Section key={project.slug} alt={index % 2 !== 0}>
             <Container>
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center`}>
                 {/* Image side */}
@@ -51,7 +50,7 @@ export default function WorkPage() {
                   <Reveal>
                     <Link
                       href={`/work/${project.slug}`}
-                      className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      className="block rounded-2xl overflow-hidden shadow-card hover:shadow-lg transition-shadow duration-300 border border-line"
                       style={{ background: project.cardBg }}
                     >
                       {/* Browser bar */}
@@ -59,7 +58,7 @@ export default function WorkPage() {
                         <span className="w-3 h-3 rounded-full bg-red-400/60" />
                         <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
                         <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-                        <span className="ml-3 font-mono text-xs text-ink/50 truncate">
+                        <span className="ml-3 text-xs text-body truncate">
                           {new URL(project.liveUrl).hostname}
                         </span>
                       </div>
@@ -82,13 +81,13 @@ export default function WorkPage() {
                 {/* Info side */}
                 <div className={`${!isEven ? 'lg:order-1' : ''}`}>
                   <Reveal>
-                    <p className="font-mono text-sm text-muted uppercase tracking-widest mb-4">
+                    <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
                       {String(index + 1).padStart(2, '0')} / {project.type}
                     </p>
-                    <h2 className="text-display-lg font-display text-ink leading-tight mb-3">
+                    <h2 className="text-display-sm leading-tight font-bold text-navy mb-3">
                       {project.title}
                     </h2>
-                    <p className="text-ink-light leading-relaxed mb-6 max-w-lg">
+                    <p className="text-body leading-relaxed mb-6 max-w-lg">
                       {project.description}
                     </p>
 
@@ -97,7 +96,7 @@ export default function WorkPage() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-full bg-cream-dark text-ink-light font-mono text-xs"
+                          className="px-3 py-1 rounded-full bg-surface text-body text-xs font-medium"
                         >
                           {tech}
                         </span>
@@ -110,7 +109,7 @@ export default function WorkPage() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-accent-dark transition-colors"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-navy hover:text-brand transition-colors"
                       >
                         View Live Site <ArrowUpRight size={16} />
                       </a>
@@ -124,31 +123,30 @@ export default function WorkPage() {
       })}
 
       {/* Final CTA */}
-      <Section className="bg-ink text-cream relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grain.png')] opacity-40 pointer-events-none" />
+      <Section dark>
         <Container>
           <Reveal>
-            <p className="font-mono text-sm text-cream/60 uppercase tracking-widest mb-6">Have something in mind?</p>
-            <h2 className="text-display-xl font-display text-cream leading-tight">
+            <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>Have something in mind?</p>
+            <h2 className="text-display-lg leading-tight font-bold text-white">
               Let&apos;s build
               <br />
-              <em className="italic text-accent">what is next.</em>
+              what is next.
             </h2>
-            <p className="mt-6 text-lg text-cream/70 max-w-xl leading-relaxed">
+            <p className="mt-6 text-lg text-white/70 max-w-xl leading-relaxed">
               Whether you are starting a business, improving an existing website or
               building something completely custom, we would love to hear what you
               are working on.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
               <Link
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cream text-ink font-medium text-sm hover:bg-cream-dark transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand text-white font-medium text-sm hover:bg-brand-hover transition-colors"
                 href="/contact"
               >
                 Let&apos;s talk <ArrowUpRight size={16} />
               </Link>
               <Link
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-cream/70 hover:text-cream transition-colors"
-                href="/services"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                href="/pricing"
               >
                 Explore Our Services <ArrowUpRight size={16} />
               </Link>

@@ -65,26 +65,23 @@ export default async function ServiceDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       {/* ─── HERO ─── */}
-      <section className="relative bg-ink text-cream overflow-hidden">
-        <div className="absolute inset-0 grain grain-dark" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink to-ink-light/30" />
-
+      <section className="relative bg-dark-panel text-white overflow-hidden">
         <Container className="relative z-10 py-28 sm:py-36 md:py-44">
           <div className="max-w-[800px]">
             <Reveal>
-              <p className="font-mono text-xs uppercase tracking-wider text-accent mb-6">
+              <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>
                 {detail.name}
               </p>
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="font-display text-display-xl leading-tight tracking-tight mb-8">
+              <h1 className="text-hero font-extrabold leading-tight tracking-tight mb-8">
                 {detail.intro}
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
-              <p className="text-lg sm:text-xl text-cream/60 leading-relaxed max-w-[600px]">
+              <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-[600px]">
                 {detail.description}
               </p>
             </Reveal>
@@ -98,7 +95,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <Reveal>
             <SectionHeading
               eyebrow="What you get"
-              title={<>All the essentials,<br /><em>ready to go.</em></>}
+              title={<>All the essentials,<br /><span className="text-brand">ready to go.</span></>}
               center
               className="mx-auto mb-14"
             />
@@ -113,20 +110,20 @@ export default async function ServiceDetailPage({ params }: Props) {
               return (
                 <div
                   key={group.title}
-                  className="rounded-2xl border border-line bg-cream-light p-7 transition-all duration-300 ease-out-expo hover:border-ink/20 hover:shadow-[0_0_0_1px_rgba(12,12,14,0.08)]"
+                  className="rounded-2xl border border-line bg-white p-7 shadow-card transition-all duration-300 ease-out-expo hover:border-brand/20 hover:shadow-lg"
                 >
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-ink/5">
-                      <Icon aria-hidden="true" size={20} className="text-muted" />
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-tint/60">
+                      <Icon aria-hidden="true" size={20} className="text-brand" />
                     </div>
-                    <h3 className="font-display text-display-sm leading-snug tracking-tight">
+                    <h3 className="text-xl font-bold leading-snug tracking-tight text-navy">
                       {group.title}
                     </h3>
                   </div>
                   <ul className="space-y-3">
                     {group.items.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-[15px] text-muted leading-snug">
-                        <Check aria-hidden="true" size={16} className="mt-0.5 shrink-0 text-accent-dark" />
+                        <Check aria-hidden="true" size={16} className="mt-0.5 shrink-0 text-brand-hover" />
                         {item}
                       </li>
                     ))}
@@ -142,22 +139,22 @@ export default async function ServiceDetailPage({ params }: Props) {
       <Section className="!pt-0">
         <Container>
           <Reveal>
-            <div className="rounded-2xl border border-line bg-cream-light p-8 sm:p-12">
+            <div className="rounded-2xl border border-line bg-white p-8 sm:p-12 shadow-card">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-wider text-muted mb-4">
+                  <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>
                     Built for
                   </p>
-                  <h2 className="font-display text-display-md leading-tight tracking-tight">
+                  <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-navy">
                     Is this
                     <br />
-                    <em>right for you?</em>
+                    <span className="text-brand">right for you?</span>
                   </h2>
                 </div>
                 <ul className="space-y-4">
                   {detail.idealFor.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-base leading-snug">
-                      <Check aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-accent-dark" />
+                    <li key={item} className="flex items-start gap-3 text-base leading-snug text-body">
+                      <Check aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-brand-hover" />
                       {item}
                     </li>
                   ))}
@@ -172,47 +169,44 @@ export default async function ServiceDetailPage({ params }: Props) {
       <Section className="!pt-0">
         <Container>
           <Reveal>
-            <div className="rounded-2xl bg-ink text-cream px-8 py-14 sm:px-14 sm:py-18 overflow-hidden relative">
-              <div className="absolute inset-0 grain grain-dark opacity-40" />
-              <div className="relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                  <div>
-                    <p className="font-mono text-xs uppercase tracking-wider text-cream/40 mb-3">
-                      Investment
-                    </p>
-                    <h2 className="font-display text-display-md leading-tight tracking-tight mb-2">
-                      {detail.price}
-                    </h2>
-                    <p className="text-cream/50 text-[15px] leading-relaxed">
-                      Final scope is confirmed before work begins.
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-6">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-cream/10">
-                        <Clock aria-hidden="true" size={18} className="text-cream/60" />
-                      </div>
-                      <div>
-                        <p className="font-mono text-[11px] uppercase tracking-wider text-cream/40 mb-1">
-                          Timeline
-                        </p>
-                        <p className="text-base font-semibold text-cream">
-                          {detail.timeframe}
-                        </p>
-                      </div>
+            <div className="rounded-2xl bg-dark-panel text-white px-8 py-14 sm:px-14 sm:py-18">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div>
+                  <p className="text-xs font-semibold uppercase text-white/40 mb-3" style={{ letterSpacing: '0.14em' }}>
+                    Investment
+                  </p>
+                  <h2 className="text-3xl font-extrabold leading-tight tracking-tight mb-2">
+                    {detail.price}
+                  </h2>
+                  <p className="text-white/50 text-[15px] leading-relaxed">
+                    Final scope is confirmed before work begins.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10">
+                      <Clock aria-hidden="true" size={18} className="text-white/60" />
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-cream/10">
-                        <Globe aria-hidden="true" size={18} className="text-cream/60" />
-                      </div>
-                      <div>
-                        <p className="font-mono text-[11px] uppercase tracking-wider text-cream/40 mb-1">
-                          Domain
-                        </p>
-                        <p className="text-sm text-cream/80">
-                          {detail.domain}
-                        </p>
-                      </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase text-white/40 mb-1" style={{ letterSpacing: '0.14em' }}>
+                        Timeline
+                      </p>
+                      <p className="text-base font-bold text-white">
+                        {detail.timeframe}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10">
+                      <Globe aria-hidden="true" size={18} className="text-white/60" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase text-white/40 mb-1" style={{ letterSpacing: '0.14em' }}>
+                        Domain
+                      </p>
+                      <p className="text-sm text-white/80">
+                        {detail.domain}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -239,23 +233,20 @@ export default async function ServiceDetailPage({ params }: Props) {
       <Section className="!pt-0">
         <Container>
           <Reveal>
-            <div className="rounded-2xl bg-ink text-cream px-8 py-16 sm:px-14 sm:py-20 text-center overflow-hidden relative">
-              <div className="absolute inset-0 grain grain-dark opacity-40" />
-              <div className="relative z-10">
-                <h2 className="font-display text-display-md leading-tight tracking-tight mb-5">
-                  Ready to get started?
-                </h2>
-                <p className="text-cream/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
-                  Let&rsquo;s discuss your project and put together a scope that fits your goals and budget.
-                </p>
-                <Link
-                  href={serviceHref}
-                  className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-accent-dark"
-                >
-                  {detail.cta}
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
+            <div className="rounded-2xl bg-dark-panel text-white px-8 py-16 sm:px-14 sm:py-20 text-center">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight mb-5">
+                Ready to get started?
+              </h2>
+              <p className="text-white/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
+                Let&rsquo;s discuss your project and put together a scope that fits your goals and budget.
+              </p>
+              <Link
+                href={serviceHref}
+                className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-semibold transition-all duration-300 ease-out-expo hover:bg-brand-hover"
+              >
+                {detail.cta}
+                <ArrowUpRight size={18} />
+              </Link>
             </div>
           </Reveal>
         </Container>
