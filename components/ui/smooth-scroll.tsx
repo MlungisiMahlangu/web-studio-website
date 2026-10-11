@@ -39,7 +39,12 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  // Scroll to top on navigation (skip initial render)
+  // Disable browser's native scroll restoration so all navigations start from top
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+  }, [])
+
+  // Scroll to top on any navigation (skip initial render to preserve refresh position)
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false
