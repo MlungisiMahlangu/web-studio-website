@@ -195,29 +195,31 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               ref={hamburgerRef}
-              className="flex lg:hidden items-center justify-center w-11 h-11 rounded-full border border-line transition-colors hover:bg-surface"
+              className="flex lg:hidden items-center justify-center w-11 h-11 -mr-2 rounded-xl transition-colors hover:bg-surface/80"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              <div className="relative w-5 h-5">
+              <div className="relative w-[22px] h-[18px]">
                 <span
                   className={clsx(
-                    'absolute left-0 top-0 w-full h-[2px] bg-navy transition-all duration-300',
-                    menuOpen && 'top-[9px] rotate-45'
+                    'absolute left-0 w-full h-[2px] rounded-full bg-navy transition-all duration-300',
+                    'top-0',
+                    menuOpen && 'top-[8px] rotate-45'
                   )}
                 />
                 <span
                   className={clsx(
-                    'absolute left-0 top-[9px] w-full h-[2px] bg-navy transition-opacity duration-300',
-                    menuOpen && 'opacity-0'
+                    'absolute left-0 top-[8px] w-full h-[2px] rounded-full bg-navy transition-all duration-300',
+                    menuOpen ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
                   )}
                 />
                 <span
                   className={clsx(
-                    'absolute left-0 bottom-0 w-full h-[2px] bg-navy transition-all duration-300',
-                    menuOpen && 'bottom-[9px] -rotate-45'
+                    'absolute left-0 w-full h-[2px] rounded-full bg-navy transition-all duration-300',
+                    'bottom-0',
+                    menuOpen && 'bottom-[8px] -rotate-45'
                   )}
                 />
               </div>
