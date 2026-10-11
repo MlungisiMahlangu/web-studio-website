@@ -66,7 +66,7 @@ export default function PricingPage() {
       />
 
       {/* What you get with every website */}
-      <Section alt>
+      <Section>
         <Container>
           <Reveal>
             <SectionHeading
@@ -91,7 +91,7 @@ export default function PricingPage() {
       </Section>
 
       {/* Packages — main section */}
-      <Section id="packages">
+      <Section id="packages" alt>
         <Container>
           <Reveal>
             <SectionHeading
