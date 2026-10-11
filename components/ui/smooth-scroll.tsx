@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<import('lenis').default | null>(null)
   const pathname = usePathname()
-  const isFirstRender = useRef(true)
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -39,23 +38,23 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
-  // Disable browser's native scroll restoration so all navigations start from top
+  // Disable browser scroll restoration — every page starts from top
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, [])
 
-  // Scroll to top on any navigation (skip initial render to preserve refresh position)
+  // Scroll to top on every pathname change (including initial load, back, forward)
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
-    // Use Lenis scrollTo if available, otherwise fall back to native
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true })
-    } else {
-      window.scrollTo(0, 0)
-    }
+    // Double rAF ensures scroll fires after page content has rendered
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(0, { immediate: true })
+        }
+        window.scrollTo(0, 0)
+      })
+    })
+    return () => cancelAnimationFrame(id)
   }, [pathname])
 
   return <>{children}</>
