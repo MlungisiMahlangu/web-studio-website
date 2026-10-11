@@ -25,26 +25,56 @@ function EnquiryFormInner() {
     const name = formData.get('name') as string
     const phone = formData.get('phone') as string
     const email = formData.get('email') as string
+    const service = formData.get('service') as string
+    const referral = formData.get('referral') as string
+    const message = formData.get('message') as string
     const consent = formData.get('consent')
 
+    // Name: required, at least 2 characters, letters only
     if (!name || name.trim().length < 2) {
       newErrors.name = 'Please enter your full name'
+    } else if (!/^[a-zA-Z\s'-]+$/.test(name.trim())) {
+      newErrors.name = 'Name should only contain letters'
     }
 
-    const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}$/
-    const phoneCleaned = phone.replace(/\s/g, '')
-    const phoneDigits = phoneCleaned.replace(/[\+\-\(\)\.]/g, '')
-    if (!phone || phoneDigits.length < 10 || phoneDigits.length > 12 || !phoneRegex.test(phoneCleaned)) {
-      newErrors.phone = 'Please enter a valid 10-digit phone number'
+    // Phone: numbers only, exactly 10 digits (allow + prefix for country code)
+    const phoneDigits = phone.replace(/[^0-9]/g, '')
+    if (!phone || phoneDigits.length === 0) {
+      newErrors.phone = 'Please enter your phone number'
+    } else if (phoneDigits.length < 10) {
+      newErrors.phone = 'Phone number must be at least 10 digits'
+    } else if (phoneDigits.length > 12) {
+      newErrors.phone = 'Phone number is too long'
+    } else if (!/^[0-9+\s\-\(\)]+$/.test(phone)) {
+      newErrors.phone = 'Phone number should only contain numbers'
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!email || !emailRegex.test(email)) {
-      newErrors.email = 'Please enter a valid email address'
+    // Email: must be a valid format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!email || email.trim().length === 0) {
+      newErrors.email = 'Please enter your email address'
+    } else if (!emailRegex.test(email.trim())) {
+      newErrors.email = 'Please enter a valid email (e.g. name@example.com)'
     }
 
+    // Service: must select an option
+    if (!service || service.trim().length === 0) {
+      newErrors.service = 'Please select what you need'
+    }
+
+    // Referral: must select an option
+    if (!referral || referral.trim().length === 0) {
+      newErrors.referral = 'Please tell us how you found us'
+    }
+
+    // Message: required
+    if (!message || message.trim().length < 10) {
+      newErrors.message = 'Please tell us a bit more (at least 10 characters)'
+    }
+
+    // Consent: must agree
     if (!consent) {
-      newErrors.consent = 'You must agree to be contacted'
+      newErrors.consent = 'You must agree before submitting'
     }
 
     setErrors(newErrors)
@@ -97,12 +127,24 @@ function EnquiryFormInner() {
       <div className="form-row">
         <label>
           Name
-          <input required name="name" placeholder="Your full name" />
+          <input required name="name" placeholder="Your full name" autoComplete="name" />
           {errors.name && <span className="field-error"><AlertCircle size={12} /> {errors.name}</span>}
         </label>
         <label>
           Phone number
-          <input required name="phone" type="tel" placeholder="+27 00 000 0000" />
+          <input
+            required
+            name="phone"
+            type="tel"
+            placeholder="071 234 5678"
+            inputMode="numeric"
+            pattern="[0-9+\s\-\(\)]*"
+            autoComplete="tel"
+            onInput={(e) => {
+              const input = e.currentTarget
+              input.value = input.value.replace(/[^0-9+\s\-\(\)]/g, '')
+            }}
+          />
           {errors.phone && <span className="field-error"><AlertCircle size={12} /> {errors.phone}</span>}
         </label>
       </div>
@@ -124,6 +166,7 @@ function EnquiryFormInner() {
               <option key={option}>{option}</option>
             ))}
           </select>
+          {errors.service && <span className="field-error"><AlertCircle size={12} /> {errors.service}</span>}
           <a href="/pricing" className="field-helper-link" target="_blank" rel="noopener noreferrer">
             View our services
           </a>
@@ -138,6 +181,7 @@ function EnquiryFormInner() {
               <option key={option}>{option}</option>
             ))}
           </select>
+          {errors.referral && <span className="field-error"><AlertCircle size={12} /> {errors.referral}</span>}
         </label>
       </div>
 
@@ -149,6 +193,7 @@ function EnquiryFormInner() {
           rows={6}
           placeholder="Tell us about your business, goals, timeline and any specific requirements..."
         />
+        {errors.message && <span className="field-error"><AlertCircle size={12} /> {errors.message}</span>}
       </label>
 
       <label className="checkbox-label">
@@ -163,7 +208,7 @@ function EnquiryFormInner() {
       </label>
       {errors.consent && <span className="field-error checkbox-error"><AlertCircle size={12} /> {errors.consent}</span>}
 
-      <button className="button button-light" type="submit" disabled={isSubmitting}>
+      <button className="button button-primary" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Send message'} <CheckCircle2 />
       </button>
     </form>
