@@ -136,7 +136,7 @@ function EnquiryFormInner() {
             required
             name="phone"
             type="tel"
-            placeholder="071 234 5678"
+            placeholder="000 000 0000"
             inputMode="numeric"
             pattern="[0-9+\s\-\(\)]*"
             autoComplete="tel"
