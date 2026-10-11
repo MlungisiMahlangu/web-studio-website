@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { ArrowUpRight, ArrowLeft, Check, ExternalLink, Code2 } from 'lucide-react'
+import { ArrowUpRight, ArrowLeft, Check, ExternalLink } from 'lucide-react'
 import { portfolioProjects } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -52,6 +52,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         title={project.title}
         description={project.subtitle}
         variant="split"
+        compact
         buttons={
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <a
@@ -63,17 +64,6 @@ export default async function ProjectDetailPage({ params }: Props) {
               Visit Live Site
               <ExternalLink size={16} className="shrink-0" />
             </a>
-            {project.codeUrl && (
-              <a
-                href={project.codeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-line bg-white text-navy h-12 px-6 text-sm font-medium transition-all duration-300 hover:border-brand/20 hover:shadow-lg"
-              >
-                <Code2 size={16} className="shrink-0" />
-                View Code
-              </a>
-            )}
           </div>
         }
         aside={
@@ -89,23 +79,23 @@ export default async function ProjectDetailPage({ params }: Props) {
       />
 
       {/* Content + Sidebar */}
-      <Section>
+      <Section tight>
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
             {/* Main content */}
-            <div className="lg:col-span-2 space-y-16">
+            <div className="lg:col-span-2 space-y-8">
               {/* Overview */}
               <Reveal>
-                <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>Overview</p>
-                <p className="text-lg text-body leading-relaxed">{project.description}</p>
+                <p className="text-xs font-semibold uppercase text-muted mb-3" style={{ letterSpacing: '0.14em' }}>Overview</p>
+                <p className="text-base text-body leading-relaxed">{project.description}</p>
               </Reveal>
 
               {/* Challenge */}
               {project.challenge && (
                 <Reveal>
-                  <div className="border-l-2 border-brand pl-6">
-                    <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>The challenge</p>
-                    <p className="text-lg text-body leading-relaxed">{project.challenge}</p>
+                  <div className="border-l-2 border-brand pl-5">
+                    <p className="text-xs font-semibold uppercase text-muted mb-3" style={{ letterSpacing: '0.14em' }}>The challenge</p>
+                    <p className="text-base text-body leading-relaxed">{project.challenge}</p>
                   </div>
                 </Reveal>
               )}
@@ -113,9 +103,9 @@ export default async function ProjectDetailPage({ params }: Props) {
               {/* Approach */}
               {project.approach && (
                 <Reveal>
-                  <div className="border-l-2 border-brand pl-6">
-                    <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>The approach</p>
-                    <p className="text-lg text-body leading-relaxed">{project.approach}</p>
+                  <div className="border-l-2 border-brand pl-5">
+                    <p className="text-xs font-semibold uppercase text-muted mb-3" style={{ letterSpacing: '0.14em' }}>The approach</p>
+                    <p className="text-base text-body leading-relaxed">{project.approach}</p>
                   </div>
                 </Reveal>
               )}
@@ -123,27 +113,17 @@ export default async function ProjectDetailPage({ params }: Props) {
               {/* Key features */}
               {project.features && project.features.length > 0 && (
                 <Reveal>
-                  <p className="text-xs font-semibold uppercase text-muted mb-6" style={{ letterSpacing: '0.14em' }}>Key features</p>
-                  <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>Key features</p>
+                  <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {project.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-3">
-                        <Check size={16} className="text-brand mt-0.5 shrink-0" />
+                      <div key={feature} className="flex items-start gap-2.5">
+                        <Check size={15} className="text-brand mt-0.5 shrink-0" />
                         <span className="text-body text-sm leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </RevealStagger>
                 </Reveal>
               )}
-
-              {/* Tech stack */}
-              <Reveal>
-                <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>Tech stack</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="brand">{tech}</Badge>
-                  ))}
-                </div>
-              </Reveal>
             </div>
 
             {/* Sidebar */}
@@ -183,7 +163,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </Section>
 
       {/* Prev/Next navigation */}
-      <Section alt>
+      <Section tight>
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <Link

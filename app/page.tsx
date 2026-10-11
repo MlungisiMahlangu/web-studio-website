@@ -162,10 +162,10 @@ export default function HomePage() {
                     <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                   <Link
-                    href="/work"
+                    href="/about"
                     className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
                   >
-                    Explore Our Work
+                    About Us
                     <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
