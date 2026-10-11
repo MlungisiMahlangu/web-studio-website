@@ -5,7 +5,6 @@ import { STUDIO_NAME, STUDIO_TAGLINE, STUDIO_DESCRIPTION } from '@/lib/constants
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
 import { SmoothScroll } from '@/components/ui/smooth-scroll'
-import { ScrollToTop } from '@/components/ui/scroll-to-top'
 import CookieBanner from '@/components/ui/cookie-banner'
 import './globals.css'
 
@@ -60,7 +59,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <SmoothScroll>
-          <ScrollToTop />
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />

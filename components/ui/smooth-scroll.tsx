@@ -1,9 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<import('lenis').default | null>(null)
+  const pathname = usePathname()
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -35,6 +38,20 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       lenisRef.current?.destroy()
     }
   }, [])
+
+  // Scroll to top on navigation (skip initial render)
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    // Use Lenis scrollTo if available, otherwise fall back to native
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true })
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname])
 
   return <>{children}</>
 }
