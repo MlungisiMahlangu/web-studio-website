@@ -1,93 +1,237 @@
 import Link from 'next/link'
-import { ArrowUpRight, Check } from 'lucide-react'
-import { packages, addons, maintenancePlans, comparisonFeatures } from '@/lib/constants'
+import { ArrowUpRight, Check, Smartphone, Search, Mail, Server, Headphones, Shield, Plus, Minus } from 'lucide-react'
+import { services, packages, addons, maintenancePlans, comparisonFeatures, serviceDetails, homepageFaqs } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { PageHero } from '@/components/ui/page-hero'
+import { CTABand } from '@/components/ui/cta-band'
+import { IconBox } from '@/components/ui/icon-box'
+import { Badge } from '@/components/ui/badge'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Website Design Prices in South Africa | WEB-IN',
+  title: 'Services & Pricing | WEB-IN',
   description: 'Compare website design packages in South Africa. Landing pages, business websites, portfolios and online stores with clear pricing and no hidden costs from WEB-IN.',
   alternates: {
     canonical: 'https://web-in.co.za/pricing',
   },
 }
 
+const jumpLinks = [
+  { label: 'Business Websites', href: '#pricing-business-websites' },
+  { label: 'Portfolio', href: '#pricing-portfolio-websites' },
+  { label: 'Landing Pages', href: '#pricing-landing-pages' },
+  { label: 'Booking', href: '#pricing-booking-websites' },
+  { label: 'Online Stores', href: '#pricing-online-stores' },
+  { label: 'Custom Apps', href: '#pricing-custom-web-applications' },
+  { label: 'Redesigns', href: '#pricing-website-redesigns' },
+  { label: 'Packages', href: '#packages' },
+  { label: 'Compare', href: '#comparison' },
+  { label: 'FAQ', href: '#pricing-faq' },
+]
+
+const everyWebsiteFeatures = [
+  { icon: Smartphone, title: 'Mobile-first design', desc: 'Looks great on every device, from phones to desktops.' },
+  { icon: Search, title: 'SEO basics', desc: 'Meta tags, sitemap, search console — found on Google from day one.' },
+  { icon: Mail, title: 'Contact forms', desc: 'WhatsApp, email and enquiry forms so customers can reach you.' },
+  { icon: Server, title: 'Fast hosting setup', desc: 'We deploy your site on fast, reliable hosting with SSL.' },
+  { icon: Headphones, title: 'Responsive support', desc: 'Post-launch support included with every project we build.' },
+  { icon: Shield, title: 'POPIA-aware', desc: 'Built with South African privacy best practices in mind.' },
+]
+
+function PricingFaq() {
+  return (
+    <div className="space-y-3">
+      {homepageFaqs.map((faq, i) => (
+        <details
+          key={i}
+          className="group rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-300 open:shadow-lg open:border-brand/20"
+        >
+          <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-semibold text-navy list-none">
+            {faq.question}
+            <span className="shrink-0 rounded-full bg-surface p-1.5 transition-transform duration-300 group-open:rotate-45">
+              <Plus size={16} className="text-navy" />
+            </span>
+          </summary>
+          <p className="mt-4 text-body leading-relaxed">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  )
+}
+
 export default function PricingPage() {
   return (
     <>
       {/* Hero */}
-      <Section dark className="pb-20 sm:pb-28 md:pb-32">
+      <PageHero
+        dark
+        eyebrow="Services & Pricing"
+        title="Everything your business needs online."
+        description="From a simple landing page to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
+      />
+
+      {/* Sticky Jump List */}
+      <div className="sticky z-30 bg-background/80 backdrop-blur border-b border-line" style={{ top: 'var(--sticky-top)' }}>
         <Container>
-          <Reveal>
-            <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
-              What we offer
-            </p>
-            <h1 className="text-display-lg leading-tight font-extrabold text-white">
-              Services built around
-              <br />
-              your project.
-            </h1>
-            <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-white/60">
-              From a simple landing page to a full business website or custom
-              application — pick a starting point or let us scope something
-              tailored to exactly what you need.
-            </p>
-          </Reveal>
+          <div className="flex gap-2 overflow-x-auto py-3 no-scrollbar">
+            {jumpLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="shrink-0 rounded-full bg-surface px-4 py-2 text-xs font-medium text-body transition-colors hover:bg-blue-tint hover:text-brand"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </Container>
-      </Section>
+      </div>
+
+      {/* 7 Service Sections */}
+      {services.map((service, idx) => {
+        const detail = serviceDetails[service.href.replace('/pricing#pricing-', '').replace('/pricing#', '')]
+        const isEven = idx % 2 === 0
+        return (
+          <Section key={service.href} alt={isEven} id={`pricing-${service.href.replace('/pricing#', '')}`}>
+            <Container>
+              <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+                <Reveal>
+                  <div className="flex items-center gap-4 mb-6">
+                    <IconBox icon={service.icon} size="lg" />
+                    <div>
+                      <p className="text-xs font-semibold uppercase text-muted mb-1" style={{ letterSpacing: '0.14em' }}>
+                        Service {service.number}
+                      </p>
+                      <h2 className="text-display-sm font-bold text-navy leading-tight">
+                        {service.title}
+                      </h2>
+                    </div>
+                  </div>
+                  <p className="text-lg text-body leading-relaxed mb-6">
+                    {detail?.description || service.text}
+                  </p>
+                  <div className="flex items-center gap-3 mb-6">
+                    <Badge variant="brand">{service.price}</Badge>
+                    {detail?.timeframe && (
+                      <Badge>{detail.timeframe}</Badge>
+                    )}
+                  </div>
+                  <Link
+                    href={`/contact?service=${encodeURIComponent(detail?.name || service.title)}`}
+                    className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
+                  >
+                    Get a quote
+                    <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </Reveal>
+
+                {detail && (
+                  <Reveal delay={100}>
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-sm font-semibold uppercase text-navy mb-3" style={{ letterSpacing: '0.1em' }}>
+                          What's included
+                        </h3>
+                        <div className="grid gap-4 sm:grid-cols-2">
+                          {detail.featureGroups.map((group) => (
+                            <div key={group.title} className="rounded-xl border border-line bg-white p-4">
+                              <p className="text-sm font-semibold text-navy mb-2">{group.title}</p>
+                              <ul className="space-y-1.5">
+                                {group.items.slice(0, 4).map((item) => (
+                                  <li key={item} className="flex items-start gap-2 text-sm text-body">
+                                    <Check size={14} className="mt-0.5 shrink-0 text-brand" />
+                                    {item}
+                                  </li>
+                                ))}
+                                {group.items.length > 4 && (
+                                  <li className="text-xs text-muted">+{group.items.length - 4} more</li>
+                                )}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold uppercase text-navy mb-3" style={{ letterSpacing: '0.1em' }}>
+                          Who it's for
+                        </h3>
+                        <ul className="space-y-2">
+                          {detail.idealFor.slice(0, 3).map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-sm text-body">
+                              <Check size={14} className="mt-0.5 shrink-0 text-brand" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {detail.domain && (
+                        <div className="rounded-xl bg-blue-tint border border-brand/10 p-4">
+                          <p className="text-sm font-medium text-navy">{detail.domain}</p>
+                        </div>
+                      )}
+                    </div>
+                  </Reveal>
+                )}
+              </div>
+            </Container>
+          </Section>
+        )
+      })}
 
       {/* Packages */}
-      <Section className="-mt-1">
+      <Section id="packages">
         <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Packages"
+              title="Choose your starting point"
+              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs."
+              className="mb-12"
+            />
+          </Reveal>
           <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={100}>
             {packages.map((pack) => (
               <article
                 key={pack.name}
-                id={pack.href.replace('/pricing#', '')}
-                className={`flex flex-col rounded-2xl p-8 transition-all duration-300 ${
+                className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 ${
                   pack.popular
-                    ? 'bg-dark-panel text-white ring-1 ring-inset ring-white/10'
-                    : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg'
+                    ? 'bg-white ring-2 ring-brand shadow-xl -mt-2'
+                    : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg hover:-translate-y-0.5'
                 }`}
               >
                 {pack.popular && (
-                  <span className="mb-4 inline-block self-start rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase text-white" style={{ letterSpacing: '0.05em' }}>
+                  <span className="absolute -top-3 left-8 inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase text-white" style={{ letterSpacing: '0.05em' }}>
                     Most popular
                   </span>
                 )}
                 <div>
-                  <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/50' : 'text-muted'}`} style={{ letterSpacing: '0.14em' }}>
+                  <p className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
                     {pack.name}
                   </p>
-                  <h3 className="mt-2 text-display-sm font-bold">
+                  <h3 className="mt-2 text-display-sm font-bold text-navy">
                     {pack.price}
                   </h3>
-                  <p className={`mt-3 text-sm leading-relaxed ${pack.popular ? 'text-white/60' : 'text-body'}`}>
+                  <p className="mt-3 text-sm leading-relaxed text-body">
                     {pack.description}
                   </p>
-                  <p className={`mt-2 text-xs ${pack.popular ? 'text-white/40' : 'text-muted'}`}>
+                  <p className="mt-2 text-xs text-muted">
                     {pack.timeframe}
                   </p>
                 </div>
                 <ul className="mt-8 flex-1 space-y-3">
                   {pack.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm">
-                      <Check
-                        aria-hidden="true"
-                        className={`mt-0.5 h-4 w-4 shrink-0 ${pack.popular ? 'text-brand' : 'text-brand'}`}
-                      />
-                      <span className={pack.popular ? 'text-white/80' : 'text-body'}>
-                        {feature}
-                      </span>
+                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                      <span className="text-body">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   href={pack.href}
-                  className={`mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors ${
+                  className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full h-12 px-6 text-sm font-medium transition-all duration-300 ${
                     pack.popular
                       ? 'bg-brand text-white hover:bg-brand-hover'
                       : 'border border-line text-navy hover:bg-surface'
@@ -101,25 +245,103 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Domain banner */}
-      <Section alt className="py-16 sm:py-20">
-        <Container narrow>
+      {/* What you get with every website */}
+      <Section alt>
+        <Container>
           <Reveal>
-            <div className="rounded-2xl border border-line bg-white shadow-card p-10 sm:p-12">
-              <h2 className="text-display-sm leading-tight font-bold text-navy">
-                Selected services include a free .co.za domain for the first year.
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-body">
-                Domain availability is checked before registration. Renewal fees apply
-                from year two; hosting and third-party services are always disclosed.
-              </p>
+            <SectionHeading
+              eyebrow="Every project includes"
+              title="What you get with every website"
+              description="No matter which package you choose, these essentials come standard."
+              className="mb-12"
+            />
+          </Reveal>
+          <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={80}>
+            {everyWebsiteFeatures.map((feat) => (
+              <div key={feat.title} className="flex items-start gap-4 rounded-2xl bg-white border border-line p-6 shadow-card">
+                <IconBox icon={feat.icon} />
+                <div>
+                  <h3 className="text-sm font-semibold text-navy">{feat.title}</h3>
+                  <p className="mt-1 text-sm text-body leading-relaxed">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      {/* Comparison table */}
+      <Section id="comparison">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Compare services"
+              title="Side by side"
+              className="mb-12"
+            />
+          </Reveal>
+          <Reveal>
+            <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
+              <table className="w-full min-w-[700px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line bg-surface">
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted sticky left-0 bg-surface z-10" style={{ letterSpacing: '0.14em' }}>
+                      Feature
+                    </th>
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      Landing
+                    </th>
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      Business
+                    </th>
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      Starter
+                    </th>
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      Portfolio
+                    </th>
+                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      Professional
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {comparisonFeatures.map((row) => (
+                    <tr key={row.feature} className="hover:bg-surface/50 transition-colors">
+                      <td className="px-6 py-4 font-medium text-navy sticky left-0 bg-white z-10">
+                        {row.feature}
+                      </td>
+                      {(['landing', 'business', 'starter', 'portfolio', 'professional'] as const).map((col) => {
+                        const val = row[col]
+                        if (val === true)
+                          return (
+                            <td key={col} className="px-6 py-4">
+                              <Check aria-hidden="true" className="h-4 w-4 text-brand" />
+                            </td>
+                          )
+                        if (val === false)
+                          return (
+                            <td key={col} className="px-6 py-4 text-muted/40">
+                              —
+                            </td>
+                          )
+                        return (
+                          <td key={col} className="px-6 py-4 text-body">
+                            {val}
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </Reveal>
         </Container>
       </Section>
 
       {/* Add-ons */}
-      <Section className="py-16 sm:py-20">
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading
@@ -129,11 +351,11 @@ export default function PricingPage() {
               className="mb-12"
             />
           </Reveal>
-          <RevealStagger className="grid gap-0 divide-y divide-line sm:grid-cols-2 lg:grid-cols-3 lg:divide-y-0 lg:[&>*:nth-child(3n+2)]:border-x lg:[&>*:nth-child(3n+2)]:border-line" stagger={60}>
+          <RevealStagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={60}>
             {addons.map((addon) => (
               <div
                 key={addon.name}
-                className="flex items-center justify-between gap-4 border border-line -mb-px rounded-xl px-6 py-5"
+                className="flex items-center justify-between gap-4 rounded-xl border border-line bg-white px-6 py-5 shadow-card"
               >
                 <span className="text-sm font-medium text-navy">{addon.name}</span>
                 <span className="shrink-0 text-sm text-muted">{addon.price}</span>
@@ -185,98 +407,35 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Comparison table */}
-      <Section>
+      {/* Pricing FAQ */}
+      <Section id="pricing-faq">
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Compare services"
-              title="Side by side"
+              eyebrow="FAQ"
+              title="Common pricing questions"
+              description="Everything you need to know about costs, timelines and what's included."
               className="mb-12"
             />
           </Reveal>
           <Reveal>
-            <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
-              <table className="w-full min-w-[700px] text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-surface">
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Feature
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Landing
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Business
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Starter
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Portfolio
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Professional
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line">
-                  {comparisonFeatures.map((row) => (
-                    <tr key={row.feature} className="hover:bg-surface/50 transition-colors">
-                      <td className="px-6 py-4 font-medium text-navy">
-                        {row.feature}
-                      </td>
-                      {(['landing', 'business', 'starter', 'portfolio', 'professional'] as const).map((col) => {
-                        const val = row[col]
-                        if (val === true)
-                          return (
-                            <td key={col} className="px-6 py-4">
-                              <Check aria-hidden="true" className="h-4 w-4 text-brand" />
-                            </td>
-                          )
-                        if (val === false)
-                          return (
-                            <td key={col} className="px-6 py-4 text-muted/40">
-                              —
-                            </td>
-                          )
-                        return (
-                          <td key={col} className="px-6 py-4 text-body">
-                            {val}
-                          </td>
-                        )
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="max-w-3xl mx-auto">
+              <PricingFaq />
             </div>
           </Reveal>
         </Container>
       </Section>
 
-      {/* Final CTA */}
-      <Section dark>
-        <Container narrow>
-          <Reveal>
-            <div className="text-center">
-              <h2 className="text-display-md leading-tight font-bold text-white">
-                Ready to get started?
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-white/60">
-                Tell us about your project and we will send a tailored quote with clear
-                deliverables and timeline.
-              </p>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-brand-hover"
-              >
-                Get your quote <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      {/* CTA */}
+      <CTABand
+        eyebrow="Ready to begin?"
+        title="Let's build something real."
+        description="Tell us about your project and we'll send a tailored quote with clear deliverables and timeline."
+        primaryHref="/contact"
+        primaryLabel="Get your quote"
+        secondaryHref="/work"
+        secondaryLabel="See our work"
+      />
     </>
   )
 }

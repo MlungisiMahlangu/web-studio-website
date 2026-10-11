@@ -1,16 +1,18 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Search, ArrowUpRight, X } from 'lucide-react'
+import { Search, ArrowUpRight, X, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { Reveal } from '@/components/ui/reveal'
+import { STUDIO_WHATSAPP } from '@/lib/constants'
 import type { FaqCategory } from '@/lib/constants'
 
 export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
   const [searchQuery, setSearchQuery] = useState('')
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
   const toggleItem = (key: string) => {
     setOpenItems((prev) => {
@@ -22,9 +24,13 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   }
 
   const filteredCategories = useMemo(() => {
-    if (!searchQuery.trim()) return categories
+    let cats = categories
+    if (activeCategory) {
+      cats = cats.filter((cat) => cat.id === activeCategory)
+    }
+    if (!searchQuery.trim()) return cats
     const q = searchQuery.toLowerCase()
-    return categories
+    return cats
       .map((cat) => ({
         ...cat,
         items: cat.items.filter(
@@ -34,35 +40,65 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         ),
       }))
       .filter((cat) => cat.items.length > 0)
-  }, [categories, searchQuery])
+  }, [categories, searchQuery, activeCategory])
 
   return (
     <>
-      {/* Search */}
-      <Section className="py-12 sm:py-16">
+      {/* Search + Category Pills */}
+      <Section tight>
         <Container narrow>
           <Reveal>
-            <div className="relative">
-              <Search
-                size={18}
-                className="absolute left-5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-              />
-              <input
-                type="text"
-                placeholder="Search your question..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-line bg-surface py-4 pl-13 pr-12 font-sans text-base text-navy placeholder:text-muted outline-none transition-colors focus:border-brand"
-              />
-              {searchQuery && (
+            <div className="space-y-6">
+              {/* Search */}
+              <div className="relative">
+                <Search
+                  size={18}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+                />
+                <input
+                  type="text"
+                  placeholder="Search your question..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full rounded-full border border-line bg-surface py-4 pl-13 pr-12 font-sans text-base text-navy placeholder:text-muted outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-surface text-muted hover:text-navy transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
+              </div>
+
+              {/* Category Pills */}
+              <div className="flex flex-wrap gap-2">
                 <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-7 h-7 rounded-full bg-surface text-muted hover:text-navy transition-colors"
-                  aria-label="Clear search"
+                  onClick={() => setActiveCategory(null)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    activeCategory === null
+                      ? 'bg-brand text-white'
+                      : 'bg-blue-tint text-brand hover:bg-brand/10'
+                  }`}
                 >
-                  <X size={14} />
+                  All
                 </button>
-              )}
+                {categories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      activeCategory === cat.id
+                        ? 'bg-brand text-white'
+                        : 'bg-blue-tint text-brand hover:bg-brand/10'
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </Reveal>
         </Container>
@@ -70,15 +106,15 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
 
       {/* FAQ Sections */}
       {filteredCategories.map((category, idx) => (
-        <Section key={category.id} className="py-12 sm:py-16">
+        <Section key={category.id} alt={idx % 2 === 1} className="py-12 sm:py-16">
           <Container>
             {/* Category header */}
             <Reveal>
-              <div className="max-w-3xl mb-8 sm:mb-10">
+              <div className="max-w-3xl mx-auto mb-8 sm:mb-10 text-center">
                 <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
-                  {category.number} / {category.label}
+                  {category.label}
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-navy">
+                <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-navy">
                   {category.heading}
                 </h2>
                 <p className="mt-4 text-lg text-body leading-relaxed">
@@ -88,57 +124,41 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
             </Reveal>
 
             {/* Accordion items */}
-            <div className="border-t border-line">
+            <div className="max-w-3xl mx-auto space-y-3">
               {category.items.map((item) => {
                 const key = `${category.id}-${item.question}`
                 const isOpen = openItems.has(key)
                 return (
-                  <div key={key} className="border-b border-line">
-                    <button
-                      onClick={() => toggleItem(key)}
-                      className="flex items-center justify-between w-full py-6 sm:py-7 text-left group cursor-pointer"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="text-lg sm:text-xl font-bold text-navy pr-8 group-hover:text-brand transition-colors">
-                        {item.question}
+                  <details
+                    key={key}
+                    open={isOpen}
+                    className="group rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-300 open:shadow-lg open:border-brand/20"
+                    onToggle={(e) => {
+                      const details = e.currentTarget
+                      if (details.open && !isOpen) {
+                        toggleItem(key)
+                      } else if (!details.open && isOpen) {
+                        toggleItem(key)
+                      }
+                    }}
+                  >
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-semibold text-navy list-none">
+                      {item.question}
+                      <span className="shrink-0 rounded-full bg-surface p-1.5 transition-transform duration-300 group-open:rotate-45">
+                        <X size={16} className="text-navy" />
                       </span>
-                      <span
-                        className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border border-line text-muted group-hover:border-brand group-hover:text-brand transition-colors"
-                        aria-hidden="true"
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 14 14"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="transition-transform duration-300"
-                          style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                    </summary>
+                    <div className="mt-4 max-w-3xl">
+                      {item.answer.split('\n\n').map((paragraph, i) => (
+                        <p
+                          key={i}
+                          className="text-base sm:text-lg text-body leading-relaxed mt-0 first:mt-0 [&+&]:mt-4"
                         >
-                          <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" strokeWidth="1.5" />
-                          <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" strokeWidth="1.5" />
-                        </svg>
-                      </span>
-                    </button>
-                    <div
-                      className="overflow-hidden transition-all duration-300 ease-out"
-                      style={{
-                        maxHeight: isOpen ? '600px' : '0px',
-                        opacity: isOpen ? 1 : 0,
-                      }}
-                    >
-                      <div className="pb-7 sm:pb-8 pr-12 max-w-3xl">
-                        {item.answer.split('\n\n').map((paragraph, i) => (
-                          <p
-                            key={i}
-                            className="text-base sm:text-lg text-body leading-relaxed mt-0 first:mt-0 [&+&]:mt-4"
-                          >
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
+                          {paragraph}
+                        </p>
+                      ))}
                     </div>
-                  </div>
+                  </details>
                 )
               })}
             </div>
@@ -146,7 +166,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
             {/* Category CTA */}
             {category.cta && (
               <Reveal>
-                <div className="mt-8 sm:mt-10">
+                <div className="mt-8 sm:mt-10 text-center">
                   <Link
                     href={category.cta.href}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-hover transition-colors"
@@ -161,30 +181,38 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         </Section>
       ))}
 
-      {/* Still Not Sure */}
-      <Section dark className="py-16 sm:py-20 md:py-24">
+      {/* Still Have a Question? */}
+      <Section>
         <Container>
           <Reveal>
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase text-white/50 mb-4" style={{ letterSpacing: '0.14em' }}>
-                Can&apos;t find your answer?
+            <div className="max-w-3xl mx-auto rounded-2xl border border-line bg-white shadow-card p-8 sm:p-12 text-center">
+              <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
+                Still have a question?
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-navy mb-6">
                 Your project might be a little different.
               </h2>
-              <p className="mt-6 text-lg text-white/60 leading-relaxed max-w-2xl">
+              <p className="text-lg text-body leading-relaxed max-w-2xl mx-auto mb-8">
                 Not every project fits neatly into a package. If you have a specific
                 requirement, unusual idea or existing website you want to improve, tell
-                us what you&apos;re working with. We&apos;ll help you understand what is
-                possible and what the project would require.
+                us what you're working with.
               </p>
-              <div className="mt-8">
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href={`https://wa.me/${STUDIO_WHATSAPP}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
+                >
+                  <MessageCircle size={16} className="shrink-0" />
+                  WhatsApp us
+                </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-navy hover:bg-surface transition-colors"
+                  className="group inline-flex items-center gap-2 rounded-full border border-line bg-white text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/20 hover:shadow-lg"
                 >
-                  Get in touch
-                  <ArrowUpRight size={16} />
+                  Get a quote
+                  <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </div>

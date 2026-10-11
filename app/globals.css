@@ -1,6 +1,18 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* Header height variables */
+:root {
+  --header-h: 64px;
+  --sticky-top: var(--header-h);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 72px;
+  }
+}
+
 @theme {
   --color-background: #FDFCFC;
   --color-surface: #F5F7FB;
@@ -183,6 +195,11 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Scroll margin for anchor links to clear sticky header */
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 16px);
   }
 
   .focus-ring {
@@ -454,4 +471,51 @@
 .button-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ─── Prose Legal ─── */
+.prose-legal {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-body);
+}
+
+.prose-legal h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.prose-legal h2:first-child {
+  margin-top: 0;
+}
+
+.prose-legal p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-legal ul,
+.prose-legal ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose-legal li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-legal a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.prose-legal a:hover {
+  color: var(--color-brand-hover);
 }

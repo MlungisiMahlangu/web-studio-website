@@ -21,24 +21,24 @@ export default function Error({
           <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-navy mb-6">
             An error occurred.
           </h1>
-          <p className="text-muted text-lg leading-relaxed mb-10">
-            We couldn&apos;t load this page. Try refreshing, or head back to the
+          <p className="text-body text-lg leading-relaxed mb-10">
+            We couldn't load this page. Try refreshing, or head back to the
             homepage.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-semibold transition-all duration-300 hover:bg-brand-hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
             >
               Try again
-              <RefreshCw size={18} />
+              <RefreshCw size={16} className="shrink-0" />
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-navy/15 text-navy px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-navy/5"
+              className="group inline-flex items-center gap-2 rounded-full border border-line bg-white text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/20 hover:shadow-lg"
             >
               Back to home
-              <ArrowLeft size={16} />
+              <ArrowLeft size={16} className="shrink-0" />
             </Link>
           </div>
         </div>

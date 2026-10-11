@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react'
 import { blogArticles, SITE_URL } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
+import { PageHero } from '@/components/ui/page-hero'
+import { CTABand } from '@/components/ui/cta-band'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
@@ -42,24 +44,12 @@ export default function BlogPage() {
       />
 
       {/* Hero */}
-      <Section dark className="pb-20 sm:pb-28">
-        <Container>
-          <Reveal>
-            <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>
-              Insights & guides
-            </p>
-            <h1 className="text-display-lg leading-tight font-extrabold text-white">
-              Web development
-              <br />
-              made clear.
-            </h1>
-            <p className="mt-6 max-w-[560px] text-lg leading-relaxed text-white/60">
-              Practical guides about website costs, timelines, and building an online
-              presence that works for your South African business.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
+      <PageHero
+        dark
+        eyebrow="Insights & Guides"
+        title={<>Web development<br />made clear.</>}
+        description="Practical guides about website costs, timelines, and building an online presence that works for your South African business."
+      />
 
       {/* Articles */}
       <Section>
@@ -96,7 +86,7 @@ export default function BlogPage() {
                   {article.description}
                 </p>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-navy group-hover:text-brand transition-colors">
+                <div className="flex items-center gap-2 text-sm font-medium text-brand">
                   Read article
                   <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
@@ -107,30 +97,15 @@ export default function BlogPage() {
       </Section>
 
       {/* CTA */}
-      <Section className="!pt-0">
-        <Container narrow>
-          <Reveal>
-            <div className="rounded-2xl bg-dark-panel text-white px-8 py-14 sm:px-14 text-center overflow-hidden relative">
-              <div className="relative z-10">
-                <h2 className="text-display-md leading-tight font-bold text-white mb-5">
-                  Have a project in mind?
-                </h2>
-                <p className="text-white/60 text-lg leading-relaxed max-w-[520px] mx-auto mb-8">
-                  Let us discuss your website and provide a clear quote with no
-                  surprises.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-medium transition-all duration-300 hover:bg-brand-hover"
-                >
-                  Get your quote
-                  <ArrowUpRight size={18} />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <CTABand
+        eyebrow="Have a project in mind?"
+        title="Let's discuss your website."
+        description="Get a clear quote with no surprises. Tell us about your project and we'll help you understand the best way forward."
+        primaryHref="/contact"
+        primaryLabel="Get your quote"
+        secondaryHref="/pricing"
+        secondaryLabel="See pricing"
+      />
     </>
   )
 }

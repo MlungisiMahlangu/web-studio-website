@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowUpRight, ArrowLeft } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { blogArticles, SITE_URL, STUDIO_NAME } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
+import { PageHero } from '@/components/ui/page-hero'
+import { CTABand } from '@/components/ui/cta-band'
+import { Badge } from '@/components/ui/badge'
 import { Reveal } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
@@ -93,7 +96,7 @@ function renderContent(content: string) {
     } else if (line.startsWith('> ')) {
       flushList()
       elements.push(
-        <blockquote key={key++} className="border-l-2 border-brand/40 pl-5 py-3 mb-6 text-muted text-sm leading-relaxed">
+        <blockquote key={key++} className="border-l-2 border-brand pl-5 py-3 mb-6 text-body text-base leading-relaxed italic">
           {formatInline(line.slice(2))}
         </blockquote>
       )
@@ -102,7 +105,7 @@ function renderContent(content: string) {
     } else {
       flushList()
       elements.push(
-        <p key={key++} className="text-body leading-relaxed mb-6">
+        <p key={key++} className="text-body leading-relaxed mb-6 text-base">
           {formatInline(line)}
         </p>
       )
@@ -166,6 +169,12 @@ export default async function BlogArticlePage({ params }: Props) {
     ],
   }
 
+  const publishedDate = new Date(article.publishedAt).toLocaleDateString('en-ZA', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
   return (
     <>
       <script
@@ -178,69 +187,40 @@ export default async function BlogArticlePage({ params }: Props) {
       />
 
       {/* Hero */}
-      <Section dark className="pb-12 sm:pb-16">
+      <PageHero
+        dark
+        breadcrumb={{ label: 'Back to Blog', href: '/blog' }}
+        title={article.title}
+        description={article.description}
+        buttons={
+          <div className="flex items-center gap-3 mt-6">
+            <Badge>{publishedDate}</Badge>
+            <Badge>{article.readingTime}</Badge>
+          </div>
+        }
+      />
+
+      {/* Content */}
+      <Section>
         <Container text>
           <Reveal>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors mb-8"
-            >
-              <ArrowLeft size={16} />
-              Back to blog
-            </Link>
-
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xs text-white/40">
-                {new Date(article.publishedAt).toLocaleDateString('en-ZA', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </span>
-              <span className="text-white/20">·</span>
-              <span className="text-xs text-white/40">
-                {article.readingTime}
-              </span>
+            <div className="max-w-[720px] mx-auto">
+              {renderContent(article.content)}
             </div>
-
-            <h1 className="text-hero font-extrabold leading-tight tracking-tight mb-6">
-              {article.title}
-            </h1>
-
-            <p className="text-lg text-white/60 leading-relaxed">
-              {article.description}
-            </p>
           </Reveal>
         </Container>
       </Section>
 
-      {/* Content */}
-      <Section className="pt-8 pb-16 sm:pb-20">
-        <Container text>
-          <div className="prose-custom">
-            {renderContent(article.content)}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-12 pt-8 border-t border-line">
-            <div className="rounded-2xl bg-surface border border-line p-8 sm:p-10">
-              <h2 className="text-2xl font-bold leading-tight tracking-tight text-navy mb-3">
-                Ready to build your website?
-              </h2>
-              <p className="text-muted leading-relaxed mb-6">
-                Let us discuss your project and provide a clear quote with no surprises.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:bg-brand-hover"
-              >
-                Get your quote
-                <ArrowUpRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      {/* CTA */}
+      <CTABand
+        eyebrow="Ready to build your website?"
+        title="Let's discuss your project."
+        description="Get a clear quote with no surprises. Tell us about your project and we'll help you understand the best way forward."
+        primaryHref="/contact"
+        primaryLabel="Get your quote"
+        secondaryHref="/blog"
+        secondaryLabel="More articles"
+      />
     </>
   )
 }

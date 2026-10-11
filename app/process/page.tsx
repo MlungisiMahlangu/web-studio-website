@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { PageHero } from '@/components/ui/page-hero'
+import { CTABand } from '@/components/ui/cta-band'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import { ProcessFAQ } from '@/components/sections/process-faq'
 import {
@@ -25,43 +27,15 @@ export default function ProcessPage() {
   return (
     <>
       {/* Hero */}
-      <Section dark className="relative overflow-hidden">
-        <Container className="py-28 sm:py-36 md:py-44">
-          <div className="max-w-[800px]">
-            <Reveal>
-              <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>
-                03 / How we work
-              </p>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h1 className="text-display-lg leading-tight font-extrabold text-white mb-8">
-                From first conversation
-                <br />
-                to live website.
-              </h1>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-[600px] mb-6">
-                A great website should feel exciting to build — not complicated. Our
-                process gives every project a clear path from the first conversation
-                through planning, design, development, review and launch, with
-                communication and decisions kept clear along the way.
-              </p>
-            </Reveal>
-
-            <Reveal delay={250}>
-              <p className="text-sm text-white/40 mb-10">
-                Clear process &middot; Thoughtful work &middot; No unnecessary complexity
-              </p>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
+      <PageHero
+        dark
+        eyebrow="How we work"
+        title={<>From first conversation<br />to live website.</>}
+        description="A great website should feel exciting to build — not complicated. Our process gives every project a clear path from the first conversation through planning, design, development, review and launch, with communication and decisions kept clear along the way."
+      />
 
       {/* Journey Bar */}
-      <Section className="!py-14 sm:!py-16">
+      <Section tight>
         <Container>
           <Reveal>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-0">
@@ -163,14 +137,71 @@ export default function ProcessPage() {
         </Container>
       </Section>
 
-      {/* After Launch */}
+      {/* Expectations + Client Needs side by side */}
       <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              title="Throughout the project, expect clarity."
+              description="Great websites are collaborative. We handle the design and development; your input helps us make the final website genuinely useful for your business."
+              className="mb-12"
+            />
+          </Reveal>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Reveal>
+              <div className="rounded-2xl border border-line bg-white shadow-card p-8 h-full">
+                <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>
+                  What you can expect from us
+                </p>
+                <div className="space-y-4">
+                  {processExpectations.map((item) => (
+                    <div key={item.number} className="flex items-start gap-4">
+                      <span className="text-sm font-semibold text-brand shrink-0 pt-0.5">
+                        {item.number}
+                      </span>
+                      <div>
+                        <h3 className="text-base font-bold text-navy mb-1">{item.title}</h3>
+                        <p className="text-sm text-body leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <div className="rounded-2xl border border-line bg-white shadow-card p-8 h-full">
+                <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>
+                  What we need from you
+                </p>
+                <div className="space-y-4">
+                  {processClientNeeds.map((item) => (
+                    <div key={item.number} className="flex items-start gap-4">
+                      <span className="text-sm font-semibold text-brand shrink-0 pt-0.5">
+                        {item.number}
+                      </span>
+                      <div>
+                        <h3 className="text-base font-bold text-navy mb-1">{item.title}</h3>
+                        <p className="text-sm text-body leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* After Launch */}
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="After launch"
               title="Launch isn't necessarily the end."
-              description="Once your website is live, you can choose the level of support that makes sense for your business. Depending on your package, minor post-launch support may be included for a defined period. For longer-term needs, WEB-IN also offers optional maintenance plans."
+              description="Once your website is live, you can choose the level of support that makes sense for your business."
               className="mb-10"
             />
           </Reveal>
@@ -202,63 +233,8 @@ export default function ProcessPage() {
         </Container>
       </Section>
 
-      {/* Expectations */}
-      <Section alt>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              title="Throughout the project, expect clarity."
-              className="mb-10"
-            />
-          </Reveal>
-
-          <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {processExpectations.map((item) => (
-              <div
-                key={item.number}
-                className="rounded-2xl border border-line bg-white shadow-card p-6"
-              >
-                <span className="text-xs font-semibold text-brand mb-3 block">
-                  {item.number}
-                </span>
-                <h3 className="text-lg font-bold text-navy mb-2">{item.title}</h3>
-                <p className="text-sm text-body leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </RevealStagger>
-        </Container>
-      </Section>
-
-      {/* What We Need From You */}
+      {/* Timeline */}
       <Section>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              title="Great websites are collaborative."
-              description="We handle the design, development and technical implementation. Your input helps us make the final website genuinely useful for your business."
-              className="mb-10"
-            />
-          </Reveal>
-
-          <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {processClientNeeds.map((item) => (
-              <div
-                key={item.number}
-                className="rounded-2xl border border-line bg-white shadow-card p-6"
-              >
-                <span className="text-xs font-semibold text-brand mb-3 block">
-                  {item.number}
-                </span>
-                <h3 className="text-lg font-bold text-navy mb-2">{item.title}</h3>
-                <p className="text-sm text-body leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </RevealStagger>
-        </Container>
-      </Section>
-
-      {/* How Long */}
-      <Section alt>
         <Container text>
           <Reveal>
             <SectionHeading
@@ -291,25 +267,6 @@ export default function ProcessPage() {
         </Container>
       </Section>
 
-      {/* When Does Work Begin */}
-      <Section>
-        <Container text>
-          <Reveal>
-            <SectionHeading
-              title="When does work officially begin?"
-              className="mb-6"
-            />
-          </Reveal>
-          <Reveal delay={100}>
-            <p className="text-lg text-body leading-relaxed">
-              Once the project scope and quotation have been approved and the
-              required deposit has been paid, development can begin. We then confirm
-              the project requirements and next steps before moving into production.
-            </p>
-          </Reveal>
-        </Container>
-      </Section>
-
       {/* FAQ */}
       <Section alt>
         <Container>
@@ -325,53 +282,16 @@ export default function ProcessPage() {
         </Container>
       </Section>
 
-      {/* Final CTA */}
-      <Section dark>
-        <Container className="py-28 sm:py-36 md:py-44">
-          <div className="max-w-[700px]">
-            <Reveal>
-              <p className="text-xs font-semibold uppercase text-brand mb-6" style={{ letterSpacing: '0.14em' }}>
-                Ready when you are
-              </p>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <h2 className="text-display-lg leading-tight font-bold text-white mb-8">
-                Let&apos;s build something
-                <br />
-                worth putting online.
-              </h2>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-[600px] mb-10">
-                Tell us what you&apos;re working on, where you&apos;re starting from
-                and what you want the website to achieve. We&apos;ll review your
-                requirements and help you understand the best way forward.
-              </p>
-            </Reveal>
-
-            <Reveal delay={300}>
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-7 py-3.5 text-base font-medium transition-all duration-300 ease-out-expo hover:bg-brand-hover"
-                >
-                  Let&apos;s talk
-                  <ArrowUpRight size={18} />
-                </Link>
-                <Link
-                  href="/work"
-                  className="inline-flex items-center gap-1.5 text-white/60 hover:text-white transition-colors duration-300"
-                >
-                  View our work
-                  <ArrowUpRight size={16} />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
+      {/* CTA */}
+      <CTABand
+        eyebrow="Ready when you are"
+        title="Let's build something worth putting online."
+        description="Tell us what you're working on, where you're starting from and what you want the website to achieve. We'll review your requirements and help you understand the best way forward."
+        primaryHref="/contact"
+        primaryLabel="Let's talk"
+        secondaryHref="/work"
+        secondaryLabel="View our work"
+      />
     </>
   )
 }

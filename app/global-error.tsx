@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, RefreshCw } from 'lucide-react'
 
 export default function GlobalError({
   error,
@@ -18,21 +18,23 @@ export default function GlobalError({
             Critical error
           </p>
           <h1 className="text-4xl font-extrabold mb-4">Something broke.</h1>
-          <p className="text-muted mb-8">
+          <p className="text-body mb-8">
             We hit an unexpected error. Try refreshing the page.
           </p>
           <div className="flex items-center justify-center gap-4">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3 text-sm font-semibold"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
             >
               Try again
+              <RefreshCw size={16} className="shrink-0" />
             </button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm text-muted hover:text-navy"
+              className="group inline-flex items-center gap-2 rounded-full border border-line bg-white text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/20 hover:shadow-lg"
             >
-              Go home <ArrowLeft size={14} />
+              Go home
+              <ArrowLeft size={16} className="shrink-0" />
             </Link>
           </div>
         </div>
