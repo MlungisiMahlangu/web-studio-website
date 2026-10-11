@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { portfolioProjects } from '@/lib/constants'
+import { portfolioProjects, SITE_URL } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -8,6 +8,21 @@ import { CTABand } from '@/components/ui/cta-band'
 import { BrowserFrame } from '@/components/ui/browser-frame'
 import { Badge } from '@/components/ui/badge'
 import { Reveal } from '@/components/ui/reveal'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Our Work | Web Development Portfolio | WEB-IN',
+  description: 'Explore our portfolio of live websites — business sites, online stores, booking platforms and custom web applications built for South African clients.',
+  alternates: {
+    canonical: `${SITE_URL}/work`,
+  },
+  openGraph: {
+    title: 'Our Work | WEB-IN Portfolio',
+    description: 'Live websites we have designed and developed. Business sites, portfolios, e-commerce and custom web apps.',
+    type: 'website',
+    url: `${SITE_URL}/work`,
+  },
+}
 
 export default function WorkPage() {
   return (

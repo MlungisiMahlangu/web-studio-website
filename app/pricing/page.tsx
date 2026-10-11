@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, Check, Smartphone, Search, Mail, Server, Headphones, Shield, Plus, ChevronDown } from 'lucide-react'
-import { services, packages, addons, maintenancePlans, comparisonFeatures, serviceDetails, homepageFaqs } from '@/lib/constants'
+import { services, packages, addons, maintenancePlans, comparisonFeatures, serviceDetails, homepageFaqs, STUDIO_NAME, SITE_URL, STUDIO_EMAIL } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -50,8 +50,41 @@ export default function PricingPage() {
     setExpandedPkg(expandedPkg === name ? null : name)
   }
 
+  // Service structured data for SEO
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: STUDIO_NAME,
+    url: SITE_URL,
+    email: STUDIO_EMAIL,
+    description: 'Independent web development studio offering professional website design and development services in South Africa.',
+    areaServed: {
+      '@type': 'Country',
+      name: 'South Africa',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Web Development Services',
+      itemListElement: packages.map((pkg, i) => ({
+        '@type': 'Offer',
+        position: i + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: pkg.name,
+          description: pkg.description,
+        },
+        price: pkg.price.replace(/[^0-9]/g, ''),
+        priceCurrency: 'ZAR',
+      })),
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {/* Hero */}
       <PageHero
         eyebrow="Services & Pricing"

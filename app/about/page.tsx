@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://web-in.co.za/about',
   },
+  openGraph: {
+    title: 'About WEB-IN | Independent Web Studio',
+    description: 'Independent web development studio in South Africa. Strategy-first approach, clear packages, built to last.',
+    type: 'website',
+    url: 'https://web-in.co.za/about',
+  },
 }
 
 const philosophyPillars = [

@@ -22,15 +22,40 @@ export const metadata: Metadata = {
   },
   description: STUDIO_DESCRIPTION,
   metadataBase: new URL('https://web-in.co.za'),
+  alternates: {
+    canonical: 'https://web-in.co.za',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
     siteName: STUDIO_NAME,
     title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
     description: STUDIO_DESCRIPTION,
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+    description: STUDIO_DESCRIPTION,
+    images: ['/opengraph-image'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
@@ -38,6 +63,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  category: 'technology',
 }
 
 export const viewport: Viewport = {

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { blogArticles, SITE_URL } from '@/lib/constants'
+import { blogArticles, SITE_URL, STUDIO_NAME } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -14,12 +14,43 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/blog`,
   },
+  openGraph: {
+    title: 'Blog | WEB-IN Insights',
+    description: 'Practical guides about website costs, timelines, and building an online presence for South African businesses.',
+    type: 'website',
+    url: `${SITE_URL}/blog`,
+  },
+}
+
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${STUDIO_NAME} Blog`,
+  description: 'Practical insights about website design, development costs, timelines and online presence for South African businesses.',
+  url: `${SITE_URL}/blog`,
+  itemListElement: blogArticles.map((article, i) => ({
+    '@type': 'BlogPosting',
+    position: i + 1,
+    headline: article.title,
+    description: article.description,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    url: `${SITE_URL}/blog/${article.slug}`,
+    author: {
+      '@type': 'Organization',
+      name: STUDIO_NAME,
+      url: SITE_URL,
+    },
+  })),
 }
 
 export default function BlogPage() {
   return (
     <>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
       {/* Hero */}
       <PageHero
         eyebrow="Insights & Guides"

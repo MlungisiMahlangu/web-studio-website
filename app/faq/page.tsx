@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/faq`,
   },
+  openGraph: {
+    title: 'FAQ | WEB-IN',
+    description: 'Everything you need to know about working with WEB-IN. Pricing, timelines, domains, ownership, support and more.',
+    type: 'website',
+    url: `${SITE_URL}/faq`,
+  },
 }
 
 const faqJsonLd = {

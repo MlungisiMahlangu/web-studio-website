@@ -14,6 +14,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://web-in.co.za/contact',
   },
+  openGraph: {
+    title: 'Contact WEB-IN | Get a Quote',
+    description: 'Request a quote for your web project. Email, phone or WhatsApp — we respond within 1–2 business days.',
+    type: 'website',
+    url: 'https://web-in.co.za/contact',
+  },
 }
 
 export default function ContactPage() {

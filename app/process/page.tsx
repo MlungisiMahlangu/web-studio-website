@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://web-in.co.za/process',
   },
+  openGraph: {
+    title: 'Our Process | WEB-IN Workflow',
+    description: 'A clear 4-phase process: Discover, Define, Create, Launch. Transparent communication throughout your project.',
+    type: 'website',
+    url: 'https://web-in.co.za/process',
+  },
 }
 
 export default function ProcessPage() {
