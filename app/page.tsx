@@ -257,9 +257,11 @@ export default function HomePage() {
 
           <RevealStagger stagger={120} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {homepageProjects.map((project) => (
-              <Link
+              <a
                 key={project.slug}
-                href={`/work/${project.slug}`}
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="group block rounded-2xl bg-white border border-line overflow-hidden shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5"
               >
                 <div className="overflow-hidden">
@@ -273,17 +275,17 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-5">
                   <p className="text-xs font-semibold uppercase text-brand mb-2" style={{ letterSpacing: '0.14em' }}>
                     {project.type}
                   </p>
-                  <h3 className="text-xl font-bold text-navy mb-2">{project.title}</h3>
-                  <p className="text-sm text-body leading-relaxed mb-4">{project.subtitle}</p>
+                  <h3 className="text-lg font-bold text-navy mb-1.5">{project.title}</h3>
+                  <p className="text-sm text-body leading-relaxed mb-3">{project.subtitle}</p>
                   <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand group-hover:gap-2.5 transition-all duration-300">
-                    View project <ArrowUpRight size={14} />
+                    Visit live site <ArrowUpRight size={14} />
                   </span>
                 </div>
-              </Link>
+              </a>
             ))}
           </RevealStagger>
 
