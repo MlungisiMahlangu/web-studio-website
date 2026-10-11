@@ -1,5 +1,8 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Check, Smartphone, Search, Mail, Server, Headphones, Shield, Plus, Minus } from 'lucide-react'
+import { ArrowUpRight, Check, Smartphone, Search, Mail, Server, Headphones, Shield, Plus, ChevronDown } from 'lucide-react'
 import { services, packages, addons, maintenancePlans, comparisonFeatures, serviceDetails, homepageFaqs } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -9,15 +12,6 @@ import { CTABand } from '@/components/ui/cta-band'
 import { IconBox } from '@/components/ui/icon-box'
 import { Badge } from '@/components/ui/badge'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Services & Pricing | WEB-IN',
-  description: 'Compare website design packages in South Africa. Landing pages, business websites, portfolios and online stores with clear pricing and no hidden costs from WEB-IN.',
-  alternates: {
-    canonical: 'https://web-in.co.za/pricing',
-  },
-}
 
 const everyWebsiteFeatures = [
   { icon: Smartphone, title: 'Mobile-first design', desc: 'Looks great on every device, from phones to desktops.' },
@@ -50,6 +44,12 @@ function PricingFaq() {
 }
 
 export default function PricingPage() {
+  const [expandedPkg, setExpandedPkg] = useState<string | null>(null)
+
+  const togglePkg = (name: string) => {
+    setExpandedPkg(expandedPkg === name ? null : name)
+  }
+
   return (
     <>
       {/* Hero */}
@@ -62,181 +62,122 @@ export default function PricingPage() {
           { label: 'Services & Pricing', href: '/pricing' },
         ]}
         accent="online"
-        variant="split"
-        aside={
-          <div className="rounded-2xl border border-line bg-white/80 backdrop-blur-sm shadow-lg p-6 space-y-4">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-bold text-navy">Packages</h3>
-              <span className="text-xs font-medium text-muted uppercase" style={{ letterSpacing: '0.1em' }}>From</span>
-            </div>
-            {packages.slice(0, 5).map((pkg) => (
-              <div key={pkg.name} className="flex items-center justify-between py-2 border-b border-line/50 last:border-0">
-                <span className="text-sm font-medium text-navy">{pkg.name}</span>
-                <span className="text-sm font-semibold text-brand">{pkg.price}</span>
-              </div>
-            ))}
-            <Link
-              href="#packages"
-              className="flex items-center justify-center gap-2 w-full rounded-full bg-surface text-navy h-11 text-sm font-medium transition-colors hover:bg-blue-tint hover:text-brand mt-4"
-            >
-              Compare packages
-              <ArrowUpRight size={14} />
-            </Link>
-          </div>
-        }
+        variant="centered"
       />
 
-      {/* 7 Service Sections */}
-      {services.map((service, idx) => {
-        const detail = serviceDetails[service.href.replace('/pricing#pricing-', '').replace('/pricing#', '')]
-        const isEven = idx % 2 === 0
-        return (
-          <Section key={service.href} alt={isEven} id={`pricing-${service.href.replace('/pricing#', '')}`}>
-            <Container>
-              <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
-                <Reveal>
-                  <div className="flex items-center gap-4 mb-6">
-                    <IconBox icon={service.icon} size="lg" />
-                    <div>
-                      <p className="text-xs font-semibold uppercase text-muted mb-1" style={{ letterSpacing: '0.14em' }}>
-                        Service {service.number}
-                      </p>
-                      <h2 className="text-display-sm font-bold text-navy leading-tight">
-                        {service.title}
-                      </h2>
-                    </div>
-                  </div>
-                  <p className="text-lg text-body leading-relaxed mb-6">
-                    {detail?.description || service.text}
-                  </p>
-                  <div className="flex items-center gap-3 mb-6">
-                    <Badge variant="brand">{service.price}</Badge>
-                    {detail?.timeframe && (
-                      <Badge>{detail.timeframe}</Badge>
-                    )}
-                  </div>
-                  <Link
-                    href={`/contact?service=${encodeURIComponent(detail?.name || service.title)}`}
-                    className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
-                  >
-                    Get a quote
-                    <ArrowUpRight size={16} className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </Reveal>
-
-                {detail && (
-                  <Reveal delay={100}>
-                    <div className="space-y-6">
-                      <div>
-                        <h3 className="text-sm font-semibold uppercase text-navy mb-3" style={{ letterSpacing: '0.1em' }}>
-                          What's included
-                        </h3>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          {detail.featureGroups.map((group) => (
-                            <div key={group.title} className="rounded-xl border border-line bg-white p-4">
-                              <p className="text-sm font-semibold text-navy mb-2">{group.title}</p>
-                              <ul className="space-y-1.5">
-                                {group.items.slice(0, 4).map((item) => (
-                                  <li key={item} className="flex items-start gap-2 text-sm text-body">
-                                    <Check size={14} className="mt-0.5 shrink-0 text-brand" />
-                                    {item}
-                                  </li>
-                                ))}
-                                {group.items.length > 4 && (
-                                  <li className="text-xs text-muted">+{group.items.length - 4} more</li>
-                                )}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-semibold uppercase text-navy mb-3" style={{ letterSpacing: '0.1em' }}>
-                          Who it's for
-                        </h3>
-                        <ul className="space-y-2">
-                          {detail.idealFor.slice(0, 3).map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-sm text-body">
-                              <Check size={14} className="mt-0.5 shrink-0 text-brand" />
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {detail.domain && (
-                        <div className="rounded-xl bg-blue-tint border border-brand/10 p-4">
-                          <p className="text-sm font-medium text-navy">{detail.domain}</p>
-                        </div>
-                      )}
-                    </div>
-                  </Reveal>
-                )}
-              </div>
-            </Container>
-          </Section>
-        )
-      })}
-
-      {/* Packages */}
+      {/* Packages — main section */}
       <Section id="packages">
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="Packages"
               title="Choose your starting point"
-              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs."
+              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs. Click a package to see full details."
               className="mb-12"
             />
           </Reveal>
           <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={100}>
-            {packages.map((pack) => (
-              <article
-                key={pack.name}
-                className={`relative flex flex-col rounded-2xl p-8 transition-all duration-300 ${
-                  pack.popular
-                    ? 'bg-white ring-2 ring-brand shadow-xl -mt-2'
-                    : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg hover:-translate-y-0.5'
-                }`}
-              >
-                {pack.popular && (
-                  <span className="absolute -top-3 left-8 inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase text-white" style={{ letterSpacing: '0.05em' }}>
-                    Most popular
-                  </span>
-                )}
-                <div>
-                  <p className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                    {pack.name}
-                  </p>
-                  <h3 className="mt-2 text-display-sm font-bold text-navy">
-                    {pack.price}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-body">
-                    {pack.description}
-                  </p>
-                  <p className="mt-2 text-xs text-muted">
-                    {pack.timeframe}
-                  </p>
-                </div>
-                <ul className="mt-8 flex-1 space-y-3">
-                  {pack.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm">
-                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                      <span className="text-body">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={pack.href}
-                  className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full h-12 px-6 text-sm font-medium transition-all duration-300 ${
+            {packages.map((pack) => {
+              const isExpanded = expandedPkg === pack.name
+              const serviceKey = pack.href.replace('/pricing#', '').replace('-websites', '').replace('-pages', '')
+              const detail = serviceDetails[serviceKey] || serviceDetails[pack.name.toLowerCase()]
+              return (
+                <article
+                  key={pack.name}
+                  className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
                     pack.popular
-                      ? 'bg-brand text-white hover:bg-brand-hover'
-                      : 'border border-line text-navy hover:bg-surface'
+                      ? 'bg-white ring-2 ring-brand shadow-xl -mt-2'
+                      : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg'
                   }`}
                 >
-                  Choose {pack.name} <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
-              </article>
-            ))}
+                  {pack.popular && (
+                    <span className="absolute -top-3 left-8 inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase text-white" style={{ letterSpacing: '0.05em' }}>
+                      Most popular
+                    </span>
+                  )}
+                  <div className="p-7 pb-0">
+                    <p className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                      {pack.name}
+                    </p>
+                    <h3 className="mt-2 text-display-sm font-bold text-navy">
+                      {pack.price}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-body">
+                      {pack.description}
+                    </p>
+                    <p className="mt-2 text-xs text-muted">
+                      {pack.timeframe}
+                    </p>
+                  </div>
+
+                  {/* Features — always visible */}
+                  <ul className="mt-6 px-7 flex-1 space-y-2.5">
+                    {pack.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm">
+                        <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                        <span className="text-body">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Expanded details */}
+                  {isExpanded && detail && (
+                    <div className="mt-4 mx-7 pt-4 border-t border-line space-y-4">
+                      {detail.featureGroups.map((group) => (
+                        <div key={group.title}>
+                          <p className="text-xs font-semibold uppercase text-navy mb-2" style={{ letterSpacing: '0.1em' }}>{group.title}</p>
+                          <ul className="space-y-1.5">
+                            {group.items.map((item) => (
+                              <li key={item} className="flex items-start gap-2 text-sm text-body">
+                                <Check size={13} className="mt-0.5 shrink-0 text-brand" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      {detail.idealFor.length > 0 && (
+                        <div>
+                          <p className="text-xs font-semibold uppercase text-navy mb-2" style={{ letterSpacing: '0.1em' }}>Who it's for</p>
+                          <ul className="space-y-1.5">
+                            {detail.idealFor.slice(0, 3).map((item) => (
+                              <li key={item} className="flex items-start gap-2 text-sm text-body">
+                                <Check size={13} className="mt-0.5 shrink-0 text-brand" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Actions */}
+                  <div className="p-7 pt-5 flex flex-col gap-3">
+                    {/* Expand/collapse details */}
+                    {detail && (
+                      <button
+                        onClick={() => togglePkg(pack.name)}
+                        className="flex items-center justify-center gap-2 text-sm font-medium text-body hover:text-brand transition-colors"
+                      >
+                        {isExpanded ? 'Hide details' : 'View full details'}
+                        <ChevronDown size={15} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
+                    <Link
+                      href={`/contact?service=${encodeURIComponent(detail?.name || pack.name)}`}
+                      className={`inline-flex items-center justify-center gap-2 rounded-full h-12 px-6 text-sm font-medium transition-all duration-300 ${
+                        pack.popular
+                          ? 'bg-brand text-white hover:bg-brand-hover'
+                          : 'border border-line text-navy hover:bg-surface'
+                      }`}
+                    >
+                      Get a quote <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </article>
+              )
+            })}
           </RevealStagger>
         </Container>
       </Section>
