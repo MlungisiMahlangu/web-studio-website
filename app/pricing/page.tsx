@@ -65,6 +65,31 @@ export default function PricingPage() {
         variant="centered"
       />
 
+      {/* What you get with every website */}
+      <Section alt>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Every project includes"
+              title="What you get with every website"
+              description="No matter which package you choose, these essentials come standard."
+              className="mb-12"
+            />
+          </Reveal>
+          <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={80}>
+            {everyWebsiteFeatures.map((feat) => (
+              <div key={feat.title} className="flex items-start gap-4 rounded-2xl bg-white border border-line p-6 shadow-card">
+                <IconBox icon={feat.icon} />
+                <div>
+                  <h3 className="text-sm font-semibold text-navy">{feat.title}</h3>
+                  <p className="mt-1 text-sm text-body leading-relaxed">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
       {/* Packages — main section */}
       <Section id="packages">
         <Container>
@@ -178,31 +203,6 @@ export default function PricingPage() {
                 </article>
               )
             })}
-          </RevealStagger>
-        </Container>
-      </Section>
-
-      {/* What you get with every website */}
-      <Section alt>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Every project includes"
-              title="What you get with every website"
-              description="No matter which package you choose, these essentials come standard."
-              className="mb-12"
-            />
-          </Reveal>
-          <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={80}>
-            {everyWebsiteFeatures.map((feat) => (
-              <div key={feat.title} className="flex items-start gap-4 rounded-2xl bg-white border border-line p-6 shadow-card">
-                <IconBox icon={feat.icon} />
-                <div>
-                  <h3 className="text-sm font-semibold text-navy">{feat.title}</h3>
-                  <p className="mt-1 text-sm text-body leading-relaxed">{feat.desc}</p>
-                </div>
-              </div>
-            ))}
           </RevealStagger>
         </Container>
       </Section>
