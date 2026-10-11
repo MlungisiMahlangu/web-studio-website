@@ -53,48 +53,50 @@ export default function WorkPage() {
 
       {/* Projects — alternating layout */}
       {portfolioProjects.map((project, index) => {
-        const isEven = index % 2 === 0
+        const screenshotFirst = index % 2 === 0
+        const details = (
+          <div key={`details-${project.slug}`}>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              <Badge variant="brand">{project.type}</Badge>
+              <Badge>{project.industry}</Badge>
+            </div>
+            <h2 className="text-2xl font-bold text-navy mb-2">{project.title}</h2>
+            <p className="text-sm text-muted font-medium mb-4">{project.subtitle}</p>
+            <p className="text-base text-body leading-relaxed mb-5">{project.description}</p>
+            <div className="flex flex-wrap gap-1.5 mb-6">
+              {project.technologies.map((tech) => (
+                <Badge key={tech}>{tech}</Badge>
+              ))}
+            </div>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-11 px-6 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
+            >
+              Visit Live Site
+              <ExternalLink size={15} className="shrink-0" />
+            </a>
+          </div>
+        )
+        const screenshot = (
+          <div key={`shot-${project.slug}`}>
+            <BrowserFrame
+              url={project.liveUrl}
+              screenshot={`/screenshots/${project.slug}.png`}
+              screenshotAlt={`${project.title} website screenshot`}
+              bg={project.cardBg}
+              priority={index === 0}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+        )
         return (
           <Section key={project.slug} alt={index % 2 !== 0} tight>
             <Container>
               <Reveal>
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center`}>
-                  {/* Screenshot */}
-                  <div className={isEven ? 'lg:order-1' : 'lg:order-2'}>
-                    <BrowserFrame
-                      url={project.liveUrl}
-                      screenshot={`/screenshots/${project.slug}.png`}
-                      screenshotAlt={`${project.title} website screenshot`}
-                      bg={project.cardBg}
-                      priority={index === 0}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  </div>
-
-                  {/* Details */}
-                  <div className={isEven ? 'lg:order-2' : 'lg:order-1'}>
-                    <div className="flex flex-wrap gap-1.5 mb-3">
-                      <Badge variant="brand">{project.type}</Badge>
-                      <Badge>{project.industry}</Badge>
-                    </div>
-                    <h2 className="text-2xl font-bold text-navy mb-2">{project.title}</h2>
-                    <p className="text-sm text-muted font-medium mb-4">{project.subtitle}</p>
-                    <p className="text-base text-body leading-relaxed mb-5">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech}>{tech}</Badge>
-                      ))}
-                    </div>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-11 px-6 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
-                    >
-                      Visit Live Site
-                      <ExternalLink size={15} className="shrink-0" />
-                    </a>
-                  </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                  {screenshotFirst ? <>{screenshot}{details}</> : <>{details}{screenshot}</>}
                 </div>
               </Reveal>
             </Container>
