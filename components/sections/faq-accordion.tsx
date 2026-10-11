@@ -12,7 +12,6 @@ import type { FaqCategory } from '@/lib/constants'
 export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
 
   const toggleItem = (key: string) => {
     setOpenItems((prev) => {
@@ -24,13 +23,9 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
   }
 
   const filteredCategories = useMemo(() => {
-    let cats = categories
-    if (activeCategory) {
-      cats = cats.filter((cat) => cat.id === activeCategory)
-    }
-    if (!searchQuery.trim()) return cats
+    if (!searchQuery.trim()) return categories
     const q = searchQuery.toLowerCase()
-    return cats
+    return categories
       .map((cat) => ({
         ...cat,
         items: cat.items.filter(
@@ -40,7 +35,7 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
         ),
       }))
       .filter((cat) => cat.items.length > 0)
-  }, [categories, searchQuery, activeCategory])
+  }, [categories, searchQuery])
 
   return (
     <>
@@ -73,32 +68,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
                 )}
               </div>
 
-              {/* Category Pills */}
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setActiveCategory(null)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    activeCategory === null
-                      ? 'bg-brand text-white'
-                      : 'bg-blue-tint text-brand hover:bg-brand/10'
-                  }`}
-                >
-                  All
-                </button>
-                {categories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                      activeCategory === cat.id
-                        ? 'bg-brand text-white'
-                        : 'bg-blue-tint text-brand hover:bg-brand/10'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                ))}
-              </div>
             </div>
           </Reveal>
         </Container>

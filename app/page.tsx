@@ -295,7 +295,7 @@ export default function HomePage() {
             <div className="mt-10 text-center">
               <Link
                 href="/work"
-                className="group inline-flex items-center gap-2 rounded-full bg-white border border-line text-navy h-12 px-7 text-sm font-medium transition-all duration-300 hover:border-brand/30"
+                className="group inline-flex items-center gap-2 rounded-full bg-navy text-white h-12 px-7 text-sm font-medium transition-all duration-300 hover:bg-navy/90"
               >
                 View all work
                 <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
