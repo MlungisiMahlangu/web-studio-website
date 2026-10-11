@@ -13,8 +13,8 @@ export function ScrollToTop() {
       isFirstRender.current = false
       return
     }
-    // Scroll to top only on actual navigation (pathname change)
-    window.scrollTo(0, 0)
+    // Scroll to top on navigation - use instant scroll to avoid Lenis interference
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
   }, [pathname])
 
   return null
