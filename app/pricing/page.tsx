@@ -97,7 +97,7 @@ export default function PricingPage() {
             <SectionHeading
               eyebrow="Packages"
               title="Choose your starting point"
-              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs. Click a package to see full details."
+              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs."
               className="mb-12"
             />
           </Reveal>
