@@ -1285,7 +1285,7 @@ export const faqCategories: FaqCategory[] = [
         answer: 'Yes. WEB-IN offers custom web applications from R10,000. Examples include dashboards, client portals, inventory systems, school systems, employee portals, membership platforms, booking management, customer management, internal tools, reporting dashboards, custom databases and automation.\n\nCustom application pricing depends heavily on the required features, users, database architecture, authentication, APIs, integrations, administration and security requirements.',
       },
     ],
-    cta: { text: 'Explore Booking Websites', href: '/services/booking-websites' },
+    cta: { text: 'View our packages', href: '/pricing' },
   },
   {
     id: 'content-collaboration',
