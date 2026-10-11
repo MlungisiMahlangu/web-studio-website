@@ -33,11 +33,14 @@ export default function RefundPolicyPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         compact
         eyebrow={`${STUDIO_NAME} / Legal`}
         title={<>Refund and<br />cancellation policy</>}
         description="Our policy regarding project cancellations and refunds."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Refund Policy', href: '/refund-cancellation-policy' },
+        ]}
       />
 
       {/* Last Updated + TOC */}

@@ -38,11 +38,14 @@ export default function TermsPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         compact
         eyebrow={`${STUDIO_NAME} / Legal`}
         title="Terms and conditions"
         description="The terms that govern our working relationship."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+        ]}
       />
 
       {/* Last Updated + TOC */}

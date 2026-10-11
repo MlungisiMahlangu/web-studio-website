@@ -91,10 +91,33 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="About WEB-IN"
         title={<>Independent by choice.<br />Serious about the work.</>}
         description="WEB-IN is an independent web development studio creating thoughtful digital experiences for businesses, professionals and ambitious ideas. Based in South Africa, working with clients across the country."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'About', href: '/about' },
+        ]}
+        accent="Serious"
+        variant="split"
+        aside={
+          <div className="rounded-2xl border border-line bg-white/80 backdrop-blur-sm shadow-lg p-6">
+            <p className="text-xs font-semibold uppercase text-muted mb-4" style={{ letterSpacing: '0.14em' }}>Our principles</p>
+            <div className="space-y-3">
+              {principles.map((p) => (
+                <div key={p.title} className="flex items-start gap-3">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-tint shrink-0 mt-0.5">
+                    <p.icon size={15} className="text-brand" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-navy">{p.title}</p>
+                    <p className="text-xs text-body leading-relaxed mt-0.5">{p.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        }
       />
 
       {/* Who We Are */}

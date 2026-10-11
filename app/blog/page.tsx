@@ -16,39 +16,20 @@ export const metadata: Metadata = {
   },
 }
 
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: SITE_URL,
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Blog',
-      item: `${SITE_URL}/blog`,
-    },
-  ],
-}
-
 export default function BlogPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
 
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="Insights & Guides"
         title={<>Web development<br />made clear.</>}
         description="Practical guides about website costs, timelines, and building an online presence that works for your South African business."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Blog', href: '/blog' },
+        ]}
+        accent="clear"
       />
 
       {/* Articles */}

@@ -31,11 +31,14 @@ export default function CookiePolicyPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         compact
         eyebrow={`${STUDIO_NAME} / Legal`}
         title="Cookie policy"
         description="How we use cookies on our website."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Cookie Policy', href: '/cookie-policy' },
+        ]}
       />
 
       {/* Last Updated + TOC */}

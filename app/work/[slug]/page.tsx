@@ -43,11 +43,15 @@ export default async function ProjectDetailPage({ params }: Props) {
     <>
       {/* Hero */}
       <PageHero
-        dark
-        breadcrumb={{ label: 'All Work', href: '/work' }}
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Work', href: '/work' },
+          { label: project.title, href: `/work/${project.slug}` },
+        ]}
         eyebrow={project.type}
         title={project.title}
         description={project.subtitle}
+        variant="split"
         buttons={
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <a
@@ -64,7 +68,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 href={project.codeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/15 text-white/70 h-12 px-6 text-sm font-medium transition-all duration-300 hover:border-white/30 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-full border border-line bg-white text-navy h-12 px-6 text-sm font-medium transition-all duration-300 hover:border-brand/20 hover:shadow-lg"
               >
                 <Code2 size={16} className="shrink-0" />
                 View Code
@@ -72,23 +76,17 @@ export default async function ProjectDetailPage({ params }: Props) {
             )}
           </div>
         }
+        aside={
+          <BrowserFrame
+            url={project.liveUrl}
+            screenshot={`/screenshots/${project.slug}.png`}
+            screenshotAlt={`${project.title} website screenshot`}
+            bg={project.cardBg}
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        }
       />
-
-      {/* Browser screenshot */}
-      <Section alt>
-        <Container narrow>
-          <Reveal variant="scale">
-            <BrowserFrame
-              url={project.liveUrl}
-              screenshot={`/screenshots/${project.slug}.png`}
-              screenshotAlt={`${project.title} website screenshot`}
-              bg={project.cardBg}
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1000px"
-            />
-          </Reveal>
-        </Container>
-      </Section>
 
       {/* Content + Sidebar */}
       <Section>

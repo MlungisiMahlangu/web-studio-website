@@ -23,10 +23,14 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="Get in Touch"
         title={<>Let's build<br />something real.</>}
         description="Have a project in mind? Tell us what you're working on. We'll review the details and come back with a clear next step."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Contact', href: '/contact' },
+        ]}
+        accent="real"
       />
 
       {/* Contact Form Section */}

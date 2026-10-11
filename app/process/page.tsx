@@ -28,10 +28,34 @@ export default function ProcessPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="How we work"
         title={<>From first conversation<br />to live website.</>}
         description="A great website should feel exciting to build — not complicated. Our process gives every project a clear path from the first conversation through planning, design, development, review and launch, with communication and decisions kept clear along the way."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Process', href: '/process' },
+        ]}
+        accent="clear"
+        variant="split"
+        aside={
+          <div className="rounded-2xl border border-line bg-white/80 backdrop-blur-sm shadow-lg p-6">
+            <p className="text-xs font-semibold uppercase text-muted mb-5" style={{ letterSpacing: '0.14em' }}>4 phases</p>
+            <div className="relative space-y-6">
+              <div className="absolute left-[19px] top-3 bottom-3 w-px bg-line" />
+              {processPhases.map((phase, i) => (
+                <div key={phase.number} className="relative flex items-start gap-4">
+                  <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-brand text-white text-sm font-bold shrink-0">
+                    {phase.number}
+                  </div>
+                  <div className="pt-1.5">
+                    <p className="text-sm font-bold text-navy">{phase.label}</p>
+                    <p className="text-xs text-body leading-relaxed mt-0.5">{phase.description.slice(0, 80)}...</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        }
       />
 
       {/* Journey Bar */}

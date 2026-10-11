@@ -67,10 +67,36 @@ export default function PricingPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="Services & Pricing"
         title="Everything your business needs online."
         description="From a simple landing page to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services & Pricing', href: '/pricing' },
+        ]}
+        accent="online"
+        variant="split"
+        aside={
+          <div className="rounded-2xl border border-line bg-white/80 backdrop-blur-sm shadow-lg p-6 space-y-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-lg font-bold text-navy">Packages</h3>
+              <span className="text-xs font-medium text-muted uppercase" style={{ letterSpacing: '0.1em' }}>From</span>
+            </div>
+            {packages.slice(0, 5).map((pkg) => (
+              <div key={pkg.name} className="flex items-center justify-between py-2 border-b border-line/50 last:border-0">
+                <span className="text-sm font-medium text-navy">{pkg.name}</span>
+                <span className="text-sm font-semibold text-brand">{pkg.price}</span>
+              </div>
+            ))}
+            <Link
+              href="#packages"
+              className="flex items-center justify-center gap-2 w-full rounded-full bg-surface text-navy h-11 text-sm font-medium transition-colors hover:bg-blue-tint hover:text-brand mt-4"
+            >
+              Compare packages
+              <ArrowUpRight size={14} />
+            </Link>
+          </div>
+        }
       />
 
       {/* Sticky Jump List */}

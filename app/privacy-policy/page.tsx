@@ -36,11 +36,14 @@ export default function PrivacyPolicyPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         compact
         eyebrow={`${STUDIO_NAME} / Legal`}
         title="Privacy policy"
         description="Clear, straightforward information about how we handle your information."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Privacy Policy', href: '/privacy-policy' },
+        ]}
       />
 
       {/* Last Updated + TOC */}

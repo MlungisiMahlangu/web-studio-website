@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { portfolioProjects } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
@@ -25,10 +26,41 @@ export default function WorkPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="Selected Work"
         title="Work that speaks for itself."
         description="A selection of digital experiences we have designed and built — from full-stack platforms to polished interfaces. Explore the live projects and see how WEB-IN approaches design, development and the details in between."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Work', href: '/work' },
+        ]}
+        accent="speaks"
+        variant="split"
+        aside={
+          <div className="relative h-[320px] lg:h-[400px]">
+            {portfolioProjects.slice(0, 3).map((project, i) => (
+              <div
+                key={project.slug}
+                className="absolute rounded-xl overflow-hidden shadow-lg border border-line transition-transform duration-500 hover:scale-[1.02] hover:-translate-y-1"
+                style={{
+                  width: i === 0 ? '85%' : i === 1 ? '70%' : '60%',
+                  height: i === 0 ? '100%' : i === 1 ? '75%' : '55%',
+                  left: i === 0 ? '0' : i === 1 ? '15%' : '30%',
+                  top: i === 0 ? '0' : i === 1 ? '10%' : '25%',
+                  zIndex: 3 - i,
+                  transform: `rotate(${i === 0 ? -2 : i === 1 ? 1 : 3}deg)`,
+                }}
+              >
+                <Image
+                  src={`/screenshots/${project.slug}.png`}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
+        }
       />
 
       {/* Filter pills */}

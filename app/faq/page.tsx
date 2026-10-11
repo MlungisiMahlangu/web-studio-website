@@ -35,10 +35,14 @@ export default function FAQPage() {
       />
       {/* Hero */}
       <PageHero
-        dark
         eyebrow="FAQ"
         title={<>Good questions<br />deserve clear answers.</>}
         description="Everything you need to know before starting a project with WEB-IN — from services and timelines to domains, ownership, support and what happens after you get in touch."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'FAQ', href: '/faq' },
+        ]}
+        accent="clear"
       />
 
       {/* FAQ Content */}

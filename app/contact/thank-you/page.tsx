@@ -16,10 +16,15 @@ export default function ThankYouPage() {
     <>
       {/* Hero */}
       <PageHero
-        dark
+        compact
         eyebrow="Message received"
         title={<>Thank you for<br />reaching out.</>}
         description="We've received your message and will review the details shortly."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Contact', href: '/contact' },
+          { label: 'Thank You', href: '/contact/thank-you' },
+        ]}
       />
 
       {/* What happens next */}
