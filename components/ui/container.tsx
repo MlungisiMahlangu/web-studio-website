@@ -5,11 +5,13 @@ export function Container({
   className,
   narrow,
   text,
+  style,
 }: {
   children: React.ReactNode
   className?: string
   narrow?: boolean
   text?: boolean
+  style?: React.CSSProperties
 }) {
   return (
     <div
@@ -18,6 +20,7 @@ export function Container({
         text ? 'max-w-[680px]' : narrow ? 'max-w-[900px]' : 'max-w-[1280px]',
         className,
       )}
+      style={style}
     >
       {children}
     </div>
