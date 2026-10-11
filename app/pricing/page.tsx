@@ -111,7 +111,7 @@ export default function PricingPage() {
                   key={pack.name}
                   className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
                     pack.popular
-                      ? 'bg-white ring-2 ring-brand shadow-xl -mt-2'
+                      ? 'bg-dark-panel shadow-2xl -mt-2'
                       : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg'
                   }`}
                 >
@@ -121,16 +121,16 @@ export default function PricingPage() {
                     </span>
                   )}
                   <div className="p-7 pb-0">
-                    <p className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
+                    <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.14em' }}>
                       {pack.name}
                     </p>
-                    <h3 className="mt-2 text-display-sm font-bold text-navy">
+                    <h3 className={`mt-2 text-display-sm font-bold ${pack.popular ? 'text-white' : 'text-navy'}`}>
                       {pack.price}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-body">
+                    <p className={`mt-3 text-sm leading-relaxed ${pack.popular ? 'text-white/50' : 'text-body'}`}>
                       {pack.description}
                     </p>
-                    <p className="mt-2 text-xs text-muted">
+                    <p className={`mt-2 text-xs ${pack.popular ? 'text-white/35' : 'text-muted'}`}>
                       {pack.timeframe}
                     </p>
                   </div>
@@ -140,20 +140,20 @@ export default function PricingPage() {
                     {pack.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3 text-sm">
                         <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                        <span className="text-body">{feature}</span>
+                        <span className={pack.popular ? 'text-white/60' : 'text-body'}>{feature}</span>
                       </li>
                     ))}
                   </ul>
 
                   {/* Expanded details */}
                   {isExpanded && detail && (
-                    <div className="mt-4 mx-7 pt-4 border-t border-line space-y-4">
+                    <div className={`mt-4 mx-7 pt-4 border-t ${pack.popular ? 'border-white/10' : 'border-line'} space-y-4`}>
                       {detail.featureGroups.map((group) => (
                         <div key={group.title}>
-                          <p className="text-xs font-semibold uppercase text-navy mb-2" style={{ letterSpacing: '0.1em' }}>{group.title}</p>
+                          <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/70' : 'text-navy'} mb-2`} style={{ letterSpacing: '0.1em' }}>{group.title}</p>
                           <ul className="space-y-1.5">
                             {group.items.map((item) => (
-                              <li key={item} className="flex items-start gap-2 text-sm text-body">
+                              <li key={item} className={`flex items-start gap-2 text-sm ${pack.popular ? 'text-white/50' : 'text-body'}`}>
                                 <Check size={13} className="mt-0.5 shrink-0 text-brand" />
                                 {item}
                               </li>
@@ -163,10 +163,10 @@ export default function PricingPage() {
                       ))}
                       {detail.idealFor.length > 0 && (
                         <div>
-                          <p className="text-xs font-semibold uppercase text-navy mb-2" style={{ letterSpacing: '0.1em' }}>Who it's for</p>
+                          <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/70' : 'text-navy'} mb-2`} style={{ letterSpacing: '0.1em' }}>Who it's for</p>
                           <ul className="space-y-1.5">
                             {detail.idealFor.slice(0, 3).map((item) => (
-                              <li key={item} className="flex items-start gap-2 text-sm text-body">
+                              <li key={item} className={`flex items-start gap-2 text-sm ${pack.popular ? 'text-white/50' : 'text-body'}`}>
                                 <Check size={13} className="mt-0.5 shrink-0 text-brand" />
                                 {item}
                               </li>
@@ -183,7 +183,7 @@ export default function PricingPage() {
                     {detail && (
                       <button
                         onClick={() => togglePkg(pack.name)}
-                        className="flex items-center justify-center gap-2 text-sm font-medium text-body hover:text-brand transition-colors"
+                        className={`flex items-center justify-center gap-2 text-sm font-medium transition-colors ${pack.popular ? 'text-white/50 hover:text-white' : 'text-body hover:text-brand'}`}
                       >
                         {isExpanded ? 'Hide details' : 'View full details'}
                         <ChevronDown size={15} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
