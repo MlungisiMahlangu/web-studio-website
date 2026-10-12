@@ -49,13 +49,13 @@ Here are the typical price ranges you can expect in the current South African ma
 **Landing pages: R1,500 - R3,000**
 A single-page website focused on one offer, product, or campaign. Perfect for testing an idea, promoting a specific service, or creating a simple online presence quickly.
 
-**Portfolio websites: R2,000 - R4,000**
-Personal websites for professionals, creatives, students, and freelancers. Usually includes pages for about, skills, projects, and contact.
+**Starter websites: R2,500 - R4,000**
+Professional websites for individuals, freelancers and small businesses. Usually includes pages for about, services, portfolio, and contact.
 
-**Business websites: R4,500 - R8,000**
+**Business websites: R4,000 - R8,000**
 Professional websites for small and medium businesses. Typically includes 5-7 pages (home, about, services, contact, plus additional pages), contact forms, Google Maps integration, and basic SEO setup.
 
-**Online stores: R8,500 - R15,000+**
+**Online stores: R7,000 - R15,000+**
 E-commerce websites with product catalogues, shopping carts, payment gateway integration, and order management. Costs vary significantly based on the number of products and complexity of the checkout process.
 
 **Custom web applications: R10,000+**
@@ -71,10 +71,10 @@ When comparing quotes, make sure you understand what is included. A comprehensiv
 - Contact form integration
 - Image optimization for fast loading
 - SSL certificate for security
-- Deployment to your domain
+- Launch to your domain
 - Post-launch support (at least 14-30 days)
 
-Some packages also include domain registration, hosting setup, Google Business Profile setup, and training on how to update content yourself.
+Some packages also include domain registration, launch setup, Google Business Profile setup, and training on how to update content yourself.
 
 ## Hidden costs to watch out for
 
@@ -85,7 +85,7 @@ Be cautious of quotes that seem too good to be true. Some developers advertise l
 - Revisions and changes
 - Post-launch support
 - Training and documentation
-- Domain and hosting setup
+- Domain setup
 
 Always ask for a detailed breakdown of what is included in the quote before committing.
 
@@ -142,15 +142,15 @@ Once the design is approved, we build the website using clean, modern code. This
 We add all your content (text, images, videos) to the website and test everything thoroughly. This includes checking that the website works on different devices (mobile, tablet, desktop), testing all forms and links, verifying that pages load quickly, and ensuring there are no bugs or errors.
 
 **Phase 5: Launch (1-2 days)**
-Once everything is tested and approved, we deploy the website to your domain and make it live. We also set up essential tools like Google Analytics and Search Console, and provide you with any training or documentation you need to manage the website going forward.
+Once everything is tested and approved, we launch the website to your domain and make it live. We also set up essential tools like Google Analytics and Search Console, and provide you with any training or documentation you need to manage the website going forward.
 
 ## Typical timelines by project type
 
 **Landing pages: 1-2 weeks**
 A single-page website can be built relatively quickly, especially if you already have your content and images ready. The main time factors are the design revision process and how quickly you can provide feedback.
 
-**Portfolio websites: 2-3 weeks**
-These typically include 4-5 pages and require time to showcase your work effectively. The timeline depends on how many projects you want to feature and whether you need help with content creation.
+**Starter websites: 1-2 weeks**
+These typically include up to 4 pages and require time to showcase your work effectively. The timeline depends on how many projects you want to feature and whether you need help with content creation.
 
 **Business websites: 3-4 weeks**
 A standard business website with 5-7 pages usually takes about a month. This allows time for proper design, development, content integration, and testing. If you need custom features like booking systems or complex forms, add an extra week.
@@ -255,7 +255,7 @@ A professional website gives you complete control over your online presence and 
 
 **Limitations of websites:**
 - Requires an initial investment
-- Needs hosting and domain registration (annual costs)
+- Needs domain registration (annual costs)
 - Requires updates and maintenance
 - You need to drive traffic to your site (through SEO, social media, or advertising)
 
@@ -290,7 +290,7 @@ For most established businesses, a website is essential. You need a website if:
 
 ## The cost comparison
 
-Let us put the costs in perspective. A basic Facebook page is free, but a basic website from a professional developer starts around R1,500-R4,500 depending on the type of site. Spread over a year, that is roughly R125-R375 per month for a professional online presence that works for you 24/7.
+Let us put the costs in perspective. A basic Facebook page is free, but a basic website from a professional developer starts around R1,500-R4,000 depending on the type of site. Spread over a year, that is roughly R125-R333 per month for a professional online presence that works for you 24/7.
 
 Compare that to the cost of traditional advertising: a single newspaper ad can cost R2,000-R5,000 and reaches people once. A website reaches people continuously, builds credibility, and generates leads for years.
 

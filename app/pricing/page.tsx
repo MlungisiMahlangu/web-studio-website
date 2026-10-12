@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Check, Smartphone, Search, Mail, Server, Headphones, Shield, Plus, ChevronDown } from 'lucide-react'
-import { services, packages, addons, maintenancePlans, comparisonFeatures, serviceDetails, homepageFaqs, STUDIO_NAME, SITE_URL, STUDIO_EMAIL } from '@/lib/constants'
+import { ArrowUpRight, Check, Minus, Smartphone, Search, Mail, Globe, Headphones, Shield, FileText, Clock, RefreshCw, LifeBuoy, Plus } from 'lucide-react'
+import { services, addons, maintenancePlans, maintenanceNote, comparisonFeatures, homepageFaqs, STUDIO_NAME, SITE_URL, STUDIO_EMAIL } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -15,11 +14,29 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 
 const everyWebsiteFeatures = [
   { icon: Smartphone, title: 'Mobile-first design', desc: 'Looks great on every device, from phones to desktops.' },
-  { icon: Search, title: 'SEO basics', desc: 'Meta tags, sitemap, search console — found on Google from day one.' },
-  { icon: Mail, title: 'Contact forms', desc: 'WhatsApp, email and enquiry forms so customers can reach you.' },
-  { icon: Server, title: 'Fast hosting setup', desc: 'We deploy your site on fast, reliable hosting with SSL.' },
-  { icon: Headphones, title: 'Responsive support', desc: 'Post-launch support included with every project we build.' },
-  { icon: Shield, title: 'POPIA-aware', desc: 'Built with South African privacy best practices in mind.' },
+  { icon: Search, title: 'SEO foundations', desc: 'Titles, descriptions, sitemap where applicable. No ranking guarantees.' },
+  { icon: Mail, title: 'Clear contact options', desc: 'WhatsApp and a tested contact form so customers can reach you.' },
+  { icon: Globe, title: 'Live launch with HTTPS', desc: 'Published live with HTTPS where supported.' },
+  { icon: Headphones, title: 'Launch testing and support', desc: 'Tested before launch with a defined support period.' },
+  { icon: Shield, title: 'Privacy-conscious build', desc: 'POPIA considered; you remain responsible for your own privacy notices.' },
+]
+
+const howPricingWorks = [
+  'Prices are in rand for the scope listed; extra work is quoted before it starts.',
+  '50% deposit to start, balance before launch; you own the website on full payment.',
+  'Timelines start once we have your deposit and content.',
+  'Payment gateway fees and third-party subscriptions are paid by you.',
+  'You supply text and images unless you add content help.',
+  'A revision round is one consolidated list of changes.',
+]
+
+const whichOneDoINeed = [
+  { need: 'One page for a campaign', choose: 'Landing Page', slug: 'landing-page' },
+  { need: 'A site for myself or a small business', choose: 'Starter Website', slug: 'starter-website' },
+  { need: 'More pages and a stronger enquiry path', choose: 'Business Website', slug: 'business-website' },
+  { need: 'I already have a website', choose: 'Website Redesign', slug: 'website-redesign' },
+  { need: 'To sell products online', choose: 'Online Store', slug: 'online-store' },
+  { need: 'Logins, dashboards or bookings', choose: 'Custom Web Application', slug: 'custom-web-application' },
 ]
 
 function PricingFaq() {
@@ -44,12 +61,6 @@ function PricingFaq() {
 }
 
 export default function PricingPage() {
-  const [expandedPkg, setExpandedPkg] = useState<string | null>(null)
-
-  const togglePkg = (name: string) => {
-    setExpandedPkg(expandedPkg === name ? null : name)
-  }
-
   // Service structured data for SEO
   const serviceJsonLd = {
     '@context': 'https://schema.org',
@@ -65,15 +76,15 @@ export default function PricingPage() {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Web Development Services',
-      itemListElement: packages.map((pkg, i) => ({
+      itemListElement: services.map((svc, i) => ({
         '@type': 'Offer',
         position: i + 1,
         itemOffered: {
           '@type': 'Service',
-          name: pkg.name,
-          description: pkg.description,
+          name: svc.name,
+          description: svc.tagline,
         },
-        price: pkg.price.replace(/[^0-9]/g, ''),
+        price: svc.priceLabel.replace(/[^0-9]/g, ''),
         priceCurrency: 'ZAR',
       })),
     },
@@ -98,134 +109,157 @@ export default function PricingPage() {
         variant="centered"
       />
 
-      {/* What you get with every website */}
+      {/* Which one do I need? */}
       <Section>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Every project includes"
-              title="What you get with every website"
-              description="No matter which package you choose, these essentials come standard."
-              className="mb-12"
+              eyebrow="Find your service"
+              title="Which one do I need?"
+              className="mb-8"
             />
           </Reveal>
-          <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={80}>
-            {everyWebsiteFeatures.map((feat) => (
-              <div key={feat.title} className="flex items-start gap-4 rounded-2xl bg-white border border-line p-6 shadow-card">
-                <IconBox icon={feat.icon} />
-                <div>
-                  <h3 className="text-sm font-semibold text-navy">{feat.title}</h3>
-                  <p className="mt-1 text-sm text-body leading-relaxed">{feat.desc}</p>
-                </div>
-              </div>
-            ))}
-          </RevealStagger>
+          <Reveal>
+            <div className="max-w-3xl mx-auto space-y-3">
+              {whichOneDoINeed.map((item) => (
+                <a
+                  key={item.slug}
+                  href={`#${item.slug}`}
+                  className="flex items-center justify-between gap-4 rounded-xl border border-line bg-white px-6 py-4 shadow-card transition-all hover:border-brand/20 hover:shadow-lg"
+                >
+                  <span className="text-sm text-body">I need... {item.need}</span>
+                  <span className="shrink-0 text-sm font-semibold text-brand">{item.choose} →</span>
+                </a>
+              ))}
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
-      {/* Packages — main section */}
-      <Section id="packages" alt>
+      {/* Service cards */}
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Packages"
+              eyebrow="Our services"
               title="Choose your starting point"
-              description="Each package is a proven starting point. We'll adjust the scope to fit your exact needs."
+              description="Each service is a proven starting point. We'll adjust the scope to fit your exact needs."
               className="mb-12"
             />
           </Reveal>
           <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={100}>
-            {packages.map((pack) => {
-              const isExpanded = expandedPkg === pack.name
-              const serviceKey = pack.href.replace('/pricing#', '').replace('-websites', '').replace('-pages', '')
-              const detail = serviceDetails[serviceKey] || serviceDetails[pack.name.toLowerCase()]
+            {services.map((svc) => {
+              const isPopular = svc.popular === true
               return (
                 <article
-                  key={pack.name}
+                  key={svc.slug}
+                  id={svc.slug}
                   className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
-                    pack.popular
-                      ? 'bg-dark-panel shadow-2xl -mt-2'
+                    isPopular
+                      ? 'bg-dark-panel shadow-2xl -mt-2 ring-2 ring-brand'
                       : 'bg-white border border-line shadow-card hover:border-brand/20 hover:shadow-lg'
                   }`}
                 >
-                  {pack.popular && (
+                  {isPopular && (
                     <span className="absolute -top-3 left-8 inline-block rounded-full bg-brand px-3 py-1 text-[11px] font-semibold uppercase text-white" style={{ letterSpacing: '0.05em' }}>
                       Most popular
                     </span>
                   )}
                   <div className="p-7 pb-0">
-                    <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.14em' }}>
-                      {pack.name}
+                    <p className={`text-sm font-bold uppercase ${isPopular ? 'text-white/70' : 'text-muted'}`} style={{ letterSpacing: '0.14em' }}>
+                      {svc.name}
                     </p>
-                    <h3 className={`mt-2 text-display-sm font-bold ${pack.popular ? 'text-white' : 'text-navy'}`}>
-                      {pack.price}
-                    </h3>
-                    <p className={`mt-3 text-sm leading-relaxed ${pack.popular ? 'text-white/50' : 'text-body'}`}>
-                      {pack.description}
+                    <p className={`mt-2 text-sm italic ${isPopular ? 'text-white' : 'text-body'}`}>
+                      {svc.tagline}
                     </p>
-                    <p className={`mt-2 text-xs ${pack.popular ? 'text-white/35' : 'text-muted'}`}>
-                      {pack.timeframe}
-                    </p>
+                    <div className="mt-4 flex items-baseline gap-1">
+                      {svc.priceLabel.startsWith('From') && (
+                        <span className={`text-xs ${isPopular ? 'text-white/70' : 'text-muted'}`}>From</span>
+                      )}
+                      <h3 className={`text-display-sm font-bold ${isPopular ? 'text-white' : 'text-navy'}`}>
+                        {svc.priceLabel.replace('From ', '')}
+                      </h3>
+                    </div>
+                    <div className="mt-3">
+                      <span className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${isPopular ? 'bg-brand/20 text-white/70' : 'bg-surface text-navy'}`}>
+                        Best for: {svc.bestFor}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Features — always visible */}
-                  <ul className="mt-6 px-7 flex-1 space-y-2.5">
-                    {pack.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-sm">
-                        <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                        <span className={pack.popular ? 'text-white/60' : 'text-body'}>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Expanded details */}
-                  {isExpanded && detail && (
-                    <div className={`mt-4 mx-7 pt-4 border-t ${pack.popular ? 'border-white/10' : 'border-line'} space-y-4`}>
-                      {detail.featureGroups.map((group) => (
-                        <div key={group.title}>
-                          <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/70' : 'text-navy'} mb-2`} style={{ letterSpacing: '0.1em' }}>{group.title}</p>
-                          <ul className="space-y-1.5">
-                            {group.items.map((item) => (
-                              <li key={item} className={`flex items-start gap-2 text-sm ${pack.popular ? 'text-white/50' : 'text-body'}`}>
-                                <Check size={13} className="mt-0.5 shrink-0 text-brand" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                      {detail.idealFor.length > 0 && (
-                        <div>
-                          <p className={`text-xs font-semibold uppercase ${pack.popular ? 'text-white/70' : 'text-navy'} mb-2`} style={{ letterSpacing: '0.1em' }}>Who it's for</p>
-                          <ul className="space-y-1.5">
-                            {detail.idealFor.slice(0, 3).map((item) => (
-                              <li key={item} className={`flex items-start gap-2 text-sm ${pack.popular ? 'text-white/50' : 'text-body'}`}>
-                                <Check size={13} className="mt-0.5 shrink-0 text-brand" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                  {/* Facts grid */}
+                  <div className="mt-6 px-7 grid grid-cols-2 gap-3">
+                    <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
+                      <FileText size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <div>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Pages</p>
+                        <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.pages}</p>
+                      </div>
                     </div>
-                  )}
+                    <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
+                      <Clock size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <div>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Timeline</p>
+                        <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.timeline}</p>
+                      </div>
+                    </div>
+                    <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
+                      <RefreshCw size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <div>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Revisions</p>
+                        <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.revisions}</p>
+                      </div>
+                    </div>
+                    <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
+                      <LifeBuoy size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <div>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Support</p>
+                        <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.support}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Included checklist */}
+                  <div className="mt-6 px-7 flex-1">
+                    <ul className="space-y-2.5">
+                      {svc.included.map((item, idx) => {
+                        const isLabel = item.endsWith(':')
+                        return (
+                          <li key={idx} className="flex items-start gap-3 text-sm">
+                            <Check aria-hidden="true" className={`mt-0.5 h-4 w-4 shrink-0 ${isPopular ? 'text-brand' : 'text-brand'}`} />
+                            <span className={isLabel ? (isPopular ? 'text-white/50 text-xs italic' : 'text-muted text-xs italic') : (isPopular ? 'text-white/60' : 'text-body')}>
+                              {item}
+                            </span>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+
+                  {/* Not included */}
+                  <div className="mt-6 px-7">
+                    <p className={`text-xs font-semibold uppercase mb-2 ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>
+                      Not included
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {svc.notIncluded.map((item, idx) => (
+                        <span
+                          key={idx}
+                          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${isPopular ? 'bg-white/5 text-white/40' : 'bg-surface text-muted'}`}
+                        >
+                          <Minus size={10} />
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
                   {/* Actions */}
-                  <div className="p-7 pt-5 flex flex-col gap-3">
-                    {/* Expand/collapse details */}
-                    {detail && (
-                      <button
-                        onClick={() => togglePkg(pack.name)}
-                        className={`flex items-center justify-center gap-2 text-sm font-medium transition-colors ${pack.popular ? 'text-white/50 hover:text-white' : 'text-body hover:text-brand'}`}
-                      >
-                        {isExpanded ? 'Hide details' : 'View full details'}
-                        <ChevronDown size={15} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-                      </button>
-                    )}
+                  <div className="p-7 pt-6 flex flex-col gap-3">
                     <Link
-                      href={`/contact?service=${encodeURIComponent(detail?.name || pack.name)}`}
+                      href={`/contact?service=${encodeURIComponent(svc.name)}`}
                       className={`inline-flex items-center justify-center gap-2 rounded-full h-12 px-6 text-sm font-medium transition-all duration-300 ${
-                        pack.popular
+                        isPopular
                           ? 'bg-brand text-white hover:bg-brand-hover'
                           : 'border border-line text-navy hover:bg-surface'
                       }`}
@@ -252,27 +286,21 @@ export default function PricingPage() {
           </Reveal>
           <Reveal>
             <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
-              <table className="w-full min-w-[700px] text-left text-sm">
+              <table className="w-full min-w-[900px] text-left text-sm">
                 <thead>
                   <tr className="border-b border-line bg-surface">
                     <th className="px-6 py-4 text-xs font-semibold uppercase text-muted sticky left-0 bg-surface z-10" style={{ letterSpacing: '0.14em' }}>
                       Feature
                     </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Landing
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Business
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Starter
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Portfolio
-                    </th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>
-                      Professional
-                    </th>
+                    {services.map((svc) => (
+                      <th
+                        key={svc.slug}
+                        className={`px-6 py-4 text-xs font-semibold uppercase ${svc.popular ? 'text-brand' : 'text-muted'}`}
+                        style={{ letterSpacing: '0.14em' }}
+                      >
+                        {svc.name}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-line">
@@ -281,7 +309,7 @@ export default function PricingPage() {
                       <td className="px-6 py-4 font-medium text-navy sticky left-0 bg-white z-10">
                         {row.feature}
                       </td>
-                      {(['landing', 'business', 'starter', 'portfolio', 'professional'] as const).map((col) => {
+                      {(['landing', 'business', 'starter', 'redesign', 'store', 'app'] as const).map((col) => {
                         const val = row[col]
                         if (val === true)
                           return (
@@ -296,7 +324,7 @@ export default function PricingPage() {
                             </td>
                           )
                         return (
-                          <td key={col} className="px-6 py-4 text-body">
+                          <td key={col} className={`px-6 py-4 ${col === 'business' ? 'font-medium text-navy' : 'text-body'}`}>
                             {val}
                           </td>
                         )
@@ -335,19 +363,19 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Maintenance */}
+      {/* Care plans */}
       <Section dark>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Maintenance"
-              title="Ongoing care"
+              eyebrow="Care plans"
+              title="Ongoing support"
               description="Optional monthly plans to keep your website running smoothly after launch."
               light
               className="mb-12"
             />
           </Reveal>
-          <RevealStagger className="grid gap-6 sm:grid-cols-3" stagger={100}>
+          <RevealStagger className="grid gap-6 sm:grid-cols-2" stagger={100}>
             {maintenancePlans.map((plan) => (
               <div
                 key={plan.name}
@@ -374,6 +402,55 @@ export default function PricingPage() {
               </div>
             ))}
           </RevealStagger>
+          <p className="mt-8 text-center text-sm text-white/50">{maintenanceNote}</p>
+        </Container>
+      </Section>
+
+      {/* Included with every website */}
+      <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Every project includes"
+              title="What you get with every website"
+              description="No matter which service you choose, these essentials come standard."
+              className="mb-12"
+            />
+          </Reveal>
+          <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={80}>
+            {everyWebsiteFeatures.map((feat) => (
+              <div key={feat.title} className="flex items-start gap-4 rounded-2xl bg-white border border-line p-6 shadow-card">
+                <IconBox icon={feat.icon} />
+                <div>
+                  <h3 className="text-sm font-semibold text-navy">{feat.title}</h3>
+                  <p className="mt-1 text-sm text-body leading-relaxed">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      {/* How pricing works */}
+      <Section alt>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Transparent process"
+              title="How pricing works"
+              className="mb-8"
+            />
+          </Reveal>
+          <Reveal>
+            <ul className="max-w-3xl mx-auto space-y-3">
+              {howPricingWorks.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm text-body">
+                  <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </Section>
 

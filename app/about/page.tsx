@@ -88,7 +88,7 @@ const qualityDetails = [
   'Accessible interfaces',
   'Optimised imagery',
   'Clean implementation',
-  'Secure deployment',
+  'Secure launch',
   'Search-friendly foundations',
 ]
 

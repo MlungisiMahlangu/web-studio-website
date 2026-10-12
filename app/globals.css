@@ -532,3 +532,14 @@
 .prose-legal a:hover {
   color: var(--color-brand-hover);
 }
+
+/* Highlight targeted service cards */
+article:target {
+  animation: highlight-fade 2s ease-in-out forwards;
+}
+
+@keyframes highlight-fade {
+  0% { outline: 3px solid var(--color-brand); outline-offset: 4px; }
+  70% { outline: 3px solid var(--color-brand); outline-offset: 4px; }
+  100% { outline: 3px solid transparent; outline-offset: 4px; }
+}

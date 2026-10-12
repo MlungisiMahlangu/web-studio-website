@@ -19,7 +19,7 @@ const tocItems = [
   { id: 'payment-terms', label: 'Payment terms' },
   { id: 'revisions', label: 'Revisions' },
   { id: 'content', label: 'Content' },
-  { id: 'domains-hosting', label: 'Domains and hosting' },
+  { id: 'domains', label: 'Domains' },
   { id: 'ownership', label: 'Ownership' },
   { id: 'support', label: 'Support' },
   { id: 'liability', label: 'Limitation of liability' },
@@ -99,7 +99,7 @@ export default function TermsPage() {
               <h2 id="payment-terms">Payment terms</h2>
               <ul>
                 <li>A deposit is required before development begins.</li>
-                <li>The balance is due upon completion, before the website is deployed.</li>
+                <li>The balance is due upon completion, before the website goes live.</li>
                 <li>Payment methods include EFT and other agreed-upon methods.</li>
               </ul>
 
@@ -116,11 +116,9 @@ export default function TermsPage() {
                 otherwise agreed. Delays in providing content may affect project timelines.
               </p>
 
-              <h2 id="domains-hosting">Domains and hosting</h2>
+              <h2 id="domains">Domains</h2>
               <p>
-                Selected packages include a free .co.za domain for the first year. The
-                domain is registered in your name. Hosting may be included for an initial
-                period; renewal fees apply thereafter.
+                We do not include a free domain. Domains can be registered in your name as an add-on, or you may provide a domain you already own.
               </p>
 
               <h2 id="ownership">Ownership</h2>

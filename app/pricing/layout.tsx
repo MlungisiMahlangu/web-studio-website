@@ -3,13 +3,13 @@ import { SITE_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Services & Pricing | Web Development Packages | WEB-IN',
-  description: 'Transparent pricing for professional websites in South Africa. Starter sites from R4,500, professional sites, online stores, landing pages and custom web applications.',
+  description: 'Transparent pricing for web development in South Africa. Landing pages, starter sites, business websites, online stores and custom applications.',
   alternates: {
     canonical: `${SITE_URL}/pricing`,
   },
   openGraph: {
     title: 'Services & Pricing | WEB-IN',
-    description: 'Transparent pricing for professional websites. Starter sites from R4,500. Business sites, portfolios, e-commerce and custom apps.',
+    description: 'Websites, online stores and web applications for South African businesses. Clear pricing, no hidden costs.',
     type: 'website',
     url: `${SITE_URL}/pricing`,
   },

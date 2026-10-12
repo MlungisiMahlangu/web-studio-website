@@ -2,20 +2,9 @@ import {
   Globe2,
   PenTool,
   Sparkles,
-  Compass,
   Layers3,
   Code2,
   Paintbrush,
-  Palette,
-  Briefcase,
-  BarChart3,
-  Rocket,
-  Layout,
-  MessageSquare,
-  Calendar,
-  ShoppingCart,
-  Search,
-  Users,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -23,7 +12,7 @@ export const STUDIO_NAME = 'WEB-IN'
 export const SITE_URL = 'https://web-in.co.za'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
-  'WEB-IN is an independent web development studio based in South Africa, creating modern websites and web solutions for small businesses, professionals, entrepreneurs and growing brands.'
+  'Websites, online stores and web applications for South African businesses. Independent web development studio building modern, fast, mobile-first sites.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
@@ -32,923 +21,235 @@ export const LAST_UPDATED = '2026-10-11'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
 export const SOCIAL_LINKS: string[] = []
 
-export interface Service {
-  icon: LucideIcon
-  number: string
-  title: string
-  text: string
-  price: string
-  href: string
+export interface ServiceFacts {
+  pages: string
+  timeline: string
+  revisions: string
+  support: string
 }
 
-export const services: Service[] = [
-  {
-    icon: Globe2,
-    number: '01',
-    title: 'Business websites',
-    text: 'Professional websites for companies and service businesses.',
-    price: 'From R4,500',
-    href: '/pricing#business-websites',
-  },
-  {
-    icon: PenTool,
-    number: '02',
-    title: 'Portfolio websites',
-    text: 'Personal brands, professionals, creatives and students.',
-    price: 'From R2,000',
-    href: '/pricing#portfolio-websites',
-  },
-  {
-    icon: Sparkles,
-    number: '03',
-    title: 'Landing pages',
-    text: 'Focused pages built around one offer, product or campaign.',
-    price: 'From R1,500',
-    href: '/pricing#landing-pages',
-  },
-  {
-    icon: Compass,
-    number: '04',
-    title: 'Booking websites',
-    text: 'Make it easy for customers to enquire or book your services.',
-    price: 'From R6,500',
-    href: '/pricing#booking-websites',
-  },
-  {
-    icon: Layers3,
-    number: '05',
-    title: 'Online stores',
-    text: 'Product catalogues, shopping carts and online payments.',
-    price: 'From R8,500',
-    href: '/pricing#online-stores',
-  },
-  {
-    icon: Code2,
-    number: '06',
-    title: 'Custom applications',
-    text: 'Dashboards, portals, systems and custom functionality.',
-    price: 'From R10,000',
-    href: '/pricing#custom-web-applications',
-  },
-  {
-    icon: Paintbrush,
-    number: '07',
-    title: 'Website redesigns',
-    text: 'Modernise an outdated website into something you are proud of.',
-    price: 'From R2,500',
-    href: '/pricing#website-redesigns',
-  },
-]
-
-export interface FeatureGroup {
-  title: string
-  icon: LucideIcon
-  items: string[]
-}
-
-export interface ServiceDetail {
+export interface ServiceCard {
   slug: string
   name: string
-  intro: string
-  price: string
-  timeframe: string
-  description: string
-  whyUs: string
-  featureGroups: FeatureGroup[]
-  idealFor: string[]
-  domain: string
-  cta: string
-}
-
-export const serviceDetails: Record<string, ServiceDetail> = {
-  'business-websites': {
-    slug: 'business-websites',
-    name: 'Business websites',
-    intro:
-      'A credible, conversion-ready home for your business online.',
-    price: 'R4,500',
-    timeframe: '2\u20133 weeks',
-    description:
-      'Your business deserves a website that works as hard as you do. We build professional, mobile-first websites that communicate trust, showcase your services and make it easy for customers to take the next step.',
-    whyUs:
-      'A great business website does more than look good \u2014 it earns trust in the first few seconds, answers the questions your customers actually have, and guides them toward calling, emailing or booking you. We design every page with that outcome in mind.',
-    featureGroups: [
-      {
-        title: 'Design & Experience',
-        icon: Palette,
-        items: [
-          'Up to 7 pages',
-          'Custom UI/UX design',
-          'Mobile-first responsive design',
-          'Professional navigation',
-          'Custom branded sections',
-        ],
-      },
-      {
-        title: 'Business Essentials',
-        icon: Briefcase,
-        items: [
-          'WhatsApp integration',
-          'Contact form',
-          'Google Maps integration',
-          'Image gallery',
-          'Testimonials section',
-          'Social media integration',
-        ],
-      },
-      {
-        title: 'Visibility & Performance',
-        icon: BarChart3,
-        items: [
-          'Basic SEO setup',
-          'Google Analytics setup',
-          'Google Search Console setup',
-          'Google Business Profile setup assistance',
-          'Image optimisation',
-          'Performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          '2 revision rounds',
-          '3 months minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Small and medium businesses ready for a credible online presence',
-      'Service providers who want customers to find and contact them easily',
-      'Companies outgrowing a social-media-only presence',
-      'Brands that need a professional home for testimonials, galleries and case studies',
-    ],
-    domain: 'FREE .co.za domain \u2014 first year included',
-    cta: 'Build my business website',
-  },
-  'portfolio-websites': {
-    slug: 'portfolio-websites',
-    name: 'Portfolio websites',
-    intro:
-      'A memorable digital home for your work, skills and story.',
-    price: 'R2,000',
-    timeframe: '7\u201315 days',
-    description:
-      'Whether you are a student, creative, developer or professional, your portfolio should open doors. We build clean, confident portfolio websites that put your best work front and centre.',
-    whyUs:
-      'Your portfolio is often the first thing a recruiter, client or collaborator sees. We make sure it loads fast, reads clearly and leaves a strong impression \u2014 so the work speaks for itself and opportunities come to you.',
-    featureGroups: [
-      {
-        title: 'Portfolio Structure',
-        icon: Layout,
-        items: [
-          'Home, About, Skills/Services, Projects, Contact',
-          'CV/Resume download',
-          'Custom page layout',
-        ],
-      },
-      {
-        title: 'Online Presence',
-        icon: Users,
-        items: [
-          'GitHub integration',
-          'LinkedIn integration',
-          'Social media links',
-          'Contact form',
-          'WhatsApp integration',
-        ],
-      },
-      {
-        title: 'Design & Performance',
-        icon: Palette,
-        items: [
-          'Custom UI design',
-          'Mobile-first responsive design',
-          'Basic SEO setup',
-          'Image optimisation',
-          'Basic performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Deployment',
-          '1 revision round',
-          '14 days minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Students and graduates entering the job market',
-      'Developers, designers and creatives showcasing their work',
-      'Freelancers and consultants building a personal brand',
-      'Professionals who want a polished alternative to LinkedIn alone',
-    ],
-    domain: 'Existing domain supported. .co.za available separately.',
-    cta: 'Build my portfolio',
-  },
-  'landing-pages': {
-    slug: 'landing-pages',
-    name: 'Landing pages',
-    intro:
-      'One focused page built to turn attention into action.',
-    price: 'R1,500',
-    timeframe: '5\u201310 days',
-    description:
-      'Sometimes you do not need a full website \u2014 you need one sharp page that communicates a clear offer and drives action. Perfect for campaigns, product launches or single-service businesses.',
-    whyUs:
-      'A well-built landing page removes every distraction between your visitor and the action you want them to take. We design each section to build momentum \u2014 from the first headline to the final call-to-action \u2014 so visitors convert instead of bounce.',
-    featureGroups: [
-      {
-        title: 'Page Structure',
-        icon: Layout,
-        items: [
-          '1 professionally designed page',
-          'Hero section',
-          'About/service section',
-          'Benefits/features section',
-          'Call-to-action sections',
-        ],
-      },
-      {
-        title: 'Engagement',
-        icon: MessageSquare,
-        items: [
-          'WhatsApp integration',
-          'Contact form',
-          'Social media links',
-        ],
-      },
-      {
-        title: 'Design & Performance',
-        icon: Palette,
-        items: [
-          'Custom UI design',
-          'Mobile-first responsive design',
-          'Basic SEO setup',
-          'Image optimisation',
-          'Basic performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          '1 revision round',
-          '14 days minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Businesses running a specific campaign or promotion',
-      'Product launches that need a focused, high-converting page',
-      'Single-service providers who want a fast online presence',
-      'Event pages, waitlists and lead-capture campaigns',
-    ],
-    domain: 'Domain not included. Client may use existing or purchase separately.',
-    cta: 'Build my landing page',
-  },
-  'booking-websites': {
-    slug: 'booking-websites',
-    name: 'Booking websites',
-    intro:
-      'Make it simple for customers to enquire, schedule and show up.',
-    price: 'R6,500',
-    timeframe: '2\u20135 weeks',
-    description:
-      'For businesses that run on appointments, classes or consultations. We build booking experiences that make it effortless for customers to find you, understand your services and book.',
-    whyUs:
-      'Every missed booking is lost revenue. We build scheduling experiences that remove friction \u2014 clear service pages, intuitive date selection, instant confirmations \u2014 so customers can go from discovery to booked in under a minute.',
-    featureGroups: [
-      {
-        title: 'Design & Experience',
-        icon: Palette,
-        items: [
-          'Custom UI/UX design',
-          'Service pages',
-          'Staff/service information',
-          'Mobile-first responsive design',
-        ],
-      },
-      {
-        title: 'Booking System',
-        icon: Calendar,
-        items: [
-          'Booking/enquiry system',
-          'Date and time selection',
-          'Booking form',
-          'Email notifications',
-          'Basic admin/booking management',
-        ],
-      },
-      {
-        title: 'Business Essentials',
-        icon: Briefcase,
-        items: [
-          'WhatsApp integration',
-          'Contact form',
-          'Google Maps where applicable',
-        ],
-      },
-      {
-        title: 'Visibility & Performance',
-        icon: BarChart3,
-        items: [
-          'Basic SEO',
-          'Google Analytics setup',
-          'Performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          '2 revision rounds',
-          '3 months minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Salons, barbershops and beauty studios',
-      'Consultants, coaches and therapists',
-      'Tutors, trainers and class providers',
-      'Any business that runs on appointments and needs online scheduling',
-    ],
-    domain: 'FREE .co.za domain \u2014 first year included',
-    cta: 'Build my booking website',
-  },
-  'online-stores': {
-    slug: 'online-stores',
-    name: 'Online stores',
-    intro:
-      'A polished storefront for products, payments and growth.',
-    price: 'R8,500',
-    timeframe: '3\u20136 weeks',
-    description:
-      'Sell your products online with a store that looks professional, loads fast and makes checkout effortless. From product catalogues to payment gateways, we build e-commerce experiences ready for growth.',
-    whyUs:
-      'An online store lives or dies by how easily customers can find products and complete a purchase. We build stores that feel premium, load fast and make checkout frictionless \u2014 so you can focus on your products while your store handles the selling.',
-    featureGroups: [
-      {
-        title: 'Storefront Design',
-        icon: Layout,
-        items: [
-          'Custom e-commerce UI/UX',
-          'Homepage',
-          'Product catalogue',
-          'Product categories',
-          'Product pages',
-        ],
-      },
-      {
-        title: 'Shopping Experience',
-        icon: ShoppingCart,
-        items: [
-          'Shopping cart',
-          'Checkout',
-          'Payment gateway integration',
-          'Order management',
-        ],
-      },
-      {
-        title: 'Business Essentials',
-        icon: Briefcase,
-        items: [
-          'WhatsApp integration',
-          'Contact form',
-          'Mobile-first responsive design',
-        ],
-      },
-      {
-        title: 'Visibility & Performance',
-        icon: BarChart3,
-        items: [
-          'Basic SEO',
-          'Google Analytics setup',
-          'Google Search Console setup',
-          'Image optimisation',
-          'Performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          '2 revision rounds',
-          '5 months minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Brands ready to sell products directly online',
-      'Businesses moving from WhatsApp or Instagram orders to a proper store',
-      'Artisans and makers expanding their reach beyond physical markets',
-      'Companies that want full control over their product catalogue and checkout',
-    ],
-    domain: 'FREE .co.za domain \u2014 first year included',
-    cta: 'Build my online store',
-  },
-  'custom-web-applications': {
-    slug: 'custom-web-applications',
-    name: 'Custom web applications',
-    intro:
-      'Purpose-built digital tools for the way your business works.',
-    price: 'R10,000+',
-    timeframe: '4\u20138+ weeks',
-    description:
-      'When your business needs more than a website, we build custom web applications \u2014 dashboards, portals, management systems and internal tools designed around your specific workflow.',
-    whyUs:
-      'Off-the-shelf tools rarely fit perfectly. We build applications around your actual workflow \u2014 not the other way around. Every screen, every interaction is designed for the people who use it daily, so your team works faster and with fewer workarounds.',
-    featureGroups: [
-      {
-        title: 'Discovery & Design',
-        icon: Search,
-        items: [
-          'Requirements analysis',
-          'Custom UI/UX design',
-          'Responsive interface',
-        ],
-      },
-      {
-        title: 'Development',
-        icon: Code2,
-        items: [
-          'Custom functionality',
-          'Database architecture',
-          'Authentication where required',
-          'Admin functionality',
-          'API integration',
-        ],
-      },
-      {
-        title: 'Delivery',
-        icon: Rocket,
-        items: [
-          'Testing',
-          'Deployment',
-          'Basic documentation',
-          'Project-specific support period',
-        ],
-      },
-    ],
-    idealFor: [
-      'Businesses that have outgrown spreadsheets and manual processes',
-      'Teams that need internal dashboards, portals or management tools',
-      'Companies with specific workflows that off-the-shelf software cannot handle',
-      'Founders building a product or platform that needs custom development',
-    ],
-    domain: 'Quoted individually based on requirements.',
-    cta: 'Discuss my application',
-  },
-  'website-redesigns': {
-    slug: 'website-redesigns',
-    name: 'Website redesigns',
-    intro:
-      'A sharper, faster and more confident version of what you already have.',
-    price: 'R2,500',
-    timeframe: '1\u20133 weeks',
-    description:
-      'Your existing website may have served its purpose, but if it no longer reflects the quality of your business, it is time for a change. We redesign websites to be modern, fast and conversion-focused.',
-    whyUs:
-      'A redesign is not just a fresh coat of paint. We look at what is working, what is not and where your visitors are dropping off \u2014 then rebuild with better design, cleaner code and a structure that actually moves people toward taking action.',
-    featureGroups: [
-      {
-        title: 'Assessment',
-        icon: Search,
-        items: [
-          'Existing website assessment',
-          'UX/UI review',
-        ],
-      },
-      {
-        title: 'Visual Design',
-        icon: Paintbrush,
-        items: [
-          'Modern visual redesign',
-          'Modernised branding implementation',
-          'Improved typography',
-          'Improved spacing and layout',
-        ],
-      },
-      {
-        title: 'Technical Improvements',
-        icon: Code2,
-        items: [
-          'Mobile responsiveness improvements',
-          'Performance improvements',
-          'Improved navigation',
-          'Image optimisation',
-        ],
-      },
-      {
-        title: 'Business Essentials',
-        icon: Briefcase,
-        items: [
-          'Basic SEO preservation/setup',
-          'WhatsApp integration',
-          'Contact form improvements',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL configuration',
-          'Website deployment',
-          '1\u20132 revision rounds',
-          'Minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Businesses with an outdated website that no longer reflects their brand',
-      'Websites that are slow, not mobile-friendly or hard to navigate',
-      'Companies rebranding and needing their digital presence to catch up',
-      'Anyone who is embarrassed to share their current website URL',
-    ],
-    domain: 'Final price depends on number of pages, current technology and scope.',
-    cta: 'Redesign my website',
-  },
-  'starter-websites': {
-    slug: 'starter-websites',
-    name: 'Starter websites',
-    intro:
-      'A clean, professional website to get your business or personal brand online.',
-    price: 'R2,500',
-    timeframe: '7\u201315 days',
-    description:
-      'Perfect for individuals, freelancers and small businesses that need a credible online presence without the complexity of a full business website. We build simple, effective websites that cover the essentials.',
-    whyUs:
-      'Getting online should not be complicated or expensive. A starter website gives you the foundation you need \u2014 a professional design, clear information about what you offer, and easy ways for people to contact you. It is the right first step before scaling to a larger site.',
-    featureGroups: [
-      {
-        title: 'Website Structure',
-        icon: Layout,
-        items: [
-          '1\u20133 pages',
-          'Home, About, Services/Contact',
-          'Custom page layout',
-        ],
-      },
-      {
-        title: 'Design & Experience',
-        icon: Palette,
-        items: [
-          'Custom UI/UX design',
-          'Mobile-first responsive design',
-          'Professional navigation',
-          'WhatsApp integration',
-          'Contact form',
-          'Social media links',
-        ],
-      },
-      {
-        title: 'Visibility & Performance',
-        icon: BarChart3,
-        items: [
-          'Basic SEO setup',
-          'Image optimisation',
-          'Basic performance optimisation',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          '1 revision round',
-          '14 days minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Individuals and freelancers building their first professional website',
-      'Small businesses that need a simple online presence',
-      'Service providers who want customers to find and contact them',
-      'Anyone testing an idea or offer before committing to a larger website',
-    ],
-    domain: 'Existing domain supported. .co.za available separately.',
-    cta: 'Build my starter website',
-  },
-  'professional-websites': {
-    slug: 'professional-websites',
-    name: 'Professional websites',
-    intro:
-      'A premium, feature-rich website for businesses that want more.',
-    price: 'R7,500',
-    timeframe: '2\u20135 weeks',
-    description:
-      'For businesses that need a comprehensive online presence with advanced features, premium design and conversion-focused structure. We build professional websites that stand out and deliver results.',
-    whyUs:
-      'A professional website is an investment in your business credibility and growth. We combine advanced design, strategic structure and technical excellence to create a website that not only looks exceptional but also guides visitors toward taking action \u2014 whether that is calling, booking, buying or enquiring.',
-    featureGroups: [
-      {
-        title: 'Design & Experience',
-        icon: Palette,
-        items: [
-          'Up to 10 pages',
-          'Advanced UI/UX design',
-          'Premium animations and interactions',
-          'Mobile-first responsive design',
-          'Custom branded sections',
-          'Professional navigation',
-        ],
-      },
-      {
-        title: 'Content & Engagement',
-        icon: MessageSquare,
-        items: [
-          'Blog/CMS functionality',
-          'WhatsApp integration',
-          'Contact form',
-          'Image gallery',
-          'Testimonials section',
-          'Social media integration',
-        ],
-      },
-      {
-        title: 'Visibility & Performance',
-        icon: BarChart3,
-        items: [
-          'Advanced SEO foundations',
-          'Google Analytics setup',
-          'Google Search Console setup',
-          'Image optimisation',
-          'Performance optimisation',
-          'Conversion-focused structure',
-        ],
-      },
-      {
-        title: 'Launch & Support',
-        icon: Rocket,
-        items: [
-          'SSL',
-          'Website deployment',
-          'FREE .co.za domain \u2014 first year included',
-          '3 revision rounds',
-          '5 months minor post-launch support',
-        ],
-      },
-    ],
-    idealFor: [
-      'Established businesses ready for a premium online presence',
-      'Companies that need advanced features like a blog or CMS',
-      'Brands that want a website with premium design and animations',
-      'Businesses focused on conversion and lead generation',
-    ],
-    domain: 'FREE .co.za domain \u2014 first year included',
-    cta: 'Build my professional website',
-  },
-}
-
-export interface PricingPackage {
-  name: string
-  price: string
-  description: string
-  timeframe: string
+  tagline: string
+  priceLabel: string
+  bestFor: string
   popular?: boolean
-  features: string[]
-  href: string
+  facts: ServiceFacts
+  included: string[]
+  notIncluded: string[]
 }
 
-export const packages: PricingPackage[] = [
+export const services: ServiceCard[] = [
   {
+    slug: 'landing-page',
     name: 'Landing Page',
-    price: 'R1,500',
-    description:
-      'Best for a focused campaign, product, service or single business offering.',
-    timeframe: '5\u201310 days',
-    features: [
-      '1 professionally designed page',
-      'Custom UI design',
-      'Mobile-first responsive',
-      'WhatsApp + contact form',
+    tagline: 'One focused page for one clear goal.',
+    priceLabel: 'R1,500',
+    bestFor: 'Campaigns, new businesses, single services',
+    facts: {
+      pages: '1 page',
+      timeline: '5-10 days',
+      revisions: '1 revision round',
+      support: '14 days support',
+    },
+    included: [
+      'Custom-designed page',
+      'Hero, benefits and contact sections',
+      'Mobile-responsive layout',
+      'WhatsApp link + contact form',
       'Basic SEO setup',
-      'SSL + deployment',
-      '1 revision round',
-      '14 days support',
+      'Published live with HTTPS',
     ],
-    href: '/pricing#landing-pages',
+    notIncluded: [
+      'Extra pages',
+      'Copywriting and photos',
+      'Logins or backend',
+    ],
   },
   {
-    name: 'Business',
-    price: 'R4,500',
-    description:
-      'For established businesses ready for a stronger online presence.',
-    timeframe: '2\u20133 weeks',
+    slug: 'business-website',
+    name: 'Business Website',
+    tagline: 'A complete website that turns visitors into enquiries.',
+    priceLabel: 'From R4,000',
+    bestFor: 'Established small businesses',
     popular: true,
-    features: [
-      'Up to 7 pages',
-      'Custom UI/UX design',
-      'Mobile-first responsive',
-      'Google Maps + gallery',
+    facts: {
+      pages: 'Up to 8 pages',
+      timeline: '2-3 weeks',
+      revisions: '2 revision rounds',
+      support: '30 days support',
+    },
+    included: [
+      'Everything in Starter, plus:',
+      'Up to 8 pages',
+      'Detailed UI/UX design',
+      'Service pages and gallery',
+      'Google Maps',
       'Testimonials section',
-      'SEO + analytics setup',
-      'FREE .co.za domain (1 year)',
-      '2 revision rounds',
-      '3 months support',
+      'SEO, sitemap and analytics',
+      'Tested enquiry form',
     ],
-    href: '/pricing#business-websites',
+    notIncluded: [
+      'Online payments',
+      'Custom booking engine',
+      'Advanced CMS',
+    ],
   },
   {
-    name: 'Starter',
-    price: 'R2,500',
-    description:
-      'For individuals, freelancers and small businesses getting started.',
-    timeframe: '7\u201315 days',
-    features: [
-      '1\u20133 pages',
-      'Custom UI/UX design',
-      'Mobile-first responsive',
-      'WhatsApp + contact form',
+    slug: 'starter-website',
+    name: 'Starter Website',
+    tagline: 'A professional site for individuals and small businesses.',
+    priceLabel: 'R2,500',
+    bestFor: 'Portfolios, freelancers, personal brands',
+    facts: {
+      pages: 'Up to 4 pages',
+      timeline: '1-2 weeks',
+      revisions: '1 revision round',
+      support: '14 days support',
+    },
+    included: [
+      'Custom design',
+      'Up to 4 pages (Home, About, Services, Contact)',
+      'Portfolio gallery and CV download',
+      'WhatsApp link + contact form',
       'Social media links',
-      'Basic SEO + deployment',
-      '1 revision round',
-      '14 days support',
+      'Basic SEO setup',
+      'Launch testing',
     ],
-    href: '/pricing#starter-websites',
+    notIncluded: [
+      'Online payments',
+      'Booking system',
+      'Logins or database',
+    ],
   },
   {
-    name: 'Portfolio',
-    price: 'From R2,000',
-    description:
-      'Best for students, professionals, creatives and personal brands.',
-    timeframe: '7\u201315 days',
-    features: [
-      'Home, About, Skills, Projects, Contact',
-      'CV download + social links',
-      'Custom UI design',
-      'Mobile-first responsive',
-      'WhatsApp + contact form',
-      'Basic SEO + deployment',
-      '1 revision round',
-      '14 days support',
+    slug: 'website-redesign',
+    name: 'Website Redesign',
+    tagline: 'Refresh your current site without starting over.',
+    priceLabel: 'From R2,500',
+    bestFor: 'Outdated or hard-to-use websites',
+    facts: {
+      pages: 'Priced by pages',
+      timeline: '1-3 weeks',
+      revisions: '1 revision round',
+      support: '14 days support',
+    },
+    included: [
+      'Review of your current site',
+      'New design and navigation',
+      'Better mobile experience',
+      'Content refresh (existing content)',
+      'SEO checks and URL redirects',
+      'Testing and launch',
     ],
-    href: '/pricing#portfolio-websites',
+    notIncluded: [
+      'Large content migration',
+      'New functionality',
+      'Full rebuilds (quoted)',
+    ],
   },
   {
-    name: 'Professional',
-    price: 'R7,500',
-    description:
-      'For businesses that want a premium, feature-rich experience.',
-    timeframe: '2\u20135 weeks',
-    features: [
-      'Up to 10 pages',
-      'Advanced UI/UX design',
-      'Premium animations',
-      'Blog/CMS functionality',
-      'Advanced SEO foundations',
-      'Conversion-focused structure',
-      'FREE .co.za domain (1 year)',
-      '3 revision rounds',
-      '5 months support',
-    ],
-    href: '/pricing#professional-websites',
-  },
-  {
+    slug: 'online-store',
     name: 'Online Store',
-    price: 'From R8,500',
-    description:
-      'For businesses that want to sell products online.',
-    timeframe: '3\u20136 weeks',
-    features: [
-      'Custom e-commerce UI/UX',
-      'Product catalogue + categories',
-      'Cart + checkout',
-      'Payment gateway integration',
-      'Order management',
-      'SEO + analytics setup',
-      'FREE .co.za domain (1 year)',
-      '2 revision rounds',
-      '5 months support',
+    tagline: 'Sell products online with a cart and secure checkout.',
+    priceLabel: 'From R7,000',
+    bestFor: 'Retailers and product brands',
+    facts: {
+      pages: 'Up to 20 products',
+      timeline: '3-5 weeks',
+      revisions: '2 revision rounds',
+      support: '30 days support',
+    },
+    included: [
+      'Custom storefront design',
+      'Products and categories',
+      'Cart and checkout',
+      '1 payment gateway (PayFast, Yoco or Ozow)',
+      'Order emails and basic order management',
+      'Delivery or collection settings',
+      'SEO and analytics setup',
+      'Tested before launch',
     ],
-    href: '/pricing#online-stores',
+    notIncluded: [
+      'Gateway transaction fees',
+      'Customer accounts (add-on)',
+      'Courier or stock integrations',
+    ],
+  },
+  {
+    slug: 'custom-web-application',
+    name: 'Custom Web Application',
+    tagline: 'Custom systems built around how your business works.',
+    priceLabel: 'From R10,000',
+    bestFor: 'Portals, dashboards, booking systems',
+    facts: {
+      pages: 'Scope after discovery',
+      timeline: '4-8+ weeks',
+      revisions: 'Set in proposal',
+      support: 'Set in proposal',
+    },
+    included: [
+      'Discovery and written scope',
+      'Custom interfaces and workflows',
+      'Logins and user roles',
+      'Database and API integration',
+      'Dashboards, forms or bookings',
+      'Security basics and testing',
+      'Documentation and handover',
+    ],
+    notIncluded: [
+      'Complex permissions (quoted)',
+      'Heavy integrations (quoted)',
+    ],
   },
 ]
+
+
+
 
 export const addons = [
   { name: 'Extra page', price: 'R500' },
-  { name: 'Additional revision round', price: 'R300' },
+  { name: 'Extra revision round', price: 'R300' },
   { name: 'Blog setup', price: 'From R1,000' },
   { name: 'Booking functionality', price: 'From R2,000' },
+  { name: 'Customer accounts and order tracking (store)', price: 'From R1,500' },
+  { name: 'Extra products (store), per 10', price: 'R300' },
   { name: 'SEO enhancement', price: 'From R1,000' },
   { name: 'Google Business Profile setup', price: 'R500' },
-  { name: 'Logo design', price: 'R500' },
   { name: 'Business email setup', price: 'From R500' },
-  { name: 'Website redesign', price: 'From R2,500' },
-  { name: 'E-commerce', price: 'From R8,500' },
-  { name: 'Custom functionality', price: 'Quoted individually' },
+  { name: 'Domain registration in your name, at cost + R100', price: 'At cost + R100' },
+  { name: 'Logo design', price: 'R500' },
 ]
 
 export const maintenancePlans = [
   {
     name: 'Basic Care',
     price: 'R299',
-    description: 'Suitable for small websites.',
+    description: 'Uptime and security checks, 1h30min per day of small content updates, minor bug fixes, reply within 2 business days.',
     features: [
-      'Basic website monitoring',
-      'Minor content updates',
+      'Uptime and security checks',
+      '1h30min per day of small content updates',
       'Minor bug fixes',
-      'Basic technical checks',
-      'Basic support',
+      'Reply within 2 business days',
     ],
   },
   {
     name: 'Business Care',
     price: 'R499',
-    description: 'Suitable for active business websites.',
+    description: 'Everything in Basic, 2h30min per day of updates, monthly performance and backup check, reply within 1 business day.',
     features: [
       'Everything in Basic Care',
-      'More minor content updates',
-      'Performance checks',
-      'Security checks',
-      'More responsive support',
-    ],
-  },
-  {
-    name: 'Priority Care',
-    price: 'R999',
-    description: 'For businesses that rely heavily on their website.',
-    features: [
-      'Priority support',
-      'More frequent website checks',
-      'Minor content updates',
-      'Performance checks',
-      'Security checks',
-      'Technical maintenance',
+      '2h30min per day of updates',
+      'Monthly performance and backup check',
+      'Reply within 1 business day',
     ],
   },
 ]
 
-export const faqs: [string, string][] = [
-  [
-    'How much does a website cost?',
-    'Our websites start from R1,500 for a landing page and range up to R10,000+ for custom web applications. Final costs depend on the number of pages, functionality, integrations and project requirements. A final quotation is always provided after reviewing your project.',
-  ],
-  [
-    'How long does a website take?',
-    'Most projects take between 5 days and 5 weeks, depending on the package, functionality and how quickly content is provided. We give you a clear estimate before work begins.',
-  ],
-  [
-    'Do you provide the domain?',
-    'Selected packages (Business, Professional, Booking and Online Store) include a free .co.za domain for the first year. The domain is registered in your name and belongs to you. Renewal fees apply from year two.',
-  ],
-  [
-    'Do I own my website?',
-    'Yes. Once the project is complete and final payment is received, you own your website and its content. The domain is also registered in your name.',
-  ],
-  [
-    'Do I need hosting?',
-    'Yes, websites need hosting to be accessible online. Depending on your package, initial hosting may be included. After the included period, hosting renewal fees apply. Third-party hosting costs are always disclosed upfront.',
-  ],
-  [
-    'Can you redesign my existing website?',
-    'Absolutely. We offer website redesign services starting from R2,500. We will assess your current site, identify improvements and build a modern, faster, more effective version.',
-  ],
-  [
-    'Do you provide website maintenance?',
-    'Yes, we offer optional monthly maintenance plans starting from R299/month. These cover minor updates, security checks, performance monitoring and support.',
-  ],
-  [
-    'Can customers contact me through WhatsApp?',
-    'Yes, WhatsApp integration is included in all our packages. We can add a WhatsApp button, link or floating widget so customers can reach you directly.',
-  ],
-  [
-    'Can you set up online payments?',
-    'Yes, we can integrate payment gateways for online stores and booking systems. Implementation costs depend on the payment provider and complexity.',
-  ],
-  [
-    'Do you build online stores?',
-    'Yes, we build custom e-commerce stores starting from R8,500. This includes product catalogues, shopping carts, checkout and payment gateway integration.',
-  ],
-  [
-    'Can you build custom systems?',
-    'Yes, we build custom web applications such as dashboards, client portals, booking management systems, inventory systems and internal business tools. Starting from R10,000, quoted individually.',
-  ],
-  [
-    'What happens after I submit the form?',
-    'We review your requirements, may contact you for clarification, then prepare a tailored quotation. Once approved and the deposit is paid, development begins. The typical flow is: Enquiry \u2192 Quote \u2192 Approval \u2192 Deposit \u2192 Development \u2192 Review \u2192 Launch.',
-  ],
-  [
-    'How many revisions do I get?',
-    'This depends on your package. Landing Page and Starter include 1 revision round, Business includes 2, and Professional includes 3. Additional rounds can be added at R300 each.',
-  ],
-  [
-    'Do you write website content?',
-    'Content is normally supplied by the client. We design and structure the content you provide. Content assistance may be available as an add-on service.',
-  ],
-]
+export const maintenanceNote = 'Unused hours do not roll over. Stores and apps get a quoted plan.'
+
+
 
 export const processSteps = [
   {
@@ -991,7 +292,7 @@ export const processSteps = [
     number: '07',
     title: 'Launch',
     description:
-      'Your website goes live. We handle deployment, DNS and final checks.',
+      'Your website goes live. We handle launch, DNS and final checks.',
   },
   {
     number: '08',
@@ -1052,10 +353,10 @@ export const processPhases: ProcessPhase[] = [
     label: 'LAUNCH',
     heading: 'Ready for the real world.',
     description:
-      'Once the website has been reviewed and approved, we prepare everything for launch. We handle the agreed deployment, domain/DNS configuration and final production checks before taking the website live.',
+      'Once the website has been reviewed and approved, we prepare everything for launch. We handle the agreed launch, domain/DNS configuration and final production checks before taking the website live.',
     items: [
       { title: 'Final checks', description: 'Everything is reviewed before launch.' },
-      { title: 'Deployment', description: 'The website is moved into its production environment.' },
+      { title: 'Launch', description: 'The website is moved into its production environment.' },
       { title: 'Launch', description: 'The website goes live.' },
     ],
   },
@@ -1152,8 +453,8 @@ export const processFaqs: [string, string][] = [
     'Yes. Optional maintenance plans are available depending on your needs.',
   ],
   [
-    'Will you handle the domain and hosting?',
-    'Where included in the selected package or agreed scope, WEB-IN can assist with the relevant setup. Third-party renewal and subscription costs are separate unless explicitly included.',
+    'Will you handle the domain?',
+    'Where included in the selected package or agreed scope, WEB-IN can assist with domain registration and configuration. Third-party renewal and subscription costs are separate unless explicitly included.',
   ],
 ]
 
@@ -1174,174 +475,82 @@ export interface FaqCategory {
 
 export const faqCategories: FaqCategory[] = [
   {
-    id: 'getting-started',
+    id: 'pricing',
     number: '01',
-    label: 'GETTING STARTED',
-    heading: 'Starting a project',
-    intro: 'Everything you need to know before your first enquiry.',
-    items: [
-      {
-        question: 'What happens after I submit the project enquiry?',
-        answer: 'Once you submit the enquiry, we review the information you\'ve provided to understand your goals, requirements, budget and timeline. If we need clarification, we\'ll get in touch. From there, we can determine the appropriate scope and discuss the best way forward.',
-      },
-      {
-        question: 'Do I need to know exactly what I want before contacting you?',
-        answer: 'No. You can give us as much or as little information as you currently have. The initial conversation is an opportunity to explain what you\'re trying to achieve. We can help clarify the website type, functionality and direction based on your requirements.',
-      },
-      {
-        question: 'How do I get a quote?',
-        answer: 'Start by submitting the project enquiry. We review your requirements and use the information provided to determine the appropriate project scope and quotation. The final price depends on the scope, functionality, content, integrations and other project requirements.',
-      },
-      {
-        question: 'Can I contact WEB-IN before submitting the form?',
-        answer: 'Yes. If you have questions before starting, you can contact us through the contact page or WhatsApp.',
-      },
-    ],
-  },
-  {
-    id: 'pricing-payments',
-    number: '02',
-    label: 'PACKAGES & PAYMENTS',
-    heading: 'Understanding the investment',
-    intro: 'Clear packages with no hidden surprises.',
+    label: 'PRICING',
+    heading: 'Pricing and costs',
+    intro: 'Clear answers about what things cost.',
     items: [
       {
         question: 'How much does a website cost?',
-        answer: 'Our website packages start from R1,500, depending on the type and scope of the project.\n\nLanding Page — R1,500\nPortfolio Website — from R2,000\nStarter Website — R2,500\nBusiness Website — R4,500\nProfessional Website — R7,500\nBooking Website — from R6,500\nOnline Store — from R8,500\nCustom Web Application — from R10,000\nWebsite Redesign — from R2,500\n\nPrices are based on the described package scope. Projects requiring additional functionality, integrations, pages, content, payment systems or custom development may have a different final price.',
+        answer: 'Launch prices start at R1,500 for a Landing Page, R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
       },
       {
-        question: 'Is the price fixed?',
-        answer: 'Package prices are based on the scope described on the services page. If your project requires additional functionality, pages, integrations or custom requirements, the final quotation may differ. We confirm the agreed scope before development begins.',
+        question: 'What if I need more than what is included?',
+        answer: 'Extra pages, revision rounds and features have fixed add-on prices, so you always know the cost before we start.',
       },
       {
-        question: 'When do I pay?',
-        answer: 'The required deposit is paid after the project scope and quotation have been approved and before development begins. The exact payment arrangement is communicated as part of the project quotation.',
+        question: 'How do I pay WEB-IN?',
+        answer: 'We take a 50% deposit to start and the balance before launch.',
+      },
+    ],
+  },
+  {
+    id: 'timeline',
+    number: '02',
+    label: 'TIMELINE',
+    heading: 'How long it takes',
+    intro: 'Understanding the process and timelines.',
+    items: [
+      {
+        question: 'How long does a website take?',
+        answer: 'Landing pages take 5-10 business days, Starter sites 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
+      },
+    ],
+  },
+  {
+    id: 'ownership',
+    number: '03',
+    label: 'OWNERSHIP',
+    heading: 'What you own',
+    intro: 'Domain, ownership and what happens after launch.',
+    items: [
+      {
+        question: 'Do I own my website?',
+        answer: 'Yes. Once the project is paid in full, you own the website and its content. Third-party software and subscriptions stay subject to their own terms.',
       },
       {
-        question: 'Are there any additional costs?',
-        answer: 'Some third-party services may have separate costs. Examples include domain renewals, hosting renewals, payment processing fees, business email subscriptions, premium plugins or services, and external software subscriptions. Any relevant third-party costs are communicated as part of the project scope where applicable.',
+        question: 'Do you provide a domain?',
+        answer: 'We do not include a free domain. We can register one in your name as an add-on, or connect a domain you already own.',
+      },
+    ],
+  },
+  {
+    id: 'stores-payments',
+    number: '04',
+    label: 'STORES & PAYMENTS',
+    heading: 'Online stores and payments',
+    intro: 'How payments and stores work.',
+    items: [
+      {
+        question: 'How do payments work for online stores?',
+        answer: 'We integrate one South African payment gateway such as PayFast, Yoco or Ozow. You apply for the merchant account in your business name, and the gateway\'s transaction fees are paid by you.',
+      },
+    ],
+  },
+  {
+    id: 'maintenance',
+    number: '05',
+    label: 'MAINTENANCE',
+    heading: 'Ongoing support',
+    intro: 'Care plans and maintenance.',
+    items: [
+      {
+        question: 'Do you offer maintenance?',
+        answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
       },
     ],
     cta: { text: 'View All Services', href: '/pricing' },
-  },
-  {
-    id: 'website-hosting',
-    number: '03',
-    label: 'WEBSITE & INFRASTRUCTURE',
-    heading: 'The things behind the website',
-    intro: 'Domains, hosting, ownership and the technical foundations.',
-    items: [
-      {
-        question: 'Do you provide the domain?',
-        answer: 'For selected packages, WEB-IN includes a .co.za domain for the first year. This currently applies to Business Website, Professional Website, Booking Website and Online Store.\n\nThe domain is owned by the client. Domain availability is required, and premium or previously registered domains may have additional costs. From the second year, domain renewal fees apply.',
-      },
-      {
-        question: 'Do I own my website?',
-        answer: 'Yes. The website belongs to the client once the project has been completed and paid for according to the agreed terms. Where WEB-IN manages domain or hosting services, the client remains the owner of their website and domain.',
-      },
-      {
-        question: 'Do I need hosting?',
-        answer: 'Yes, a website needs somewhere to run. Hosting requirements depend on the type of website and technology used. Where hosting is included or arranged as part of a package, the relevant terms will be communicated clearly. Third-party hosting renewal costs may apply after any included period.',
-      },
-      {
-        question: 'Can I use a domain I already own?',
-        answer: 'Yes. If you already have a domain, we can work with the existing domain and assist with the relevant configuration.',
-      },
-      {
-        question: 'Can you help me set up business email?',
-        answer: 'Yes. WEB-IN can assist with setting up professional email such as hello@yourbusiness.co.za. Business email setup is available as an optional service. The email provider\'s subscription costs are separate.',
-      },
-    ],
-  },
-  {
-    id: 'design-development',
-    number: '04',
-    label: 'DESIGN & DEVELOPMENT',
-    heading: 'What we can build',
-    intro: 'From landing pages to custom systems.',
-    items: [
-      {
-        question: 'Can you redesign my existing website?',
-        answer: 'Yes. WEB-IN offers website redesign services. We can review the existing website and improve areas such as visual design, layout, navigation, mobile responsiveness, typography, user experience, performance and content structure. The final price depends on the size of the existing website and the scope of the redesign.',
-      },
-      {
-        question: 'Do you build online stores?',
-        answer: 'Yes. WEB-IN offers online store development from R8,500. Depending on the project, an online store can include a product catalogue, product pages, categories, shopping cart, checkout, payment gateway integration, order management and mobile-responsive design.\n\nThe final price depends on the number of products, variations, payment provider, shipping requirements and other functionality. Third-party payment processing fees are separate.',
-      },
-      {
-        question: 'Can you set up online payments?',
-        answer: 'Yes. Where appropriate, we can integrate online payment functionality into websites and online stores. The specific payment provider depends on the project and requirements. Payment providers may charge their own transaction or subscription fees, which are separate from WEB-IN\'s development fee.',
-      },
-      {
-        question: 'Can customers contact me through WhatsApp?',
-        answer: 'Yes. WhatsApp integration can be included where appropriate. This can allow visitors to contact a business directly from the website.',
-      },
-      {
-        question: 'Can you build booking websites?',
-        answer: 'Yes. WEB-IN offers booking websites from R6,500. Depending on the requirements, booking functionality can include services, staff/service information, date and time selection, booking forms, notifications and booking management.\n\nMore advanced requirements such as automated reminders, payments, customer accounts, recurring bookings or staff calendars may increase the project cost.',
-      },
-      {
-        question: 'Can you build custom systems?',
-        answer: 'Yes. WEB-IN offers custom web applications from R10,000. Examples include dashboards, client portals, inventory systems, school systems, employee portals, membership platforms, booking management, customer management, internal tools, reporting dashboards, custom databases and automation.\n\nCustom application pricing depends heavily on the required features, users, database architecture, authentication, APIs, integrations, administration and security requirements.',
-      },
-    ],
-    cta: { text: 'View our packages', href: '/pricing' },
-  },
-  {
-    id: 'content-collaboration',
-    number: '05',
-    label: 'CONTENT & COLLABORATION',
-    heading: 'What we need from you',
-    intro: 'How we work together to build your website.',
-    items: [
-      {
-        question: 'Do you write website content?',
-        answer: 'Content requirements depend on the project. WEB-IN can structure and present the content on the website, but full professional copywriting or content creation is not automatically included unless specifically agreed. If you need help with content, we can discuss the requirements and scope it appropriately.',
-      },
-      {
-        question: 'Do I need to provide images?',
-        answer: 'Where the project requires business-specific images, logos, product photography or other brand assets, the client may need to provide them. We can optimise website imagery for performance. If additional design assets or image creation are required, they can be discussed separately.',
-      },
-      {
-        question: 'Can you help if I don\'t have a logo?',
-        answer: 'Yes. Logo design is available as an optional add-on.',
-      },
-    ],
-  },
-  {
-    id: 'review-revisions',
-    number: '06',
-    label: 'REVIEW & REVISIONS',
-    heading: 'Your feedback matters',
-    intro: 'How we refine the website together.',
-    items: [
-      {
-        question: 'How many revisions do I get?',
-        answer: 'Revision rounds depend on the package selected.\n\nLanding Page — 1 revision round\nPortfolio Website — 1 revision round\nStarter Website — 1 revision round\nBusiness Website — 2 revision rounds\nProfessional Website — 3 revision rounds\nBooking Website — 2 revision rounds\nOnline Store — 2 revision rounds\nWebsite Redesign — 1–2 revision rounds depending on scope\n\nThe exact revision allowance is shown on the relevant package.',
-      },
-      {
-        question: 'What counts as a revision?',
-        answer: 'A revision is feedback or changes to the agreed website scope and design during the review stage. New pages, major new functionality, redesigning an approved direction or significant changes outside the agreed scope may require additional work. This is communicated clearly rather than making the client feel restricted.',
-      },
-    ],
-  },
-  {
-    id: 'after-launch',
-    number: '07',
-    label: 'AFTER LAUNCH',
-    heading: 'What happens after the website goes live?',
-    intro: 'Support and maintenance options for the long run.',
-    items: [
-      {
-        question: 'Do you provide website maintenance?',
-        answer: 'Yes. WEB-IN offers optional maintenance plans for businesses that want ongoing support.\n\nBasic Care — R299/month\nBusiness Care — R499/month\nPriority Care — R999/month\n\nMaintenance can include things such as minor content updates, minor fixes, technical checks, performance and security checks, and ongoing support.\n\nMaintenance does not automatically include new pages, major redesigns, new systems, payment integrations or substantial new functionality. Those requirements can be quoted separately.',
-      },
-      {
-        question: 'Do I get support after launch?',
-        answer: 'Selected packages include a defined period of minor post-launch support. The duration depends on the package. For longer-term support, optional maintenance plans are available.',
-      },
-    ],
-    cta: { text: 'View Maintenance Plans', href: '/pricing' },
   },
 ]
 
@@ -1439,32 +648,24 @@ export const portfolioProjects: PortfolioProject[] = [
 ]
 
 export const comparisonFeatures = [
-  { feature: 'Custom design', landing: true, portfolio: true, starter: true, business: true, professional: true },
-  { feature: 'Responsive design', landing: true, portfolio: true, starter: true, business: true, professional: true },
-  { feature: 'WhatsApp integration', landing: true, portfolio: true, starter: true, business: true, professional: true },
-  { feature: 'Contact form', landing: true, portfolio: true, starter: true, business: true, professional: true },
-  { feature: 'Basic SEO', landing: true, portfolio: true, starter: true, business: true, professional: true },
-  { feature: 'Google Maps', landing: false, portfolio: false, starter: false, business: true, professional: true },
-  { feature: 'Image gallery', landing: false, portfolio: true, starter: false, business: true, professional: true },
-  { feature: 'Google Analytics', landing: false, portfolio: false, starter: false, business: true, professional: true },
-  { feature: 'Google Search Console', landing: false, portfolio: false, starter: false, business: true, professional: true },
-  { feature: 'Google Business Profile', landing: false, portfolio: false, starter: false, business: true, professional: true },
-  { feature: 'Blog/CMS', landing: false, portfolio: false, starter: false, business: 'Optional', professional: true },
-  { feature: 'Performance optimisation', landing: 'Basic', portfolio: 'Basic', starter: 'Basic', business: true, professional: 'Advanced' },
-  { feature: '.co.za domain', landing: false, portfolio: false, starter: 'Optional', business: '1 Year Free', professional: '1 Year Free' },
-  { feature: 'Revisions', landing: '1', portfolio: '1', starter: '1', business: '2', professional: '3' },
-  { feature: 'Support', landing: '14 days', portfolio: '14 days', starter: '14 days', business: '3 months', professional: '5 months' },
+  { feature: 'Pages', landing: '1', starter: 'Up to 4', business: 'Up to 8', redesign: 'By scope', store: 'Up to 20 products', app: 'Custom scope' },
+  { feature: 'Timeline', landing: '5-10 days', starter: '1-2 wks', business: '2-3 wks', redesign: '1-3 wks', store: '3-5 wks', app: '4-8+ wks' },
+  { feature: 'Revisions', landing: '1', starter: '1', business: '2', redesign: '1', store: '2', app: 'In proposal' },
+  { feature: 'Support', landing: '14 days', starter: '14 days', business: '30 days', redesign: '14 days', store: '30 days', app: 'In proposal' },
+  { feature: 'Contact form + WhatsApp', landing: true, starter: true, business: true, redesign: true, store: true, app: 'As agreed' },
+  { feature: 'SEO basics', landing: true, starter: true, business: 'yes + sitemap', redesign: true, store: true, app: 'Basic' },
+  { feature: 'Analytics setup', landing: false, starter: false, business: true, redesign: false, store: true, app: 'As agreed' },
+  { feature: 'Gallery + Google Maps', landing: false, starter: 'Gallery', business: true, redesign: 'As needed', store: false, app: false },
+  { feature: 'Cart + payments', landing: false, starter: false, business: false, redesign: false, store: true, app: 'If agreed' },
+  { feature: 'Logins + database', landing: false, starter: false, business: false, redesign: false, store: 'Add-on', app: true },
 ]
 
 export const enquiryServiceOptions = [
-  'Business Website',
-  'Portfolio Website',
   'Landing Page',
   'Starter Website',
-  'Professional Website',
-  'Online Store',
-  'Booking Website',
+  'Business Website',
   'Website Redesign',
+  'Online Store',
   'Custom Web Application',
   'Not Sure Yet',
 ]
@@ -1500,12 +701,11 @@ export const enquiryFeatureOptions = [
 ]
 
 export const enquiryBudgetOptions = [
-  'Under R2,500',
-  'R2,500\u2013R5,000',
-  'R5,000\u2013R10,000',
-  'R10,000\u2013R20,000',
-  'R20,000+',
-  'Not sure',
+  'Under R2,000',
+  'R2,000–R5,000',
+  'R5,000–R10,000',
+  'R10,000+',
+  'Not sure yet',
 ]
 
 export const enquiryTimelineOptions = [
@@ -1542,28 +742,23 @@ export const enquiryDesignOptions = [
 export const homepageFaqs = [
   {
     question: 'How much does a website cost?',
-    answer:
-      'Our websites range from landing pages to full business sites and online stores. Final costs depend on the scope, pages, functionality, integrations and project requirements. Visit our pricing page for a clear breakdown.',
+    answer: 'Launch prices start at R1,500 for a Landing Page, R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
   },
   {
     question: 'How long does a website take?',
-    answer:
-      'Most projects take between one and six weeks depending on the website type, scope, functionality and feedback process.',
+    answer: 'Landing pages take 5-10 business days, Starter sites 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
   },
   {
     question: 'Do I own my website?',
-    answer:
-      'Yes. Once the project is completed and paid according to the agreed terms, the client owns the website. Third-party software, subscriptions and licences remain subject to their respective terms.',
+    answer: 'Yes. Once the project is paid in full, you own the website and its content. Third-party software and subscriptions stay subject to their own terms.',
   },
   {
-    question: 'Do you provide the domain?',
-    answer:
-      'Selected packages include a .co.za domain for the first year. Existing domains can also be used and configured.',
+    question: 'Do you provide a domain?',
+    answer: 'We do not include a free domain. We can register one in your name as an add-on, or connect a domain you already own.',
   },
   {
-    question: 'Do you provide ongoing maintenance?',
-    answer:
-      'Yes. Optional maintenance plans are available for businesses that want continued technical support, updates and website care after launch.',
+    question: 'Do you offer maintenance?',
+    answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
   },
 ]
 

@@ -113,7 +113,7 @@ export default function PrivacyPolicyPage() {
 
               <h2 id="third-party">Third-party services</h2>
               <p>
-                We may use third-party services such as analytics tools and hosting
+                We may use third-party services such as analytics tools and infrastructure
                 providers. These services have their own privacy policies and we
                 encourage you to review them.
               </p>

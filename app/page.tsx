@@ -6,13 +6,12 @@ import {
   Globe2,
   PenTool,
   Sparkles,
-  Compass,
   Layers3,
   Code2,
   Paintbrush,
 } from 'lucide-react'
 import {
-  packages,
+  services,
   portfolioProjects,
   STUDIO_NAME,
   STUDIO_EMAIL,
@@ -20,11 +19,10 @@ import {
   STUDIO_WHATSAPP,
   homepageFaqs,
   SOCIAL_LINKS,
-  services,
 } from '@/lib/constants'
 
-const minPrice = Math.min(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
-const maxPrice = Math.max(...packages.map((p) => parseInt(p.price.replace(/[^0-9]/g, '')))).toLocaleString('en-ZA')
+const minPrice = '1,500'
+const maxPrice = '10,000'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -35,7 +33,7 @@ const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
   title: 'Website Design & Development in South Africa | WEB-IN',
-  description: 'Independent web design and development studio in South Africa. Business websites, portfolios, landing pages and online stores that are fast, mobile-first and SEO-ready.',
+  description: 'Websites, online stores and web applications for South African businesses. Independent web development studio building modern, fast, mobile-first sites.',
   alternates: {
     canonical: 'https://web-in.co.za',
   },
@@ -78,10 +76,11 @@ const jsonLd = [
     knowsAbout: [
       'Web Development',
       'Website Design',
-      'Business Websites',
-      'E-commerce',
       'Landing Pages',
-      'Portfolio Websites',
+      'Starter Websites',
+      'Business Websites',
+      'Website Redesign',
+      'Online Stores',
       'Custom Web Applications',
     ],
   },
@@ -100,13 +99,12 @@ const jsonLd = [
 ]
 
 const serviceIcons: Record<string, React.ElementType> = {
-  'Business websites': Globe2,
-  'Portfolio websites': PenTool,
-  'Landing pages': Sparkles,
-  'Booking websites': Compass,
-  'Online stores': Layers3,
-  'Custom applications': Code2,
-  'Website redesigns': Paintbrush,
+  'Landing Page': Globe2,
+  'Starter Website': PenTool,
+  'Business Website': Sparkles,
+  'Website Redesign': Paintbrush,
+  'Online Store': Layers3,
+  'Custom Web Application': Code2,
 }
 
 export default function HomePage() {
@@ -214,29 +212,38 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-12">
+          <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
             {services.map((service) => {
-              const Icon = service.icon
+              const Icon = serviceIcons[service.name] || Globe2
               return (
                 <article
-                  key={service.title}
+                  key={service.slug}
                   className="group rounded-2xl bg-white border border-line p-6 shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-tint flex items-center justify-center mb-4">
                     <Icon size={20} className="text-brand" />
                   </div>
-                  <h3 className="text-base font-bold text-navy mb-1.5">{service.title}</h3>
-                  <p className="text-sm text-body leading-relaxed mb-4">{service.text}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-navy">{service.price}</span>
-                    <Link
-                      href={service.href}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
-                    >
-                      View service
-                      <ArrowUpRight size={14} />
-                    </Link>
+                  <h3 className="text-base font-bold text-navy mb-1">{service.name}</h3>
+                  <p className="text-sm text-body leading-relaxed mb-3">{service.tagline}</p>
+                  <p className="text-sm font-semibold text-navy mb-4">{service.priceLabel}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                      {service.facts.pages}
+                    </span>
+                    <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                      {service.facts.timeline}
+                    </span>
+                    <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                      {service.facts.support}
+                    </span>
                   </div>
+                  <Link
+                    href={`/pricing#${service.slug}`}
+                    className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
+                  >
+                    View service
+                    <ArrowUpRight size={14} />
+                  </Link>
                 </article>
               )
             })}
@@ -399,7 +406,7 @@ export default function HomePage() {
                   ['01', 'Discover', 'We learn about your business, goals, audience and requirements.'],
                   ['02', 'Define', 'We establish the scope, direction, timeline and quotation before development begins.'],
                   ['03', 'Create', 'We design, build and refine the website around the agreed scope.'],
-                  ['04', 'Launch', 'We complete final checks, deploy the website and get it ready for the real world.'],
+                  ['04', 'Launch', 'We complete final checks, launch the website and get it ready for the real world.'],
                 ].map(([num, title, desc]) => (
                   <div key={num} className="relative flex gap-5 sm:gap-6">
                     <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center text-sm font-bold">
