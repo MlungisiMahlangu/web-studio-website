@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X, MessageCircle } from 'lucide-react'
 import { useScrollDirection } from '@/components/ui/hooks'
 import { clsx } from 'clsx'
+import { STUDIO_WHATSAPP } from '@/lib/constants'
 
 const navLinks = [
   { label: 'Services', href: '/pricing' },
@@ -132,6 +133,13 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="absolute bottom-0 left-0 right-0 border-t border-line p-6 flex flex-col gap-3">
+            <a
+              href={`https://wa.me/${STUDIO_WHATSAPP}`}
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center justify-center gap-2 rounded-full border border-line text-navy px-6 py-3.5 text-sm font-medium transition-colors hover:bg-surface"
+            >
+              <MessageCircle size={16} /> WhatsApp Us
+            </a>
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
