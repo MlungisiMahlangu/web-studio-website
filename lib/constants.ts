@@ -356,8 +356,8 @@ export const processPhases: ProcessPhase[] = [
       'Once the website has been reviewed and approved, we prepare everything for launch. We handle the agreed launch, domain/DNS configuration and final production checks before taking the website live.',
     items: [
       { title: 'Final checks', description: 'Everything is reviewed before launch.' },
-      { title: 'Launch', description: 'The website is moved into its production environment.' },
-      { title: 'Launch', description: 'The website goes live.' },
+      { title: 'Production setup', description: 'The website is moved into its production environment.' },
+      { title: 'Go live', description: 'The website goes live.' },
     ],
   },
 ]
