@@ -9,16 +9,24 @@ import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP, STUDIO_LOCATION } from '@/
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact WEB-IN | Get a Website Quote',
-  description: 'Get in touch about your web project. Request a quote, ask questions, or discuss your ideas. Email, phone, or WhatsApp.',
+  title: 'Contact WEB-IN | Get a Website Quote South Africa',
+  description: 'Get in touch with WEB-IN about your web project. Request a free quote, ask questions, or discuss your ideas. Email, phone, or WhatsApp. Based in Johannesburg, serving all of South Africa.',
+  keywords: [
+    'contact web-in',
+    'website quote south africa',
+    'web development quote',
+    'contact website developer',
+    'get a website quote',
+    'web design consultation',
+  ],
   alternates: {
-    canonical: 'https://web-in.co.za/contact',
+    canonical: 'https://www.web-in.co.za/contact',
   },
   openGraph: {
-    title: 'Contact WEB-IN | Get a Quote',
-    description: 'Request a quote for your web project. Email, phone or WhatsApp — we respond within 1–2 business days.',
+    title: 'Contact WEB-IN | Get a Free Quote',
+    description: 'Request a free quote for your web project. Email, phone or WhatsApp — we respond within 1–2 business days. Based in Johannesburg, South Africa.',
     type: 'website',
-    url: 'https://web-in.co.za/contact',
+    url: 'https://www.web-in.co.za/contact',
   },
 }
 

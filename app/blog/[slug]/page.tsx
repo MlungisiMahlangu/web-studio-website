@@ -26,6 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} | ${STUDIO_NAME} Blog`,
     description: article.description,
+    keywords: [
+      'web development',
+      'website design',
+      'web design south africa',
+      'website development guide',
+      article.title.toLowerCase(),
+    ],
+    authors: [{ name: STUDIO_NAME, url: SITE_URL }],
     alternates: {
       canonical: `${SITE_URL}/blog/${slug}`,
     },
@@ -34,7 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.description,
       type: 'article',
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt ?? article.publishedAt,
       url: `${SITE_URL}/blog/${slug}`,
+      authors: [{ name: STUDIO_NAME }],
+      tags: article.tags || [],
     },
   }
 }

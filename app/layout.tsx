@@ -21,9 +21,34 @@ export const metadata: Metadata = {
     template: `%s | ${STUDIO_NAME}`,
   },
   description: STUDIO_DESCRIPTION,
-  metadataBase: new URL('https://web-in.co.za'),
+  metadataBase: new URL('https://www.web-in.co.za'),
   alternates: {
-    canonical: 'https://web-in.co.za',
+    canonical: 'https://www.web-in.co.za',
+  },
+  keywords: [
+    'website design south africa',
+    'web development south africa',
+    'website developer johannesburg',
+    'affordable websites south africa',
+    'professional web design',
+    'business website design',
+    'ecommerce website south africa',
+    'custom web applications',
+    'website redesign south africa',
+    'landing page design',
+    'web studio south africa',
+    'mobile-first websites',
+    'responsive web design',
+    'small business websites',
+    'online stores south africa',
+  ],
+  authors: [{ name: STUDIO_NAME, url: 'https://www.web-in.co.za' }],
+  creator: STUDIO_NAME,
+  publisher: STUDIO_NAME,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
   },
   openGraph: {
     type: 'website',
@@ -31,9 +56,10 @@ export const metadata: Metadata = {
     siteName: STUDIO_NAME,
     title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
     description: STUDIO_DESCRIPTION,
+    url: 'https://www.web-in.co.za',
     images: [
       {
-        url: '/opengraph-image',
+        url: 'https://www.web-in.co.za/opengraph-image',
         width: 1200,
         height: 630,
         alt: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
@@ -44,7 +70,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
     description: STUDIO_DESCRIPTION,
-    images: ['/opengraph-image'],
+    images: ['https://www.web-in.co.za/opengraph-image'],
+    creator: '@webin',
   },
   robots: {
     index: true,
@@ -64,6 +91,12 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   category: 'technology',
+  other: {
+    'geo.region': 'ZA-GP',
+    'geo.placename': 'Johannesburg',
+    'geo.position': '-26.2041;28.0473',
+    'ICBM': '-26.2041, 28.0473',
+  },
 }
 
 export const viewport: Viewport = {

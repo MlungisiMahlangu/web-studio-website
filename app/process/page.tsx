@@ -16,16 +16,24 @@ import {
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Process | Web Development Workflow',
-  description: 'From first conversation to live website. A clear 4-phase process: discover, define, create, launch. Transparent communication throughout your project.',
+  title: 'Our Process | Web Development Workflow | WEB-IN',
+  description: 'From first conversation to live website. A clear 4-phase process: discover, define, create, launch. Transparent communication throughout your web project in South Africa.',
+  keywords: [
+    'web development process',
+    'website design workflow',
+    'how we build websites',
+    'web project process',
+    'website development steps',
+    'web design timeline',
+  ],
   alternates: {
-    canonical: 'https://web-in.co.za/process',
+    canonical: 'https://www.web-in.co.za/process',
   },
   openGraph: {
     title: 'Our Process | WEB-IN Workflow',
     description: 'A clear 4-phase process: Discover, Define, Create, Launch. Transparent communication throughout your project.',
     type: 'website',
-    url: 'https://web-in.co.za/process',
+    url: 'https://www.web-in.co.za/process',
   },
 }
 

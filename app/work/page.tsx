@@ -12,7 +12,15 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Our Work | Web Development Portfolio | WEB-IN',
-  description: 'Explore our portfolio of live websites — business sites, online stores, booking platforms and custom web applications built for South African clients.',
+  description: 'Explore our portfolio of live websites — business sites, online stores, booking platforms and custom web applications built for South African clients. View our web design work.',
+  keywords: [
+    'web development portfolio',
+    'website design portfolio',
+    'web design work south africa',
+    'website portfolio',
+    'web development case studies',
+    'live website examples',
+  ],
   alternates: {
     canonical: `${SITE_URL}/work`,
   },

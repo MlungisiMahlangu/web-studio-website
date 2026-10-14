@@ -12,6 +12,18 @@ const nextConfig = {
         destination: '/pricing#pricing-:slug',
         permanent: true,
       },
+      // Redirect non-www to www for SEO consistency
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'web-in.co.za',
+          },
+        ],
+        destination: 'https://www.web-in.co.za/:path*',
+        permanent: true,
+      },
     ]
   },
   async headers() {

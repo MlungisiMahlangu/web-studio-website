@@ -4,8 +4,16 @@ import { PageHero } from '@/components/ui/page-hero'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'FAQ | Web Development Questions Answered',
-  description: 'Everything you need to know about working with WEB-IN. Services, pricing, timelines, domains, ownership, support. South African web development FAQ.',
+  title: 'FAQ | Web Development Questions Answered | WEB-IN',
+  description: 'Everything you need to know about working with WEB-IN. Services, pricing, timelines, domains, ownership, support. South African web development FAQ. Get answers to common questions.',
+  keywords: [
+    'web development faq',
+    'website design questions',
+    'web development pricing faq',
+    'website ownership faq',
+    'web design timeline',
+    'website development process',
+  ],
   alternates: {
     canonical: `${SITE_URL}/faq`,
   },

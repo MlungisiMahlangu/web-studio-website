@@ -11,15 +11,23 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'About WEB-IN | Web Developers South Africa',
-  description: 'Independent web development studio based in South Africa. We build modern, fast websites for businesses, professionals and growing brands. Strategy, design, development.',
+  description: 'Learn about WEB-IN, an independent web development studio based in Johannesburg, South Africa. We build modern, fast websites for businesses, professionals and growing brands. Strategy, design, development.',
+  keywords: [
+    'about web-in',
+    'web development studio south africa',
+    'website developer johannesburg',
+    'web design company south africa',
+    'independent web developer',
+    'professional web designers',
+  ],
   alternates: {
-    canonical: 'https://web-in.co.za/about',
+    canonical: 'https://www.web-in.co.za/about',
   },
   openGraph: {
     title: 'About WEB-IN | Independent Web Studio',
-    description: 'Independent web development studio in South Africa. Strategy-first approach, clear packages, built to last.',
+    description: 'Independent web development studio in Johannesburg, South Africa. Strategy-first approach, clear packages, built to last.',
     type: 'website',
-    url: 'https://web-in.co.za/about',
+    url: 'https://www.web-in.co.za/about',
   },
 }
 

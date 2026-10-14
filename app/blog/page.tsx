@@ -10,7 +10,15 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Blog | Web Development Insights South Africa | WEB-IN',
-  description: 'Practical insights about website design, development costs, timelines and online presence for South African businesses.',
+  description: 'Practical insights about website design, development costs, timelines and online presence for South African businesses. Expert guides from WEB-IN.',
+  keywords: [
+    'web development blog',
+    'website design tips',
+    'web development insights',
+    'website cost guide',
+    'web design south africa blog',
+    'website development articles',
+  ],
   alternates: {
     canonical: `${SITE_URL}/blog`,
   },

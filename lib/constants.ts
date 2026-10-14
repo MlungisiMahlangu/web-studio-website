@@ -9,17 +9,31 @@ import {
 } from 'lucide-react'
 
 export const STUDIO_NAME = 'WEB-IN'
-export const SITE_URL = 'https://web-in.co.za'
+export const SITE_URL = 'https://www.web-in.co.za'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
-  'Websites, online stores and web applications for South African businesses. Independent web development studio building modern, fast, mobile-first sites.'
+  'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications for businesses. Affordable pricing from R1,500.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'Johannesburg, Gauteng, South Africa'
-export const LAST_UPDATED = '2026-10-11'
+export const LAST_UPDATED = '2026-10-14'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
 export const SOCIAL_LINKS: string[] = []
+
+// SEO Keywords
+export const PRIMARY_KEYWORDS = [
+  'website design south africa',
+  'web development south africa',
+  'website developer johannesburg',
+  'affordable websites south africa',
+  'professional web design',
+  'business website design',
+  'ecommerce website south africa',
+  'custom web applications',
+  'website redesign south africa',
+  'landing page design',
+]
 
 export interface ServiceFacts {
   pages: string

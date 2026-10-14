@@ -33,9 +33,26 @@ const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
   title: 'Website Design & Development in South Africa | WEB-IN',
-  description: 'Websites, online stores and web applications for South African businesses. Independent web development studio building modern, fast, mobile-first sites.',
+  description: 'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications. Affordable pricing from R1,500. Get a free quote today!',
+  keywords: [
+    'website design south africa',
+    'web development south africa',
+    'website developer johannesburg',
+    'affordable websites south africa',
+    'professional web design',
+    'business website design',
+    'ecommerce website south africa',
+    'custom web applications',
+    'website redesign south africa',
+    'landing page design',
+    'web design studio',
+    'mobile-first websites',
+    'responsive web design south africa',
+    'small business websites',
+    'online store development',
+  ],
   alternates: {
-    canonical: 'https://web-in.co.za',
+    canonical: 'https://www.web-in.co.za',
   },
 }
 
@@ -45,10 +62,10 @@ const jsonLd = [
     '@type': ['Organization', 'WebSite', 'LocalBusiness', 'ProfessionalService'],
     name: STUDIO_NAME,
     alternateName: 'WEB-IN Web Studio',
-    url: 'https://web-in.co.za',
-    logo: 'https://web-in.co.za/icon.svg',
-    image: 'https://web-in.co.za/opengraph-image',
-    description: 'Independent web development studio building modern websites for businesses in South Africa.',
+    url: 'https://www.web-in.co.za',
+    logo: 'https://www.web-in.co.za/icon.svg',
+    image: 'https://www.web-in.co.za/opengraph-image',
+    description: 'Professional website design and development studio building modern, fast websites for businesses in South Africa. Affordable pricing from R1,500.',
     email: STUDIO_EMAIL,
     telephone: STUDIO_PHONE,
     address: {
@@ -56,6 +73,11 @@ const jsonLd = [
       addressCountry: 'ZA',
       addressRegion: 'Gauteng',
       addressLocality: 'Johannesburg',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: -26.2041,
+      longitude: 28.0473,
     },
     areaServed: [
       {
@@ -71,7 +93,7 @@ const jsonLd = [
         name: 'Johannesburg',
       },
     ],
-    priceRange: `R${minPrice} - R${maxPrice}+`,
+    priceRange: 'R1,500 - R10,000+',
     ...(SOCIAL_LINKS.length > 0 && { sameAs: SOCIAL_LINKS }),
     knowsAbout: [
       'Web Development',
@@ -81,8 +103,58 @@ const jsonLd = [
       'Business Websites',
       'Website Redesign',
       'Online Stores',
+      'Ecommerce Development',
       'Custom Web Applications',
+      'Mobile-First Design',
+      'Responsive Web Design',
+      'SEO Optimization',
     ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Web Development Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Landing Page',
+            description: 'Single-page website for campaigns or products',
+          },
+          price: '1500',
+          priceCurrency: 'ZAR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Starter Website',
+            description: 'Multi-page website for small businesses',
+          },
+          price: '3500',
+          priceCurrency: 'ZAR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Business Website',
+            description: 'Professional website with advanced features',
+          },
+          price: '6500',
+          priceCurrency: 'ZAR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Online Store',
+            description: 'Ecommerce website with payment integration',
+          },
+          price: '8500',
+          priceCurrency: 'ZAR',
+        },
+      ],
+    },
   },
   {
     '@context': 'https://schema.org',
@@ -95,6 +167,18 @@ const jsonLd = [
         text: faq.answer,
       },
     })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.web-in.co.za',
+      },
+    ],
   },
 ]
 
