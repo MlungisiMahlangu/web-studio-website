@@ -44,8 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
       url: `${SITE_URL}/blog/${slug}`,
-      authors: [{ name: STUDIO_NAME }],
-      tags: article.tags || [],
+      authors: [STUDIO_NAME],
     },
   }
 }
