@@ -112,6 +112,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to external resources for better performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://formspree.io" />
+        <link rel="preconnect" href="https://vercel.live" />
+        
+        {/* DNS prefetch for faster domain resolution */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="//formspree.io" />
+        
+        {/* Resource hints */}
+        <meta name="theme-color" content="#FDFCFC" />
+      </head>
       <body className={`${jakarta.variable} antialiased bg-background text-body`}>
         <a
           href="#main-content"
