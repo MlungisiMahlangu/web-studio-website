@@ -10,7 +10,7 @@ const RATE_LIMIT = {
 }
 
 function rateLimit(request: NextRequest): boolean {
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
   const now = Date.now()
   const userLimit = rateLimitMap.get(ip)
 
