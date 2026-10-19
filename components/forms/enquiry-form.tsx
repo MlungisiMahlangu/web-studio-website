@@ -4,7 +4,7 @@ import { useState, FormEvent, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle2, AlertCircle } from 'lucide-react'
-import { enquiryServiceOptions, referralSourceOptions, FORMSPREE_ENDPOINT } from '@/lib/constants'
+import { enquiryServiceOptions, referralSourceOptions, enquiryBudgetOptions, FORMSPREE_ENDPOINT } from '@/lib/constants'
 
 function EnquiryFormInner() {
   const router = useRouter()
@@ -37,14 +37,14 @@ function EnquiryFormInner() {
       newErrors.name = 'Name should only contain letters'
     }
 
-    // Phone: numbers only, exactly 10 digits (allow + prefix for country code)
+    // Phone: exactly 10 digits (allow + prefix for country code)
     const phoneDigits = phone.replace(/[^0-9]/g, '')
     if (!phone || phoneDigits.length === 0) {
       newErrors.phone = 'Please enter your phone number'
     } else if (phoneDigits.length < 10) {
       newErrors.phone = 'Phone number must be at least 10 digits'
-    } else if (phoneDigits.length > 12) {
-      newErrors.phone = 'Phone number is too long'
+    } else if (phoneDigits.length > 10) {
+      newErrors.phone = 'Phone number must not exceed 10 digits'
     } else if (!/^[0-9+\s\-\(\)]+$/.test(phone)) {
       newErrors.phone = 'Phone number should only contain numbers'
     }
@@ -55,6 +55,12 @@ function EnquiryFormInner() {
       newErrors.email = 'Please enter your email address'
     } else if (!emailRegex.test(email.trim())) {
       newErrors.email = 'Please enter a valid email (e.g. name@example.com)'
+    }
+
+    // Budget: must select an option
+    const budget = formData.get('budget') as string
+    if (!budget || budget.trim().length === 0) {
+      newErrors.budget = 'Please select your estimated budget'
     }
 
     // Service: must select an option
@@ -142,20 +148,42 @@ function EnquiryFormInner() {
             autoComplete="tel"
             onInput={(e) => {
               const input = e.currentTarget
-              input.value = input.value.replace(/[^0-9+\s\-\(\)]/g, '')
+              // Remove all non-digit characters except +, space, dash, parentheses
+              const cleaned = input.value.replace(/[^0-9+\s\-\(\)]/g, '')
+              // Count only digits
+              const digits = cleaned.replace(/[^0-9]/g, '')
+              // If more than 10 digits, truncate to 10
+              if (digits.length > 10) {
+                // Keep only first 10 digits
+                let result = ''
+                let digitCount = 0
+                for (let i = 0; i < cleaned.length; i++) {
+                  const char = cleaned[i]
+                  if (/[0-9]/.test(char)) {
+                    if (digitCount < 10) {
+                      result += char
+                      digitCount++
+                    }
+                  } else {
+                    result += char
+                  }
+                }
+                input.value = result
+              } else {
+                input.value = cleaned
+              }
             }}
           />
           {errors.phone && <span className="field-error"><AlertCircle size={12} /> {errors.phone}</span>}
         </label>
       </div>
 
-      <label>
-        Email address
-        <input required name="email" type="email" placeholder="you@company.com" />
-        {errors.email && <span className="field-error"><AlertCircle size={12} /> {errors.email}</span>}
-      </label>
-
       <div className="form-row">
+        <label>
+          Email address
+          <input required name="email" type="email" placeholder="you@company.com" />
+          {errors.email && <span className="field-error"><AlertCircle size={12} /> {errors.email}</span>}
+        </label>
         <label>
           What do you need?
           <select name="service" defaultValue={preselectedService} required>
@@ -170,6 +198,19 @@ function EnquiryFormInner() {
           <a href="/pricing" className="field-helper-link" target="_blank" rel="noopener noreferrer">
             View our services
           </a>
+        </label>
+      </div>
+
+      <div className="form-row">
+        <label>
+          Estimated budget
+          <select name="budget" defaultValue="" required>
+            <option value="" disabled>Select your budget</option>
+            {enquiryBudgetOptions.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
+          {errors.budget && <span className="field-error"><AlertCircle size={12} /> {errors.budget}</span>}
         </label>
         <label>
           How did you learn about us?
