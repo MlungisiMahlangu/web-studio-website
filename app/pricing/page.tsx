@@ -237,6 +237,7 @@ export default function PricingPage() {
                   </div>
 
                   {/* Not included */}
+                  {svc.notIncluded.length > 0 && (
                   <div className="mt-6 px-7">
                     <p className={`text-xs font-semibold uppercase mb-2 ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>
                       Not included
@@ -253,6 +254,7 @@ export default function PricingPage() {
                       ))}
                     </div>
                   </div>
+                  )}
 
                   {/* Actions */}
                   <div className="p-7 pt-6 flex flex-col gap-3">

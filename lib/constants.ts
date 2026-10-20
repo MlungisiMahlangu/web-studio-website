@@ -156,12 +156,10 @@ export const services: ServiceCard[] = [
       'Content refresh (existing content)',
       'SEO checks and URL redirects',
       'Testing and launch',
-    ],
-    notIncluded: [
-      'Large content migration',
-      'New functionality',
+      'New functionality (quoted)',
       'Full rebuilds (quoted)',
     ],
+    notIncluded: [],
   },
   {
     slug: 'online-store',
@@ -184,12 +182,9 @@ export const services: ServiceCard[] = [
       'Delivery or collection settings',
       'SEO and analytics setup',
       'Tested before launch',
+      'Authentication',
     ],
-    notIncluded: [
-      'Gateway transaction fees',
-      'Customer accounts (add-on)',
-      'Courier or stock integrations',
-    ],
+    notIncluded: [],
   },
   {
     slug: 'custom-web-application',
@@ -211,11 +206,10 @@ export const services: ServiceCard[] = [
       'Dashboards, forms or bookings',
       'Security basics and testing',
       'Documentation and handover',
+      'Complex permissions (quoted per project)',
+      'Heavy integrations (quoted per project)',
     ],
-    notIncluded: [
-      'Complex permissions (quoted)',
-      'Heavy integrations (quoted)',
-    ],
+    notIncluded: [],
   },
 ]
 
@@ -227,11 +221,9 @@ export const addons = [
   { name: 'Extra revision round', price: 'R300' },
   { name: 'Blog setup', price: 'From R1,000' },
   { name: 'Booking functionality', price: 'From R2,000' },
-  { name: 'Customer accounts and order tracking (store)', price: 'From R1,500' },
   { name: 'Extra products (store), per 10', price: 'R300' },
   { name: 'SEO enhancement', price: 'From R1,000' },
   { name: 'Google Business Profile setup', price: 'R500' },
-  { name: 'Business email setup', price: 'From R500' },
   { name: 'Domain registration in your name, at cost + R100', price: 'At cost + R100' },
   { name: 'Logo design', price: 'R500' },
 ]
