@@ -64,7 +64,6 @@ export function FaqPage({ categories }: { categories: FaqCategory[] }) {
       'revision': ['revision', 'revisions', 'change', 'changes', 'edit', 'edits', 'round', 'feedback'],
       'website': ['website', 'web site', 'site', 'web', 'page', 'pages'],
       'app': ['app', 'application', 'web app', 'web application', 'platform', 'system'],
-      'landing': ['landing', 'landing page', 'one page', 'single page', 'squeeze page'],
       'portfolio': ['portfolio', 'cv', 'resume', 'personal', 'freelancer'],
       'booking': ['booking', 'appointment', 'reservation', 'schedule', 'calendar'],
       'redesign': ['redesign', 'rebuild', 'revamp', 'refresh', 'update', 'new look', 'modernise', 'modernize'],

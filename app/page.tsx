@@ -33,7 +33,7 @@ const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
   title: 'Website Design & Development in South Africa | WEB-IN',
-  description: 'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications. Affordable pricing from R1,500. Get a free quote today!',
+  description: 'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications. Affordable pricing from R2,500. Get a free quote today!',
   keywords: [
     'website design south africa',
     'web development south africa',
@@ -44,7 +44,6 @@ export const metadata = {
     'ecommerce website south africa',
     'custom web applications',
     'website redesign south africa',
-    'landing page design',
     'web design studio',
     'mobile-first websites',
     'responsive web design south africa',
@@ -65,7 +64,7 @@ const jsonLd = [
     url: 'https://www.web-in.co.za',
     logo: 'https://www.web-in.co.za/icon.svg',
     image: 'https://www.web-in.co.za/opengraph-image',
-    description: 'Professional website design and development studio building modern, fast websites for businesses in South Africa. Affordable pricing from R1,500.',
+    description: 'Professional website design and development studio building modern, fast websites for businesses in South Africa. Affordable pricing from R2,500.',
     email: STUDIO_EMAIL,
     telephone: STUDIO_PHONE,
     address: {
@@ -93,12 +92,11 @@ const jsonLd = [
         name: 'Johannesburg',
       },
     ],
-    priceRange: 'R1,500 - R10,000+',
+    priceRange: 'R2,500 - R10,000+',
     ...(SOCIAL_LINKS.length > 0 && { sameAs: SOCIAL_LINKS }),
     knowsAbout: [
       'Web Development',
       'Website Design',
-      'Landing Pages',
       'Starter Websites',
       'Business Websites',
       'Website Redesign',
@@ -113,16 +111,6 @@ const jsonLd = [
       '@type': 'OfferCatalog',
       name: 'Web Development Services',
       itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Landing Page',
-            description: 'Single-page website for campaigns or products',
-          },
-          price: '1500',
-          priceCurrency: 'ZAR',
-        },
         {
           '@type': 'Offer',
           itemOffered: {
@@ -183,7 +171,6 @@ const jsonLd = [
 ]
 
 const serviceIcons: Record<string, React.ElementType> = {
-  'Landing Page': Globe2,
   'Starter Website': PenTool,
   'Business Website': Sparkles,
   'Website Redesign': Paintbrush,
@@ -292,7 +279,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="OUR SERVICES"
               title="Digital solutions for every business."
-              description="From simple landing pages to custom web applications, we build websites that work for your goals, your audience and your growth."
+              description="From starter websites to custom web applications, we build websites that work for your goals, your audience and your growth."
             />
           </Reveal>
 

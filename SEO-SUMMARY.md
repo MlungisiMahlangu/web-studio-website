@@ -36,7 +36,7 @@ Your website has been fully optimized for search engines. Here's what was done:
 
 #### Homepage
 - **Title**: "Website Design & Development in South Africa | WEB-IN"
-- **Description**: Enhanced with pricing (from R1,500) and call-to-action
+- **Description**: Enhanced with pricing (from R2,500) and call-to-action
 - **Keywords**: 15 targeted keywords including:
   - website design south africa
   - web development south africa
@@ -56,7 +56,7 @@ Your website has been fully optimized for search engines. Here's what was done:
 
 #### Services/Pricing Page
 - **Title**: "Services & Pricing | Website Design Costs South Africa | WEB-IN"
-- **Description**: Specific pricing mentioned (R1,500, R6,500, R8,500)
+- **Description**: Specific pricing mentioned (R2,500, R4,000, R7,000)
 - **Keywords**: 8 pricing-focused keywords
 
 #### Blog Pages
@@ -205,7 +205,7 @@ Then update `SOCIAL_LINKS` in `lib/constants.ts` with your profile URLs.
 ### Long-tail (Lower Competition)
 - website pricing south africa
 - website design cost
-- landing page cost south africa
+- starter website cost south africa
 - business website price
 - website quote south africa
 

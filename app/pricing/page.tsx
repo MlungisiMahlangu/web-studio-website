@@ -31,7 +31,6 @@ const howPricingWorks = [
 ]
 
 const whichOneDoINeed = [
-  { need: 'One page for a campaign', choose: 'Landing Page', slug: 'landing-page' },
   { need: 'A site for myself or a small business', choose: 'Starter Website', slug: 'starter-website' },
   { need: 'More pages and a stronger enquiry path', choose: 'Business Website', slug: 'business-website' },
   { need: 'I already have a website', choose: 'Website Redesign', slug: 'website-redesign' },
@@ -100,7 +99,7 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Services & Pricing"
         title="Everything your business needs online."
-        description="From a simple landing page to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
+        description="From a starter website to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Services & Pricing', href: '/pricing' },
@@ -311,7 +310,7 @@ export default function PricingPage() {
                       <td className="px-6 py-4 font-medium text-navy sticky left-0 bg-white z-10">
                         {row.feature}
                       </td>
-                      {(['landing', 'business', 'starter', 'redesign', 'store', 'app'] as const).map((col) => {
+                      {(['business', 'starter', 'redesign', 'store', 'app'] as const).map((col) => {
                         const val = row[col]
                         if (val === true)
                           return (

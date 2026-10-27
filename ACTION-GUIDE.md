@@ -94,8 +94,8 @@ Your website is **live and optimized**:
      - Website Design
      - Web Development
      - Ecommerce Development
-     - Landing Pages
      - Website Redesign
+     - Custom Web Applications
    - Add description (use your STUDIO_DESCRIPTION)
 
 **Time**: 20 minutes to set up, 5-7 days for verification

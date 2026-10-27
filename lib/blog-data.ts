@@ -28,7 +28,7 @@ One of the first questions business owners ask when considering a new website is
 Several factors influence the final price of a website:
 
 **Complexity and functionality**
-A simple landing page with one section and a contact form will cost significantly less than a full business website with multiple pages, blog functionality, and custom features. Online stores with product catalogues, shopping carts, and payment integration require more development time and therefore cost more.
+A simple starter website with a few pages and a contact form will cost significantly less than a full business website with multiple pages, blog functionality, and custom features. Online stores with product catalogues, shopping carts, and payment integration require more development time and therefore cost more.
 
 **Design requirements**
 Custom design work tailored to your brand costs more than using a pre-made template. If you need specific animations, interactive elements, or a unique visual identity, expect the design phase to take longer.
@@ -45,9 +45,6 @@ Some developers include post-launch support in their pricing, while others charg
 ## Typical website cost ranges in South Africa
 
 Here are the typical price ranges you can expect in the current South African market:
-
-**Landing pages: R1,500 - R3,000**
-A single-page website focused on one offer, product, or campaign. Perfect for testing an idea, promoting a specific service, or creating a simple online presence quickly.
 
 **Starter websites: R2,500 - R4,000**
 Professional websites for individuals, freelancers and small businesses. Usually includes pages for about, services, portfolio, and contact.
@@ -145,9 +142,6 @@ We add all your content (text, images, videos) to the website and test everythin
 Once everything is tested and approved, we launch the website to your domain and make it live. We also set up essential tools like Google Analytics and Search Console, and provide you with any training or documentation you need to manage the website going forward.
 
 ## Typical timelines by project type
-
-**Landing pages: 1-2 weeks**
-A single-page website can be built relatively quickly, especially if you already have your content and images ready. The main time factors are the design revision process and how quickly you can provide feedback.
 
 **Starter websites: 1-2 weeks**
 These typically include up to 4 pages and require time to showcase your work effectively. The timeline depends on how many projects you want to feature and whether you need help with content creation.
@@ -290,7 +284,7 @@ For most established businesses, a website is essential. You need a website if:
 
 ## The cost comparison
 
-Let us put the costs in perspective. A basic Facebook page is free, but a basic website from a professional developer starts around R1,500-R4,000 depending on the type of site. Spread over a year, that is roughly R125-R333 per month for a professional online presence that works for you 24/7.
+Let us put the costs in perspective. A basic Facebook page is free, but a basic website from a professional developer starts around R2,500-R4,000 depending on the type of site. Spread over a year, that is roughly R208-R333 per month for a professional online presence that works for you 24/7.
 
 Compare that to the cost of traditional advertising: a single newspaper ad can cost R2,000-R5,000 and reaches people once. A website reaches people continuously, builds credibility, and generates leads for years.
 

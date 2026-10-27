@@ -3,13 +3,13 @@ import { SITE_URL } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Services & Pricing | Website Design Costs South Africa | WEB-IN',
-  description: 'Transparent pricing for website design and development in South Africa. Landing pages from R1,500, business websites from R6,500, online stores from R8,500. Get a free quote.',
+  description: 'Transparent pricing for website design and development in South Africa. Starter websites from R2,500, business websites from R4,000, online stores from R7,000. Get a free quote.',
   keywords: [
     'website pricing south africa',
     'website design cost',
     'affordable website design',
     'website development pricing',
-    'landing page cost',
+    'starter website cost',
     'business website price',
     'ecommerce website cost',
     'website quote south africa',

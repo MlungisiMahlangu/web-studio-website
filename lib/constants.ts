@@ -12,7 +12,7 @@ export const STUDIO_NAME = 'WEB-IN'
 export const SITE_URL = 'https://www.web-in.co.za'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
-  'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications for businesses. Affordable pricing from R1,500.'
+  'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications for businesses. Affordable pricing from R2,500.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
@@ -32,7 +32,6 @@ export const PRIMARY_KEYWORDS = [
   'ecommerce website south africa',
   'custom web applications',
   'website redesign south africa',
-  'landing page design',
 ]
 
 export interface ServiceFacts {
@@ -56,29 +55,30 @@ export interface ServiceCard {
 
 export const services: ServiceCard[] = [
   {
-    slug: 'landing-page',
-    name: 'Landing Page',
-    tagline: 'One focused page for one clear goal.',
-    priceLabel: 'R1,500',
-    bestFor: 'Campaigns, new businesses, single services',
+    slug: 'starter-website',
+    name: 'Starter Website',
+    tagline: 'A professional site for individuals and small businesses.',
+    priceLabel: 'R2,500',
+    bestFor: 'Portfolios, freelancers, personal brands',
     facts: {
-      pages: '1 page',
-      timeline: '5-10 days',
+      pages: 'Up to 4 pages',
+      timeline: '1-2 weeks',
       revisions: '1 revision round',
       support: '14 days support',
     },
     included: [
-      'Custom-designed page',
-      'Hero, benefits and contact sections',
-      'Mobile-responsive layout',
+      'Custom design',
+      'Up to 4 pages (Home, About, Services, Contact)',
+      'Portfolio gallery and CV download',
       'WhatsApp link + contact form',
+      'Social media links',
       'Basic SEO setup',
-      'Published live with HTTPS',
+      'Launch testing',
     ],
     notIncluded: [
-      'Extra pages',
-      'Copywriting and photos',
-      'Logins or backend',
+      'Online payments',
+      'Booking system',
+      'Logins or database',
     ],
   },
   {
@@ -111,31 +111,29 @@ export const services: ServiceCard[] = [
     ],
   },
   {
-    slug: 'starter-website',
-    name: 'Starter Website',
-    tagline: 'A professional site for individuals and small businesses.',
-    priceLabel: 'R2,500',
-    bestFor: 'Portfolios, freelancers, personal brands',
+    slug: 'online-store',
+    name: 'Online Store',
+    tagline: 'Sell products online with a cart and secure checkout.',
+    priceLabel: 'From R7,000',
+    bestFor: 'Retailers and product brands',
     facts: {
-      pages: 'Up to 4 pages',
-      timeline: '1-2 weeks',
-      revisions: '1 revision round',
-      support: '14 days support',
+      pages: 'Up to 20 products',
+      timeline: '3-5 weeks',
+      revisions: '2 revision rounds',
+      support: '30 days support',
     },
     included: [
-      'Custom design',
-      'Up to 4 pages (Home, About, Services, Contact)',
-      'Portfolio gallery and CV download',
-      'WhatsApp link + contact form',
-      'Social media links',
-      'Basic SEO setup',
-      'Launch testing',
+      'Custom storefront design',
+      'Products and categories',
+      'Cart and checkout',
+      '1 payment gateway (PayFast, Yoco or Ozow)',
+      'Order emails and basic order management',
+      'Delivery or collection settings',
+      'SEO and analytics setup',
+      'Tested before launch',
+      'Authentication',
     ],
-    notIncluded: [
-      'Online payments',
-      'Booking system',
-      'Logins or database',
-    ],
+    notIncluded: [],
   },
   {
     slug: 'website-redesign',
@@ -158,31 +156,6 @@ export const services: ServiceCard[] = [
       'Testing and launch',
       'New functionality (quoted)',
       'Full rebuilds (quoted)',
-    ],
-    notIncluded: [],
-  },
-  {
-    slug: 'online-store',
-    name: 'Online Store',
-    tagline: 'Sell products online with a cart and secure checkout.',
-    priceLabel: 'From R7,000',
-    bestFor: 'Retailers and product brands',
-    facts: {
-      pages: 'Up to 20 products',
-      timeline: '3-5 weeks',
-      revisions: '2 revision rounds',
-      support: '30 days support',
-    },
-    included: [
-      'Custom storefront design',
-      'Products and categories',
-      'Cart and checkout',
-      '1 payment gateway (PayFast, Yoco or Ozow)',
-      'Order emails and basic order management',
-      'Delivery or collection settings',
-      'SEO and analytics setup',
-      'Tested before launch',
-      'Authentication',
     ],
     notIncluded: [],
   },
@@ -489,7 +462,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'How much does a website cost?',
-        answer: 'Launch prices start at R1,500 for a Landing Page, R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
+        answer: 'Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
       },
       {
         question: 'What if I need more than what is included?',
@@ -510,7 +483,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'How long does a website take?',
-        answer: 'Landing pages take 5-10 business days, Starter sites 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
+        answer: 'Starter sites take 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
       },
     ],
   },
@@ -623,14 +596,14 @@ export const portfolioProjects: PortfolioProject[] = [
     type: 'E-commerce frontend',
     role: 'Frontend development · Solo project',
     description:
-      'A gym-apparel storefront concept focused on strong product presentation, responsive layouts and a smooth browsing experience from the landing page through product discovery.',
+      'A gym-apparel storefront concept focused on strong product presentation, responsive layouts and a smooth browsing experience from the homepage through product discovery.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     liveUrl: 'https://mlungisimahlangu.github.io/grip-on-website',
     codeUrl: 'https://github.com/MlungisiMahlangu/grip-on-website',
     cardBg: '#f1e8d8',
     demo: false,
     challenge: 'Design a gym-apparel storefront that communicates brand quality through strong product imagery, clean typography and a browsing experience that feels premium without relying on a backend or e-commerce platform.',
-    approach: 'The site was built with vanilla HTML, CSS and JavaScript to keep it lightweight and fast. The design focused on large product imagery, generous whitespace and a clear visual hierarchy that guides visitors from the landing page through product discovery.',
+    approach: 'The site was built with vanilla HTML, CSS and JavaScript to keep it lightweight and fast. The design focused on large product imagery, generous whitespace and a clear visual hierarchy that guides visitors from the homepage through product discovery.',
     features: ['Strong product presentation', 'Responsive layout across devices', 'Smooth browsing experience', 'Clean visual hierarchy', 'Lightweight vanilla implementation', 'Mobile-first design'],
   },
   {
@@ -654,20 +627,19 @@ export const portfolioProjects: PortfolioProject[] = [
 ]
 
 export const comparisonFeatures = [
-  { feature: 'Pages', landing: '1', starter: 'Up to 4', business: 'Up to 8', redesign: 'By scope', store: 'Up to 20 products', app: 'Custom scope' },
-  { feature: 'Timeline', landing: '5-10 days', starter: '1-2 wks', business: '2-3 wks', redesign: '1-3 wks', store: '3-5 wks', app: '4-8+ wks' },
-  { feature: 'Revisions', landing: '1', starter: '1', business: '2', redesign: '1', store: '2', app: 'In proposal' },
-  { feature: 'Support', landing: '14 days', starter: '14 days', business: '30 days', redesign: '14 days', store: '30 days', app: 'In proposal' },
-  { feature: 'Contact form + WhatsApp', landing: true, starter: true, business: true, redesign: true, store: true, app: 'As agreed' },
-  { feature: 'SEO basics', landing: true, starter: true, business: 'yes + sitemap', redesign: true, store: true, app: 'Basic' },
-  { feature: 'Analytics setup', landing: false, starter: false, business: true, redesign: false, store: true, app: 'As agreed' },
-  { feature: 'Gallery + Google Maps', landing: false, starter: 'Gallery', business: true, redesign: 'As needed', store: false, app: false },
-  { feature: 'Cart + payments', landing: false, starter: false, business: false, redesign: false, store: true, app: 'If agreed' },
-  { feature: 'Logins + database', landing: false, starter: false, business: false, redesign: false, store: 'Add-on', app: true },
+  { feature: 'Pages', starter: 'Up to 4', business: 'Up to 8', redesign: 'By scope', store: 'Up to 20 products', app: 'Custom scope' },
+  { feature: 'Timeline', starter: '1-2 wks', business: '2-3 wks', redesign: '1-3 wks', store: '3-5 wks', app: '4-8+ wks' },
+  { feature: 'Revisions', starter: '1', business: '2', redesign: '1', store: '2', app: 'In proposal' },
+  { feature: 'Support', starter: '14 days', business: '30 days', redesign: '14 days', store: '30 days', app: 'In proposal' },
+  { feature: 'Contact form + WhatsApp', starter: true, business: true, redesign: true, store: true, app: 'As agreed' },
+  { feature: 'SEO basics', starter: true, business: 'yes + sitemap', redesign: true, store: true, app: 'Basic' },
+  { feature: 'Analytics setup', starter: false, business: true, redesign: false, store: true, app: 'As agreed' },
+  { feature: 'Gallery + Google Maps', starter: 'Gallery', business: true, redesign: 'As needed', store: false, app: false },
+  { feature: 'Cart + payments', starter: false, business: false, redesign: false, store: true, app: 'If agreed' },
+  { feature: 'Logins + database', starter: false, business: false, redesign: false, store: 'Add-on', app: true },
 ]
 
 export const enquiryServiceOptions = [
-  'Landing Page',
   'Starter Website',
   'Business Website',
   'Website Redesign',
@@ -748,11 +720,11 @@ export const enquiryDesignOptions = [
 export const homepageFaqs = [
   {
     question: 'How much does a website cost?',
-    answer: 'Launch prices start at R1,500 for a Landing Page, R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
+    answer: 'Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
   },
   {
     question: 'How long does a website take?',
-    answer: 'Landing pages take 5-10 business days, Starter sites 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
+    answer: 'Starter sites take 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
   },
   {
     question: 'Do I own my website?',

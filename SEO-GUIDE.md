@@ -144,7 +144,6 @@ Once you have client reviews, add Review schema to show star ratings in search r
 - ecommerce website south africa
 - custom web applications
 - website redesign south africa
-- landing page design
 - mobile-first websites
 - responsive web design
 - small business websites
@@ -186,7 +185,7 @@ Once you have client reviews, add Review schema to show star ratings in search r
    - "Website maintenance tips"
 
 2. **Create dedicated service pages** for:
-   - Landing page design
+   - Starter website design
    - Business website design
    - Ecommerce development
    - Website redesign

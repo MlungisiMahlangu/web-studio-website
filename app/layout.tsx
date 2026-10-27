@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     'ecommerce website south africa',
     'custom web applications',
     'website redesign south africa',
-    'landing page design',
     'web studio south africa',
     'mobile-first websites',
     'responsive web design',
