@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     template: `%s | ${STUDIO_NAME}`,
   },
   description: STUDIO_DESCRIPTION,
-  metadataBase: new URL('https://www.web-in.co.za'),
+  metadataBase: new URL('https://web-in.co.za'),
   alternates: {
-    canonical: 'https://www.web-in.co.za',
+    canonical: 'https://web-in.co.za',
   },
   keywords: [
     'website design south africa',

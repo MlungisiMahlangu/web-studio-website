@@ -51,7 +51,7 @@ export const metadata = {
     'online store development',
   ],
   alternates: {
-    canonical: 'https://www.web-in.co.za',
+    canonical: 'https://web-in.co.za',
   },
 }
 
@@ -61,9 +61,9 @@ const jsonLd = [
     '@type': ['Organization', 'WebSite', 'LocalBusiness', 'ProfessionalService'],
     name: STUDIO_NAME,
     alternateName: 'WEB-IN Web Studio',
-    url: 'https://www.web-in.co.za',
-    logo: 'https://www.web-in.co.za/icon.svg',
-    image: 'https://www.web-in.co.za/opengraph-image',
+    url: 'https://web-in.co.za',
+    logo: 'https://web-in.co.za/icon.svg',
+    image: 'https://web-in.co.za/opengraph-image',
     description: 'Professional website design and development studio building modern, fast websites for businesses in South Africa. Affordable pricing from R2,500.',
     email: STUDIO_EMAIL,
     telephone: STUDIO_PHONE,
