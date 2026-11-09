@@ -4,7 +4,7 @@ import { useState, FormEvent, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle2, AlertCircle } from 'lucide-react'
-import { enquiryServiceOptions, referralSourceOptions, enquiryBudgetOptions, FORMSPREE_ENDPOINT } from '@/lib/constants'
+import { enquiryServiceOptions, referralSourceOptions, enquiryBudgetOptions, FORMSPREE_ENDPOINT, STUDIO_EMAIL, STUDIO_WHATSAPP } from '@/lib/constants'
 
 function EnquiryFormInner() {
   const router = useRouter()
@@ -12,15 +12,10 @@ function EnquiryFormInner() {
   const preselectedService = searchParams.get('service') || ''
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [submitFailed, setSubmitFailed] = useState(false)
 
   function validateForm(formData: FormData): boolean {
     const newErrors: Record<string, string> = {}
-
-    // Honeypot check - if filled, it's a bot
-    const honeypot = formData.get('website') as string
-    if (honeypot) {
-      return false
-    }
 
     const name = formData.get('name') as string
     const phone = formData.get('phone') as string
@@ -73,9 +68,10 @@ function EnquiryFormInner() {
       newErrors.referral = 'Please tell us how you found us'
     }
 
-    // Message: required
-    if (!message || message.trim().length < 10) {
-      newErrors.message = 'Please tell us a bit more (at least 10 characters)'
+    // Message: required. Formspree's Formshield filter sends short, vague
+    // messages to its Spam folder, where no notification email is sent.
+    if (!message || message.trim().length < 25) {
+      newErrors.message = 'Please write a sentence or two about your project (25+ characters)'
     }
 
     // Consent: must agree
@@ -90,8 +86,14 @@ function EnquiryFormInner() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setErrors({})
+    setSubmitFailed(false)
 
     const formData = new FormData(event.currentTarget)
+
+    // Honeypot filled -> a bot. Fail silently so the bot gets no signal.
+    if ((formData.get('website') as string)?.length) {
+      return
+    }
 
     if (!validateForm(formData)) {
       return
@@ -111,17 +113,39 @@ function EnquiryFormInner() {
       if (response.ok) {
         router.push('/contact/thank-you')
       } else {
-        alert('Something went wrong. Please try again or contact us directly via email.')
+        setSubmitFailed(true)
         setIsSubmitting(false)
       }
     } catch (error) {
-      alert('Something went wrong. Please try again or contact us directly via email.')
+      setSubmitFailed(true)
       setIsSubmitting(false)
     }
   }
 
   return (
     <form className="contact-form" onSubmit={submit} noValidate>
+      {submitFailed && (
+        <div className="form-submit-failed" role="alert">
+          <AlertCircle size={16} aria-hidden="true" />
+          <div>
+            <strong>We couldn&rsquo;t send that message.</strong>
+            <p>
+              Nothing was submitted &mdash; please try sending again, or reach us directly at{' '}
+              <a href={`mailto:${STUDIO_EMAIL}?subject=Website enquiry`}>{STUDIO_EMAIL}</a>
+              {' '}or on{' '}
+              <a href={`https://wa.me/${STUDIO_WHATSAPP}`} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Formspree special field: sets the notification email subject. The
+          {{ name }} variable is interpolated by Formspree on their side. */}
+      <input type="hidden" name="subject" value="WEB-IN enquiry from {{ name }}" />
+
       {/* Honeypot field for spam protection */}
       <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }} aria-hidden="true">
         <label>
@@ -232,6 +256,7 @@ function EnquiryFormInner() {
           required
           name="message"
           rows={6}
+          minLength={25}
           placeholder="Tell us about your business, goals, timeline and any specific requirements..."
         />
         {errors.message && <span className="field-error"><AlertCircle size={12} /> {errors.message}</span>}

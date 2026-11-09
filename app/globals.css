@@ -435,6 +435,37 @@
   text-decoration: underline;
 }
 
+.form-submit-failed {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #fecaca;
+  border-left: 3px solid #dc2626;
+  border-radius: 0.625rem;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+.form-submit-failed strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.form-submit-failed p {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  margin-top: 0.25rem;
+  color: #991b1b;
+}
+
+.form-submit-failed a {
+  color: #7f1d1d;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 .checkbox-label {
   flex-direction: row !important;
   align-items: flex-start;
