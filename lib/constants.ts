@@ -117,7 +117,7 @@ export const services: ServiceCard[] = [
     priceLabel: 'From R7,000',
     bestFor: 'Retailers and product brands',
     facts: {
-      pages: 'Up to 20 products',
+      pages: 'Up to 30 products',
       timeline: '3-5 weeks',
       revisions: '2 revision rounds',
       support: '30 days support',
@@ -627,7 +627,7 @@ export const portfolioProjects: PortfolioProject[] = [
 ]
 
 export const comparisonFeatures = [
-  { feature: 'Pages', starter: 'Up to 4', business: 'Up to 8', redesign: 'By scope', store: 'Up to 20 products', app: 'Custom scope' },
+  { feature: 'Pages', starter: 'Up to 4', business: 'Up to 8', redesign: 'By scope', store: 'Up to 30 products', app: 'Custom scope' },
   { feature: 'Timeline', starter: '1-2 wks', business: '2-3 wks', redesign: '1-3 wks', store: '3-5 wks', app: '4-8+ wks' },
   { feature: 'Revisions', starter: '1', business: '2', redesign: '1', store: '2', app: 'In proposal' },
   { feature: 'Support', starter: '14 days', business: '30 days', redesign: '14 days', store: '30 days', app: 'In proposal' },
@@ -679,11 +679,10 @@ export const enquiryFeatureOptions = [
 ]
 
 export const enquiryBudgetOptions = [
-  'Under R2,000',
-  'R2,000–R5,000',
-  'R5,000–R10,000',
+  'Under R3,000',
+  'R3,000–R6,999',
+  'R7,000+',
   'R10,000+',
-  'Not sure yet',
 ]
 
 export const enquiryTimelineOptions = [
