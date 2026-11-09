@@ -10,8 +10,6 @@ import {
 
 export const STUDIO_NAME = 'WEB-IN'
 export const SITE_URL = 'https://web-in.co.za'
-// Bump this when a file in public/screenshots changes but keeps the same name, to bust the browser/CDN cache.
-export const SCREENSHOT_VERSION = '2'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_DESCRIPTION =
   'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications for businesses. Affordable pricing from R2,500.'

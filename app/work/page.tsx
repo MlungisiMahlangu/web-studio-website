@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { portfolioProjects, SITE_URL, SCREENSHOT_VERSION } from '@/lib/constants'
+import { portfolioProjects, SITE_URL } from '@/lib/constants'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -62,7 +62,7 @@ export default function WorkPage() {
                 }}
               >
                 <Image
-                  src={`/screenshots/${project.slug}.png?v=${SCREENSHOT_VERSION}`}
+                  src={`/screenshots/${project.slug}.png`}
                   alt={`${project.title} screenshot`}
                   fill
                   className="object-cover object-top"
@@ -106,7 +106,7 @@ export default function WorkPage() {
           <div key={`shot-${project.slug}`}>
             <BrowserFrame
               url={project.liveUrl}
-              screenshot={`/screenshots/${project.slug}.png?v=${SCREENSHOT_VERSION}`}
+              screenshot={`/screenshots/${project.slug}.png`}
               screenshotAlt={`${project.title} website screenshot`}
               bg={project.cardBg}
               priority={index === 0}

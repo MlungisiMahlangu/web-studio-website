@@ -19,7 +19,6 @@ import {
   STUDIO_WHATSAPP,
   homepageFaqs,
   SOCIAL_LINKS,
-  SCREENSHOT_VERSION,
 } from '@/lib/constants'
 
 const minPrice = '1,500'
@@ -342,7 +341,7 @@ export default function HomePage() {
               >
                 <div className="overflow-hidden">
                   <Image
-                    src={`/screenshots/${project.slug}.png?v=${SCREENSHOT_VERSION}`}
+                    src={`/screenshots/${project.slug}.png`}
                     alt={`${project.title} website screenshot`}
                     width={1200}
                     height={800}
