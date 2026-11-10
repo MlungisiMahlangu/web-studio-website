@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!article) return { title: 'Not Found' }
 
   return {
-    title: `${article.title} | ${STUDIO_NAME} Blog`,
+    title: article.title,
     description: article.description,
     keywords: [
       'web development',

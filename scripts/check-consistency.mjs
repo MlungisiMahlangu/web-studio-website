@@ -132,8 +132,11 @@ for (const route of routePaths) {
   } catch {
     continue
   }
-  const title = page.match(/title:\s*['"`]([^'"`]+)['"`]/)
+  const title = page.match(/^\s{2}title:\s*['"`]([^'"`]+)['"`]/m)
   const description = page.match(/description:\s*['"`]([^'"`]+)['"`]/)
+  if (title && /WEB-IN/i.test(title[1])) {
+    fail(`${rel(pageFile)}: metadata title already contains the brand; the layout template appends it`)
+  }
   if (title) {
     const rendered = `${title[1]} | WEB-IN`
     if (rendered.length > 65) warn(`${rel(pageFile)}: title renders at ${rendered.length} chars: "${rendered}"`)
