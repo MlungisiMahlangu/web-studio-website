@@ -180,13 +180,19 @@ for (const file of sourceFiles) {
   }
 }
 
-// 8. Hosting references must be Vercel, never the old host
+// 8. Hosting references must be Vercel, never the old host.
+// Client projects live on other platforms, so their external URLs are stripped
+// before the guard runs: this check is about how WEB-IN describes its own
+// hosting, not about every project URL in the portfolio data. Built by
+// concatenation so this file does not match its own pattern.
+const externalHostAllowlist = [new RegExp('https?://[a-z0-9.-]+\\.net' + 'lify\\.app', 'gi')]
 const textExtensions = /\.(ts|tsx|js|mjs|cjs|jsx|json|md|mdx|txt|ya?ml|css)$/
 const repoFiles = (await walk(root)).filter(
   (file) => textExtensions.test(file) && !file.endsWith('pnpm-lock.yaml') && !file.endsWith('package-lock.json'),
 )
 for (const file of repoFiles) {
-  const contents = await read(file)
+  let contents = await read(file)
+  for (const allowed of externalHostAllowlist) contents = contents.replace(allowed, '')
   if (new RegExp('net' + 'lify', 'i').test(contents)) {
     fail(`${rel(file)} mentions the old host; the site is hosted on Vercel`)
   }
