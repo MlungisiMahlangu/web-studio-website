@@ -15,7 +15,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Web Design Portfolio',
   description:
-    'Live websites and web applications designed and built by WEB-IN for South African businesses, from storefronts to booking platforms and dashboards.',
+    'Live websites and web applications designed and built by WEB-IN for South African businesses, from online stores to booking platforms and dashboards.',
   keywords: [
     'web development portfolio',
     'website design portfolio',
@@ -49,7 +49,7 @@ export default function WorkPage() {
       <PageHero
         eyebrow="Selected Work"
         title="Work that speaks for itself."
-        description="A selection of digital experiences we have designed and built — from full-stack platforms to polished interfaces. Explore the live projects and see how WEB-IN approaches design, development and the details in between."
+        description="A selection of digital experiences we have designed and built — from full-stack platforms to polished interfaces. See how WEB-IN approaches design, development and the details in between."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Work', href: '/work' },
@@ -101,15 +101,17 @@ export default function WorkPage() {
                 <Badge key={tech}>{tech}</Badge>
               ))}
             </div>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-11 px-6 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
-            >
-              Visit Live Site
-              <ExternalLink size={15} className="shrink-0" />
-            </a>
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-11 px-6 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
+              >
+                Visit Live Site
+                <ExternalLink size={15} className="shrink-0" />
+              </a>
+            ) : null}
           </div>
         )
         const screenshot = (

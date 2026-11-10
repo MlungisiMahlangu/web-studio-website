@@ -19,11 +19,11 @@ export function BrowserFrame({
   priority = false,
   sizes = '(max-width: 768px) 100vw, 600px',
 }: BrowserFrameProps) {
-  let hostname = url
+  let hostname = ''
   try {
     hostname = new URL(url).hostname
   } catch {
-    // keep original
+    hostname = url
   }
 
   return (
@@ -36,14 +36,14 @@ export function BrowserFrame({
         <span className="w-3 h-3 rounded-full bg-red-400/60" />
         <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
         <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-        <span className="ml-3 text-xs text-body truncate">{hostname}</span>
+        {hostname ? <span className="ml-3 text-xs text-body truncate">{hostname}</span> : null}
       </div>
       {/* Content */}
       <div className="p-4">
         {screenshot ? (
           <Image
             src={screenshot}
-            alt={screenshotAlt || `${hostname} website screenshot`}
+            alt={screenshotAlt || 'Website screenshot'}
             width={1200}
             height={800}
             className="w-full rounded-lg shadow-sm"
