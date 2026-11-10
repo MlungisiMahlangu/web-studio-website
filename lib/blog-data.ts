@@ -818,12 +818,12 @@ Claim or create the profile, verify the business and fill it in properly:
 
 - The correct business name, without keyword stuffing.
 - The right category and secondary categories.
-- A real address or service area.
+- A real address or, for a service-area business, the areas you cover.
 - Phone number and website.
-- Opening hours.
-- Photos of the business, team or work.
+- Opening hours, but only if they are real. A home-based business should leave them blank.
+- Photos of the work. Do not use stock people or an office you do not have.
 
-Keep it updated. A profile with outdated hours or no photos gives customers a reason to choose someone else.
+Keep it updated. A profile with the wrong service area or no photos gives customers a reason to choose someone else.
 
 ## Make the website say what you do
 

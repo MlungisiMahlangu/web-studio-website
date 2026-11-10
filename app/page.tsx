@@ -167,12 +167,13 @@ export default function HomePage() {
                 {STUDIO_BRAND_LINE}
               </h2>
               <p className="text-body leading-relaxed">
-                WEB-IN is a website design and development studio based in
-                Johannesburg, South Africa. We build business websites, online
-                stores and custom web applications for South African businesses.
-                Websites start at R2,500, every project is quoted in rand with a
-                defined scope before work begins, and the full price list is
-                published at web-in.co.za/pricing.
+                WEB-IN is a small independent website design and development studio
+                based in Johannesburg, South Africa, working remotely with businesses
+                across the country. We build business websites, online stores and
+                custom web applications, and you deal directly with the person
+                building your site. Websites start at R2,500, every project is quoted
+                in rand with a defined scope before work begins, and the full price
+                list is published at web-in.co.za/pricing.
               </p>
             </div>
           </Reveal>
@@ -263,14 +264,16 @@ export default function HomePage() {
                   </p>
                   <h3 className="text-base font-bold text-navy mb-1">{project.title}</h3>
                   <p className="text-sm text-body leading-relaxed mb-3">{project.subtitle}</p>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
-                  >
-                    Visit live site <ArrowUpRight size={14} />
-                  </a>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
+                    >
+                      Visit live site <ArrowUpRight size={14} />
+                    </a>
+                  ) : null}
                 </div>
               </article>
             ))}

@@ -20,7 +20,7 @@ const faqs = [
   {
     question: 'Do you work with businesses outside Johannesburg?',
     answer:
-      'Yes. Our studio is based in Johannesburg and most of our work is for South African businesses, including clients in Sandton, Midrand, Randburg, Pretoria and Soweto. Projects are handled remotely with calls, email and WhatsApp, so location is not a barrier.',
+      'Yes. WEB-IN is based in Johannesburg and works remotely with businesses across South Africa, including clients in Sandton, Midrand, Randburg, Pretoria and Soweto. Work is handled by calls, email and WhatsApp, so location is not a barrier.',
   },
   {
     question: 'How much does a website cost in Johannesburg?',
@@ -107,7 +107,7 @@ export default function WebsiteDesignJohannesburgPage() {
           heading: 'Built in Johannesburg, for Johannesburg conditions.',
           alt: true,
           paragraphs: [
-            'Local design is not about adding a skyline photo. It is about understanding how your customers talk, what they expect to pay and which contact methods they actually use. In South Africa, that often means WhatsApp first, clear pricing in rand and proof that the business is real.',
+            'Local design is not about adding a skyline photo. It is about understanding how your customers talk, what they expect to pay and which contact methods they actually use. In South Africa, that often means WhatsApp first, clear pricing in rand and proof that the business is real. We work remotely with clients across Johannesburg and the rest of the country.',
             'We build for real devices and real connections. Pages are kept lean, images are compressed and layouts are tested on small screens. A website that looks good on a fast office connection but fails on mobile data is not finished.',
             'We also keep local formalities in mind. Your business details, privacy notice and terms are part of the build rather than an afterthought. If you already have those documents, we help you place them clearly.',
           ],
@@ -125,7 +125,7 @@ export default function WebsiteDesignJohannesburgPage() {
           paragraphs: [
             'We start with a conversation about your business, your customers and what the site needs to achieve. From there we agree on scope, pages and a fixed starting price. A 50% deposit books the project; the balance is due before launch.',
             'You supply the text and images unless you add content help. We give you a clear content checklist so you know what is needed and in what format. Design comes next, followed by development, testing and launch.',
-            'After launch you have a defined support period. If you want ongoing updates, security checks and small changes, we offer Basic Care at R299 per month and Business Care at R499 per month. Neither is compulsory.',
+            'After launch you have a defined support period. Optional care plans from R299 per month cover ongoing updates, security checks and small changes. Neither the plan nor the support period is compulsory.',
           ],
         },
         {

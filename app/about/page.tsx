@@ -15,12 +15,12 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Johannesburg Web Design Studio',
   description:
-    'WEB-IN is a website design and development studio in Johannesburg, South Africa. Learn who we are, how we work and what we build. Websites from R2,500.',
+    'WEB-IN is a small independent web development studio in Johannesburg, working remotely with clients across South Africa. Learn who we are, how we work and what we build. Websites from R2,500.',
   alternates: alternatesFor('/about'),
   openGraph: {
     title: 'About WEB-IN | Johannesburg web design studio',
     description:
-      'An independent web design and development studio in Johannesburg, building business websites, online stores and web apps.',
+      'An independent web development studio in Johannesburg, working remotely with clients across South Africa on business websites, online stores and web apps.',
     type: 'website',
     url: '/about',
   },
@@ -111,7 +111,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About WEB-IN"
         title={<>Independent by choice.<br />Serious about the work.</>}
-        description="WEB-IN is an independent web development studio creating thoughtful digital experiences for businesses, professionals and ambitious ideas. Based in South Africa, working with clients across the country."
+        description="WEB-IN is an independent web development studio creating thoughtful digital experiences for businesses and professionals. Based in Johannesburg, working remotely with clients across South Africa."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'About', href: '/about' },
@@ -185,10 +185,12 @@ export default function AboutPage() {
               </h2>
               <p className="text-body leading-relaxed">
                 WEB-IN is an independent website design and development studio based
-                in {STUDIO_LOCATION}. We build business websites, online stores and
-                custom web applications for South African businesses. Every project is
-                quoted in rand with a defined scope before work begins, prices start
-                at R2,500, and the full price list is published on our pricing page.
+                in {STUDIO_LOCATION}, working remotely with clients across South
+                Africa. We build business websites, online stores and custom web
+                applications. You deal directly with the person building your site —
+                no account managers and no hand-offs. Every project is quoted in rand
+                with a defined scope before work begins, prices start at R2,500, and
+                the full price list is published on our pricing page.
               </p>
             </div>
           </Reveal>
