@@ -93,6 +93,7 @@ export const metadata: Metadata = {
   other: {
     'geo.region': 'ZA-GP',
     'geo.placename': 'Johannesburg',
+    'msvalidate.01': 'D3FCF712105D0A2B18B0442E26B47386',
   },
 }
 
