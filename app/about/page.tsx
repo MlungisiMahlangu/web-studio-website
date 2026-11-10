@@ -15,7 +15,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Johannesburg Web Design Studio',
   description:
-    'WEB-IN is a small independent web development studio in Johannesburg, working remotely with clients across South Africa. Learn who we are, how we work and what we build. Websites from R2,500.',
+    'WEB-IN is a small independent web design and development studio in Johannesburg, working remotely with clients across South Africa. Websites from R2,500.',
   alternates: alternatesFor('/about'),
   openGraph: {
     title: 'About WEB-IN | Johannesburg web design studio',
