@@ -711,7 +711,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'A redesigned gym-apparel storefront for a Johannesburg brand, built around a bold dark theme with orange accents, full-bleed lifestyle imagery and a “built for the work” identity that carries through from the homepage into product discovery.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
-    liveUrl: '',
+    liveUrl: 'https://grip-on-website.netlify.app',
     codeUrl: 'https://github.com/MlungisiMahlangu/grip-on-website',
     cardBg: '#f1e8d8',
     demo: false,
