@@ -6,35 +6,37 @@ import { IconBox } from '@/components/ui/icon-box'
 import { Reveal } from '@/components/ui/reveal'
 import { EnquiryForm } from '@/components/forms/enquiry-form'
 import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP, STUDIO_LOCATION } from '@/lib/constants'
+import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact WEB-IN | Get a Website Quote South Africa',
-  description: 'Get in touch with WEB-IN about your web project. Request a free quote, ask questions, or discuss your ideas. Email, phone, or WhatsApp. Based in Johannesburg, serving all of South Africa.',
-  keywords: [
-    'contact web-in',
-    'website quote south africa',
-    'web development quote',
-    'contact website developer',
-    'get a website quote',
-    'web design consultation',
-  ],
-  alternates: {
-    canonical: 'https://www.web-in.co.za/contact',
-  },
+  title: 'Get a Website Quote in South Africa',
+  description:
+    'Contact WEB-IN about your web project. Request a quote, ask questions or discuss your ideas by email, phone or WhatsApp. Based in Johannesburg, serving South Africa.',
+  alternates: alternatesFor('/contact'),
   openGraph: {
-    title: 'Contact WEB-IN | Get a Free Quote',
-    description: 'Request a free quote for your web project. Email, phone or WhatsApp — we respond within 1–2 business days. Based in Johannesburg, South Africa.',
+    title: 'Contact WEB-IN | Get a website quote',
+    description:
+      'Request a quote for your website. Email, phone or WhatsApp, with replies within 1-2 business days.',
     type: 'website',
-    url: 'https://www.web-in.co.za/contact',
+    url: '/contact',
   },
 }
 
 export default function ContactPage() {
   const whatsappLink = `https://wa.me/${STUDIO_WHATSAPP}`
+  const pageJsonLd = webPageSchema({
+    path: '/contact',
+    name: 'Contact WEB-IN',
+    description:
+      'Request a website quote from WEB-IN in Johannesburg, South Africa, by email, phone or WhatsApp.',
+    type: 'ContactPage',
+  })
 
   return (
     <>
+      <JsonLd data={pageJsonLd} />
       {/* Hero */}
       <PageHero
         eyebrow="Get in Touch"

@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { blogArticles, SITE_URL, STUDIO_NAME } from '@/lib/constants'
+import { blogArticles, STUDIO_NAME } from '@/lib/constants'
+import { alternatesFor, articleSchema, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -33,17 +35,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       'website development guide',
       article.title.toLowerCase(),
     ],
-    authors: [{ name: STUDIO_NAME, url: SITE_URL }],
-    alternates: {
-      canonical: `${SITE_URL}/blog/${slug}`,
-    },
+    authors: [{ name: STUDIO_NAME, url: '/' }],
+    alternates: alternatesFor(`/blog/${slug}`),
     openGraph: {
       title: article.title,
       description: article.description,
       type: 'article',
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
-      url: `${SITE_URL}/blog/${slug}`,
+      url: `/blog/${slug}`,
       authors: [STUDIO_NAME],
     },
   }
@@ -131,28 +131,15 @@ export default async function BlogArticlePage({ params }: Props) {
   const article = getArticle(slug)
   if (!article) notFound()
 
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.description,
-    datePublished: article.publishedAt,
-    dateModified: article.updatedAt ?? article.publishedAt,
-    author: {
-      '@type': 'Organization',
-      name: STUDIO_NAME,
-      url: SITE_URL,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: STUDIO_NAME,
-      url: SITE_URL,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${slug}`,
-    },
-  }
+  const articleJsonLd = [
+    webPageSchema({
+      path: `/blog/${slug}`,
+      name: article.title,
+      description: article.description,
+      dateModified: article.updatedAt ?? article.publishedAt,
+    }),
+    articleSchema(article),
+  ]
 
   const publishedDate = new Date(article.publishedAt).toLocaleDateString('en-ZA', {
     year: 'numeric',
@@ -162,10 +149,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
 
       {/* Hero */}
       <PageHero

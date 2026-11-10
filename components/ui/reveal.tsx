@@ -41,20 +41,14 @@ export function Reveal({
     return () => observer.disconnect()
   }, [once])
 
-  const variantClasses: Record<RevealVariant, string> = {
-    up: 'translate-y-6',
-    fade: '',
-    scale: 'scale-[0.97]',
-    left: 'translate-x-6',
-    right: '-translate-x-6',
-  }
-
   return (
     <div
       ref={ref}
+      data-reveal={variant}
+      data-visible={isVisible ? 'true' : undefined}
       className={clsx(
         'transition-all duration-700 ease-out-expo',
-        isVisible ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : `opacity-0 ${variantClasses[variant]}`,
+        isVisible && 'opacity-100 translate-x-0 translate-y-0 scale-100',
         className,
       )}
       style={{ transitionDelay: `${delay}ms` }}

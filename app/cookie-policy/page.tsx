@@ -2,14 +2,13 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
+import { alternatesFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | WEB-IN',
-  description: `Cookie policy for ${STUDIO_NAME}.`,
-  alternates: {
-    canonical: 'https://web-in.co.za/cookie-policy',
-  },
+  title: 'Cookie Policy',
+  description: `Which cookies the ${STUDIO_NAME} website uses, what they do and how you can manage or disable them in your browser.`,
+  alternates: alternatesFor('/cookie-policy'),
 }
 
 const tocItems = [

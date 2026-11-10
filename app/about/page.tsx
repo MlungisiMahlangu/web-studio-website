@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowUpRight, Check, Target, Palette, Code, Heart, Users, Globe, Smartphone, MessageCircle, Search, TrendingUp } from 'lucide-react'
+import { Check, Target, Palette, Code, Heart, Users, Globe, Smartphone, MessageCircle, Search, TrendingUp } from 'lucide-react'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -7,27 +7,22 @@ import { PageHero } from '@/components/ui/page-hero'
 import { CTABand } from '@/components/ui/cta-band'
 import { IconBox } from '@/components/ui/icon-box'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
+import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
+import { STUDIO_BRAND_LINE, STUDIO_LOCATION } from '@/lib/constants'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About WEB-IN | Web Developers South Africa',
-  description: 'Learn about WEB-IN, an independent web development studio based in Johannesburg, South Africa. We build modern, fast websites for businesses, professionals and growing brands. Strategy, design, development.',
-  keywords: [
-    'about web-in',
-    'web development studio south africa',
-    'website developer johannesburg',
-    'web design company south africa',
-    'independent web developer',
-    'professional web designers',
-  ],
-  alternates: {
-    canonical: 'https://www.web-in.co.za/about',
-  },
+  title: 'Johannesburg Web Design Studio',
+  description:
+    'WEB-IN is a website design and development studio in Johannesburg, South Africa. Learn who we are, how we work and what we build. Websites from R2,500.',
+  alternates: alternatesFor('/about'),
   openGraph: {
-    title: 'About WEB-IN | Independent Web Studio',
-    description: 'Independent web development studio in Johannesburg, South Africa. Strategy-first approach, clear packages, built to last.',
+    title: 'About WEB-IN | Johannesburg web design studio',
+    description:
+      'An independent web design and development studio in Johannesburg, building business websites, online stores and web apps.',
     type: 'website',
-    url: 'https://www.web-in.co.za/about',
+    url: '/about',
   },
 }
 
@@ -101,8 +96,17 @@ const qualityDetails = [
 ]
 
 export default function AboutPage() {
+  const pageJsonLd = webPageSchema({
+    path: '/about',
+    name: 'About WEB-IN',
+    description:
+      'WEB-IN is an independent website design and development studio based in Johannesburg, South Africa, building business websites, online stores and web applications.',
+    type: 'AboutPage',
+  })
+
   return (
     <>
+      <JsonLd data={pageJsonLd} />
       {/* Hero */}
       <PageHero
         eyebrow="About WEB-IN"
@@ -162,6 +166,32 @@ export default function AboutPage() {
               </div>
             </Reveal>
           </div>
+        </Container>
+      </Section>
+
+      {/* Who is WEB-IN */}
+      <Section alt>
+        <Container>
+          <Reveal>
+            <div className="max-w-3xl mx-auto text-center">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-4"
+                style={{ letterSpacing: '0.14em' }}
+              >
+                Who is WEB-IN?
+              </p>
+              <h2 className="text-display-sm leading-snug font-bold text-navy mb-5">
+                {STUDIO_BRAND_LINE}
+              </h2>
+              <p className="text-body leading-relaxed">
+                WEB-IN is an independent website design and development studio based
+                in {STUDIO_LOCATION}. We build business websites, online stores and
+                custom web applications for South African businesses. Every project is
+                quoted in rand with a defined scope before work begins, prices start
+                at R2,500, and the full price list is published on our pricing page.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 

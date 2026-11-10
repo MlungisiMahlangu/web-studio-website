@@ -1,7 +1,15 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
-import { STUDIO_NAME, STUDIO_TAGLINE, STUDIO_DESCRIPTION } from '@/lib/constants'
+import {
+  SITE_URL,
+  STUDIO_BRAND_LINE,
+  STUDIO_DESCRIPTION,
+  STUDIO_NAME,
+  STUDIO_TAGLINE,
+} from '@/lib/constants'
+import { buildSiteGraph } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
 import { SmoothScroll } from '@/components/ui/smooth-scroll'
@@ -17,14 +25,11 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+    default: STUDIO_BRAND_LINE,
     template: `%s | ${STUDIO_NAME}`,
   },
   description: STUDIO_DESCRIPTION,
-  metadataBase: new URL('https://web-in.co.za'),
-  alternates: {
-    canonical: 'https://web-in.co.za',
-  },
+  metadataBase: new URL(SITE_URL),
   keywords: [
     'website design south africa',
     'web development south africa',
@@ -35,13 +40,8 @@ export const metadata: Metadata = {
     'ecommerce website south africa',
     'custom web applications',
     'website redesign south africa',
-    'web studio south africa',
-    'mobile-first websites',
-    'responsive web design',
-    'small business websites',
-    'online stores south africa',
   ],
-  authors: [{ name: STUDIO_NAME, url: 'https://www.web-in.co.za' }],
+  authors: [{ name: STUDIO_NAME, url: SITE_URL }],
   creator: STUDIO_NAME,
   publisher: STUDIO_NAME,
   formatDetection: {
@@ -53,24 +53,23 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_ZA',
     siteName: STUDIO_NAME,
-    title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+    title: STUDIO_BRAND_LINE,
     description: STUDIO_DESCRIPTION,
-    url: 'https://www.web-in.co.za',
+    url: '/',
     images: [
       {
-        url: 'https://www.web-in.co.za/opengraph-image',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+        alt: STUDIO_BRAND_LINE,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${STUDIO_NAME} — ${STUDIO_TAGLINE}`,
+    title: STUDIO_BRAND_LINE,
     description: STUDIO_DESCRIPTION,
-    images: ['https://www.web-in.co.za/opengraph-image'],
-    creator: '@webin',
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
@@ -85,18 +84,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon-dark-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
     ],
-    apple: '/apple-icon.png',
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   category: 'technology',
   other: {
     'geo.region': 'ZA-GP',
     'geo.placename': 'Johannesburg',
     'geo.position': '-26.2041;28.0473',
-    'ICBM': '-26.2041, 28.0473',
+    ICBM: '-26.2041, 28.0473',
   },
 }
 
@@ -110,19 +108,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-ZA">
       <head>
+        {/* Progressive enhancement flag: reveal animations only hide content when JS runs. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+        <JsonLd data={buildSiteGraph()} />
+
         {/* Preconnect to external resources for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://formspree.io" />
         <link rel="preconnect" href="https://vercel.live" />
-        
+
         {/* DNS prefetch for faster domain resolution */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="dns-prefetch" href="//formspree.io" />
-        
+
         {/* Resource hints */}
         <meta name="theme-color" content="#FDFCFC" />
       </head>

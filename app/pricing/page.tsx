@@ -1,16 +1,18 @@
-'use client'
-
 import Link from 'next/link'
-import { ArrowUpRight, Check, Minus, Smartphone, Search, Mail, Globe, Headphones, Shield, FileText, Clock, RefreshCw, LifeBuoy, Plus } from 'lucide-react'
-import { services, addons, maintenancePlans, maintenanceNote, comparisonFeatures, homepageFaqs, STUDIO_NAME, SITE_URL, STUDIO_EMAIL } from '@/lib/constants'
+import { ArrowUpRight, Check, Minus, Smartphone, Search, Mail, Globe, Headphones, Shield, FileText, Clock, RefreshCw, LifeBuoy } from 'lucide-react'
+import { services, addons, maintenancePlans, maintenanceNote, comparisonFeatures, keyFaqs, LAST_UPDATED, STUDIO_DESCRIPTION } from '@/lib/constants'
+import { faqSchema, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
+import { PricingFaq } from '@/components/sections/pricing-faq'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { PageHero } from '@/components/ui/page-hero'
 import { CTABand } from '@/components/ui/cta-band'
 import { IconBox } from '@/components/ui/icon-box'
-import { Badge } from '@/components/ui/badge'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
+
+export const revalidate = 3600
 
 const everyWebsiteFeatures = [
   { icon: Smartphone, title: 'Mobile-first design', desc: 'Looks great on every device, from phones to desktops.' },
@@ -38,63 +40,26 @@ const whichOneDoINeed = [
   { need: 'Logins, dashboards or bookings', choose: 'Custom Web Application', slug: 'custom-web-application' },
 ]
 
-function PricingFaq() {
-  return (
-    <div className="space-y-3">
-      {homepageFaqs.map((faq, i) => (
-        <details
-          key={i}
-          className="group rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-300 open:shadow-lg open:border-brand/20"
-        >
-          <summary className="flex cursor-pointer items-center justify-between gap-4 text-base font-semibold text-navy list-none">
-            {faq.question}
-            <span className="shrink-0 rounded-full bg-surface p-1.5 transition-transform duration-300 group-open:rotate-45">
-              <Plus size={16} className="text-navy" />
-            </span>
-          </summary>
-          <p className="mt-4 text-body leading-relaxed">{faq.answer}</p>
-        </details>
-      ))}
-    </div>
-  )
-}
+const lastUpdatedLabel = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+
+const structuredData = [
+  webPageSchema({
+    path: '/pricing',
+    name: 'Website design prices in South Africa',
+    description: STUDIO_DESCRIPTION,
+    dateModified: LAST_UPDATED,
+  }),
+  faqSchema(keyFaqs),
+]
 
 export default function PricingPage() {
-  // Service structured data for SEO
-  const serviceJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: STUDIO_NAME,
-    url: SITE_URL,
-    email: STUDIO_EMAIL,
-    description: 'Independent web development studio offering professional website design and development services in South Africa.',
-    areaServed: {
-      '@type': 'Country',
-      name: 'South Africa',
-    },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Web Development Services',
-      itemListElement: services.map((svc, i) => ({
-        '@type': 'Offer',
-        position: i + 1,
-        itemOffered: {
-          '@type': 'Service',
-          name: svc.name,
-          description: svc.tagline,
-        },
-        price: svc.priceLabel.replace(/[^0-9]/g, ''),
-        priceCurrency: 'ZAR',
-      })),
-    },
-  }
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+      <JsonLd data={structuredData} />
       {/* Hero */}
       <PageHero
         eyebrow="Services & Pricing"
@@ -107,6 +72,16 @@ export default function PricingPage() {
         accent="online"
         variant="centered"
       />
+
+      <div className="border-b border-line bg-surface/60">
+        <Container>
+          <p className="py-3 text-center text-xs text-muted">
+            Prices last updated:{' '}
+            <time dateTime={LAST_UPDATED}>{lastUpdatedLabel}</time>. All prices are in
+            South African rand (ZAR).
+          </p>
+        </Container>
+      </div>
 
       {/* Which one do I need? */}
       <Section>
@@ -272,6 +247,94 @@ export default function PricingPage() {
               )
             })}
           </RevealStagger>
+        </Container>
+      </Section>
+
+      {/* Price list table */}
+      <Section id="price-list">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Price list"
+              title="All prices at a glance"
+              description="The same list that powers our quotes and structured data. Every price is in South African rand."
+              className="mb-10"
+            />
+          </Reveal>
+
+          <Reveal>
+            <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
+              <table className="w-full min-w-[720px] text-left text-sm">
+                <caption className="sr-only">
+                  WEB-IN website design prices in South African rand
+                </caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface">
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Service</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>What is included</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Delivery</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {services.map((svc) => (
+                    <tr key={svc.slug} className="hover:bg-surface/50 transition-colors">
+                      <th scope="row" className="px-6 py-4 font-semibold text-navy align-top">{svc.name}</th>
+                      <td className="px-6 py-4 whitespace-nowrap text-navy align-top">{svc.priceLabel}</td>
+                      <td className="px-6 py-4 text-body align-top">{svc.summary}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-body align-top">{svc.facts.timeline}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
+                <table className="w-full text-left text-sm">
+                  <caption className="sr-only">WEB-IN add-on prices</caption>
+                  <thead>
+                    <tr className="border-b border-line bg-surface">
+                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Add-on</th>
+                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-line">
+                    {addons.map((addon) => (
+                      <tr key={addon.name}>
+                        <th scope="row" className="px-6 py-3 font-medium text-navy">{addon.name}</th>
+                        <td className="px-6 py-3 whitespace-nowrap text-body">{addon.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
+                <table className="w-full text-left text-sm">
+                  <caption className="sr-only">WEB-IN monthly maintenance plans</caption>
+                  <thead>
+                    <tr className="border-b border-line bg-surface">
+                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Maintenance plan</th>
+                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
+                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Includes</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-line">
+                    {maintenancePlans.map((plan) => (
+                      <tr key={plan.name}>
+                        <th scope="row" className="px-6 py-3 font-medium text-navy align-top">{plan.name}</th>
+                        <td className="px-6 py-3 whitespace-nowrap text-body align-top">{plan.price}/month</td>
+                        <td className="px-6 py-3 text-body align-top">{plan.description}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 

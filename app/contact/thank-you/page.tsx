@@ -9,6 +9,10 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Thank you',
   description: 'Thanks for reaching out. We will review your message and get back to you shortly.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function ThankYouPage() {

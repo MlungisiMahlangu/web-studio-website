@@ -3,14 +3,13 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
+import { alternatesFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | WEB-IN',
-  description: `Terms and conditions for working with ${STUDIO_NAME}.`,
-  alternates: {
-    canonical: 'https://web-in.co.za/terms-and-conditions',
-  },
+  title: 'Terms and Conditions',
+  description: `The terms that apply when you work with ${STUDIO_NAME}: scope, payment, revisions, content, domains, ownership and support.`,
+  alternates: alternatesFor('/terms-and-conditions'),
 }
 
 const tocItems = [

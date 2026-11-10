@@ -13,11 +13,14 @@ import {
   processClientNeeds,
   processSupportLevels,
 } from '@/lib/constants'
+import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Process | Web Development Workflow | WEB-IN',
-  description: 'From first conversation to live website. A clear 4-phase process: discover, define, create, launch. Transparent communication throughout your web project in South Africa.',
+  title: 'Website Design Process',
+  description:
+    'How a WEB-IN website gets built: a clear four-phase process from first conversation to launch, with defined scope and feedback at every stage.',
   keywords: [
     'web development process',
     'website design workflow',
@@ -26,9 +29,7 @@ export const metadata: Metadata = {
     'website development steps',
     'web design timeline',
   ],
-  alternates: {
-    canonical: 'https://www.web-in.co.za/process',
-  },
+  alternates: alternatesFor('/process'),
   openGraph: {
     title: 'Our Process | WEB-IN Workflow',
     description: 'A clear 4-phase process: Discover, Define, Create, Launch. Transparent communication throughout your project.',
@@ -38,8 +39,16 @@ export const metadata: Metadata = {
 }
 
 export default function ProcessPage() {
+  const pageJsonLd = webPageSchema({
+    path: '/process',
+    name: 'The WEB-IN website process',
+    description:
+      'How a WEB-IN website is built: discover, define, create and launch, with a defined scope and feedback at each stage.',
+  })
+
   return (
     <>
+      <JsonLd data={pageJsonLd} />
       {/* Hero */}
       <PageHero
         eyebrow="How we work"

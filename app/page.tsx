@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   ArrowUpRight,
-  Check,
   Globe2,
   PenTool,
   Sparkles,
@@ -13,161 +12,45 @@ import {
 import {
   services,
   portfolioProjects,
-  STUDIO_NAME,
-  STUDIO_EMAIL,
-  STUDIO_PHONE,
-  STUDIO_WHATSAPP,
+  STUDIO_BRAND_LINE,
+  STUDIO_DESCRIPTION_LONG,
   homepageFaqs,
-  SOCIAL_LINKS,
+  STUDIO_WHATSAPP,
 } from '@/lib/constants'
-
-const minPrice = '1,500'
-const maxPrice = '10,000'
+import { alternatesFor, faqSchema, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
 
+export const revalidate = 3600
+
 const homepageProjects = portfolioProjects.slice(0, 2)
 
 export const metadata = {
-  title: 'Website Design & Development in South Africa | WEB-IN',
-  description: 'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications. Affordable pricing from R2,500. Get a free quote today!',
-  keywords: [
-    'website design south africa',
-    'web development south africa',
-    'website developer johannesburg',
-    'affordable websites south africa',
-    'professional web design',
-    'business website design',
-    'ecommerce website south africa',
-    'custom web applications',
-    'website redesign south africa',
-    'web design studio',
-    'mobile-first websites',
-    'responsive web design south africa',
-    'small business websites',
-    'online store development',
-  ],
-  alternates: {
-    canonical: 'https://web-in.co.za',
+  title: 'Website Design & Development Johannesburg',
+  description:
+    'WEB-IN designs and builds fast, mobile-first business websites, online stores and web apps in Johannesburg, South Africa. Websites from R2,500.',
+  alternates: alternatesFor('/'),
+  openGraph: {
+    title: 'Website Design & Development Johannesburg | WEB-IN',
+    description:
+      'Business websites, online stores and web apps for South African businesses. Websites from R2,500.',
+    type: 'website',
+    locale: 'en_ZA',
+    url: '/',
   },
 }
 
 const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': ['Organization', 'WebSite', 'LocalBusiness', 'ProfessionalService'],
-    name: STUDIO_NAME,
-    alternateName: 'WEB-IN Web Studio',
-    url: 'https://web-in.co.za',
-    logo: 'https://web-in.co.za/icon.svg',
-    image: 'https://web-in.co.za/opengraph-image',
-    description: 'Professional website design and development studio building modern, fast websites for businesses in South Africa. Affordable pricing from R2,500.',
-    email: STUDIO_EMAIL,
-    telephone: STUDIO_PHONE,
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'ZA',
-      addressRegion: 'Gauteng',
-      addressLocality: 'Johannesburg',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: -26.2041,
-      longitude: 28.0473,
-    },
-    areaServed: [
-      {
-        '@type': 'Country',
-        name: 'South Africa',
-      },
-      {
-        '@type': 'State',
-        name: 'Gauteng',
-      },
-      {
-        '@type': 'City',
-        name: 'Johannesburg',
-      },
-    ],
-    priceRange: 'R2,500 - R10,000+',
-    ...(SOCIAL_LINKS.length > 0 && { sameAs: SOCIAL_LINKS }),
-    knowsAbout: [
-      'Web Development',
-      'Website Design',
-      'Starter Websites',
-      'Business Websites',
-      'Website Redesign',
-      'Online Stores',
-      'Ecommerce Development',
-      'Custom Web Applications',
-      'Mobile-First Design',
-      'Responsive Web Design',
-      'SEO Optimization',
-    ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Web Development Services',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Starter Website',
-            description: 'Multi-page website for small businesses',
-          },
-          price: '3500',
-          priceCurrency: 'ZAR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Business Website',
-            description: 'Professional website with advanced features',
-          },
-          price: '6500',
-          priceCurrency: 'ZAR',
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Online Store',
-            description: 'Ecommerce website with payment integration',
-          },
-          price: '8500',
-          priceCurrency: 'ZAR',
-        },
-      ],
-    },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: homepageFaqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.web-in.co.za',
-      },
-    ],
-  },
+  webPageSchema({
+    path: '/',
+    name: 'Website design and development in Johannesburg',
+    description: STUDIO_DESCRIPTION_LONG,
+  }),
+  faqSchema(homepageFaqs),
 ]
 
 const serviceIcons: Record<string, React.ElementType> = {
@@ -181,10 +64,7 @@ const serviceIcons: Record<string, React.ElementType> = {
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       {/* ─── HERO ─── */}
       <section className="relative bg-background overflow-hidden">
         <Container className="pt-36 pb-20 sm:pt-40 sm:pb-24 lg:pb-28">
@@ -271,6 +151,33 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* ─── WHO IS WEB-IN ─── */}
+      <Section>
+        <Container>
+          <Reveal>
+            <div className="max-w-3xl mx-auto text-center">
+              <p
+                className="text-xs font-semibold uppercase text-brand mb-4"
+                style={{ letterSpacing: '0.14em' }}
+              >
+                Who is WEB-IN?
+              </p>
+              <h2 className="text-display-sm leading-snug font-bold text-navy mb-5">
+                {STUDIO_BRAND_LINE}
+              </h2>
+              <p className="text-body leading-relaxed">
+                WEB-IN is a website design and development studio based in
+                Johannesburg, South Africa. We build business websites, online
+                stores and custom web applications for South African businesses.
+                Websites start at R2,500, every project is quoted in rand with a
+                defined scope before work begins, and the full price list is
+                published at web-in.co.za/pricing.
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
 
       {/* ─── SERVICES ─── */}
       <Section alt>

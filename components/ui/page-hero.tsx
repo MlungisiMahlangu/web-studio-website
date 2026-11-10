@@ -1,8 +1,9 @@
-import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 import { Container } from './container'
 import { Reveal } from './reveal'
-import { SITE_URL } from '@/lib/constants'
+import { JsonLd } from '@/components/seo/json-ld'
+import { breadcrumbSchema } from '@/lib/seo'
 
 interface BreadcrumbItem {
   label: string
@@ -76,27 +77,9 @@ export function PageHero({
 }: PageHeroProps) {
   const isSplit = variant === 'split' && aside
 
-  const breadcrumbJsonLd = breadcrumb
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: breadcrumb.map((item, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: item.label,
-          item: item.href.startsWith('http') ? item.href : `${SITE_URL}${item.href}`,
-        })),
-      }
-    : null
-
   return (
     <section className="relative overflow-hidden bg-background">
-      {breadcrumbJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        />
-      )}
+      {breadcrumb && breadcrumb.length > 1 && <JsonLd data={breadcrumbSchema(breadcrumb)} />}
       {/* Background layers */}
       {/* Vertical gradient: white at top to surface by 240px */}
       <div

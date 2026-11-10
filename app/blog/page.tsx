@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { blogArticles, SITE_URL, STUDIO_NAME } from '@/lib/constants'
+import { blogArticles } from '@/lib/constants'
+import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -9,8 +11,9 @@ import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Blog | Web Development Insights South Africa | WEB-IN',
-  description: 'Practical insights about website design, development costs, timelines and online presence for South African businesses. Expert guides from WEB-IN.',
+  title: 'Web Design and Development Blog',
+  description:
+    'Practical guides on website costs, timelines, design and online growth for South African businesses, written by the WEB-IN studio in Johannesburg.',
   keywords: [
     'web development blog',
     'website design tips',
@@ -19,46 +22,37 @@ export const metadata: Metadata = {
     'web design south africa blog',
     'website development articles',
   ],
-  alternates: {
-    canonical: `${SITE_URL}/blog`,
-  },
+  alternates: alternatesFor('/blog'),
   openGraph: {
     title: 'Blog | WEB-IN Insights',
     description: 'Practical guides about website costs, timelines, and building an online presence for South African businesses.',
     type: 'website',
-    url: `${SITE_URL}/blog`,
+    url: '/blog',
   },
 }
 
 const blogJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: `${STUDIO_NAME} Blog`,
-  description: 'Practical insights about website design, development costs, timelines and online presence for South African businesses.',
-  url: `${SITE_URL}/blog`,
-  itemListElement: blogArticles.map((article, i) => ({
-    '@type': 'BlogPosting',
-    position: i + 1,
-    headline: article.title,
-    description: article.description,
-    datePublished: article.publishedAt,
-    dateModified: article.updatedAt ?? article.publishedAt,
-    url: `${SITE_URL}/blog/${article.slug}`,
-    author: {
-      '@type': 'Organization',
-      name: STUDIO_NAME,
-      url: SITE_URL,
-    },
-  })),
+  ...webPageSchema({
+    path: '/blog',
+    name: 'WEB-IN blog',
+    description:
+      'Practical guides about website design, development costs and online presence for South African businesses.',
+    type: 'CollectionPage',
+  }),
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: blogArticles.map((article) => ({
+      '@type': 'ListItem',
+      url: `/blog/${article.slug}`,
+      name: article.title,
+    })),
+  },
 }
 
 export default function BlogPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
-      />
+      <JsonLd data={blogJsonLd} />
       {/* Hero */}
       <PageHero
         eyebrow="Insights & Guides"

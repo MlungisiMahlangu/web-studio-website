@@ -1,27 +1,18 @@
 import type { Metadata } from 'next'
-import { SITE_URL } from '@/lib/constants'
+import { alternatesFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Services & Pricing | Website Design Costs South Africa | WEB-IN',
-  description: 'Transparent pricing for website design and development in South Africa. Starter websites from R2,500, business websites from R4,000, online stores from R7,000. Get a free quote.',
-  keywords: [
-    'website pricing south africa',
-    'website design cost',
-    'affordable website design',
-    'website development pricing',
-    'starter website cost',
-    'business website price',
-    'ecommerce website cost',
-    'website quote south africa',
-  ],
-  alternates: {
-    canonical: `${SITE_URL}/pricing`,
-  },
+  title: 'Website Design Prices South Africa',
+  description:
+    "WEB-IN's website prices in South Africa: Starter Website R2,500, Business Website from R4,000 and Online Store from R7,000. See the full price list.",
+  alternates: alternatesFor('/pricing'),
   openGraph: {
-    title: 'Services & Pricing | WEB-IN',
-    description: 'Transparent pricing for website design and development in South Africa. Get a free quote today.',
+    title: 'Website design prices in South Africa | WEB-IN',
+    description:
+      'Clear starting prices for business websites, online stores and web applications in South Africa.',
     type: 'website',
-    url: `${SITE_URL}/pricing`,
+    locale: 'en_ZA',
+    url: '/pricing',
   },
 }
 

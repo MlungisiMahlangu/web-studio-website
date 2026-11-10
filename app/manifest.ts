@@ -1,29 +1,30 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL, STUDIO_NAME, STUDIO_TAGLINE } from '@/lib/constants'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'WEB-IN — Professional Web Development Studio',
+    name: `${STUDIO_NAME} — Website Design & Development, Johannesburg`,
     short_name: 'WEB-IN',
-    description: 'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications.',
+    description: STUDIO_TAGLINE,
     start_url: '/',
     display: 'standalone',
     background_color: '#FDFCFC',
-    theme_color: '#4361EE',
+    theme_color: '#0061FD',
     icons: [
       {
-        src: '/icon.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
-      },
-      {
-        src: '/icon-dark-32x32.png',
-        sizes: '32x32',
+        src: '/icon.png',
+        sizes: '512x512',
         type: 'image/png',
       },
       {
         src: '/apple-icon.png',
         sizes: '180x180',
         type: 'image/png',
+      },
+      {
+        src: '/favicon.ico',
+        sizes: '32x32',
+        type: 'image/x-icon',
       },
     ],
   }

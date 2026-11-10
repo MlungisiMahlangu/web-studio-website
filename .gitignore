@@ -7,9 +7,16 @@ __v0_jsx-dev-runtime.ts
 .vercel/
 
 # Environment variables
+.env
 .env*.local
 
 # Common ignores
 node_modules
 .next/
 .DS_Store
+
+# Generated and scratch files that must never be committed
+tsconfig.tsbuildinfo
+package-lock.json
+/search-console-page.png
+/screenshots/

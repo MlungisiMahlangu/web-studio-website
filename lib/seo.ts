@@ -1,0 +1,355 @@
+import {
+  ALTERNATE_NAMES,
+  CONTENT_UPDATED,
+  GEO_COORDINATES,
+  KNOWS_ABOUT,
+  OPENING_HOURS,
+  PRICE_VALID_UNTIL,
+  SERVICE_AREAS,
+  SITE_URL,
+  SOCIAL_LINKS,
+  STUDIO_COUNTRY,
+  STUDIO_DESCRIPTION,
+  STUDIO_DESCRIPTION_LONG,
+  STUDIO_EMAIL,
+  STUDIO_LEGAL_NAME,
+  STUDIO_LOCALITY,
+  STUDIO_NAME,
+  STUDIO_PHONE,
+  STUDIO_POSTAL_CODE,
+  STUDIO_REGION,
+  STUDIO_STREET_ADDRESS,
+  STUDIO_TAGLINE,
+  addons,
+  maintenancePlans,
+  services,
+  type FaqItem,
+} from './constants'
+
+export const ORG_ID = `${SITE_URL}/#organization`
+export const WEBSITE_ID = `${SITE_URL}/#website`
+export const LOCALBUSINESS_ID = `${SITE_URL}/#localbusiness`
+export const LOGO_ID = `${SITE_URL}/#logo`
+export const CATALOG_ID = `${SITE_URL}/#offer-catalog`
+
+export const serviceId = (slug: string) => `${SITE_URL}/#service-${slug}`
+export const offerId = (slug: string) => `${SITE_URL}/#offer-${slug}`
+
+export function absoluteUrl(path: string): string {
+  if (path.startsWith('http')) return path
+  const normalized = path === '/' ? '' : path.startsWith('/') ? path : `/${path}`
+  return `${SITE_URL}${normalized}`
+}
+
+export const alternatesFor = (path: string) => ({
+  canonical: path,
+  languages: {
+    'en-ZA': path,
+    'x-default': path,
+  },
+})
+
+const postalAddress = {
+  '@type': 'PostalAddress',
+  ...(STUDIO_STREET_ADDRESS ? { streetAddress: STUDIO_STREET_ADDRESS } : {}),
+  addressLocality: STUDIO_LOCALITY,
+  addressRegion: STUDIO_REGION,
+  ...(STUDIO_POSTAL_CODE ? { postalCode: STUDIO_POSTAL_CODE } : {}),
+  addressCountry: STUDIO_COUNTRY,
+}
+
+const areaServed = SERVICE_AREAS.map((name) => ({
+  '@type': name === 'South Africa' ? 'Country' : name === 'Gauteng' ? 'AdministrativeArea' : 'City',
+  name,
+}))
+
+const sameAs = SOCIAL_LINKS.length > 0 ? SOCIAL_LINKS.map((profile) => profile.url) : undefined
+
+const offers = [
+  ...services.map((service) => ({
+    '@type': 'Offer',
+    '@id': offerId(service.slug),
+    name: service.name,
+    price: service.priceValue,
+    priceCurrency: 'ZAR',
+    availability: 'https://schema.org/InStock',
+    priceValidUntil: PRICE_VALID_UNTIL,
+    url: `${SITE_URL}/pricing#${service.slug}`,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      ...(service.isFrom
+        ? { minPrice: service.priceValue }
+        : { price: service.priceValue }),
+      priceCurrency: 'ZAR',
+      valueAddedTaxIncluded: false,
+    },
+    itemOffered: { '@id': serviceId(service.slug) },
+  })),
+  ...addons
+    .filter((addon) => addon.priceValue !== null)
+    .map((addon, index) => ({
+      '@type': 'Offer',
+      '@id': `${SITE_URL}/#addon-${index + 1}`,
+      name: addon.name,
+      price: addon.priceValue,
+      priceCurrency: 'ZAR',
+      priceValidUntil: PRICE_VALID_UNTIL,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        ...(addon.isFrom ? { minPrice: addon.priceValue } : { price: addon.priceValue }),
+        priceCurrency: 'ZAR',
+        valueAddedTaxIncluded: false,
+      },
+      itemOffered: { '@type': 'Service', name: addon.name },
+    })),
+  ...maintenancePlans.map((plan) => ({
+    '@type': 'Offer',
+    '@id': `${SITE_URL}/#maintenance-${plan.priceValue}`,
+    name: `${plan.name} maintenance`,
+    price: plan.priceValue,
+    priceCurrency: 'ZAR',
+    priceValidUntil: PRICE_VALID_UNTIL,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: plan.priceValue,
+      priceCurrency: 'ZAR',
+      unitText: 'per month',
+      valueAddedTaxIncluded: false,
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: `${plan.name} website maintenance`,
+      description: plan.description,
+    },
+  })),
+]
+
+const serviceNodes = services.map((service) => ({
+  '@type': 'Service',
+  '@id': serviceId(service.slug),
+  name: service.name,
+  serviceType: service.name,
+  description: service.summary,
+  url: `${SITE_URL}/pricing#${service.slug}`,
+  provider: { '@id': ORG_ID },
+  areaServed,
+  offers: { '@id': offerId(service.slug) },
+}))
+
+export function buildSiteGraph() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: STUDIO_LEGAL_NAME,
+        alternateName: ALTERNATE_NAMES,
+        url: SITE_URL,
+        logo: { '@id': LOGO_ID },
+        image: { '@id': LOGO_ID },
+        description: STUDIO_DESCRIPTION_LONG,
+        slogan: STUDIO_TAGLINE,
+        email: STUDIO_EMAIL,
+        telephone: STUDIO_PHONE,
+        address: postalAddress,
+        foundingLocation: { '@type': 'Place', address: postalAddress },
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer service',
+            email: STUDIO_EMAIL,
+            telephone: STUDIO_PHONE,
+            areaServed: 'ZA',
+            availableLanguage: ['en'],
+          },
+        ],
+        areaServed,
+        knowsAbout: KNOWS_ABOUT,
+        hasOfferCatalog: { '@id': CATALOG_ID },
+        ...(sameAs && { sameAs }),
+      },
+      {
+        '@type': 'ImageObject',
+        '@id': LOGO_ID,
+        url: `${SITE_URL}/logo.png`,
+        contentUrl: `${SITE_URL}/logo.png`,
+        width: 512,
+        height: 512,
+        caption: `${STUDIO_NAME} logo`,
+      },
+      {
+        '@type': 'ProfessionalService',
+        '@id': LOCALBUSINESS_ID,
+        name: STUDIO_NAME,
+        url: SITE_URL,
+        image: { '@id': LOGO_ID },
+        logo: { '@id': LOGO_ID },
+        description: STUDIO_DESCRIPTION,
+        email: STUDIO_EMAIL,
+        telephone: STUDIO_PHONE,
+        priceRange: 'R2,500 - R10,000+',
+        currenciesAccepted: 'ZAR',
+        paymentAccepted: 'Bank transfer, EFT',
+        address: postalAddress,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: GEO_COORDINATES.latitude,
+          longitude: GEO_COORDINATES.longitude,
+        },
+        areaServed,
+        parentOrganization: { '@id': ORG_ID },
+        knowsAbout: KNOWS_ABOUT,
+        ...(OPENING_HOURS.length > 0 && {
+          openingHoursSpecification: OPENING_HOURS.map((hours) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: hours.days,
+            opens: hours.opens,
+            closes: hours.closes,
+          })),
+        }),
+        ...(sameAs && { sameAs }),
+      },
+      {
+        '@type': 'WebSite',
+        '@id': WEBSITE_ID,
+        url: SITE_URL,
+        name: STUDIO_NAME,
+        description: STUDIO_DESCRIPTION,
+        publisher: { '@id': ORG_ID },
+        inLanguage: 'en-ZA',
+      },
+      {
+        '@type': 'OfferCatalog',
+        '@id': CATALOG_ID,
+        name: 'WEB-IN services and prices',
+        url: `${SITE_URL}/pricing`,
+        numberOfItems: offers.length,
+        itemListElement: offers,
+      },
+      ...serviceNodes,
+    ],
+  }
+}
+
+export function webPageSchema({
+  path,
+  name,
+  description,
+  dateModified = CONTENT_UPDATED,
+  type = 'WebPage',
+}: {
+  path: string
+  name: string
+  description: string
+  dateModified?: string
+  type?: 'WebPage' | 'CollectionPage' | 'AboutPage' | 'ContactPage' | 'FAQPage'
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': type,
+    '@id': `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name,
+    description,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: { '@id': ORG_ID },
+    inLanguage: 'en-ZA',
+    dateModified,
+    primaryImageOfPage: { '@id': LOGO_ID },
+  }
+}
+
+export function breadcrumbSchema(items: { label: string; href: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${absoluteUrl(items[items.length - 1].href)}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: absoluteUrl(item.href),
+    })),
+  }
+}
+
+export function faqSchema(faqs: FaqItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
+}
+
+export function servicePageSchema({
+  path,
+  name,
+  description,
+  serviceName,
+  priceValue,
+  isFrom,
+}: {
+  path: string
+  name: string
+  description: string
+  serviceName: string
+  priceValue: number
+  isFrom: boolean
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${absoluteUrl(path)}#service`,
+    name,
+    description,
+    serviceType: serviceName,
+    url: absoluteUrl(path),
+    provider: { '@id': ORG_ID },
+    areaServed,
+    offers: {
+      '@type': 'Offer',
+      price: priceValue,
+      priceCurrency: 'ZAR',
+      priceValidUntil: PRICE_VALID_UNTIL,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        ...(isFrom ? { minPrice: priceValue } : { price: priceValue }),
+        priceCurrency: 'ZAR',
+      },
+    },
+  }
+}
+
+export function articleSchema(article: {
+  slug: string
+  title: string
+  description: string
+  publishedAt: string
+  updatedAt?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${SITE_URL}/blog/${article.slug}#article`,
+    headline: article.title,
+    description: article.description,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    inLanguage: 'en-ZA',
+    mainEntityOfPage: { '@id': `${SITE_URL}/blog/${article.slug}#webpage` },
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    image: `${SITE_URL}/opengraph-image`,
+    isPartOf: { '@id': WEBSITE_ID },
+  }
+}
+
+export const priceValidUntil = PRICE_VALID_UNTIL

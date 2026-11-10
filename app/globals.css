@@ -574,3 +574,35 @@ article:target {
   70% { outline: 3px solid var(--color-brand); outline-offset: 4px; }
   100% { outline: 3px solid transparent; outline-offset: 4px; }
 }
+
+/*
+ * Scroll reveals are progressive enhancement. The inline script in app/layout.tsx
+ * adds .js to <html>, so crawlers and no-JS visitors see all content immediately.
+ */
+html.js [data-reveal]:not([data-visible='true']) {
+  opacity: 0;
+}
+
+html.js [data-reveal='up']:not([data-visible='true']) {
+  transform: translateY(1.5rem);
+}
+
+html.js [data-reveal='scale']:not([data-visible='true']) {
+  transform: scale(0.97);
+}
+
+html.js [data-reveal='left']:not([data-visible='true']) {
+  transform: translateX(1.5rem);
+}
+
+html.js [data-reveal='right']:not([data-visible='true']) {
+  transform: translateX(-1.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

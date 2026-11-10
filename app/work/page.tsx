@@ -1,6 +1,8 @@
 import Image from 'next/image'
-import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { portfolioProjects, SITE_URL } from '@/lib/constants'
+import { ExternalLink } from 'lucide-react'
+import { portfolioProjects } from '@/lib/constants'
+import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
@@ -11,8 +13,9 @@ import { Reveal } from '@/components/ui/reveal'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Our Work | Web Development Portfolio | WEB-IN',
-  description: 'Explore our portfolio of live websites — business sites, online stores, booking platforms and custom web applications built for South African clients. View our web design work.',
+  title: 'Web Design Portfolio',
+  description:
+    'Live websites and web applications designed and built by WEB-IN for South African businesses, from storefronts to booking platforms and dashboards.',
   keywords: [
     'web development portfolio',
     'website design portfolio',
@@ -21,20 +24,27 @@ export const metadata: Metadata = {
     'web development case studies',
     'live website examples',
   ],
-  alternates: {
-    canonical: `${SITE_URL}/work`,
-  },
+  alternates: alternatesFor('/work'),
   openGraph: {
     title: 'Our Work | WEB-IN Portfolio',
     description: 'Live websites we have designed and developed. Business sites, portfolios, e-commerce and custom web apps.',
     type: 'website',
-    url: `${SITE_URL}/work`,
+    url: '/work',
   },
 }
 
 export default function WorkPage() {
+  const pageJsonLd = webPageSchema({
+    path: '/work',
+    name: 'WEB-IN selected work',
+    description:
+      'Live websites and web applications designed and built by WEB-IN for South African businesses.',
+    type: 'CollectionPage',
+  })
+
   return (
     <>
+      <JsonLd data={pageJsonLd} />
       {/* Hero */}
       <PageHero
         eyebrow="Selected Work"

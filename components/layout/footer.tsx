@@ -3,10 +3,12 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import {
+  SOCIAL_LINKS,
   STUDIO_EMAIL,
+  STUDIO_LOCATION,
+  STUDIO_NAME,
   STUDIO_PHONE,
   STUDIO_WHATSAPP,
-  STUDIO_LOCATION,
 } from '@/lib/constants'
 
 const legalLinks = [
@@ -16,12 +18,22 @@ const legalLinks = [
   { label: 'Refund Policy', href: '/refund-cancellation-policy' },
 ]
 
+const serviceLinks = [
+  { label: 'Website design Johannesburg', href: '/website-design-johannesburg' },
+  { label: 'Web development South Africa', href: '/web-development-south-africa' },
+  { label: 'Ecommerce websites', href: '/ecommerce-website-south-africa' },
+  { label: 'Affordable website design', href: '/affordable-website-design-south-africa' },
+  { label: 'Website redesign', href: '/website-redesign-south-africa' },
+  { label: 'What a website costs', href: '/website-cost-south-africa' },
+  { label: 'All services and prices', href: '/pricing' },
+]
+
 const studioLinks = [
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
   { label: 'Work', href: '/work' },
-  { label: 'Services', href: '/pricing' },
   { label: 'FAQ', href: '/faq' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -41,28 +53,38 @@ export default function Footer() {
               Independent web development studio building thoughtful digital
               experiences for businesses in South Africa and beyond.
             </p>
+            {SOCIAL_LINKS.length > 0 && (
+              <ul className="flex flex-wrap gap-x-4 gap-y-2">
+                {SOCIAL_LINKS.map((profile) => (
+                  <li key={profile.url}>
+                    <a
+                      href={profile.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                    >
+                      {profile.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Services */}
           <div>
             <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>What we offer</h4>
             <ul className="flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
-                >
-                  View all services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pricing"
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
-                >
-                  Pricing
-                </Link>
-              </li>
+              {serviceLinks.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -80,41 +102,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* NAP block: keep identical to the contact page and the schema. */}
           <div>
             <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>Get in touch</h4>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a href={`mailto:${STUDIO_EMAIL}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
-                  {STUDIO_EMAIL}
-                </a>
-              </li>
-              <li>
-                <a href={`tel:${STUDIO_PHONE}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
-                  {STUDIO_PHONE}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`https://wa.me/${STUDIO_WHATSAPP}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-brand hover:text-white transition-colors duration-200"
-                >
-                  WhatsApp <ArrowUpRight size={12} />
-                </a>
-              </li>
-              <li className="text-sm text-white/40 mt-1">
-                {STUDIO_LOCATION}
-              </li>
-            </ul>
+            <address className="not-italic flex flex-col gap-3">
+              <span className="text-sm font-medium text-white/80">{STUDIO_NAME}</span>
+              <span className="text-sm text-white/50">{STUDIO_LOCATION}</span>
+              <a href={`mailto:${STUDIO_EMAIL}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
+                {STUDIO_EMAIL}
+              </a>
+              <a href={`tel:${STUDIO_PHONE.replace(/\s/g, '')}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
+                {STUDIO_PHONE}
+              </a>
+              <a
+                href={`https://wa.me/${STUDIO_WHATSAPP}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-brand hover:text-white transition-colors duration-200"
+              >
+                WhatsApp <ArrowUpRight size={12} />
+              </a>
+            </address>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} WEB-IN. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             {legalLinks.map((l) => (
               <Link key={l.href} href={l.href} className="hover:text-white/60 transition-colors duration-200">
                 {l.label}

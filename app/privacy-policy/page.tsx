@@ -3,18 +3,13 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
+import { alternatesFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | WEB-IN South Africa',
-  description: `Privacy policy for ${STUDIO_NAME}. POPIA compliant. How we collect, use and protect your personal information.`,
-  robots: {
-    index: false,
-    follow: true,
-  },
-  alternates: {
-    canonical: 'https://www.web-in.co.za/privacy-policy',
-  },
+  title: 'Privacy Policy',
+  description: `How ${STUDIO_NAME} collects, uses and protects your personal information under POPIA, and how to contact us about your data.`,
+  alternates: alternatesFor('/privacy-policy'),
 }
 
 const tocItems = [

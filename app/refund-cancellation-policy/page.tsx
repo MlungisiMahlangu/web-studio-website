@@ -3,14 +3,13 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
+import { alternatesFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Refund and Cancellation Policy | WEB-IN',
-  description: `Refund and cancellation policy for ${STUDIO_NAME}.`,
-  alternates: {
-    canonical: 'https://web-in.co.za/refund-cancellation-policy',
-  },
+  title: 'Refund and Cancellation Policy',
+  description: `How cancellations, refunds and deposits work when you cancel a project with ${STUDIO_NAME}, including refund timelines.`,
+  alternates: alternatesFor('/refund-cancellation-policy'),
 }
 
 const tocItems = [

@@ -1,25 +1,81 @@
-import {
-  Globe2,
-  PenTool,
-  Sparkles,
-  Layers3,
-  Code2,
-  Paintbrush,
-  type LucideIcon,
-} from 'lucide-react'
-
 export const STUDIO_NAME = 'WEB-IN'
-export const SITE_URL = 'https://web-in.co.za'
+// TODO: replace with the registered legal entity name if it differs from the trading name.
+export const STUDIO_LEGAL_NAME = 'WEB-IN'
+export const SITE_URL = 'https://www.web-in.co.za'
+export const SITE_HOST = 'www.web-in.co.za'
 export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
+export const STUDIO_BRAND_LINE =
+  'WEB-IN | Website Design & Development, Johannesburg, South Africa'
 export const STUDIO_DESCRIPTION =
-  'Professional website design and development studio in South Africa. We build modern, fast, mobile-first websites, online stores and web applications for businesses. Affordable pricing from R2,500.'
+  'WEB-IN is a website design and development studio in Johannesburg, South Africa. We build fast, mobile-first business websites, online stores and web applications. Websites start at R2,500.'
+export const STUDIO_DESCRIPTION_LONG =
+  'WEB-IN is a web design and development studio based in Johannesburg, South Africa. We design and build business websites, online stores and custom web applications for South African businesses. Websites start at R2,500, business websites from R4,000 and online stores from R7,000.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'Johannesburg, Gauteng, South Africa'
+export const STUDIO_LOCALITY = 'Johannesburg'
+export const STUDIO_REGION = 'Gauteng'
+export const STUDIO_COUNTRY = 'ZA'
+// TODO: add a street address only if you are willing to publish it. This is a service-area business by default.
+export const STUDIO_STREET_ADDRESS = ''
+// TODO: add the postal code if a street address is published.
+export const STUDIO_POSTAL_CODE = ''
+// TODO: add real opening hours, e.g. [{ days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' }]
+export const OPENING_HOURS: { days: string[]; opens: string; closes: string }[] = []
+export const GEO_COORDINATES = { latitude: -26.2041, longitude: 28.0473 }
+export const SERVICE_AREAS = [
+  'South Africa',
+  'Gauteng',
+  'Johannesburg',
+  'Sandton',
+  'Midrand',
+  'Randburg',
+  'Pretoria',
+  'Soweto',
+]
+// Prices changed on this date. Bump it whenever lib/constants.ts price values change.
 export const LAST_UPDATED = '2026-10-14'
+// Used for dateModified signals while prices remain unchanged.
+export const CONTENT_UPDATED = '2026-11-10'
+export const PRICE_VALID_UNTIL = '2026-12-31'
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mwlvornn'
-export const SOCIAL_LINKS: string[] = []
+export const INDEXNOW_KEY = '7f2c9a4e6b1d8c3f5a0e9b7d4c2a6f81'
+
+export interface SocialProfile {
+  label: string
+  url: string
+}
+
+// TODO: create these profiles and add the URLs here. sameAs is the strongest entity signal,
+// and the footer only renders profiles that exist. Do not add a profile you have not created.
+// Google Business Profile, LinkedIn company page, Facebook, Instagram, X/Twitter,
+// TikTok, YouTube, GitHub organisation, Clutch, Sortlist, GoodFirms.
+export const SOCIAL_LINKS: SocialProfile[] = []
+
+export const ALTERNATE_NAMES = [
+  'WEB-IN',
+  'Web-In',
+  'WEBIN',
+  'Web In',
+  'Web In South Africa',
+  'web-in.co.za',
+  'WEB-IN Web Studio',
+]
+
+export const KNOWS_ABOUT = [
+  'Website design',
+  'Web development',
+  'Business websites',
+  'Online stores',
+  'Ecommerce development',
+  'Website redesign',
+  'Custom web applications',
+  'Mobile-first responsive design',
+  'Search engine optimisation basics',
+  'PayFast, Yoco and Ozow payment integration',
+  'Website maintenance',
+]
 
 // SEO Keywords
 export const PRIMARY_KEYWORDS = [
@@ -45,7 +101,11 @@ export interface ServiceCard {
   slug: string
   name: string
   tagline: string
+  summary: string
   priceLabel: string
+  priceValue: number
+  isFrom: boolean
+  priceNote?: string
   bestFor: string
   popular?: boolean
   facts: ServiceFacts
@@ -58,7 +118,11 @@ export const services: ServiceCard[] = [
     slug: 'starter-website',
     name: 'Starter Website',
     tagline: 'A professional site for individuals and small businesses.',
+    summary:
+      'A professional website of up to 4 pages for individuals and small businesses, with a contact form, WhatsApp link and basic SEO setup.',
     priceLabel: 'R2,500',
+    priceValue: 2500,
+    isFrom: false,
     bestFor: 'Portfolios, freelancers, personal brands',
     facts: {
       pages: 'Up to 4 pages',
@@ -85,7 +149,11 @@ export const services: ServiceCard[] = [
     slug: 'business-website',
     name: 'Business Website',
     tagline: 'A complete website that turns visitors into enquiries.',
+    summary:
+      'A complete website of up to 8 pages for established small businesses, with detailed UI/UX design, service pages, Google Maps, testimonials and a tested enquiry form.',
     priceLabel: 'From R4,000',
+    priceValue: 4000,
+    isFrom: true,
     bestFor: 'Established small businesses',
     popular: true,
     facts: {
@@ -114,7 +182,11 @@ export const services: ServiceCard[] = [
     slug: 'online-store',
     name: 'Online Store',
     tagline: 'Sell products online with a cart and secure checkout.',
+    summary:
+      'An online store with up to 30 products, cart and checkout, and one South African payment gateway such as PayFast, Yoco or Ozow.',
     priceLabel: 'From R7,000',
+    priceValue: 7000,
+    isFrom: true,
     bestFor: 'Retailers and product brands',
     facts: {
       pages: 'Up to 30 products',
@@ -139,7 +211,11 @@ export const services: ServiceCard[] = [
     slug: 'website-redesign',
     name: 'Website Redesign',
     tagline: 'Refresh your current site without starting over.',
+    summary:
+      'A redesign of an existing website with a new design and navigation, a better mobile experience, a content refresh and SEO checks with URL redirects.',
     priceLabel: 'From R2,500',
+    priceValue: 2500,
+    isFrom: true,
     bestFor: 'Outdated or hard-to-use websites',
     facts: {
       pages: 'Priced by pages',
@@ -163,7 +239,11 @@ export const services: ServiceCard[] = [
     slug: 'custom-web-application',
     name: 'Custom Web Application',
     tagline: 'Custom systems built around how your business works.',
+    summary:
+      'A custom web application with logins and user roles, dashboards, bookings, database integration or other business-specific workflows, scoped after discovery.',
     priceLabel: 'From R10,000',
+    priceValue: 10000,
+    isFrom: true,
     bestFor: 'Portals, dashboards, booking systems',
     facts: {
       pages: 'Scope after discovery',
@@ -189,22 +269,30 @@ export const services: ServiceCard[] = [
 
 
 
-export const addons = [
-  { name: 'Extra page', price: 'R500' },
-  { name: 'Extra revision round', price: 'R300' },
-  { name: 'Blog setup', price: 'From R1,000' },
-  { name: 'Booking functionality', price: 'From R2,000' },
-  { name: 'Extra products (store), per 10', price: 'R300' },
-  { name: 'SEO enhancement', price: 'From R1,000' },
-  { name: 'Google Business Profile setup', price: 'R500' },
-  { name: 'Domain registration in your name, at cost + R100', price: 'At cost + R100' },
-  { name: 'Logo design', price: 'R500' },
+export interface Addon {
+  name: string
+  price: string
+  priceValue: number | null
+  isFrom: boolean
+}
+
+export const addons: Addon[] = [
+  { name: 'Extra page', price: 'R500', priceValue: 500, isFrom: false },
+  { name: 'Extra revision round', price: 'R300', priceValue: 300, isFrom: false },
+  { name: 'Blog setup', price: 'From R1,000', priceValue: 1000, isFrom: true },
+  { name: 'Booking functionality', price: 'From R2,000', priceValue: 2000, isFrom: true },
+  { name: 'Extra products (store), per 10', price: 'R300', priceValue: 300, isFrom: false },
+  { name: 'SEO enhancement', price: 'From R1,000', priceValue: 1000, isFrom: true },
+  { name: 'Google Business Profile setup', price: 'R500', priceValue: 500, isFrom: false },
+  { name: 'Domain registration in your name, at cost + R100', price: 'At cost + R100', priceValue: null, isFrom: false },
+  { name: 'Logo design', price: 'R500', priceValue: 500, isFrom: false },
 ]
 
 export const maintenancePlans = [
   {
     name: 'Basic Care',
     price: 'R299',
+    priceValue: 299,
     description: 'Uptime and security checks, 1h30min per day of small content updates, minor bug fixes, reply within 2 business days.',
     features: [
       'Uptime and security checks',
@@ -216,6 +304,7 @@ export const maintenancePlans = [
   {
     name: 'Business Care',
     price: 'R499',
+    priceValue: 499,
     description: 'Everything in Basic, 2h30min per day of updates, monthly performance and backup check, reply within 1 business day.',
     features: [
       'Everything in Basic Care',
@@ -472,6 +561,10 @@ export const faqCategories: FaqCategory[] = [
         question: 'How do I pay WEB-IN?',
         answer: 'We take a 50% deposit to start and the balance before launch.',
       },
+      {
+        question: 'What is the difference between a Starter and Business website?',
+        answer: 'A Starter Website costs R2,500 and covers up to 4 pages with a contact form and basic SEO. A Business Website starts at R4,000 and covers up to 8 pages, detailed UI/UX design, service pages, Google Maps, testimonials, analytics and a tested enquiry form.',
+      },
     ],
   },
   {
@@ -528,8 +621,33 @@ export const faqCategories: FaqCategory[] = [
         question: 'Do you offer maintenance?',
         answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
       },
+      {
+        question: 'What is included in website maintenance?',
+        answer: 'Basic Care covers uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care adds more update time, monthly performance and backup checks, and replies within one business day.',
+      },
     ],
     cta: { text: 'View All Services', href: '/pricing' },
+  },
+  {
+    id: 'about',
+    number: '06',
+    label: 'ABOUT WEB-IN',
+    heading: 'Who you are working with',
+    intro: 'The studio behind the website.',
+    items: [
+      {
+        question: 'What is WEB-IN?',
+        answer: 'WEB-IN is a website design and development studio in Johannesburg, South Africa. It builds business websites, online stores and custom web applications for South African businesses. Websites start at R2,500 and the full price list is published on the pricing page.',
+      },
+      {
+        question: 'Is WEB-IN legitimate?',
+        answer: 'Yes. WEB-IN has live client work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact the team directly by email, phone or WhatsApp before paying anything.',
+      },
+      {
+        question: 'Who builds websites in Johannesburg?',
+        answer: 'WEB-IN is based in Johannesburg, Gauteng, and works with businesses across South Africa. Projects are designed and built in-house, with direct communication by email, phone or WhatsApp and no account managers in between.',
+      },
+    ],
   },
 ]
 
@@ -736,6 +854,56 @@ export const homepageFaqs = [
   {
     question: 'Do you offer maintenance?',
     answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
+  },
+]
+
+// Written in the question-and-answer form AI assistants quote. Keep answers 40-60 words
+// and keep every price identical to the constants above.
+export const keyFaqs: FaqItem[] = [
+  {
+    question: 'How much does a website cost in South Africa?',
+    answer:
+      'A small business website in South Africa usually costs between R2,500 and R15,000 depending on size and features. WEB-IN publishes fixed starting prices: Starter Website R2,500, Business Website from R4,000, Website Redesign from R2,500, Online Store from R7,000 and Custom Web Application from R10,000.',
+  },
+  {
+    question: 'How long does it take to build a website?',
+    answer:
+      'Most small business websites take 1 to 3 weeks with WEB-IN. A Starter Website takes 1 to 2 weeks, a Business Website 2 to 3 weeks, an online store 3 to 5 weeks and a custom web application 4 to 8 weeks or more. Timelines start once the deposit and content are in.',
+  },
+  {
+    question: 'Who builds websites in Johannesburg?',
+    answer:
+      'WEB-IN is a website design and development studio based in Johannesburg, Gauteng, working with businesses across South Africa. Projects are designed and built in-house, with direct communication by email, phone or WhatsApp and no account managers in between.',
+  },
+  {
+    question: 'What is WEB-IN?',
+    answer:
+      'WEB-IN is a website design and development studio in Johannesburg, South Africa. It builds business websites, online stores and custom web applications for South African businesses. Websites start at R2,500 and the full price list is published at web-in.co.za/pricing.',
+  },
+  {
+    question: 'Is WEB-IN legitimate?',
+    answer:
+      'Yes. WEB-IN is a real studio with live client work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact the team directly by email, phone or WhatsApp before paying anything.',
+  },
+  {
+    question: 'Do you build online stores with PayFast, Yoco or Ozow?',
+    answer:
+      'Yes. WEB-IN builds online stores with one South African payment gateway, such as PayFast, Yoco or Ozow, included in the Online Store package from R7,000. You apply for the merchant account in your business name, and the gateway transaction fees are paid by you.',
+  },
+  {
+    question: 'What is included in website maintenance?',
+    answer:
+      'Basic Care costs R299 per month and covers uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care costs R499 per month and adds more update time, monthly performance and backup checks, and replies within one business day.',
+  },
+  {
+    question: 'Do I own my website?',
+    answer:
+      'Yes. Once the project is paid in full, you own the website and its content. Domains, third-party software and subscriptions stay subject to their own terms, and we can register a domain in your name as an add-on.',
+  },
+  {
+    question: 'What is the difference between a Starter and Business website?',
+    answer:
+      'A Starter Website costs R2,500 and covers up to 4 pages with a contact form and basic SEO. A Business Website starts at R4,000 and covers up to 8 pages, detailed UI/UX design, service pages, Google Maps, testimonials, analytics and a tested enquiry form.',
   },
 ]
 
