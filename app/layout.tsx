@@ -105,8 +105,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // The inline script below adds the `js` class before hydration; the mismatch is expected.
   return (
-    <html lang="en-ZA">
+    <html lang="en-ZA" suppressHydrationWarning>
       <head>
         {/* Progressive enhancement flag: reveal animations only hide content when JS runs. */}
         <script
