@@ -163,7 +163,36 @@ else {
   }
 }
 
-// 7. Optional live check
+// 7. Service-area business: no street address, map pin or opening hours
+const privateLocationPatterns = [
+  { label: 'a street address', pattern: /streetAddress/i },
+  { label: 'a postal code', pattern: /postalCode/i },
+  { label: 'opening hours', pattern: /openingHours/i },
+  { label: 'OPENING_HOURS', pattern: /OPENING_HOURS/ },
+  { label: 'precise coordinates', pattern: /GEO_COORDINATES|geo\.position|ICBM/ },
+]
+for (const file of sourceFiles) {
+  const contents = await read(file)
+  for (const { label, pattern } of privateLocationPatterns) {
+    if (pattern.test(contents)) {
+      fail(`${rel(file)} contains ${label} (${pattern}); WEB-IN is a service-area business`)
+    }
+  }
+}
+
+// 8. Hosting references must be Vercel, never the old host
+const textExtensions = /\.(ts|tsx|js|mjs|cjs|jsx|json|md|mdx|txt|ya?ml|css)$/
+const repoFiles = (await walk(root)).filter(
+  (file) => textExtensions.test(file) && !file.endsWith('pnpm-lock.yaml') && !file.endsWith('package-lock.json'),
+)
+for (const file of repoFiles) {
+  const contents = await read(file)
+  if (new RegExp('net' + 'lify', 'i').test(contents)) {
+    fail(`${rel(file)} mentions the old host; the site is hosted on Vercel`)
+  }
+}
+
+// 9. Optional live check
 if (process.argv.includes('--live')) {
   const siteUrl = constants.match(/export const SITE_URL\s*=\s*'([^']+)'/)?.[1]
   const sitemapUrl = `${siteUrl}/sitemap.xml`

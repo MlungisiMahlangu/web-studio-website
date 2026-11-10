@@ -4,9 +4,12 @@ Everything on this list happens outside the codebase. Work through it once, then
 
 ## 1. Domain and hosting
 
-- [ ] Set `www.web-in.co.za` as the primary domain in the host dashboard. The bare domain redirects to `www` in `next.config.mjs`, but the host setting should agree.
-- [ ] Confirm HTTPS is active for both `www.web-in.co.za` and `web-in.co.za`.
-- [ ] Keep the domain registration in the studio's own name and renew it automatically.
+The site is hosted on Vercel. There is no shared host dashboard to configure.
+
+- [ ] In Vercel, add both `web-in.co.za` and `www.web-in.co.za` to the project. Set `www.web-in.co.za` as the primary domain and redirect the bare domain to it. `next.config.mjs` also redirects to the `www` host, so the two settings should agree.
+- [ ] Confirm HTTPS is active for both domains. Vercel issues the certificates automatically once DNS is correct.
+- [ ] Keep the domain registration in the business's own name and renew it automatically. The domain is separate from the Vercel account.
+- [ ] Confirm the project region is `cpt1` in `vercel.json`.
 - [ ] Confirm the IndexNow key file is live at `https://www.web-in.co.za/7f2c9a4e6b1d8c3f5a0e9b7d4c2a6f81.txt`.
 - [ ] Add the site to Google Search Console and verify the `www` property.
 - [ ] Add the site to Bing Webmaster Tools. Import from Search Console if offered.
@@ -14,15 +17,32 @@ Everything on this list happens outside the codebase. Work through it once, then
 
 ## 2. Google Business Profile
 
+WEB-IN is a home-based, service-area business. There is no shop, no public street address and no opening hours. A Google Business Profile is still useful: it can place the business in local results for Johannesburg without exposing the home address.
+
+### Setup
+
 - [ ] Create or claim the profile. Use the exact trading name `WEB-IN`.
-- [ ] Choose the closest primary category (for example, Website designer). Add secondary categories only where accurate.
-- [ ] Set the service area to Johannesburg and the surrounding areas listed in `SERVICE_AREAS`.
-- [ ] Add the real phone number, email address and website.
-- [ ] Add opening hours only when they are real. Leave them blank rather than inventing them.
-- [ ] Upload real photos of work, the workspace or the team. Do not use stock people.
+- [ ] Choose `Website designer` as the primary category. Add `Web developer` as a secondary category. Add others only where accurate.
+- [ ] In the address step, enter the real business name and then tick the box that says you deliver goods or services to customers at their location. This hides the street address from the public profile.
+- [ ] Enter the home address only where Google requires it for verification. It is used for verification and is not shown on the profile once the service-area setting is on.
+- [ ] Set the service area to Johannesburg, Gauteng and South Africa. Keep it broad rather than listing dozens of suburbs.
+- [ ] Add the real phone number, email address and `https://www.web-in.co.za`.
+- [ ] Leave opening hours blank. Do not invent hours for a business that works by appointment.
+- [ ] Upload real photos of finished work, screenshots and the setup. Do not use stock people or stock offices.
+
+### Verification
+
+- [ ] Choose video verification if it is offered. You will usually be asked to record a short unedited video showing the business name on a document or screen, the workspace, and proof that you can access the tools you use.
+- [ ] Record it in one take, in daylight, and narrate what you are showing. Follow the prompts in the Google flow on the day; the exact steps change.
+- [ ] If video verification is not offered, complete whatever Google asks for. Do not buy a "verification service".
+
+### Running the profile
+
 - [ ] Publish one short update per month: a project, a guide or a service note.
 - [ ] Ask every satisfied client for an honest review and send them the direct review link.
 - [ ] Never buy reviews or write them on a client's behalf.
+- [ ] Never publish the home address, a map pin on the house or a photo that shows the street. Keep the profile as a service-area business.
+- [ ] Check the profile every quarter: categories, service areas, phone number and website still correct.
 
 ## 3. Social and business profiles
 
@@ -48,7 +68,7 @@ For each profile:
 
 ## 4. Citations and directories
 
-Keep the name, address and phone number identical across listings. Inconsistent NAP data confuses both customers and search engines.
+Keep the name and phone number identical across listings. Inconsistent NAP data confuses both customers and search engines. Because this is a service-area business, use `Johannesburg, South Africa` as the location and never a street address. If a directory insists on a street address, skip that directory.
 
 - [ ] Google Business Profile
 - [ ] Bing Places

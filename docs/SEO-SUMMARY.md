@@ -20,7 +20,7 @@ Your website has been fully optimized for search engines. Here's what was done:
 
 #### Structured Data (JSON-LD)
 - ✅ **Organization Schema**: Complete business information
-- ✅ **LocalBusiness Schema**: Geo coordinates and service area
+- ✅ **ProfessionalService Schema**: Service area only, with no street address or opening hours
 - ✅ **OfferCatalog Schema**: Service pricing in search results
 - ✅ **FAQPage Schema**: FAQ rich snippets
 - ✅ **Article Schema**: Blog post metadata

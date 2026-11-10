@@ -26,7 +26,7 @@
 - ✅ **Process**: Workflow and timeline keywords
 
 ### 3. **Structured Data**
-- ✅ **Organization Schema**: Business information with geo coordinates
+- ✅ **Organization Schema**: Business information with a service area (no street address)
 - ✅ **LocalBusiness Schema**: Local SEO optimization
 - ✅ **FAQPage Schema**: FAQ rich snippets
 - ✅ **Article Schema**: Blog post rich snippets
@@ -36,8 +36,8 @@
 
 ### 4. **Local SEO**
 - ✅ **Location**: Johannesburg, Gauteng, South Africa
-- ✅ **Geo Coordinates**: -26.2041, 28.0473
-- ✅ **Service Area**: South Africa, Gauteng, Johannesburg
+- ✅ **Service Area**: Johannesburg, Gauteng, South Africa
+- ✅ **Service-area business**: no street address, no map pin and no opening hours in the schema
 - ✅ **Contact Information**: Email, phone, WhatsApp
 
 ## 🚀 Next Steps to Improve Google Rankings
