@@ -7,23 +7,18 @@ export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_BRAND_LINE =
   'WEB-IN | Website Design & Development, Johannesburg, South Africa'
 export const STUDIO_DESCRIPTION =
-  'WEB-IN is a website design and development studio in Johannesburg, South Africa. We build fast, mobile-first business websites, online stores and web applications. Websites start at R2,500.'
+  'WEB-IN is an independent web developer in Johannesburg, South Africa. We build fast, mobile-first business websites, online stores and web applications for businesses across the country. Websites start at R2,500.'
 export const STUDIO_DESCRIPTION_LONG =
-  'WEB-IN is a web design and development studio based in Johannesburg, South Africa. We design and build business websites, online stores and custom web applications for South African businesses. Websites start at R2,500, business websites from R4,000 and online stores from R7,000.'
+  'WEB-IN is an independent web development studio based in Johannesburg, South Africa, working remotely with businesses across the country. We design and build business websites, online stores and custom web applications, and you deal directly with the person building your site. Websites start at R2,500, business websites from R4,000 and online stores from R7,000.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
 export const STUDIO_LOCATION = 'Johannesburg, Gauteng, South Africa'
+export const STUDIO_SERVICE_AREA =
+  'Johannesburg, South Africa (serving clients across South Africa)'
 export const STUDIO_LOCALITY = 'Johannesburg'
 export const STUDIO_REGION = 'Gauteng'
 export const STUDIO_COUNTRY = 'ZA'
-// TODO: add a street address only if you are willing to publish it. This is a service-area business by default.
-export const STUDIO_STREET_ADDRESS = ''
-// TODO: add the postal code if a street address is published.
-export const STUDIO_POSTAL_CODE = ''
-// TODO: add real opening hours, e.g. [{ days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' }]
-export const OPENING_HOURS: { days: string[]; opens: string; closes: string }[] = []
-export const GEO_COORDINATES = { latitude: -26.2041, longitude: 28.0473 }
 export const SERVICE_AREAS = [
   'South Africa',
   'Gauteng',
@@ -633,19 +628,19 @@ export const faqCategories: FaqCategory[] = [
     number: '06',
     label: 'ABOUT WEB-IN',
     heading: 'Who you are working with',
-    intro: 'The studio behind the website.',
+    intro: 'The business behind the website.',
     items: [
       {
         question: 'What is WEB-IN?',
-        answer: 'WEB-IN is a website design and development studio in Johannesburg, South Africa. It builds business websites, online stores and custom web applications for South African businesses. Websites start at R2,500 and the full price list is published on the pricing page.',
+        answer: 'WEB-IN is an independent website design and development studio in Johannesburg, South Africa, working remotely with businesses across the country. It builds business websites, online stores and custom web applications. Websites start at R2,500 and the full price list is published on the pricing page.',
       },
       {
         question: 'Is WEB-IN legitimate?',
-        answer: 'Yes. WEB-IN has live client work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact the team directly by email, phone or WhatsApp before paying anything.',
+        answer: 'Yes. WEB-IN is a small independent business with live project work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact us directly by email, phone or WhatsApp before paying anything.',
       },
       {
         question: 'Who builds websites in Johannesburg?',
-        answer: 'WEB-IN is based in Johannesburg, Gauteng, and works with businesses across South Africa. Projects are designed and built in-house, with direct communication by email, phone or WhatsApp and no account managers in between.',
+        answer: 'WEB-IN is based in Johannesburg, Gauteng, and works remotely with businesses across South Africa. Projects are designed and built by the same person you speak to, with direct communication by email, phone or WhatsApp and no account managers in between.',
       },
     ],
   },
@@ -716,7 +711,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'A redesigned gym-apparel storefront for a Johannesburg brand, built around a bold dark theme with orange accents, full-bleed lifestyle imagery and a “built for the work” identity that carries through from the homepage into product discovery.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
-    liveUrl: 'https://grip-on-website.netlify.app',
+    liveUrl: '',
     codeUrl: 'https://github.com/MlungisiMahlangu/grip-on-website',
     cardBg: '#f1e8d8',
     demo: false,
@@ -873,17 +868,17 @@ export const keyFaqs: FaqItem[] = [
   {
     question: 'Who builds websites in Johannesburg?',
     answer:
-      'WEB-IN is a website design and development studio based in Johannesburg, Gauteng, working with businesses across South Africa. Projects are designed and built in-house, with direct communication by email, phone or WhatsApp and no account managers in between.',
+      'WEB-IN is an independent web developer based in Johannesburg, Gauteng, working remotely with businesses across South Africa. Projects are designed and built by the same person you speak to, with direct communication by email, phone or WhatsApp and no account managers in between.',
   },
   {
     question: 'What is WEB-IN?',
     answer:
-      'WEB-IN is a website design and development studio in Johannesburg, South Africa. It builds business websites, online stores and custom web applications for South African businesses. Websites start at R2,500 and the full price list is published at web-in.co.za/pricing.',
+      'WEB-IN is an independent website design and development studio in Johannesburg, South Africa, working with businesses across the country. It builds business websites, online stores and custom web applications. Websites start at R2,500 and the full price list is published at web-in.co.za/pricing.',
   },
   {
     question: 'Is WEB-IN legitimate?',
     answer:
-      'Yes. WEB-IN is a real studio with live client work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact the team directly by email, phone or WhatsApp before paying anything.',
+      'Yes. WEB-IN is a small independent business with live project work, a published price list, written quotes and defined payment terms: a 50% deposit to start and the balance before launch. You can contact us directly by email, phone or WhatsApp before paying anything.',
   },
   {
     question: 'Do you build online stores with PayFast, Yoco or Ozow?',

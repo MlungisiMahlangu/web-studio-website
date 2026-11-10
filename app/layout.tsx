@@ -93,8 +93,6 @@ export const metadata: Metadata = {
   other: {
     'geo.region': 'ZA-GP',
     'geo.placename': 'Johannesburg',
-    'geo.position': '-26.2041;28.0473',
-    ICBM: '-26.2041, 28.0473',
   },
 }
 

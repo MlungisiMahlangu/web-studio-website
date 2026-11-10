@@ -1,9 +1,7 @@
 import {
   ALTERNATE_NAMES,
   CONTENT_UPDATED,
-  GEO_COORDINATES,
   KNOWS_ABOUT,
-  OPENING_HOURS,
   PRICE_VALID_UNTIL,
   SERVICE_AREAS,
   SITE_URL,
@@ -16,9 +14,7 @@ import {
   STUDIO_LOCALITY,
   STUDIO_NAME,
   STUDIO_PHONE,
-  STUDIO_POSTAL_CODE,
   STUDIO_REGION,
-  STUDIO_STREET_ADDRESS,
   STUDIO_TAGLINE,
   addons,
   maintenancePlans,
@@ -51,10 +47,8 @@ export const alternatesFor = (path: string) => ({
 
 const postalAddress = {
   '@type': 'PostalAddress',
-  ...(STUDIO_STREET_ADDRESS ? { streetAddress: STUDIO_STREET_ADDRESS } : {}),
   addressLocality: STUDIO_LOCALITY,
   addressRegion: STUDIO_REGION,
-  ...(STUDIO_POSTAL_CODE ? { postalCode: STUDIO_POSTAL_CODE } : {}),
   addressCountry: STUDIO_COUNTRY,
 }
 
@@ -192,22 +186,9 @@ export function buildSiteGraph() {
         currenciesAccepted: 'ZAR',
         paymentAccepted: 'Bank transfer, EFT',
         address: postalAddress,
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: GEO_COORDINATES.latitude,
-          longitude: GEO_COORDINATES.longitude,
-        },
         areaServed,
         parentOrganization: { '@id': ORG_ID },
         knowsAbout: KNOWS_ABOUT,
-        ...(OPENING_HOURS.length > 0 && {
-          openingHoursSpecification: OPENING_HOURS.map((hours) => ({
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: hours.days,
-            opens: hours.opens,
-            closes: hours.closes,
-          })),
-        }),
         ...(sameAs && { sameAs }),
       },
       {

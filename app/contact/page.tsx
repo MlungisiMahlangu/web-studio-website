@@ -5,7 +5,7 @@ import { PageHero } from '@/components/ui/page-hero'
 import { IconBox } from '@/components/ui/icon-box'
 import { Reveal } from '@/components/ui/reveal'
 import { EnquiryForm } from '@/components/forms/enquiry-form'
-import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP, STUDIO_LOCATION } from '@/lib/constants'
+import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP, STUDIO_SERVICE_AREA } from '@/lib/constants'
 import { alternatesFor, webPageSchema } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
@@ -120,7 +120,7 @@ export default function ContactPage() {
                     <IconBox icon={MapPin} className="shrink-0" />
                     <div>
                       <p className="text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Service area</p>
-                      <p className="mt-1 text-sm font-medium text-navy">{STUDIO_LOCATION}</p>
+                      <p className="mt-1 text-sm font-medium text-navy">{STUDIO_SERVICE_AREA}</p>
                     </div>
                   </div>
                 </div>

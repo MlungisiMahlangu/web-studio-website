@@ -5,10 +5,9 @@ import { ArrowUpRight } from 'lucide-react'
 import {
   SOCIAL_LINKS,
   STUDIO_EMAIL,
-  STUDIO_LOCATION,
   STUDIO_NAME,
   STUDIO_PHONE,
-  STUDIO_WHATSAPP,
+  STUDIO_SERVICE_AREA,
 } from '@/lib/constants'
 
 const legalLinks = [
@@ -107,20 +106,12 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>Get in touch</h4>
             <address className="not-italic flex flex-col gap-3">
               <span className="text-sm font-medium text-white/80">{STUDIO_NAME}</span>
-              <span className="text-sm text-white/50">{STUDIO_LOCATION}</span>
+              <span className="text-sm text-white/50">{STUDIO_SERVICE_AREA}</span>
               <a href={`mailto:${STUDIO_EMAIL}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
                 {STUDIO_EMAIL}
               </a>
               <a href={`tel:${STUDIO_PHONE.replace(/\s/g, '')}`} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
                 {STUDIO_PHONE}
-              </a>
-              <a
-                href={`https://wa.me/${STUDIO_WHATSAPP}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-brand hover:text-white transition-colors duration-200"
-              >
-                WhatsApp <ArrowUpRight size={12} />
               </a>
             </address>
           </div>
