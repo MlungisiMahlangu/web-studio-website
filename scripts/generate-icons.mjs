@@ -53,19 +53,25 @@ function encodePng(width, height, rgba) {
 }
 
 // ICO entries may contain a PNG payload, which every current browser and Windows supports.
-function encodeIco(size, png) {
+function encodeIco(images) {
   const header = Buffer.alloc(6)
   header.writeUInt16LE(0, 0)
   header.writeUInt16LE(1, 2)
-  header.writeUInt16LE(1, 4)
-  const entry = Buffer.alloc(16)
-  entry[0] = size >= 256 ? 0 : size
-  entry[1] = size >= 256 ? 0 : size
-  entry[4] = 1
-  entry[6] = 32
-  entry.writeUInt32LE(png.length, 8)
-  entry.writeUInt32LE(22, 12)
-  return Buffer.concat([header, entry, png])
+  header.writeUInt16LE(images.length, 4)
+  const entries = []
+  let offset = 6 + images.length * 16
+  for (const { size, png } of images) {
+    const entry = Buffer.alloc(16)
+    entry[0] = size >= 256 ? 0 : size
+    entry[1] = size >= 256 ? 0 : size
+    entry[4] = 1
+    entry[6] = 32
+    entry.writeUInt32LE(png.length, 8)
+    entry.writeUInt32LE(offset, 12)
+    offset += png.length
+    entries.push(entry)
+  }
+  return Buffer.concat([header, ...entries, ...images.map((image) => image.png)])
 }
 
 function distanceToSegment(px, py, x1, y1, x2, y2) {
@@ -128,7 +134,14 @@ mkdirSync(resolve(root, 'public'), { recursive: true })
 const logoPng = drawIcon(512)
 writeFileSync(resolve(root, 'public/logo.png'), logoPng)
 writeFileSync(resolve(root, 'public/icon.png'), logoPng)
+writeFileSync(resolve(root, 'public/icon-192.png'), drawIcon(192))
+writeFileSync(resolve(root, 'public/icon-48.png'), drawIcon(48))
 writeFileSync(resolve(root, 'public/apple-icon.png'), drawIcon(180))
-writeFileSync(resolve(root, 'public/favicon.ico'), encodeIco(32, drawIcon(32)))
+writeFileSync(
+  resolve(root, 'public/favicon.ico'),
+  encodeIco([16, 32, 48, 64].map((size) => ({ size, png: drawIcon(size) }))),
+)
 
-console.log('Generated public/logo.png, public/icon.png, public/apple-icon.png and public/favicon.ico')
+console.log(
+  'Generated public/logo.png, public/icon.png, public/icon-192.png, public/icon-48.png, public/apple-icon.png and public/favicon.ico (16, 32, 48, 64)',
+)

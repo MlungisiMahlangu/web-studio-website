@@ -37,17 +37,21 @@ export const careOfferId = (id: string) => `${SITE_URL}/#care-offer-${id}`
 
 export function absoluteUrl(path: string): string {
   if (path.startsWith('http')) return path
-  const normalized = path === '/' ? '' : path.startsWith('/') ? path : `/${path}`
+  if (!path || path === '/') return `${SITE_URL}/`
+  const normalized = path.startsWith('/') ? path : `/${path}`
   return `${SITE_URL}${normalized}`
 }
 
-export const alternatesFor = (path: string) => ({
-  canonical: path,
-  languages: {
-    'en-ZA': path,
-    'x-default': path,
-  },
-})
+export const alternatesFor = (path: string) => {
+  const canonical = absoluteUrl(path)
+  return {
+    canonical,
+    languages: {
+      'en-ZA': canonical,
+      'x-default': canonical,
+    },
+  }
+}
 
 export const OG_IMAGE = {
   url: '/opengraph-image',
@@ -69,7 +73,7 @@ export function openGraphFor(
     locale: 'en_ZA',
     title,
     description,
-    url: path,
+    url: absoluteUrl(path),
     images: [OG_IMAGE],
     ...extra,
   } as NonNullable<Metadata['openGraph']>
@@ -190,7 +194,7 @@ export function buildSiteGraph() {
         '@id': ORG_ID,
         name: STUDIO_LEGAL_NAME,
         alternateName: ALTERNATE_NAMES,
-        url: SITE_URL,
+        url: `${SITE_URL}/`,
         logo: { '@id': LOGO_ID },
         image: { '@id': LOGO_ID },
         description: STUDIO_DESCRIPTION_LONG,
@@ -227,7 +231,7 @@ export function buildSiteGraph() {
         '@type': 'ProfessionalService',
         '@id': LOCALBUSINESS_ID,
         name: STUDIO_NAME,
-        url: SITE_URL,
+        url: `${SITE_URL}/`,
         image: { '@id': LOGO_ID },
         logo: { '@id': LOGO_ID },
         description: STUDIO_DESCRIPTION,
@@ -245,8 +249,9 @@ export function buildSiteGraph() {
       {
         '@type': 'WebSite',
         '@id': WEBSITE_ID,
-        url: SITE_URL,
+        url: `${SITE_URL}/`,
         name: STUDIO_NAME,
+        alternateName: ALTERNATE_NAMES,
         description: STUDIO_DESCRIPTION,
         publisher: { '@id': ORG_ID },
         inLanguage: 'en-ZA',

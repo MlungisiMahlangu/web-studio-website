@@ -52,6 +52,7 @@ export const SOCIAL_LINKS: SocialProfile[] = []
 
 export const ALTERNATE_NAMES = [
   'WEB-IN',
+  'WEB-IN Digital Studio',
   'Web-In',
   'WEBIN',
   'Web In',
@@ -794,10 +795,6 @@ export interface EnquiryServiceOption {
 }
 
 export const buildServiceOptions: EnquiryServiceOption[] = [
-  {
-    value: 'Website Design & Development',
-    description: 'A new business website, built around your goals.',
-  },
   {
     value: 'Starter Website',
     description: 'A focused site of up to 4 pages for a small business.',

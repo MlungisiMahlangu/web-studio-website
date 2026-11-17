@@ -65,6 +65,14 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // Retired deployment host: one permanent hop to the canonical www domain.
+      // Exact host match only, so preview URLs and localhost are untouched.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'web-in-jet.vercel.app' }],
+        destination: 'https://www.web-in.co.za/:path*',
+        permanent: true,
+      },
       // Canonical host: web-in.co.za -> www.web-in.co.za (308).
       {
         source: '/:path*',
@@ -121,6 +129,15 @@ const nextConfig = {
         source: '/images/(.*)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=86400' },
+        ],
+      },
+      {
+        source: '/:file(favicon\\.ico|icon\\.png|icon-48\\.png|icon-192\\.png|apple-icon\\.png|logo\\.png)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
         ],
       },
       {

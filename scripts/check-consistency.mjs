@@ -354,6 +354,153 @@ for (const [name, contents] of [['llms.txt', llmsTxt], ['llms-full.txt', llmsFul
   }
 }
 
+// 11. Retired deployment host: only the redirect rule, the checklist and this file may name it
+const retiredHost = 'web-in-jet.vercel.app'
+const retiredHostAllowed = new Set([
+  'next.config.mjs',
+  'docs/post-deploy-seo-checklist.md',
+  'scripts/check-consistency.mjs',
+])
+for (const file of repoFiles) {
+  const contents = await read(file)
+  if (!contents.includes(retiredHost)) continue
+  if (!retiredHostAllowed.has(rel(file).replaceAll('\\', '/'))) {
+    fail(`${rel(file)} references ${retiredHost}; only next.config.mjs (redirect) and the post-deploy checklist may`)
+  }
+}
+const nextConfig = await read(join(root, 'next.config.mjs'))
+const retiredBlock = nextConfig.split(retiredHost)[1]?.slice(0, 400) ?? ''
+if (!new RegExp(`type: 'host',\\s*value: '${retiredHost.replaceAll('.', '\\.')}'`).test(nextConfig)) {
+  fail(`next.config.mjs: missing a host redirect for ${retiredHost}`)
+} else {
+  if (!retiredBlock.includes("destination: 'https://www.web-in.co.za/:path*'")) {
+    fail(`next.config.mjs: the ${retiredHost} rule must redirect to https://www.web-in.co.za/:path*`)
+  }
+  if (!/permanent: true/.test(retiredBlock)) {
+    fail(`next.config.mjs: the ${retiredHost} rule must be permanent (308)`)
+  }
+}
+
+// 12. Icon files, declared sizes and the manifest must agree
+const pngDimensions = async (file) => {
+  const buffer = await readFile(file)
+  if (buffer.length < 24 || buffer.readUInt32BE(0) !== 0x89504e47) return null
+  return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) }
+}
+const icoSizes = async (file) => {
+  const buffer = await readFile(file)
+  if (buffer.length < 6 || buffer.readUInt16LE(2) !== 1) return []
+  const count = buffer.readUInt16LE(4)
+  const sizes = []
+  for (let i = 0; i < count; i++) {
+    const offset = 6 + i * 16
+    if (offset + 16 > buffer.length) break
+    sizes.push(buffer[offset] === 0 ? 256 : buffer[offset])
+  }
+  return sizes
+}
+
+const expectedPngs = {
+  'public/icon.png': 512,
+  'public/logo.png': 512,
+  'public/icon-192.png': 192,
+  'public/icon-48.png': 48,
+  'public/apple-icon.png': 180,
+}
+for (const [file, size] of Object.entries(expectedPngs)) {
+  try {
+    const dimensions = await pngDimensions(join(root, file))
+    if (!dimensions) fail(`${file} is not a PNG`)
+    else if (dimensions.width !== size || dimensions.height !== size) {
+      fail(`${file} is ${dimensions.width}x${dimensions.height}, expected ${size}x${size}`)
+    }
+  } catch {
+    fail(`${file} is missing; run pnpm icons`)
+  }
+}
+
+try {
+  const sizes = await icoSizes(join(root, 'public/favicon.ico'))
+  for (const required of [16, 32, 48]) {
+    if (!sizes.includes(required)) fail(`public/favicon.ico has no ${required}x${required} entry`)
+  }
+} catch {
+  fail('public/favicon.ico is missing; run pnpm icons')
+}
+
+const layoutSource = await read(join(root, 'app/layout.tsx'))
+const manifestSource = await read(join(root, 'app/manifest.ts'))
+for (const icon of ['/favicon.ico', '/icon-48.png', '/icon-192.png', '/icon.png', '/apple-icon.png']) {
+  if (!layoutSource.includes(`'${icon}'`)) fail(`app/layout.tsx: metadata icons must include ${icon}`)
+  if (!manifestSource.includes(`'${icon}'`)) warn(`app/manifest.ts: icons do not include ${icon}`)
+}
+if (/v0\.(?:dev|app|com)/i.test(layoutSource + manifestSource)) {
+  fail('layout or manifest still declares v0 metadata')
+}
+const manifestIcons = [...manifestSource.matchAll(/src: '([^']+)',\s*sizes: '(\d+)x(\d+)'/g)]
+if (manifestIcons.length === 0) fail('app/manifest.ts: no icons with sizes found')
+for (const [, src, width, height] of manifestIcons) {
+  const file = `public${src}`
+  if (src.endsWith('.png')) {
+    try {
+      const dimensions = await pngDimensions(join(root, file))
+      if (!dimensions) fail(`app/manifest.ts: ${src} is not a PNG`)
+      else if (`${dimensions.width}x${dimensions.height}` !== `${width}x${height}`) {
+        fail(`app/manifest.ts: ${src} is declared ${width}x${height} but the file is ${dimensions.width}x${dimensions.height}`)
+      }
+    } catch {
+      fail(`app/manifest.ts: icon ${src} does not exist`)
+    }
+  } else if (src.endsWith('.ico')) {
+    try {
+      const sizes = await icoSizes(join(root, file))
+      if (!sizes.includes(Number(width))) fail(`app/manifest.ts: ${src} declares ${width}px but the file has ${sizes.join(', ')}`)
+    } catch {
+      fail(`app/manifest.ts: icon ${src} does not exist`)
+    }
+  }
+}
+if (!/src: '\/icon-192\.png',[\s\S]{0,120}purpose: 'any'/.test(manifestSource)) {
+  fail("app/manifest.ts: the 192x192 icon must declare purpose: 'any'")
+}
+if (!nextConfig.includes("source: '/:file(favicon") || !nextConfig.includes('stale-while-revalidate=604800')) {
+  fail('next.config.mjs: icon files need Cache-Control public, max-age=86400, stale-while-revalidate=604800')
+}
+
+// 13. Crawl rules: images may be indexed, and the noindex thank-you page must stay crawlable
+const robotsSource = await read(join(root, 'app/robots.ts'))
+if (!robotsSource.includes("'Googlebot-Image'")) {
+  fail('app/robots.ts: Googlebot-Image must be allowed')
+}
+if (/contact\/thank-you/.test(robotsSource)) {
+  fail('app/robots.ts must not disallow /contact/thank-you; the page is noindexed so Google has to read it')
+}
+if (!/sitemap:\s*`\$\{SITE_URL\}\/sitemap\.xml`/.test(robotsSource)) {
+  fail('app/robots.ts: sitemap must be declared from SITE_URL')
+}
+
+// 14. Site identity: one WebSite entity with the studio name and alternates
+if (!constants.includes("'WEB-IN Digital Studio'")) {
+  fail("lib/constants.ts: ALTERNATE_NAMES must include 'WEB-IN Digital Studio'")
+}
+if (!/alternateName:\s*ALTERNATE_NAMES/.test(seoSource)) {
+  fail('lib/seo.ts: the WebSite node must declare alternateName from ALTERNATE_NAMES')
+}
+const websiteNodes = (seoSource.match(/'@type': 'WebSite'/g) ?? []).length
+if (websiteNodes !== 1) fail(`lib/seo.ts: expected exactly one WebSite entity, found ${websiteNodes}`)
+if (!seoSource.includes('return `${SITE_URL}/`')) {
+  fail('lib/seo.ts: the homepage URL must end with a trailing slash')
+}
+if (!/canonical\s*=\s*absoluteUrl\(path\)/.test(seoSource)) {
+  fail('lib/seo.ts: alternatesFor must derive the canonical from absoluteUrl')
+}
+if (!/url: absoluteUrl\(path\)/.test(seoSource)) {
+  fail('lib/seo.ts: openGraphFor must derive og:url from absoluteUrl')
+}
+if (!seoSource.includes('${SITE_URL}/logo.png')) {
+  fail('lib/seo.ts: the Organization logo must be the crawlable /logo.png')
+}
+
 // 9. Optional live check
 if (process.argv.includes('--live')) {
   const siteUrl = constants.match(/export const SITE_URL\s*=\s*'([^']+)'/)?.[1]

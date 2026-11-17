@@ -3,6 +3,7 @@ import { SITE_URL } from '@/lib/constants'
 
 const allowedCrawlers = [
   'Googlebot',
+  'Googlebot-Image',
   'Bingbot',
   'GPTBot',
   'OAI-SearchBot',
@@ -26,12 +27,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/contact/thank-you'],
+        disallow: ['/api/'],
       },
       ...allowedCrawlers.map((userAgent) => ({
         userAgent,
         allow: '/',
-        disallow: ['/api/', '/contact/thank-you'],
+        disallow: ['/api/'],
       })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

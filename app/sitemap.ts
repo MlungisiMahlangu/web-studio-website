@@ -4,7 +4,7 @@ import { publicRoutes } from '@/lib/routes'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = publicRoutes.map((route) => ({
-    url: `${SITE_URL}${route.path === '/' ? '' : route.path}`,
+    url: `${SITE_URL}${route.path === '/' ? '/' : route.path}`,
     lastModified: new Date(route.lastModified),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
