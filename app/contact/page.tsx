@@ -6,7 +6,7 @@ import { IconBox } from '@/components/ui/icon-box'
 import { Reveal } from '@/components/ui/reveal'
 import { EnquiryForm } from '@/components/forms/enquiry-form'
 import { STUDIO_EMAIL, STUDIO_PHONE, STUDIO_WHATSAPP, STUDIO_SERVICE_AREA } from '@/lib/constants'
-import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { alternatesFor, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
@@ -15,13 +15,8 @@ export const metadata: Metadata = {
   description:
     'Contact WEB-IN about your web project. Request a quote, ask questions or discuss your ideas by email, phone or WhatsApp. Based in Johannesburg, serving South Africa.',
   alternates: alternatesFor('/contact'),
-  openGraph: {
-    title: 'Contact WEB-IN | Get a website quote',
-    description:
-      'Request a quote for your website. Email, phone or WhatsApp, with replies within 1-2 business days.',
-    type: 'website',
-    url: '/contact',
-  },
+  openGraph: openGraphFor('/contact', 'Get a Website Quote in South Africa', 'Contact WEB-IN about your web project. Request a quote, ask questions or discuss your ideas by email, phone or WhatsApp. Based in Johannesburg, serving South Africa.'),
+  twitter: twitterFor('Get a Website Quote in South Africa', 'Contact WEB-IN about your web project. Request a quote, ask questions or discuss your ideas by email, phone or WhatsApp. Based in Johannesburg, serving South Africa.'),
 }
 
 export default function ContactPage() {
@@ -61,9 +56,10 @@ export default function ContactPage() {
                   Tell us about<br />your project.
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-body">
-                  Fill in the form below and we'll get back to you with a thoughtful response.
+                  Five short sections. It takes a few minutes, and you can skip anything
+                  you&rsquo;re unsure about.
                 </p>
-                <div className="mt-10 rounded-2xl border border-line bg-white shadow-card p-8 sm:p-10">
+                <div className="mt-8">
                   <EnquiryForm />
                 </div>
               </div>

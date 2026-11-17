@@ -2,20 +2,29 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
-import { alternatesFor } from '@/lib/seo'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Cookie Policy',
-  description: `Which cookies the ${STUDIO_NAME} website uses, what they do and how you can manage or disable them in your browser.`,
+  description: `Which cookies and local storage the ${STUDIO_NAME} website uses, what they do and how you can manage or clear them in your browser.`,
   alternates: alternatesFor('/cookie-policy'),
+  openGraph: openGraphFor(
+    '/cookie-policy',
+    'Cookie Policy',
+    'No tracking cookies: what WEB-IN stores in your browser, how cookie-free analytics work, and how to clear your data.',
+  ),
+  twitter: twitterFor(
+    'Cookie Policy',
+    'What WEB-IN stores in your browser, cookie-free analytics and how to clear your data.',
+  ),
 }
 
 const tocItems = [
-  { id: 'what-are-cookies', label: 'What are cookies' },
-  { id: 'how-we-use', label: 'How we use cookies' },
-  { id: 'third-party', label: 'Third-party cookies' },
-  { id: 'managing', label: 'Managing cookies' },
+  { id: 'what-are-cookies', label: 'Cookies and local storage' },
+  { id: 'what-we-store', label: 'What we store' },
+  { id: 'analytics', label: 'Analytics' },
+  { id: 'managing', label: 'Managing your data' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -76,36 +85,47 @@ export default function CookiePolicyPage() {
                 Last updated: {lastUpdated}
               </p>
 
-              <h2 id="what-are-cookies">What are cookies</h2>
+              <h2 id="what-are-cookies">Cookies and local storage</h2>
               <p>
-                Cookies are small text files stored on your device when you visit a
-                website. They help the website remember your preferences and improve your
-                experience.
+                Cookies are small text files a website can store in your browser. Local
+                storage works in a similar way, but the data stays in your browser and is
+                not sent with every request. This website sets no advertising or tracking
+                cookies.
               </p>
 
-              <h2 id="how-we-use">How we use cookies</h2>
+              <h2 id="what-we-store">What we store</h2>
               <p>
-                Our website may use the following types of cookies:
+                We keep two preferences in your browser&apos;s local storage:
               </p>
               <ul>
                 <li>
-                  <strong className="text-navy font-medium">Essential cookies</strong> — Required for the website to function properly.
+                  <strong className="text-navy font-medium">cookie-consent</strong> —
+                  remembers that you dismissed the cookie notice so it does not appear
+                  again.
                 </li>
                 <li>
-                  <strong className="text-navy font-medium">Analytics cookies</strong> — Help us understand how visitors interact with the website.
+                  <strong className="text-navy font-medium">webin:enquiry-draft</strong> —
+                  saves your progress in the enquiry form so a refresh does not lose your
+                  answers. It is cleared from your browser once the form is sent.
                 </li>
               </ul>
-
-              <h2 id="third-party">Third-party cookies</h2>
               <p>
-                We may use third-party services like Google Analytics, which set their own
-                cookies. These are governed by the respective third-party privacy policies.
+                Neither entry contains advertising identifiers or is shared with anyone.
               </p>
 
-              <h2 id="managing">Managing cookies</h2>
+              <h2 id="analytics">Analytics</h2>
               <p>
-                You can control and delete cookies through your browser settings. Note
-                that disabling certain cookies may affect the functionality of the website.
+                Our production site uses Vercel Analytics to count page views and measure
+                site performance. It is cookie-free, does not fingerprint visitors and does
+                not track you across other websites. Aggregate performance and usage
+                figures may be processed by Vercel on our behalf.
+              </p>
+
+              <h2 id="managing">Managing your data</h2>
+              <p>
+                You can clear cookies and local storage at any time through your browser
+                settings. Removing the enquiry draft simply means unsent answers are lost;
+                the site continues to work normally.
               </p>
 
               <h2 id="contact">Contact</h2>

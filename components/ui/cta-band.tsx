@@ -30,7 +30,7 @@ export function CTABand({
           <div className="max-w-[700px] mx-auto text-center">
             {eyebrow && (
               <p
-                className="text-xs font-semibold uppercase text-brand mb-6"
+                className="text-xs font-semibold uppercase text-brand-on-dark mb-6"
                 style={{ letterSpacing: '0.14em' }}
               >
                 {eyebrow}

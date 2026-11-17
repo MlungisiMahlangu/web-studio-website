@@ -1,4 +1,5 @@
 import { CONTENT_UPDATED, LAST_UPDATED } from './constants'
+import { carePriceChoices } from './care-plans'
 
 export interface PublicRoute {
   path: string
@@ -28,7 +29,7 @@ export const publicRoutes: PublicRoute[] = [
     lastModified: LAST_UPDATED,
     title: 'Services and pricing',
     description:
-      'The full WEB-IN price list: Starter Website R2,500, Business Website from R4,000, Online Store from R7,000, Website Redesign from R2,500 and Custom Web Application from R10,000, all once-off, plus optional monthly care plans at R149, R299 or R499.',
+      `The full WEB-IN price list: Starter Website R2,500, Business Website from R4,000, Online Store from R7,000, Website Redesign from R2,500 and Custom Web Application from R10,000, all once-off, plus optional monthly care plans at ${carePriceChoices}.`,
   },
   {
     path: '/website-care-management',
@@ -37,7 +38,7 @@ export const publicRoutes: PublicRoute[] = [
     lastModified: LAST_UPDATED,
     title: 'Website care and management',
     description:
-      'Monthly website care at R149, R299 or R499: managed hosting, business email within an allowance, security updates, backups and support, with no requirement to take a plan.',
+      `Monthly website care at ${carePriceChoices}: managed hosting, business email within an allowance, security updates, backups and support, with no requirement to take a plan.`,
   },
   {
     path: '/work',

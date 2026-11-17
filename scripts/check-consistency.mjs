@@ -151,7 +151,64 @@ for (const route of routePaths) {
   }
 }
 
-// 6. IndexNow key file
+// 6. Route metadata must be unique, and noindex pages must stay out of the sitemap
+const routeEntries = [...routesFile.matchAll(/\{\s*path:\s*'([^']+)',[\s\S]*?title:\s*'([^']+)',\s*description:\s*(?:'((?:[^'\\]|\\.)*)'|`([^`]*)`)/g)].map(
+  (match) => ({ path: match[1], title: match[2], description: match[3] ?? match[4] }),
+)
+if (routeEntries.length !== routePaths.length) {
+  fail(`lib/routes.ts: parsed ${routeEntries.length} of ${routePaths.length} route titles`)
+}
+const seenTitles = new Map()
+const seenDescriptions = new Map()
+for (const entry of routeEntries) {
+  const previousTitle = seenTitles.get(entry.title)
+  if (previousTitle) fail(`lib/routes.ts: duplicate title "${entry.title}" on ${previousTitle} and ${entry.path}`)
+  else seenTitles.set(entry.title, entry.path)
+  const previousDescription = seenDescriptions.get(entry.description)
+  if (previousDescription) {
+    fail(`lib/routes.ts: duplicate description on ${previousDescription} and ${entry.path}`)
+  } else seenDescriptions.set(entry.description, entry.path)
+  if (entry.path === '/contact/thank-you') {
+    fail('lib/routes.ts: /contact/thank-you must not be listed (it is noindex)')
+  }
+}
+for (const removed of ['/services', '/services/']) {
+  if (routePaths.includes(removed)) fail(`lib/routes.ts: removed route ${removed} is still listed`)
+}
+const thankYouPage = await read(join(root, 'app/contact/thank-you/page.tsx'))
+if (!/index:\s*false/.test(thankYouPage)) {
+  fail('app/contact/thank-you/page.tsx must set robots.index = false')
+}
+if (!/follow:\s*false/.test(thankYouPage)) {
+  fail('app/contact/thank-you/page.tsx must set robots.follow = false')
+}
+
+// 6b. llms files must carry the AI guidance sections and read care prices from data
+const llmsSources = {
+  'llms.txt': await read(join(root, 'app/llms.txt/route.ts')),
+  'llms-full.txt': await read(join(root, 'app/llms-full.txt/route.ts')),
+}
+for (const [name, contents] of Object.entries(llmsSources)) {
+  if (!contents.includes('## How to describe WEB-IN')) {
+    fail(`${name} must include a "How to describe WEB-IN" section`)
+  }
+  if (!contents.includes('## What WEB-IN does NOT claim')) {
+    fail(`${name} must include a "What WEB-IN does NOT claim" section`)
+  }
+}
+
+// 6c. Care plan prices may only be written in lib/care-plans.ts
+for (const file of sourceFiles) {
+  if (rel(file).replaceAll('\\', '/') === 'lib/care-plans.ts') continue
+  const contents = await read(file)
+  if (/R(?:149|299|499)\b/.test(contents)) {
+    fail(
+      `${rel(file)} hard-codes a care plan price; read carePlans or carePriceChoices from lib/care-plans.ts`,
+    )
+  }
+}
+
+// 7. IndexNow key file
 const key = constants.match(/export const INDEXNOW_KEY\s*=\s*'([^']+)'/)?.[1]
 if (!key) fail('lib/constants.ts: INDEXNOW_KEY is missing')
 else {
@@ -309,7 +366,34 @@ if (process.argv.includes('--live')) {
     const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
     for (const url of urls) {
       const response = await fetch(url, { method: 'GET' })
-      if (!response.ok) fail(`Live URL ${url} returned ${response.status}`)
+      if (!response.ok) {
+        fail(`Live URL ${url} returned ${response.status}`)
+        continue
+      }
+      const html = await response.text()
+      const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1]
+      const expected = url.replace(/\/$/, '')
+      if (!canonical) fail(`Live URL ${url} has no canonical link`)
+      else if (canonical.replace(/\/$/, '') !== expected) {
+        fail(`Live URL ${url} canonical is ${canonical}`)
+      }
+      const jsonLdBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      if (jsonLdBlocks.length === 0) {
+        warn(`Live URL ${url} has no JSON-LD`)
+      }
+      for (const [, payload] of jsonLdBlocks) {
+        try {
+          JSON.parse(payload)
+        } catch {
+          fail(`Live URL ${url} has JSON-LD that does not parse`)
+        }
+      }
+    }
+    const llmsResponse = await fetch(`${siteUrl}/llms.txt`)
+    const contentType = llmsResponse.headers.get('content-type') ?? ''
+    if (!llmsResponse.ok) fail(`Live ${siteUrl}/llms.txt returned ${llmsResponse.status}`)
+    else if (!contentType.startsWith('text/plain')) {
+      fail(`Live /llms.txt content-type is ${contentType}`)
     }
     console.log(`Live check: ${urls.length} sitemap URLs requested`)
   }

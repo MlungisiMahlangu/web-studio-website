@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePlans } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Ecommerce Website South Africa',
   description:
     'Online store development for South African businesses. Product catalogues, cart and checkout with PayFast, Yoco or Ozow. Ecommerce websites from R7,000.',
   alternates: alternatesFor('/ecommerce-website-south-africa'),
-  openGraph: {
-    title: 'Ecommerce Website South Africa | WEB-IN',
-    description:
-      'Online stores built for South African shoppers: clear product pages, local payment options and a checkout that works on a phone. From R7,000.',
-    type: 'website',
-    url: '/ecommerce-website-south-africa',
-  },
+  openGraph: openGraphFor('/ecommerce-website-south-africa', 'Ecommerce Website South Africa', 'Online store development for South African businesses. Product catalogues, cart and checkout with PayFast, Yoco or Ozow. Ecommerce websites from R7,000.'),
+  twitter: twitterFor('Ecommerce Website South Africa', 'Online store development for South African businesses. Product catalogues, cart and checkout with PayFast, Yoco or Ozow. Ecommerce websites from R7,000.'),
 }
 
 const faqs = [
@@ -124,7 +120,7 @@ export default function EcommerceWebsiteSouthAfricaPage() {
           alt: false,
           paragraphs: [
             'A store is not finished at launch. Products change, prices move and stock runs out. The system is set up so you can manage the day-to-day parts yourself, and we include a handover session that covers products, orders and basic settings.',
-            'If you would rather not manage it, Advanced Application Management is R499 per month and covers the store’s technical side, including business email within the plan’s mailbox allowance. A store rebuild or new feature is quoted separately.',
+            `If you would rather not manage it, ${carePlans[2].name} is ${carePlans[2].priceLabel} per month and covers the store’s technical side, including business email within the plan’s mailbox allowance. A store rebuild or new feature is quoted separately.`,
             'We also keep an eye on the technical side after launch. Payment integrations, shipping settings and software updates are the parts most likely to break quietly, so they are worth checking regularly.',
           ],
         },

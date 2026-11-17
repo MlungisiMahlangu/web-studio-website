@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePriceChoices } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Website Design Johannesburg',
   description:
     'Website design and development in Johannesburg for small businesses. Mobile-first sites from R2,500, built to load fast and turn enquiries into customers.',
   alternates: alternatesFor('/website-design-johannesburg'),
-  openGraph: {
-    title: 'Website Design Johannesburg | WEB-IN',
-    description:
-      'Johannesburg website design for small businesses and professionals. Mobile-first, fast and built around enquiries. Websites from R2,500.',
-    type: 'website',
-    url: '/website-design-johannesburg',
-  },
+  openGraph: openGraphFor('/website-design-johannesburg', 'Website Design Johannesburg', 'Website design and development in Johannesburg for small businesses. Mobile-first sites from R2,500, built to load fast and turn enquiries into customers.'),
+  twitter: twitterFor('Website Design Johannesburg', 'Website design and development in Johannesburg for small businesses. Mobile-first sites from R2,500, built to load fast and turn enquiries into customers.'),
 }
 
 const faqs = [
@@ -125,7 +121,7 @@ export default function WebsiteDesignJohannesburgPage() {
           paragraphs: [
             'We start with a conversation about your business, your customers and what the site needs to achieve. From there we agree on scope, pages and a fixed starting price. A 50% deposit books the project; the balance is due before launch.',
             'You supply the text and images unless you add content help. We give you a clear content checklist so you know what is needed and in what format. Design comes next, followed by development, testing and launch.',
-            'After launch you have a defined support period. Optional care plans are R149, R299 or R499 per month depending on the site, covering ongoing updates, security checks, small changes and business email within the plan’s mailbox allowance. Neither the plan nor the support period is compulsory.',
+            `After launch you have a defined support period. Optional care plans are ${carePriceChoices} per month depending on the site, covering ongoing updates, security checks, small changes and business email within the plan’s mailbox allowance. Neither the plan nor the support period is compulsory.`,
           ],
         },
         {

@@ -220,7 +220,7 @@ export default function PricingPage() {
                       </h3>
                     </div>
                     <div className="mt-2">
-                      <span className={`inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase ${isPopular ? 'bg-brand/20 text-white' : 'bg-blue-tint text-brand'}`} style={{ letterSpacing: '0.08em' }}>
+                      <span className={`inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase ${isPopular ? 'bg-brand/20 text-white' : 'bg-blue-tint text-brand-hover'}`} style={{ letterSpacing: '0.08em' }}>
                         Once-off
                       </span>
                     </div>
@@ -236,30 +236,30 @@ export default function PricingPage() {
 
                   <div className="mt-6 px-7 grid grid-cols-2 gap-3">
                     <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
-                      <FileText size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <FileText size={14} className={isPopular ? 'text-white/60' : 'text-muted'} />
                       <div>
-                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Pages</p>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/60' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Pages</p>
                         <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.pages}</p>
                       </div>
                     </div>
                     <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
-                      <Clock size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <Clock size={14} className={isPopular ? 'text-white/60' : 'text-muted'} />
                       <div>
-                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Timeline</p>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/60' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Timeline</p>
                         <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.timeline}</p>
                       </div>
                     </div>
                     <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
-                      <RefreshCw size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <RefreshCw size={14} className={isPopular ? 'text-white/60' : 'text-muted'} />
                       <div>
-                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Revisions</p>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/60' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Revisions</p>
                         <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.revisions}</p>
                       </div>
                     </div>
                     <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
-                      <LifeBuoy size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
+                      <LifeBuoy size={14} className={isPopular ? 'text-white/60' : 'text-muted'} />
                       <div>
-                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Support</p>
+                        <p className={`text-[10px] uppercase ${isPopular ? 'text-white/60' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>Support</p>
                         <p className={`text-xs font-medium ${isPopular ? 'text-white/70' : 'text-navy'}`}>{svc.facts.support}</p>
                       </div>
                     </div>
@@ -283,14 +283,14 @@ export default function PricingPage() {
 
                   {svc.notIncluded.length > 0 && (
                   <div className="mt-6 px-7">
-                    <p className={`text-xs font-semibold uppercase mb-2 ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>
+                    <p className={`text-xs font-semibold uppercase mb-2 ${isPopular ? 'text-white/60' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>
                       Not included
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {svc.notIncluded.map((item, idx) => (
                         <span
                           key={idx}
-                          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${isPopular ? 'bg-white/5 text-white/40' : 'bg-surface text-muted'}`}
+                          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${isPopular ? 'bg-white/5 text-white/60' : 'bg-surface text-muted'}`}
                         >
                           <Minus size={10} />
                           {item}

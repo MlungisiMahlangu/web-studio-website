@@ -1,3 +1,5 @@
+import { carePlans, carePriceChoices } from './care-plans'
+
 export interface BlogArticle {
   slug: string
   title: string
@@ -352,7 +354,7 @@ Websites are not static. Software needs updates, forms need testing, content cha
 
 There are two reasonable answers. Either the site is built so you can update it yourself, or there is a maintenance arrangement with a clear monthly cost. What you want to avoid is a site that can only be changed by one person who is difficult to reach.
 
-Our optional care plans are R149, R299 and R499 per month depending on the site. Each includes business email on your own domain within the plan's mailbox allowance. They exist for businesses that would rather not manage updates themselves, but the website does not depend on them.
+Our optional care plans are ${carePriceChoices} per month depending on the site. Each includes business email on your own domain within the plan's mailbox allowance. They exist for businesses that would rather not manage updates themselves, but the website does not depend on them.
 
 ## Ask about ownership and access
 
@@ -487,8 +489,9 @@ If you are unsure, tell us what the business does and who it serves. We will rec
   },
   {
     slug: 'payfast-yoco-ozow-online-store-south-africa',
-    title: 'PayFast vs Yoco vs Ozow: choosing payments for a South African online store',
-    description: 'A practical comparison of PayFast, Yoco and Ozow for South African online stores, covering how each fits, what to check before integrating and how payments affect checkout.',
+    title: 'PayFast vs Yoco vs Ozow: online store payments',
+    description:
+      'PayFast, Yoco and Ozow compared for South African online stores: how each gateway fits, what to check before integrating and how payments shape checkout.',
     publishedAt: '2026-10-24',
     readingTime: '8 min read',
     content: `
@@ -578,7 +581,7 @@ If you are still deciding whether you need a store at all, the [website cost gui
   },
   {
     slug: 'website-redesign-checklist-south-africa',
-    title: 'A website redesign checklist for South African businesses',
+    title: 'A website redesign checklist for South Africa',
     description: 'A step-by-step website redesign checklist: what to audit, what to keep, how to protect search visibility and what to test before the new site goes live.',
     publishedAt: '2026-10-28',
     readingTime: '8 min read',
@@ -734,7 +737,7 @@ Most businesses need occasional small changes: a new phone number, a price updat
 
 These are small individually. Together they are the reason a website stays accurate. A site that is never updated slowly becomes misleading.
 
-Care plans usually include a set amount of update time each month. At WEB-IN, Essential Web Care is R149 per month and covers uptime and security checks, small content updates, minor bug fixes, business email within the plan's mailbox allowance and replies within two business days. Business Website Care is R299 per month and adds more update time, monthly performance and backup checks and replies within one business day. Advanced Application Management is R499 per month for stores and custom applications, with a larger mailbox allowance.
+Care plans usually include a set amount of update time each month. At WEB-IN, ${carePlans[0].name} is ${carePlans[0].priceLabel} per month and covers uptime and security checks, small content updates, minor bug fixes, business email within the plan's mailbox allowance and replies within two business days. ${carePlans[1].name} is ${carePlans[1].priceLabel} per month and adds more update time, monthly performance and backup checks and replies within one business day. ${carePlans[2].name} is ${carePlans[2].priceLabel} per month for stores and custom applications, with a larger mailbox allowance.
 
 ## Business email is part of the plan
 

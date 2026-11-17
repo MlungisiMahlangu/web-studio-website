@@ -36,7 +36,7 @@ export function BrowserFrame({
         <span className="w-3 h-3 rounded-full bg-red-400/60" />
         <span className="w-3 h-3 rounded-full bg-yellow-400/60" />
         <span className="w-3 h-3 rounded-full bg-blue-400/60" />
-        {hostname ? <span className="ml-3 text-xs text-body truncate">{hostname}</span> : null}
+        {hostname ? <span className="ml-3 truncate rounded-md bg-white/90 px-2 py-0.5 text-xs text-navy">{hostname}</span> : null}
       </div>
       {/* Content */}
       <div className="p-4">

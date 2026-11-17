@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { blogArticles, STUDIO_NAME } from '@/lib/constants'
-import { alternatesFor, articleSchema, webPageSchema } from '@/lib/seo'
+import { alternatesFor, articleSchema, openGraphFor, twitterFor, webPageSchema } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -37,15 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     authors: [{ name: STUDIO_NAME, url: '/' }],
     alternates: alternatesFor(`/blog/${slug}`),
-    openGraph: {
-      title: article.title,
-      description: article.description,
+    openGraph: openGraphFor(`/blog/${slug}`, article.title, article.description, {
       type: 'article',
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt ?? article.publishedAt,
-      url: `/blog/${slug}`,
       authors: [STUDIO_NAME],
-    },
+    }),
+    twitter: twitterFor(article.title, article.description),
   }
 }
 

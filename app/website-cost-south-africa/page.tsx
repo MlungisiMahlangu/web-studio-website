@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePlans, carePriceChoices } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Website Cost South Africa',
   description:
     'What a website costs in South Africa: Starter R2,500, Business from R4,000, stores from R7,000 and custom applications from R10,000. See what changes the price.',
   alternates: alternatesFor('/website-cost-south-africa'),
-  openGraph: {
-    title: 'What a Website Costs in South Africa | WEB-IN',
-    description:
-      'A clear breakdown of website costs in South Africa, what is included at each level and the factors that move the final price.',
-    type: 'website',
-    url: '/website-cost-south-africa',
-  },
+  openGraph: openGraphFor('/website-cost-south-africa', 'Website Cost South Africa', 'What a website costs in South Africa: Starter R2,500, Business from R4,000, stores from R7,000 and custom applications from R10,000. See what changes the price.'),
+  twitter: twitterFor('Website Cost South Africa', 'What a website costs in South Africa: Starter R2,500, Business from R4,000, stores from R7,000 and custom applications from R10,000. See what changes the price.'),
 }
 
 const faqs = [
@@ -35,7 +31,7 @@ const faqs = [
   {
     question: 'Do you charge monthly fees?',
     answer:
-      'Not by default. A website is a once-off project. If you want ongoing updates, security checks, support and business email, optional care plans are R149, R299 or R499 per month depending on the site.',
+      `Not by default. A website is a once-off project. If you want ongoing updates, security checks, support and business email, optional care plans are ${carePriceChoices} per month depending on the site.`,
   },
   {
     question: 'Why do quotes for the same website vary so much?',
@@ -131,7 +127,7 @@ export default function WebsiteCostSouthAfricaPage() {
           alt: false,
           paragraphs: [
             'A website needs a domain, and it needs hosting somewhere. The domain is an annual cost paid to the registrar. Hosting can be arranged and managed as part of an optional care plan, or paid for directly if you prefer. Paid plugins and subscriptions are separate too.',
-            'Care plans are optional and priced flat: Essential Web Care is R149 per month, Business Website Care is R299 per month and Advanced Application Management is R499 per month. Each includes business email within its mailbox allowance, plus hosting management, security checks, backups where supported, small content updates and support.',
+            `Care plans are optional and priced flat: ${carePlans[0].name} is ${carePlans[0].priceLabel} per month, ${carePlans[1].name} is ${carePlans[1].priceLabel} per month and ${carePlans[2].name} is ${carePlans[2].priceLabel} per month. Each includes business email within its mailbox allowance, plus hosting management, security checks, backups where supported, small content updates and support.`,
             'If you prefer to handle updates yourself, the website still works. The care plans exist for businesses that would rather not think about it.',
           ],
         },

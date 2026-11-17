@@ -4,10 +4,11 @@ import type { Metadata } from 'next'
 import {
   carePlans,
   carePlanBillingNote,
+  carePriceChoices,
   emailShort,
 } from '@/lib/care-plans'
 import { SITE_URL } from '@/lib/constants'
-import { alternatesFor, breadcrumbSchema, careOfferId, faqSchema, ORG_ID, webPageSchema } from '@/lib/seo'
+import { alternatesFor, breadcrumbSchema, careOfferId, faqSchema, openGraphFor, ORG_ID, twitterFor, webPageSchema } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { PageHero } from '@/components/ui/page-hero'
 import { Container } from '@/components/ui/container'
@@ -24,16 +25,17 @@ const path = '/website-care-management'
 export const metadata: Metadata = {
   title: 'Website Care & Management South Africa',
   description:
-    'Website care from WEB-IN: hosting, domain and DNS management, business email within an allowance, security updates, backups and support. R149, R299 or R499 per month.',
+    `Website care from WEB-IN: hosting, domain and DNS, business email within an allowance, security updates, backups and support. ${carePriceChoices} per month.`,
   alternates: alternatesFor(path),
-  openGraph: {
-    title: 'Website Care & Management | WEB-IN',
-    description:
-      'Ongoing website management for South African businesses: hosting, domain and DNS, business email, updates, checks and support on a monthly plan.',
-    type: 'website',
-    locale: 'en_ZA',
-    url: path,
-  },
+  openGraph: openGraphFor(
+    path,
+    'Website Care & Management South Africa',
+    'Monthly website care from WEB-IN: hosting, domain and DNS management, business email within an allowance, security updates, backups and support.',
+  ),
+  twitter: twitterFor(
+    'Website Care & Management South Africa',
+    'Hosting, domain and DNS, business email, updates, checks and support on a monthly plan.',
+  ),
 }
 
 const covered = [

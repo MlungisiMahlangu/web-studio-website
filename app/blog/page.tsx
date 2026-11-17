@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { blogArticles } from '@/lib/constants'
-import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { alternatesFor, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -23,12 +23,8 @@ export const metadata: Metadata = {
     'website development articles',
   ],
   alternates: alternatesFor('/blog'),
-  openGraph: {
-    title: 'Blog | WEB-IN Insights',
-    description: 'Practical guides about website costs, timelines, and building an online presence for South African businesses.',
-    type: 'website',
-    url: '/blog',
-  },
+  openGraph: openGraphFor('/blog', 'Web Design and Development Blog', 'Practical guides on website costs, timelines, design and online growth for South African businesses, written by the WEB-IN studio in Johannesburg.'),
+  twitter: twitterFor('Web Design and Development Blog', 'Practical guides on website costs, timelines, design and online growth for South African businesses, written by the WEB-IN studio in Johannesburg.'),
 }
 
 const blogJsonLd = {

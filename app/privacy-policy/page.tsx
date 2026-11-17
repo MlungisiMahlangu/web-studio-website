@@ -3,13 +3,22 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
-import { alternatesFor } from '@/lib/seo'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: `How ${STUDIO_NAME} collects, uses and protects your personal information under POPIA, and how to contact us about your data.`,
   alternates: alternatesFor('/privacy-policy'),
+  openGraph: openGraphFor(
+    '/privacy-policy',
+    'Privacy Policy',
+    'How WEB-IN collects, uses and protects personal information under POPIA, and how to contact us about your data.',
+  ),
+  twitter: twitterFor(
+    'Privacy Policy',
+    'How WEB-IN collects, uses and protects personal information under POPIA.',
+  ),
 }
 
 const tocItems = [
@@ -105,16 +114,18 @@ export default function PrivacyPolicyPage() {
 
               <h2 id="cookies">Cookies</h2>
               <p>
-                Our website may use essential cookies for functionality and analytics
-                cookies to understand how visitors interact with the site. You can
-                control cookie preferences through your browser settings.
+                Our website sets no advertising or tracking cookies. We store a
+                cookie-consent preference and a temporary enquiry form draft in your
+                browser&apos;s local storage, and we use cookie-free analytics. See our{' '}
+                <a href="/cookie-policy">cookie policy</a> for the full detail.
               </p>
 
               <h2 id="third-party">Third-party services</h2>
               <p>
-                We may use third-party services such as analytics tools and infrastructure
-                providers. These services have their own privacy policies and we
-                encourage you to review them.
+                We use Vercel for hosting and cookie-free analytics, Formspree to deliver
+                enquiry form submissions, and email providers for business mailboxes. These
+                services have their own privacy policies and we encourage you to review
+                them.
               </p>
               <p>
                 Where a care plan includes business email, mailboxes are hosted with an

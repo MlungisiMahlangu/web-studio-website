@@ -6,6 +6,7 @@ import {
   SERVICE_AREAS,
   SITE_URL,
   SOCIAL_LINKS,
+  STUDIO_BRAND_LINE,
   STUDIO_COUNTRY,
   STUDIO_DESCRIPTION,
   STUDIO_DESCRIPTION_LONG,
@@ -20,7 +21,8 @@ import {
   services,
   type FaqItem,
 } from './constants'
-import { carePlans } from './care-plans'
+import { carePlans, carePriceRange } from './care-plans'
+import type { Metadata } from 'next'
 
 export const ORG_ID = `${SITE_URL}/#organization`
 export const WEBSITE_ID = `${SITE_URL}/#website`
@@ -46,6 +48,41 @@ export const alternatesFor = (path: string) => ({
     'x-default': path,
   },
 })
+
+export const OG_IMAGE = {
+  url: '/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: STUDIO_BRAND_LINE,
+}
+
+// Page-level openGraph objects replace the root one, so every field is repeated here.
+export function openGraphFor(
+  path: string,
+  title: string,
+  description: string,
+  extra: Record<string, unknown> = {},
+): NonNullable<Metadata['openGraph']> {
+  return {
+    type: 'website',
+    siteName: STUDIO_NAME,
+    locale: 'en_ZA',
+    title,
+    description,
+    url: path,
+    images: [OG_IMAGE],
+    ...extra,
+  } as NonNullable<Metadata['openGraph']>
+}
+
+export function twitterFor(title: string, description: string): NonNullable<Metadata['twitter']> {
+  return {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/opengraph-image'],
+  }
+}
 
 const postalAddress = {
   '@type': 'PostalAddress',
@@ -196,7 +233,7 @@ export function buildSiteGraph() {
         description: STUDIO_DESCRIPTION,
         email: STUDIO_EMAIL,
         telephone: STUDIO_PHONE,
-        priceRange: 'R2,500 - R10,000+ once-off; care plans R149 - R499 per month',
+        priceRange: `R2,500 - R10,000+ once-off; care plans ${carePriceRange} per month`,
         currenciesAccepted: 'ZAR',
         paymentAccepted: 'Bank transfer, EFT',
         address: postalAddress,
@@ -333,7 +370,7 @@ export function articleSchema(article: {
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     '@id': `${SITE_URL}/blog/${article.slug}#article`,
     headline: article.title,
     description: article.description,

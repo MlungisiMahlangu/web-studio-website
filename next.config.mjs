@@ -1,6 +1,43 @@
 /** @type {import('next').NextConfig} */
+
+const isDev = process.env.NODE_ENV !== 'production'
+const isVercelPreview = process.env.VERCEL_ENV === 'preview'
+
+// Next.js injects inline bootstrap scripts, so 'unsafe-inline' is required without
+// nonce plumbing. 'unsafe-eval' is only needed by the dev toolchain; vercel.live is
+// only used by the Vercel preview toolbar.
+const scriptSrc = ["'self'", "'unsafe-inline'", 'https://va.vercel-scripts.com']
+if (isDev) scriptSrc.push("'unsafe-eval'")
+if (isVercelPreview) scriptSrc.push('https://vercel.live')
+
+const connectSrc = [
+  "'self'",
+  'https://formspree.io',
+  'https://formspree.com',
+  'https://vitals.vercel-insights.com/v1/vitals',
+  'https://*.vercel-analytics.com',
+]
+if (isVercelPreview) connectSrc.push('https://vercel.live')
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src ${scriptSrc.join(' ')}`,
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
+  "img-src 'self' data: blob:",
+  `connect-src ${connectSrc.join(' ')}`,
+  `frame-src ${isVercelPreview ? 'https://vercel.live' : "'none'"}`,
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://formspree.io",
+  "object-src 'none'",
+].join('; ')
+
 const nextConfig = {
   reactStrictMode: true,
+
+  // The local QA browser reaches the dev server on 127.0.0.1.
+  allowedDevOrigins: ['127.0.0.1'],
 
   poweredByHeader: false,
 
@@ -23,6 +60,7 @@ const nextConfig = {
       dynamic: 30,
       static: 300,
     },
+    optimizePackageImports: ['lucide-react'],
   },
 
   async redirects() {
@@ -66,8 +104,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://formspree.io https://formspree.com https://vitals.vercel-insights.com/v1/vitals https://*.vercel-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;",
+            value: contentSecurityPolicy,
           },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
           { key: 'Timing-Allow-Origin', value: '*' },
@@ -95,15 +132,6 @@ const nextConfig = {
       {
         source: '/fonts/(.*)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          { key: 'Cache-Control', value: 'private, no-cache, no-store, must-revalidate' },
-          { key: 'Access-Control-Allow-Origin', value: 'https://www.web-in.co.za' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
-          { key: 'Access-Control-Allow-Headers', value: 'Content-Type' },
-        ],
       },
     ]
   },

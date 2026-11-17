@@ -49,7 +49,7 @@ export function CarePlanCards({ className = '' }: { className?: string }) {
                 /month
               </span>
             </div>
-            <p className={`mt-1 text-xs ${featured ? 'text-white/40' : 'text-muted'}`}>
+            <p className={`mt-1 text-xs ${featured ? 'text-white/60' : 'text-muted'}`}>
               Billed monthly in advance. Cancel per the terms.
             </p>
 
@@ -98,7 +98,7 @@ export function CarePlanCards({ className = '' }: { className?: string }) {
               className={`mt-6 border-t pt-5 ${featured ? 'border-white/10' : 'border-line'}`}
             >
               <p
-                className={`text-[11px] font-semibold uppercase ${featured ? 'text-white/40' : 'text-muted'}`}
+                className={`text-[11px] font-semibold uppercase ${featured ? 'text-white/60' : 'text-muted'}`}
                 style={{ letterSpacing: '0.12em' }}
               >
                 Important limits
@@ -108,7 +108,7 @@ export function CarePlanCards({ className = '' }: { className?: string }) {
                   <li key={limitation} className="flex items-start gap-2.5 text-xs leading-relaxed">
                     <Minus
                       aria-hidden="true"
-                      className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${featured ? 'text-white/30' : 'text-muted/60'}`}
+                      className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${featured ? 'text-white/60' : 'text-muted'}`}
                     />
                     <span className={featured ? 'text-white/50' : 'text-muted'}>{limitation}</span>
                   </li>

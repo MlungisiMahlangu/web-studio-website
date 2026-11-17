@@ -165,8 +165,19 @@ export const carePlans: CarePlan[] = [
   },
 ]
 
+const careLabels = carePlans.map((plan) => plan.priceLabel)
+const lastCareLabel = careLabels[careLabels.length - 1]
+
 export const carePlanNote =
   'Care plans are optional. You can buy a website without one, and you can cancel or change plans with notice as set out in the terms.'
+
+// Derived so page copy never hard-codes a monthly care price.
+export const carePriceChoices =
+  careLabels.length > 2
+    ? `${careLabels.slice(0, -1).join(', ')} or ${lastCareLabel}`
+    : careLabels.join(' or ')
+
+export const carePriceRange = `${careLabels[0]} - ${lastCareLabel}`
 
 export const carePlanBillingNote =
   'Monthly plans are billed in advance. Prices are in South African rand (ZAR).'

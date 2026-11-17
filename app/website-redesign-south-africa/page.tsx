@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePriceChoices } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Website Redesign South Africa',
   description:
     'Website redesign for South African businesses. Keep the content that works, rebuild the design, speed and mobile experience. Redesign projects start at R2,500.',
   alternates: alternatesFor('/website-redesign-south-africa'),
-  openGraph: {
-    title: 'Website Redesign South Africa | WEB-IN',
-    description:
-      'An outdated site is costing you enquiries. We rebuild the design, structure and speed without throwing away the content that already works. From R2,500.',
-    type: 'website',
-    url: '/website-redesign-south-africa',
-  },
+  openGraph: openGraphFor('/website-redesign-south-africa', 'Website Redesign South Africa', 'Website redesign for South African businesses. Keep the content that works, rebuild the design, speed and mobile experience. Redesign projects start at R2,500.'),
+  twitter: twitterFor('Website Redesign South Africa', 'Website redesign for South African businesses. Keep the content that works, rebuild the design, speed and mobile experience. Redesign projects start at R2,500.'),
 }
 
 const faqs = [
@@ -134,7 +130,7 @@ export default function WebsiteRedesignSouthAfricaPage() {
           heading: 'A redesign is the start of a healthier site.',
           alt: true,
           paragraphs: [
-            'Once the new site is live, it needs the same care as any other. Content changes, software updates and periodic checks keep it useful. Optional care plans are R149, R299 or R499 per month depending on the site, and each includes business email within its mailbox allowance.',
+            `Once the new site is live, it needs the same care as any other. Content changes, software updates and periodic checks keep it useful. Optional care plans are ${carePriceChoices} per month depending on the site, and each includes business email within its mailbox allowance.`,
             'You own the new website once the project is paid in full, including the code and content. There is no requirement to stay on a plan to keep the site running.',
             'If the redesign uncovers a bigger need, such as a store or a booking system, we scope that separately rather than quietly expanding the original project.',
           ],

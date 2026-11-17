@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePriceChoices } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Affordable Website Design South Africa',
   description:
     'Affordable website design for South African businesses without cutting the essentials. Starter websites from R2,500 with mobile design and search foundations.',
   alternates: alternatesFor('/affordable-website-design-south-africa'),
-  openGraph: {
-    title: 'Affordable Website Design South Africa | WEB-IN',
-    description:
-      'Professional websites at a realistic price. Starter sites from R2,500, business sites from R4,000, with no hidden extras in the quote.',
-    type: 'website',
-    url: '/affordable-website-design-south-africa',
-  },
+  openGraph: openGraphFor('/affordable-website-design-south-africa', 'Affordable Website Design South Africa', 'Affordable website design for South African businesses without cutting the essentials. Starter websites from R2,500 with mobile design and search foundations.'),
+  twitter: twitterFor('Affordable Website Design South Africa', 'Affordable website design for South African businesses without cutting the essentials. Starter websites from R2,500 with mobile design and search foundations.'),
 }
 
 const faqs = [
@@ -135,7 +131,7 @@ export default function AffordableWebsiteDesignPage() {
           paragraphs: [
             'Projects start with a 50% deposit and the balance is due before launch. That is the whole payment structure for the project, unless the scope changes and you approve the change.',
             'Once the project is paid in full you own the website and its content. Domain registration, third-party software and subscriptions remain subject to their own terms, and we can register a domain in your name as an add-on.',
-            'If you want ongoing help, optional care plans are R149, R299 or R499 per month depending on the site. Each includes business email within its mailbox allowance. The website works without a plan.',
+            `If you want ongoing help, optional care plans are ${carePriceChoices} per month depending on the site. Each includes business email within its mailbox allowance. The website works without a plan.`,
           ],
         },
       ]}

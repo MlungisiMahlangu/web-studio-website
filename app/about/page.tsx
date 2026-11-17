@@ -7,7 +7,7 @@ import { PageHero } from '@/components/ui/page-hero'
 import { CTABand } from '@/components/ui/cta-band'
 import { IconBox } from '@/components/ui/icon-box'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
-import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { alternatesFor, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { STUDIO_BRAND_LINE, STUDIO_LOCATION } from '@/lib/constants'
 import type { Metadata } from 'next'
@@ -17,13 +17,8 @@ export const metadata: Metadata = {
   description:
     'WEB-IN is a small independent web design and development studio in Johannesburg, working remotely with clients across South Africa. Websites from R2,500.',
   alternates: alternatesFor('/about'),
-  openGraph: {
-    title: 'About WEB-IN | Johannesburg web design studio',
-    description:
-      'An independent web development studio in Johannesburg, working remotely with clients across South Africa on business websites, online stores and web apps.',
-    type: 'website',
-    url: '/about',
-  },
+  openGraph: openGraphFor('/about', 'Johannesburg Web Design Studio', 'WEB-IN is a small independent web design and development studio in Johannesburg, working remotely with clients across South Africa. Websites from R2,500.'),
+  twitter: twitterFor('Johannesburg Web Design Studio', 'WEB-IN is a small independent web design and development studio in Johannesburg, working remotely with clients across South Africa. Websites from R2,500.'),
 }
 
 const philosophyPillars = [
@@ -279,7 +274,7 @@ export default function AboutPage() {
           <Reveal>
             <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
               <div>
-                <p className="text-xs font-semibold uppercase text-brand mb-4" style={{ letterSpacing: '0.14em' }}>Local context</p>
+                <p className="text-xs font-semibold uppercase text-brand-on-dark mb-4" style={{ letterSpacing: '0.14em' }}>Local context</p>
                 <h2 className="text-display-md leading-tight font-bold text-white">
                   Built in South Africa.<br />Ready for the wider web.
                 </h2>

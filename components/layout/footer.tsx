@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex flex-col mb-5">
               <span className="text-lg font-extrabold tracking-tight text-white leading-none">WEB-IN</span>
-              <span className="text-[9px] font-semibold uppercase text-white/40 leading-none mt-0.5" style={{ letterSpacing: '0.18em' }}>Digital Studio</span>
+              <span className="text-[9px] font-semibold uppercase text-white/60 leading-none mt-0.5" style={{ letterSpacing: '0.18em' }}>Digital Studio</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mb-6">
               Independent web development studio building fast, mobile-first websites
@@ -59,7 +59,7 @@ export default function Footer() {
                     <a
                       href={profile.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-sm text-white/60 hover:text-white transition-colors duration-200"
                     >
                       {profile.label}
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>What we offer</h4>
+            <h4 className="text-xs font-semibold uppercase text-white/60 mb-5" style={{ letterSpacing: '0.14em' }}>What we offer</h4>
             <ul className="flex flex-col gap-3">
               {serviceLinks.map((l) => (
                 <li key={l.href}>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Studio */}
           <div>
-            <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>Studio</h4>
+            <h4 className="text-xs font-semibold uppercase text-white/60 mb-5" style={{ letterSpacing: '0.14em' }}>Studio</h4>
             <ul className="flex flex-col gap-3">
               {studioLinks.map((l) => (
                 <li key={l.href}>
@@ -103,7 +103,7 @@ export default function Footer() {
 
           {/* NAP block: keep identical to the contact page and the schema. */}
           <div>
-            <h4 className="text-xs font-semibold uppercase text-white/40 mb-5" style={{ letterSpacing: '0.14em' }}>Get in touch</h4>
+            <h4 className="text-xs font-semibold uppercase text-white/60 mb-5" style={{ letterSpacing: '0.14em' }}>Get in touch</h4>
             <address className="not-italic flex flex-col gap-3">
               <span className="text-sm font-medium text-white/80">{STUDIO_NAME}</span>
               <span className="text-sm text-white/50">{STUDIO_SERVICE_AREA}</span>
@@ -118,7 +118,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 text-xs text-white/30">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6 text-xs text-white/60">
           <p>&copy; {new Date().getFullYear()} WEB-IN. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             {legalLinks.map((l) => (

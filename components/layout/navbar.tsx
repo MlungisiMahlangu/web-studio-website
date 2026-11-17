@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, ChevronDown, Menu, X, MessageCircle } from 'lucide-react'
 import { useScrollDirection } from '@/components/ui/hooks'
@@ -23,6 +23,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   const { scrollDirection, scrollY } = useScrollDirection()
   const [mounted, setMounted] = useState(false)
 
@@ -39,6 +40,18 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [servicesOpen])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
+
   const isHidden = scrollDirection === 'down' && scrollY > 400 && !menuOpen     
   const isScrolled = mounted && scrollY > 10
 
@@ -46,12 +59,12 @@ export default function Navbar() {
     <>
       <header
         className={clsx(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out-expo',
+          'fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-out-expo',
           mounted && isHidden && '-translate-y-full',
         )}
       >
         <div className={clsx(
-          'bg-white/95 backdrop-blur-xl transition-all duration-300',
+          'bg-white/95 backdrop-blur-xl transition-colors duration-300',
           isScrolled ? 'border-b border-line' : 'border-b border-transparent',  
         )}>
           <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-8 py-4 sm:px-10" aria-label="Main navigation">
@@ -145,6 +158,7 @@ export default function Navbar() {
             </div>
 
             <button
+              ref={menuButtonRef}
               className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full border border-line transition-colors hover:bg-surface"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
@@ -162,6 +176,8 @@ export default function Navbar() {
           'fixed inset-0 z-40 lg:hidden transition-all duration-300 ease-out-expo',
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
         )}
+        inert={!menuOpen}
+        aria-hidden={!menuOpen}
       >
         {/* Backdrop */}
         <div

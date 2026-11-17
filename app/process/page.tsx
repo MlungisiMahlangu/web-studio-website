@@ -13,7 +13,7 @@ import {
   processClientNeeds,
   processSupportLevels,
 } from '@/lib/constants'
-import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { alternatesFor, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import type { Metadata } from 'next'
 
@@ -31,13 +31,8 @@ export const metadata: Metadata = {
     'website care and maintenance',
   ],
   alternates: alternatesFor('/process'),
-  openGraph: {
-    title: 'Our Process | WEB-IN Workflow',
-    description:
-      'A clear seven-phase process: discover, define, design and develop, review, launch, manage and improve.',
-    type: 'website',
-    url: 'https://www.web-in.co.za/process',
-  },
+  openGraph: openGraphFor('/process', 'Website Design Process', 'How a WEB-IN website gets built: a clear seven-phase process from the first conversation through design, development, launch and optional ongoing care.'),
+  twitter: twitterFor('Website Design Process', 'How a WEB-IN website gets built: a clear seven-phase process from the first conversation through design, development, launch and optional ongoing care.'),
 }
 
 export default function ProcessPage() {

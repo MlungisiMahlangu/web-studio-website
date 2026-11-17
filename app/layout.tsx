@@ -120,8 +120,10 @@ export default function RootLayout({
 
         {/* Fonts are self-hosted by next/font, so no Google Fonts connections are needed. */}
         <link rel="preconnect" href="https://formspree.io" />
-        <link rel="preconnect" href="https://vercel.live" />
         <link rel="dns-prefetch" href="//formspree.io" />
+        {process.env.NODE_ENV === 'production' && (
+          <link rel="preconnect" href="https://va.vercel-scripts.com" />
+        )}
 
         {/* Resource hints */}
         <meta name="theme-color" content="#FDFCFC" />

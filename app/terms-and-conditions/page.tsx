@@ -4,13 +4,22 @@ import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { STUDIO_NAME, STUDIO_EMAIL, LAST_UPDATED } from '@/lib/constants'
 import { carePlans } from '@/lib/care-plans'
-import { alternatesFor } from '@/lib/seo'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions',
   description: `The terms that apply when you work with ${STUDIO_NAME}: scope, payment, revisions, content, domains, ownership and support.`,
   alternates: alternatesFor('/terms-and-conditions'),
+  openGraph: openGraphFor(
+    '/terms-and-conditions',
+    'Terms and Conditions',
+    'Scope, payment, revisions, content, domains, ownership and support when working with WEB-IN.',
+  ),
+  twitter: twitterFor(
+    'Terms and Conditions',
+    'The terms that apply when working with WEB-IN: scope, payment, ownership and support.',
+  ),
 }
 
 const tocItems = [

@@ -19,7 +19,7 @@ import {
   STUDIO_WHATSAPP,
 } from '@/lib/constants'
 import { carePlans } from '@/lib/care-plans'
-import { alternatesFor, faqSchema, webPageSchema } from '@/lib/seo'
+import { alternatesFor, faqSchema, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -36,14 +36,8 @@ export const metadata = {
   description:
     'WEB-IN designs and builds fast, mobile-first business websites, online stores and web apps in Johannesburg, South Africa. Websites from R2,500.',
   alternates: alternatesFor('/'),
-  openGraph: {
-    title: 'Website Design & Development Johannesburg | WEB-IN',
-    description:
-      'Business websites, online stores and web apps for South African businesses. Websites from R2,500.',
-    type: 'website',
-    locale: 'en_ZA',
-    url: '/',
-  },
+  openGraph: openGraphFor('/', 'Website Design & Development Johannesburg', 'WEB-IN designs and builds fast, mobile-first business websites, online stores and web apps in Johannesburg, South Africa. Websites from R2,500.'),
+  twitter: twitterFor('Website Design & Development Johannesburg', 'WEB-IN designs and builds fast, mobile-first business websites, online stores and web apps in Johannesburg, South Africa. Websites from R2,500.'),
 }
 
 const jsonLd = [
@@ -74,7 +68,7 @@ export default function HomePage() {
             {/* Left: Copy */}
             <div className="max-w-[600px] order-1">
               {/* Eyebrow */}
-              <Reveal>
+              <Reveal immediate>
                 <p
                   className="text-xs font-semibold uppercase text-brand mb-6"
                   style={{ letterSpacing: '0.14em' }}
@@ -84,7 +78,7 @@ export default function HomePage() {
               </Reveal>
 
               {/* H1 */}
-              <Reveal delay={100}>
+              <Reveal immediate>
                 <h1
                   className="text-hero font-extrabold leading-tight text-navy mb-5"
                   style={{ letterSpacing: '-0.02em' }}
@@ -95,7 +89,7 @@ export default function HomePage() {
               </Reveal>
 
               {/* Sub copy */}
-              <Reveal delay={200}>
+              <Reveal immediate>
                 <p className="text-base sm:text-lg text-body leading-relaxed max-w-[500px] mb-8">
                   Modern, high-performance websites designed to help South African
                   businesses build credibility, reach more customers, and grow online.
@@ -103,7 +97,7 @@ export default function HomePage() {
               </Reveal>
 
               {/* CTAs */}
-              <Reveal delay={300}>
+              <Reveal immediate>
                 <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3">
                   <Link
                     href="/contact"
@@ -126,8 +120,8 @@ export default function HomePage() {
             {/* Right: Hero Image */}
             <div className="order-2 relative flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[560px] lg:max-w-[680px]">
-                <Reveal variant="scale" delay={200}>
-                  <div className="relative hero-image-entrance">
+                <Reveal immediate variant="scale">
+                  <div className="relative">
                     <Image
                       src="/images/hero-devices.webp"
                       width={1397}
@@ -306,7 +300,7 @@ export default function HomePage() {
                     <a
                       href={project.liveUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
                     >
                       Visit live site <ArrowUpRight size={14} />
@@ -486,7 +480,7 @@ export default function HomePage() {
           <Reveal>
             <div className="max-w-[700px] mx-auto text-center">
               <p
-                className="text-xs font-semibold uppercase text-brand mb-6"
+                className="text-xs font-semibold uppercase text-brand-on-dark mb-6"
                 style={{ letterSpacing: '0.14em' }}
               >
                 Ready to begin?
@@ -509,7 +503,7 @@ export default function HomePage() {
                 <Link
                   href={`https://wa.me/${STUDIO_WHATSAPP}`}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 text-white/70 h-12 px-6 text-sm font-medium transition-all duration-300 hover:border-white/30 hover:text-white"
                 >
                   WhatsApp us

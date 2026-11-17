@@ -138,7 +138,7 @@ export function PageHero({
       >
         {/* Breadcrumb */}
         {breadcrumb && breadcrumb.length > 0 && (
-          <Reveal>
+          <Reveal immediate>
             <nav className="flex items-center gap-1.5 mb-6 text-[13px]" aria-label="Breadcrumb">
               {breadcrumb.map((item, i) => (
                 <span key={item.href} className="flex items-center gap-1.5">
@@ -164,7 +164,7 @@ export function PageHero({
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-start">
             <div className="max-w-[600px]">
               {eyebrow && (
-                <Reveal>
+                <Reveal immediate>
                   <div className="inline-flex items-center gap-2 rounded-full bg-white border border-blue-tint px-3 py-1.5 mb-5">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
                     <span
@@ -177,26 +177,26 @@ export function PageHero({
                 </Reveal>
               )}
 
-              <Reveal delay={50}>
+              <Reveal immediate>
                 <h1 className="text-hero font-extrabold leading-tight text-navy" style={{ letterSpacing: '-0.02em' }}>
                   {renderTitle(title, accent)}
                 </h1>
               </Reveal>
 
               {description && (
-                <Reveal delay={100}>
+                <Reveal immediate>
                   <p className="mt-5 max-w-[540px] text-lg leading-relaxed text-body" style={{ fontSize: '18px' }}>
                     {description}
                   </p>
                 </Reveal>
               )}
 
-              {children && <Reveal delay={120}>{children}</Reveal>}
+              {children && <Reveal immediate>{children}</Reveal>}
 
-              {buttons && <Reveal delay={150}>{buttons}</Reveal>}
+              {buttons && <Reveal immediate>{buttons}</Reveal>}
             </div>
 
-            <Reveal variant="right" delay={200}>
+            <Reveal immediate variant="right">
               <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
                 {aside}
               </div>
@@ -206,7 +206,7 @@ export function PageHero({
           /* Centered layout */
           <div className="max-w-[760px] mx-auto text-center">
             {eyebrow && (
-              <Reveal>
+              <Reveal immediate>
                 <div className="inline-flex items-center gap-2 rounded-full bg-white border border-blue-tint px-3 py-1.5 mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
                   <span
@@ -219,23 +219,23 @@ export function PageHero({
               </Reveal>
             )}
 
-            <Reveal delay={50}>
+            <Reveal immediate>
               <h1 className="text-hero font-extrabold leading-tight text-navy" style={{ letterSpacing: '-0.02em' }}>
                 {renderTitle(title, accent)}
               </h1>
             </Reveal>
 
             {description && (
-              <Reveal delay={100}>
+              <Reveal immediate>
                 <p className="mt-5 mx-auto max-w-[640px] text-lg leading-relaxed text-body" style={{ fontSize: '18px' }}>
                   {description}
                 </p>
               </Reveal>
             )}
 
-            {children && <Reveal delay={120}>{children}</Reveal>}
+            {children && <Reveal immediate>{children}</Reveal>}
 
-            {buttons && <Reveal delay={150}>{buttons}</Reveal>}
+            {buttons && <Reveal immediate>{buttons}</Reveal>}
           </div>
         )}
       </Container>

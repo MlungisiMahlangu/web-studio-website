@@ -1,6 +1,6 @@
 import { FaqPage } from '@/components/sections/faq-accordion'
 import { faqCategories } from '@/lib/constants'
-import { alternatesFor, faqSchema, webPageSchema } from '@/lib/seo'
+import { alternatesFor, faqSchema, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { PageHero } from '@/components/ui/page-hero'
 import type { Metadata } from 'next'
@@ -20,13 +20,8 @@ export const metadata: Metadata = {
     'website development process',
   ],
   alternates: alternatesFor('/faq'),
-  openGraph: {
-    title: 'FAQ | WEB-IN',
-    description:
-      'Everything you need to know about working with WEB-IN: pricing, timelines, domains, ownership, business email, care plans and support.',
-    type: 'website',
-    url: '/faq',
-  },
+  openGraph: openGraphFor('/faq', 'Website Design FAQ', 'Answers about website costs, timelines, ownership, payments, business email and care plans when working with WEB-IN in Johannesburg. Websites from R2,500 once-off.'),
+  twitter: twitterFor('Website Design FAQ', 'Answers about website costs, timelines, ownership, payments, business email and care plans when working with WEB-IN in Johannesburg. Websites from R2,500 once-off.'),
 }
 
 const faqJsonLd = [

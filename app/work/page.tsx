@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ExternalLink } from 'lucide-react'
 import { portfolioProjects } from '@/lib/constants'
-import { alternatesFor, webPageSchema } from '@/lib/seo'
+import { alternatesFor, webPageSchema, openGraphFor, twitterFor } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
@@ -25,12 +25,8 @@ export const metadata: Metadata = {
     'live website examples',
   ],
   alternates: alternatesFor('/work'),
-  openGraph: {
-    title: 'Our Work | WEB-IN Portfolio',
-    description: 'Live websites we have designed and developed. Business sites, portfolios, e-commerce and custom web apps.',
-    type: 'website',
-    url: '/work',
-  },
+  openGraph: openGraphFor('/work', 'Web Design Portfolio', 'Live websites and web applications designed and built by WEB-IN for South African businesses, from online stores to booking platforms and dashboards.'),
+  twitter: twitterFor('Web Design Portfolio', 'Live websites and web applications designed and built by WEB-IN for South African businesses, from online stores to booking platforms and dashboards.'),
 }
 
 export default function WorkPage() {
@@ -105,7 +101,7 @@ export default function WorkPage() {
               <a
                 href={project.liveUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-full bg-brand text-white h-11 px-6 text-sm font-medium transition-all duration-300 hover:bg-brand-hover"
               >
                 Visit Live Site

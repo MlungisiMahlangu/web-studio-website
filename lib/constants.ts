@@ -783,84 +783,95 @@ export const comparisonFeatures = [
   { feature: 'Logins + database', starter: false, business: false, redesign: false, store: 'Add-on', app: true },
 ]
 
-export const enquiryServiceOptions = [
-  'Starter Website',
-  'Business Website',
-  'Website Redesign',
-  'Online Store',
-  'Custom Web Application',
-  'Essential Web Care',
-  'Business Website Care',
-  'Advanced Application Management',
-  'Not Sure Yet',
+// ─── Enquiry form options ───
+// Build and care are separate optional choices, so a visitor can ask for both.
+
+export interface EnquiryServiceOption {
+  value: string
+  description: string
+  planId?: string
+  popular?: boolean
+}
+
+export const buildServiceOptions: EnquiryServiceOption[] = [
+  {
+    value: 'Website Design & Development',
+    description: 'A new business website, built around your goals.',
+  },
+  {
+    value: 'Starter Website',
+    description: 'A focused site of up to 4 pages for a small business.',
+  },
+  {
+    value: 'Business Website',
+    description: 'A complete site of up to 8 pages with service pages and SEO.',
+  },
+  {
+    value: 'Website Redesign',
+    description: 'A fresh design for a website you already have.',
+  },
+  {
+    value: 'Online Store',
+    description: 'Sell products with a cart and secure checkout.',
+  },
+  {
+    value: 'Custom Web Application',
+    description: 'Dashboards, bookings, logins or custom workflows.',
+  },
+]
+
+export interface CareServiceOption {
+  value: string
+  label: string
+  planId?: string
+}
+
+// Plan names and prices come from lib/care-plans.ts so the form can never drift.
+export const careServiceOptions: CareServiceOption[] = carePlans.map((plan) => ({
+  value: plan.name,
+  label: `${plan.name} – ${plan.priceLabel}/month${plan.popular ? ' (Most popular)' : ''}`,
+  planId: plan.id,
+}))
+
+export const contactMethodOptions = ['WhatsApp', 'Phone call', 'Email'] as const
+
+export const hasWebsiteOptions = ['Yes', 'No'] as const
+
+export const domainStatusOptions = [
+  'I need a new domain',
+  'I already have a domain',
+  'Not sure yet',
+]
+
+export const emailCountOptions = [
+  '1\u20132',
+  '3\u20135',
+  '6\u201310',
+  'Not sure yet',
 ]
 
 export const referralSourceOptions = [
-  'Google Search',
-  'Social Media',
-  'Friend or Colleague',
+  'Google search',
+  'Social media',
+  'Friend / referral',
   'Saw our work online',
-  'LinkedIn',
-  'Instagram',
-  'Facebook',
+  'AI assistant (e.g. ChatGPT)',
   'Other',
-]
-
-export const enquiryFeatureOptions = [
-  'WhatsApp',
-  'Contact form',
-  'Google Maps',
-  'Image gallery',
-  'Testimonials',
-  'Blog',
-  'Booking system',
-  'Online payments',
-  'Customer accounts',
-  'Newsletter',
-  'Social media integration',
-  'Google Analytics',
-  'Google Business Profile',
-  'SEO',
-  'Multiple languages',
-  'Custom functionality',
 ]
 
 export const enquiryBudgetOptions = [
   'Under R3,000',
-  'R3,000–R6,999',
-  'R7,000+',
-  'R10,000+',
+  'R3,000 \u2013 R6,999',
+  'R7,000 \u2013 R14,999',
+  'R15,000+',
+  'Not sure yet',
 ]
 
 export const enquiryTimelineOptions = [
-  'ASAP',
-  'Within 2 weeks',
-  '2\u20134 weeks',
-  '1\u20132 months',
-  'No specific deadline',
-]
-
-export const enquiryGoalOptions = [
-  'Generate enquiries',
-  'Get WhatsApp messages',
-  'Sell products',
-  'Get bookings',
-  'Showcase services',
-  'Build credibility',
-  'Personal branding',
-  'Provide information',
-  'Other',
-]
-
-export const enquiryDesignOptions = [
-  'Modern',
-  'Minimal',
-  'Luxury',
-  'Corporate',
-  'Creative',
-  'Bold',
-  'Dark',
-  'Light',
+  'As soon as possible',
+  'Within a month',
+  'In 2\u20133 months',
+  'Flexible',
 ]
 
 export const homepageFaqs = [

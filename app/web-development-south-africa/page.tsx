@@ -1,19 +1,15 @@
 import type { Metadata } from 'next'
 import { LandingPage } from '@/components/sections/landing-page'
-import { alternatesFor } from '@/lib/seo'
+import { carePriceChoices } from '@/lib/care-plans'
+import { alternatesFor, openGraphFor, twitterFor } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Web Development South Africa',
   description:
     'Web development for South African businesses. Custom business websites, online stores and web applications built with modern, maintainable code. Projects from R2,500.',
   alternates: alternatesFor('/web-development-south-africa'),
-  openGraph: {
-    title: 'Web Development South Africa | WEB-IN',
-    description:
-      'Custom web development for South African businesses: websites, online stores and web applications built to be fast, secure and maintainable.',
-    type: 'website',
-    url: '/web-development-south-africa',
-  },
+  openGraph: openGraphFor('/web-development-south-africa', 'Web Development South Africa', 'Web development for South African businesses. Custom business websites, online stores and web applications built with modern, maintainable code. Projects from R2,500.'),
+  twitter: twitterFor('Web Development South Africa', 'Web development for South African businesses. Custom business websites, online stores and web applications built with modern, maintainable code. Projects from R2,500.'),
 }
 
 const faqs = [
@@ -98,7 +94,7 @@ export default function WebDevelopmentSouthAfricaPage() {
             },
             {
               title: 'Website care',
-              text: 'Managed hosting, business email within a mailbox allowance, security checks, backups and support after launch. Care plans are R149, R299 or R499 per month.',
+              text: `Managed hosting, business email within a mailbox allowance, security checks, backups and support after launch. Care plans are ${carePriceChoices} per month.`,
             },
           ],
         },
