@@ -143,11 +143,11 @@ function normaliseKey(value: string) {
 
 // Accepts every ?service=, ?build= and ?care= value used across the site, plus slugs.
 const BUILD_PRESELECT: Record<string, string> = {
-  'starter website': 'Website Design & Development',
-  'business website': 'Website Design & Development',
-  'website design': 'Website Design & Development',
-  'website design development': 'Website Design & Development',
-  'website design and development': 'Website Design & Development',
+  'starter website': 'Starter Website',
+  'business website': 'Business Website',
+  'website design': 'Business Website',
+  'website design development': 'Business Website',
+  'website design and development': 'Business Website',
   'website redesign': 'Website Redesign',
   'online store': 'Online Store',
   'custom web application': 'Custom Web Application',
@@ -633,6 +633,9 @@ function EnquiryFormInner() {
       }
       setSubmitAttempted(false)
       setErrors({})
+      // Jump to the top before navigating so the thank-you page opens at its hero,
+      // even if the new route takes a moment to paint.
+      window.scrollTo({ top: 0, behavior: 'instant' })
       router.push('/contact/thank-you')
     } catch {
       submitLock.current = false
