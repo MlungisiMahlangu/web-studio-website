@@ -1,7 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { BackToTopButton } from '@/components/ui/back-to-top-button'
 import {
   SOCIAL_LINKS,
   STUDIO_EMAIL,
@@ -24,6 +22,7 @@ const serviceLinks = [
   { label: 'Affordable website design', href: '/affordable-website-design-south-africa' },
   { label: 'Website redesign', href: '/website-redesign-south-africa' },
   { label: 'What a website costs', href: '/website-cost-south-africa' },
+  { label: 'Website care & management', href: '/website-care-management' },
   { label: 'All services and prices', href: '/pricing' },
 ]
 
@@ -49,8 +48,9 @@ export default function Footer() {
               <span className="text-[9px] font-semibold uppercase text-white/40 leading-none mt-0.5" style={{ letterSpacing: '0.18em' }}>Digital Studio</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mb-6">
-              Independent web development studio building thoughtful digital
-              experiences for businesses in South Africa and beyond.
+              Independent web development studio building fast, mobile-first websites
+              and web applications for South African businesses, with optional monthly
+              care that includes business email.
             </p>
             {SOCIAL_LINKS.length > 0 && (
               <ul className="flex flex-wrap gap-x-4 gap-y-2">
@@ -127,13 +127,7 @@ export default function Footer() {
               </Link>
             ))}
           </div>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-1.5 text-white/30 hover:text-white/60 transition-colors duration-200"
-            aria-label="Back to top"
-          >
-            Back to top <ArrowUpRight size={12} />
-          </button>
+          <BackToTopButton />
         </div>
       </div>
     </footer>

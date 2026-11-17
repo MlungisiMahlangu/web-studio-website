@@ -238,7 +238,7 @@ function EnquiryFormInner() {
         </label>
         <label>
           How did you learn about us?
-          <select name="referral" required>
+          <select name="referral" defaultValue="" required>
             <option value="" disabled>
               Select an option
             </option>

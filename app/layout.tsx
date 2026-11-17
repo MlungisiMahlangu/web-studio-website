@@ -12,7 +12,7 @@ import { buildSiteGraph } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
-import { SmoothScroll } from '@/components/ui/smooth-scroll'
+import { ScrollManager } from '@/components/ui/scroll-manager'
 import CookieBanner from '@/components/ui/cookie-banner'
 import './globals.css'
 
@@ -118,15 +118,9 @@ export default function RootLayout({
         />
         <JsonLd data={buildSiteGraph()} />
 
-        {/* Preconnect to external resources for better performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Fonts are self-hosted by next/font, so no Google Fonts connections are needed. */}
         <link rel="preconnect" href="https://formspree.io" />
         <link rel="preconnect" href="https://vercel.live" />
-
-        {/* DNS prefetch for faster domain resolution */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <link rel="dns-prefetch" href="//formspree.io" />
 
         {/* Resource hints */}
@@ -139,12 +133,12 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SmoothScroll>
+        <ScrollManager>
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
           <CookieBanner />
-        </SmoothScroll>
+        </ScrollManager>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
