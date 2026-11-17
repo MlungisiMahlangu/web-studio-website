@@ -201,7 +201,7 @@ for (const [name, contents] of Object.entries(llmsSources)) {
 for (const file of sourceFiles) {
   if (rel(file).replaceAll('\\', '/') === 'lib/care-plans.ts') continue
   const contents = await read(file)
-  if (/R(?:149|299|499)\b/.test(contents)) {
+  if (/R(?:199|349|649)\b/.test(contents)) {
     fail(
       `${rel(file)} hard-codes a care plan price; read carePlans or carePriceChoices from lib/care-plans.ts`,
     )
@@ -261,9 +261,9 @@ for (const file of repoFiles) {
 // 10. Care plans: flat prices, mailbox allowances and email wording
 const carePlansSource = await read(join(root, 'lib/care-plans.ts'))
 const expectedCarePlans = {
-  'essential-web-care': { price: 149, mailboxes: 5, storage: 5 },
-  'business-website-care': { price: 299, mailboxes: 10, storage: 15 },
-  'advanced-application-management': { price: 499, mailboxes: 20, storage: 30 },
+  'essential-web-care': { price: 199, mailboxes: 5, storage: 5 },
+  'business-website-care': { price: 349, mailboxes: 10, storage: 15 },
+  'advanced-application-management': { price: 649, mailboxes: 20, storage: 30 },
 }
 for (const [id, expected] of Object.entries(expectedCarePlans)) {
   const block = carePlansSource.split(`id: '${id}'`)[1]
@@ -301,9 +301,9 @@ for (const [id, expected] of Object.entries(expectedCarePlans)) {
 }
 
 const careCopyFailures = [
-  { label: 'an old care plan price', pattern: /R199|R349|R548/ },
+  { label: 'an old care plan price', pattern: /R149|R299|R499|R548/ },
   { label: 'an old care plan name', pattern: /\bBasic Care\b|\bBusiness Care\b/ },
-  { label: 'a "from" price on a care plan', pattern: /(?:from|starting at)\s+R(?:149|299|499)\b/i },
+  { label: 'a "from" price on a care plan', pattern: /(?:from|starting at)\s+R(?:199|349|649)\b/i },
   { label: 'email described as a separate service', pattern: /email(?: hosting)? (?:is|as) (?:a )?separate/i },
   { label: 'email described as excluded', pattern: /email[^.\n]{0,60}(?:not included|excluded)/i },
 ]
@@ -321,7 +321,7 @@ for (const file of sourceFiles) {
 
 // Components must read plan prices and mailbox counts from lib/care-plans.ts.
 const careComponents = await read(join(root, 'components/sections/care-plans.tsx'))
-if (/R(?:149|299|499)\b/.test(careComponents)) {
+if (/R(?:199|349|649)\b/.test(careComponents)) {
   fail('components/sections/care-plans.tsx hard-codes a care plan price; read it from lib/care-plans.ts')
 }
 if (/up to \d+ business email/i.test(careComponents)) {

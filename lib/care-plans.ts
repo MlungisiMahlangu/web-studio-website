@@ -37,8 +37,8 @@ export const carePlans: CarePlan[] = [
   {
     id: 'essential-web-care',
     name: 'Essential Web Care',
-    priceMonthly: 149,
-    priceLabel: 'R149',
+    priceMonthly: 199,
+    priceLabel: 'R199',
     currency: 'ZAR',
     billing: 'monthly, in advance',
     popular: false,
@@ -77,8 +77,8 @@ export const carePlans: CarePlan[] = [
   {
     id: 'business-website-care',
     name: 'Business Website Care',
-    priceMonthly: 299,
-    priceLabel: 'R299',
+    priceMonthly: 349,
+    priceLabel: 'R349',
     currency: 'ZAR',
     billing: 'monthly, in advance',
     popular: true,
@@ -118,8 +118,8 @@ export const carePlans: CarePlan[] = [
   {
     id: 'advanced-application-management',
     name: 'Advanced Application Management',
-    priceMonthly: 499,
-    priceLabel: 'R499',
+    priceMonthly: 649,
+    priceLabel: 'R649',
     currency: 'ZAR',
     billing: 'monthly, in advance',
     popular: false,
