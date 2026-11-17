@@ -30,7 +30,7 @@ const faqs = [
   {
     question: 'Are there hidden costs?',
     answer:
-      'No hidden costs in our quotes. Domain registration and third-party services such as hosting, payment gateways or plugins are billed at cost or paid directly by you. Anything outside the agreed scope is quoted before it starts.',
+      'No hidden costs in our quotes. Domain registration and renewal, payment gateway fees and third-party services such as plugins are billed at cost or paid directly by you. A care plan can cover managed hosting and business email within its allowance. Anything outside the agreed scope is quoted before it starts.',
   },
   {
     question: 'Can I pay in instalments?',
@@ -60,13 +60,13 @@ export default function AffordableWebsiteDesignPage() {
         heading: 'Affordable means clear scope, not missing pieces.',
         paragraphs: [
           'When a website quote looks unusually low, something has usually been left out. It might be mobile design, proper page structure, a working contact form or the support needed after launch. The low number is real, but the finished website is not.',
-          'Our pricing starts at R2,500 for a Starter Website and R4,000 for a Business Website. Those figures include the parts that make a website usable: responsive layouts, clear navigation, a tested enquiry form and search-friendly page structure.',
+          'Our once-off pricing starts at R2,500 for a Starter Website and R4,000 for a Business Website. Those figures include the parts that make a website usable: responsive layouts, clear navigation, a tested enquiry form and search-friendly page structure.',
           'The scope is deliberately defined. If your project needs more pages, booking functionality or a store, we quote that work rather than hiding it in a vague hourly estimate. You should know what you are paying for before you commit.',
         ],
         points: [
-          'Starter Website: R2,500',
-          'Business Website: from R4,000',
-          'Website Redesign: from R2,500',
+          'Starter Website: R2,500 once-off',
+          'Business Website: from R4,000 once-off',
+          'Website Redesign: from R2,500 once-off',
           '50% deposit, balance before launch',
         ],
       }}
@@ -135,7 +135,7 @@ export default function AffordableWebsiteDesignPage() {
           paragraphs: [
             'Projects start with a 50% deposit and the balance is due before launch. That is the whole payment structure for the project, unless the scope changes and you approve the change.',
             'Once the project is paid in full you own the website and its content. Domain registration, third-party software and subscriptions remain subject to their own terms, and we can register a domain in your name as an add-on.',
-            'If you want ongoing help, Basic Care is R299 per month and Business Care is R499 per month. They are optional. The website works without them.',
+            'If you want ongoing help, optional care plans are R149, R299 or R499 per month depending on the site. Each includes business email within its mailbox allowance. The website works without a plan.',
           ],
         },
       ]}

@@ -1,3 +1,5 @@
+import { carePlans, emailShort } from './care-plans'
+
 export const STUDIO_NAME = 'WEB-IN'
 // TODO: replace with the registered legal entity name if it differs from the trading name.
 export const STUDIO_LEGAL_NAME = 'WEB-IN'
@@ -7,9 +9,9 @@ export const STUDIO_TAGLINE = 'Built for your business. Designed for the web.'
 export const STUDIO_BRAND_LINE =
   'WEB-IN | Website Design & Development, Johannesburg, South Africa'
 export const STUDIO_DESCRIPTION =
-  'WEB-IN is an independent web developer in Johannesburg, South Africa. We build fast, mobile-first business websites, online stores and web applications for businesses across the country. Websites start at R2,500.'
+  'WEB-IN is an independent web studio in Johannesburg, South Africa. We design and build fast, mobile-first business websites, online stores and web applications, then manage the technical side for clients who choose a care plan. Websites start at R2,500.'
 export const STUDIO_DESCRIPTION_LONG =
-  'WEB-IN is an independent web development studio based in Johannesburg, South Africa, working remotely with businesses across the country. We design and build business websites, online stores and custom web applications, and you deal directly with the person building your site. Websites start at R2,500, business websites from R4,000 and online stores from R7,000.'
+  'WEB-IN is an independent web studio based in Johannesburg, South Africa, working remotely with businesses across the country. We design and build business websites, online stores and custom web applications, then manage the hosting, email, updates and technical care for clients who choose a monthly plan. Websites start at R2,500, business websites from R4,000 and online stores from R7,000.'
 export const STUDIO_EMAIL = 'teamwebin3@gmail.com'
 export const STUDIO_PHONE = '+27 64 953 1145'
 export const STUDIO_WHATSAPP = '27649531145'
@@ -30,7 +32,7 @@ export const SERVICE_AREAS = [
   'Soweto',
 ]
 // Prices changed on this date. Bump it whenever lib/constants.ts price values change.
-export const LAST_UPDATED = '2026-10-14'
+export const LAST_UPDATED = '2026-11-16'
 // Used for dateModified signals while prices remain unchanged.
 export const CONTENT_UPDATED = '2026-11-10'
 export const PRICE_VALID_UNTIL = '2026-12-31'
@@ -70,6 +72,9 @@ export const KNOWS_ABOUT = [
   'Search engine optimisation basics',
   'PayFast, Yoco and Ozow payment integration',
   'Website maintenance',
+  'Website hosting management',
+  'Business email setup',
+  'Domain and DNS configuration',
 ]
 
 // SEO Keywords
@@ -283,87 +288,12 @@ export const addons: Addon[] = [
   { name: 'Logo design', price: 'R500', priceValue: 500, isFrom: false },
 ]
 
-export const maintenancePlans = [
-  {
-    name: 'Basic Care',
-    price: 'R299',
-    priceValue: 299,
-    description: 'Uptime and security checks, 1h30min per day of small content updates, minor bug fixes, reply within 2 business days.',
-    features: [
-      'Uptime and security checks',
-      '1h30min per day of small content updates',
-      'Minor bug fixes',
-      'Reply within 2 business days',
-    ],
-  },
-  {
-    name: 'Business Care',
-    price: 'R499',
-    priceValue: 499,
-    description: 'Everything in Basic, 2h30min per day of updates, monthly performance and backup check, reply within 1 business day.',
-    features: [
-      'Everything in Basic Care',
-      '2h30min per day of updates',
-      'Monthly performance and backup check',
-      'Reply within 1 business day',
-    ],
-  },
-]
-
-export const maintenanceNote = 'Unused hours do not roll over. Stores and apps get a quoted plan.'
-
-
-
-export const processSteps = [
-  {
-    number: '01',
-    title: 'Tell us about your project',
-    description:
-      'Submit your project enquiry through our form. Share as much or as little as you know.',
-  },
-  {
-    number: '02',
-    title: 'We review your requirements',
-    description:
-      'We review your goals, features, budget and timeline to understand what you need.',
-  },
-  {
-    number: '03',
-    title: 'Receive your quote',
-    description:
-      'You receive a tailored project scope and quotation with clear deliverables.',
-  },
-  {
-    number: '04',
-    title: 'Approve and start',
-    description:
-      'Once the quote is approved and the required deposit is paid, development begins.',
-  },
-  {
-    number: '05',
-    title: 'Design and development',
-    description:
-      'Your website is designed, built and tested with care at every stage.',
-  },
-  {
-    number: '06',
-    title: 'Your review',
-    description:
-      'You review the website and provide feedback within your included revision rounds.',
-  },
-  {
-    number: '07',
-    title: 'Launch',
-    description:
-      'Your website goes live. We handle launch, DNS and final checks.',
-  },
-  {
-    number: '08',
-    title: 'Ongoing support',
-    description:
-      'Optional maintenance and support plans are available to keep your site running smoothly.',
-  },
-]
+// Development packages are once-off. Always show the billing basis next to a price
+// so it cannot be confused with the monthly care plans.
+export const ONCE_OFF_LABEL = 'Once-off'
+export const ONCE_OFF_NOTE =
+  'Pay once. No monthly fee required to own your website.'
+export const MONTHLY_LABEL = 'Monthly'
 
 export interface ProcessPhase {
   number: string
@@ -401,7 +331,7 @@ export const processPhases: ProcessPhase[] = [
   },
   {
     number: '03',
-    label: 'CREATE',
+    label: 'DESIGN & DEVELOP',
     heading: 'Design it. Build it. Refine it.',
     description:
       'Once the project is approved and the required deposit has been paid, the work begins. We turn the agreed direction into a responsive, functional website and keep quality in focus throughout development.',
@@ -413,14 +343,50 @@ export const processPhases: ProcessPhase[] = [
   },
   {
     number: '04',
+    label: 'REVIEW & TEST',
+    heading: 'Test it on the devices your customers use.',
+    description:
+      'Before anything goes live, we test the website the way a customer would use it: on a phone, through the forms, across the key pages and through any integrations in the agreed scope.',
+    items: [
+      { title: 'Mobile and desktop', description: 'Layouts, menus and text are checked on real screen sizes.' },
+      { title: 'Forms and enquiries', description: 'The contact form, WhatsApp links and notifications are tested end to end.' },
+      { title: 'Integrations', description: 'Payments, email notifications and third-party services are checked where included.' },
+    ],
+  },
+  {
+    number: '05',
     label: 'LAUNCH',
     heading: 'Ready for the real world.',
     description:
-      'Once the website has been reviewed and approved, we prepare everything for launch. We handle the agreed launch, domain/DNS configuration and final production checks before taking the website live.',
+      'We prepare the production environment, configure the domain and DNS, confirm HTTPS and run the final checks before taking the website live. If business email is part of your care plan, the mailboxes and mail records are set up at this stage.',
     items: [
-      { title: 'Final checks', description: 'Everything is reviewed before launch.' },
       { title: 'Production setup', description: 'The website is moved into its production environment.' },
-      { title: 'Go live', description: 'The website goes live.' },
+      { title: 'Domain, DNS and HTTPS', description: 'The domain points to the live site and HTTPS is confirmed.' },
+      { title: 'Email setup', description: 'Mailboxes, MX, SPF, DKIM and DMARC are configured for care plan clients.' },
+    ],
+  },
+  {
+    number: '06',
+    label: 'MANAGE',
+    heading: 'The technical side keeps running.',
+    description:
+      'For clients on a care plan, WEB-IN continues after launch: hosting management, SSL and uptime checks, security updates, backups where supported, business email within the allowance, small content changes and support. You can also buy the website without a plan and manage it yourself.',
+    items: [
+      { title: 'Hosting and domain', description: 'Hosting, DNS and the renewal process are managed for you.' },
+      { title: 'Checks and updates', description: 'Monitoring, security updates and backup checks run on the plan schedule.' },
+      { title: 'Support', description: 'Report a problem and we respond within the plan response target.' },
+    ],
+  },
+  {
+    number: '07',
+    label: 'IMPROVE',
+    heading: 'The website grows with the business.',
+    description:
+      'New pages, new features, redesigns and application development sit outside the monthly care plans. When you need them, we scope and quote the work separately so the plan stays predictable.',
+    items: [
+      { title: 'New pages and features', description: 'Quoted based on the agreed scope before work starts.' },
+      { title: 'Redesigns', description: 'A larger redesign is a project, not a maintenance task.' },
+      { title: 'Application work', description: 'New workflows and integrations are scoped individually.' },
     ],
   },
 ]
@@ -473,16 +439,16 @@ export const processClientNeeds = [
 
 export const processSupportLevels = [
   {
-    title: 'Minor post-launch support',
-    description: 'For the small adjustments covered by the selected package.',
+    title: 'No monthly plan',
+    description: 'You buy the website once-off and manage hosting, email and updates yourself after the support period.',
   },
   {
-    title: 'Ongoing maintenance',
-    description: 'For businesses that want continued technical and content support.',
+    title: 'Monthly care plan',
+    description: 'WEB-IN manages hosting, domain/DNS, business email within the allowance, updates, checks, backups where supported and support.',
   },
   {
     title: 'Future improvements',
-    description: 'For new pages, features, functionality or larger changes that fall outside maintenance.',
+    description: 'New pages, features, redesigns and application work are quoted separately from the monthly plan.',
   },
 ]
 
@@ -505,19 +471,19 @@ export const processFaqs: [string, string][] = [
   ],
   [
     'When do I pay?',
-    'The required deposit is paid after the project scope and quotation are approved and before development begins.',
+    'The deposit is paid after the project scope and quotation are approved and before development begins. Care plans, where chosen, are billed monthly in advance.',
   ],
   [
     'Can I request changes after launch?',
-    'Yes. Minor changes may be covered by applicable post-launch support, while larger changes or new functionality are quoted separately.',
+    'Minor content changes are covered within the allowance of a care plan. Larger changes, new pages and new functionality are quoted separately.',
   ],
   [
-    'Do you provide ongoing maintenance?',
-    'Yes. Optional maintenance plans are available depending on your needs.',
+    'Do I have to choose a monthly care plan?',
+    'No. You can buy the website without a plan. The care plans exist for businesses that would rather not manage hosting, email, updates and checks themselves.',
   ],
   [
-    'Will you handle the domain?',
-    'Where included in the selected package or agreed scope, WEB-IN can assist with domain registration and configuration. Third-party renewal and subscription costs are separate unless explicitly included.',
+    'Will you handle the domain and email?',
+    'On a care plan, yes. The domain stays registered in your name, and we manage its configuration and renewal process. Business email is included within the plan\'s mailbox allowance. The domain renewal cost itself is disclosed separately.',
   ],
 ]
 
@@ -536,6 +502,8 @@ export interface FaqCategory {
   cta?: { text: string; href: string }
 }
 
+const carePriceSummary = `${carePlans[0].name} ${carePlans[0].priceLabel}/month, ${carePlans[1].name} ${carePlans[1].priceLabel}/month and ${carePlans[2].name} ${carePlans[2].priceLabel}/month`
+
 export const faqCategories: FaqCategory[] = [
   {
     id: 'pricing',
@@ -546,7 +514,11 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'How much does a website cost?',
-        answer: 'Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
+        answer: `Website design and development is a once-off project fee. Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Monthly website care is optional and billed monthly: ${carePriceSummary}. Every quote lists exactly what is included, and extras are quoted before any extra work starts.`,
+      },
+      {
+        question: 'Is the website price once-off or monthly?',
+        answer: 'The design and development price is once-off. You pay for the build, and once it is paid in full you own the website and its content. A monthly care plan is optional. It covers hosting management, email, updates, checks and support after launch. You do not need a care plan to own or keep your website.',
       },
       {
         question: 'What if I need more than what is included?',
@@ -554,7 +526,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         question: 'How do I pay WEB-IN?',
-        answer: 'We take a 50% deposit to start and the balance before launch.',
+        answer: 'We take a 50% deposit to start and the balance before launch. Care plans, where chosen, are billed monthly in advance.',
       },
       {
         question: 'What is the difference between a Starter and Business website?',
@@ -584,17 +556,94 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'Do I own my website?',
-        answer: 'Yes. Once the project is paid in full, you own the website and its content. Third-party software and subscriptions stay subject to their own terms.',
+        answer: 'Yes. Once the project is paid in full, you own the website and its content. Third-party software and subscriptions stay subject to their own terms. If you end a care plan, we agree a migration or handover so you keep your content and files.',
       },
       {
-        question: 'Do you provide a domain?',
-        answer: 'We do not include a free domain. We can register one in your name as an add-on, or connect a domain you already own.',
+        question: 'Who owns my domain?',
+        answer: 'You do. We register the domain in your name and can manage the configuration and renewal process on your behalf. The domain remains yours, and you can recover access or transfer it at any time.',
+      },
+      {
+        question: 'Does the monthly plan include domain renewal?',
+        answer: 'The management fee covers handling the renewal process, not the domain registration cost itself. Where we collect and pay the renewal on your behalf, the amount is disclosed separately and is never silently absorbed into the plan.',
+      },
+    ],
+  },
+  {
+    id: 'care-hosting',
+    number: '04',
+    label: 'CARE & HOSTING',
+    heading: 'Website care, hosting and email',
+    intro: 'How ongoing management works after launch.',
+    items: [
+      {
+        question: 'What is website care?',
+        answer: 'Website care is the ongoing technical work that keeps a site healthy: hosting and domain/DNS management, SSL and uptime checks, security updates, backups where the platform supports them, small content changes and support when something breaks. WEB-IN offers three monthly plans: ' + carePriceSummary + '.',
+      },
+      {
+        question: 'What happens after my website is launched?',
+        answer: 'Your site goes live and you get a defined support period for fixes. After that you can choose a care plan, manage the site yourself, or ask us for help when needed. Nothing forces you onto a monthly plan.',
+      },
+      {
+        question: 'Does WEB-IN offer website hosting?',
+        answer: 'Yes, as part of a care plan. We manage the hosting arrangement that suits the project: shared hosting with cPanel for simple sites, or platforms such as Vercel, Netlify or dedicated application infrastructure for stores and custom apps.',
+      },
+      {
+        question: 'Do I need to manage hosting myself?',
+        answer: 'No, not if you choose a care plan. We manage the hosting, server settings, DNS records and technical updates covered by your plan. You do not need to touch a hosting dashboard. If you prefer to keep control of the accounts yourself, you can.',
+      },
+      {
+        question: 'Is business email included?',
+        answer: `Yes. Every care plan includes business email on your own domain within the plan's mailbox allowance: ${emailShort(carePlans[0])} on Essential Web Care, ${emailShort(carePlans[1])} on Business Website Care and ${emailShort(carePlans[2])} on Advanced Application Management. Additional mailboxes, extra storage and premium suites such as Google Workspace or Microsoft 365 are quoted or billed separately.`,
+      },
+      {
+        question: 'Does the plan include unlimited email accounts?',
+        answer: 'No. Each plan includes a defined number of mailboxes and a fair-use allowance for storage and normal business sending. The allowance is not unlimited, and bulk or marketing email is not part of the service.',
+      },
+      {
+        question: 'What is the difference between hosting and website management?',
+        answer: 'Hosting is the server or platform where the website files run. Website management is the ongoing work around it: updates, security, backups, monitoring, domain and DNS, email mailboxes, content changes and support. A care plan includes both the hosting arrangement and the management.',
+      },
+      {
+        question: 'What happens if my website goes offline?',
+        answer: 'On a care plan, report it and we investigate during support hours. Monitoring usually catches problems first. Most websites are restored quickly, but no provider can guarantee 100% uptime, and recovery depends on what caused the outage.',
+      },
+      {
+        question: 'Are backups included?',
+        answer: 'Backups are taken where the hosting platform supports them, and Business Website Care adds monthly backup verification. We do not guarantee that every version of every file can be recovered. If you need guaranteed retention or long-term archives, we can quote a separate arrangement.',
+      },
+      {
+        question: 'Can WEB-IN manage a website built by another developer?',
+        answer: 'Often, yes. We review the code, hosting and access first, then confirm what we can support. If a site is built in a way that cannot be maintained safely, we will say so and quote a rebuild or migration instead.',
+      },
+      {
+        question: 'Can I cancel my monthly care plan?',
+        answer: 'Yes. Care plans run month to month with the notice period set out in the terms. Cancelling is straightforward, and we agree what happens to hosting, email and access before the plan ends.',
+      },
+      {
+        question: 'What happens to my website if I stop using WEB-IN?',
+        answer: 'You keep your website content and your domain. We agree a handover or migration of files, DNS and accounts so the site can continue elsewhere. The website does not become hostage to the care plan.',
+      },
+      {
+        question: 'Are new features or redesigns included in the monthly plan?',
+        answer: 'No. Care plans cover maintenance and the agreed allowances, not unlimited development. New pages, new features, redesigns and application work are quoted separately.',
+      },
+      {
+        question: 'Does Advanced Application Management include database hosting?',
+        answer: 'No. The monthly fee is the management fee for the application. Database hosting, cloud compute, storage, payment gateway fees, external APIs and premium software are variable third-party costs and are quoted or billed separately.',
+      },
+      {
+        question: 'Are third-party services included?',
+        answer: 'No. Domain registration, extra mailboxes or storage, premium email suites, payment gateway fees, external APIs and other third-party subscriptions are separate from both the build price and the management fee unless a quote says otherwise.',
+      },
+      {
+        question: 'Can I buy a website without a monthly plan?',
+        answer: 'Yes. You can buy the website as a once-off project and stop there. The care plans exist for businesses that would rather not manage hosting, email, updates and checks themselves.',
       },
     ],
   },
   {
     id: 'stores-payments',
-    number: '04',
+    number: '05',
     label: 'STORES & PAYMENTS',
     heading: 'Online stores and payments',
     intro: 'How payments and stores work.',
@@ -606,24 +655,6 @@ export const faqCategories: FaqCategory[] = [
     ],
   },
   {
-    id: 'maintenance',
-    number: '05',
-    label: 'MAINTENANCE',
-    heading: 'Ongoing support',
-    intro: 'Care plans and maintenance.',
-    items: [
-      {
-        question: 'Do you offer maintenance?',
-        answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
-      },
-      {
-        question: 'What is included in website maintenance?',
-        answer: 'Basic Care covers uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care adds more update time, monthly performance and backup checks, and replies within one business day.',
-      },
-    ],
-    cta: { text: 'View All Services', href: '/pricing' },
-  },
-  {
     id: 'about',
     number: '06',
     label: 'ABOUT WEB-IN',
@@ -632,7 +663,7 @@ export const faqCategories: FaqCategory[] = [
     items: [
       {
         question: 'What is WEB-IN?',
-        answer: 'WEB-IN is an independent website design and development studio in Johannesburg, South Africa, working remotely with businesses across the country. It builds business websites, online stores and custom web applications. Websites start at R2,500 and the full price list is published on the pricing page.',
+        answer: 'WEB-IN is an independent web studio in Johannesburg, South Africa, working remotely with businesses across the country. It designs and builds business websites, online stores and custom web applications, and manages hosting, email and technical care for clients who choose a monthly plan. Websites start at R2,500 and the full price list is published on the pricing page.',
       },
       {
         question: 'Is WEB-IN legitimate?',
@@ -758,6 +789,9 @@ export const enquiryServiceOptions = [
   'Website Redesign',
   'Online Store',
   'Custom Web Application',
+  'Essential Web Care',
+  'Business Website Care',
+  'Advanced Application Management',
   'Not Sure Yet',
 ]
 
@@ -832,23 +866,23 @@ export const enquiryDesignOptions = [
 export const homepageFaqs = [
   {
     question: 'How much does a website cost?',
-    answer: 'Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
+    answer: 'Website design and development is a once-off fee. Launch prices start at R2,500 for a Starter Website and from R4,000 for a Business Website. Redesigns start from R2,500, online stores from R7,000 and custom web applications from R10,000. Every quote lists exactly what is included, and extras are quoted before any extra work starts.',
   },
   {
     question: 'How long does a website take?',
     answer: 'Starter sites take 1-2 weeks, Business sites 2-3 weeks, stores 3-5 weeks and custom applications 4-8+ weeks. Timelines start once we have your deposit and content.',
   },
   {
-    question: 'Do I own my website?',
-    answer: 'Yes. Once the project is paid in full, you own the website and its content. Third-party software and subscriptions stay subject to their own terms.',
+    question: 'What happens after my website is launched?',
+    answer: `You can buy the website without a monthly plan, or choose ongoing care. The care plans cover hosting management, business email within a mailbox allowance, SSL and uptime checks, security updates, backups where supported, small content changes and support: ${carePriceSummary}.`,
   },
   {
-    question: 'Do you provide a domain?',
-    answer: 'We do not include a free domain. We can register one in your name as an add-on, or connect a domain you already own.',
+    question: 'Do I own my website and domain?',
+    answer: 'Yes. Once the project is paid in full, you own the website and its content, and the domain is registered in your name. If you end a care plan, we agree a handover so you keep your content, domain and access.',
   },
   {
-    question: 'Do you offer maintenance?',
-    answer: 'Yes. Basic Care (R299 per month) and Business Care (R499 per month) cover small updates, checks and support after launch.',
+    question: 'Is business email included?',
+    answer: `Yes, within each plan's mailbox allowance: ${emailShort(carePlans[0])} on Essential Web Care, ${emailShort(carePlans[1])} on Business Website Care and ${emailShort(carePlans[2])} on Advanced Application Management. Extra mailboxes, extra storage and premium suites are quoted separately.`,
   },
 ]
 
@@ -886,14 +920,24 @@ export const keyFaqs: FaqItem[] = [
       'Yes. WEB-IN builds online stores with one South African payment gateway, such as PayFast, Yoco or Ozow, included in the Online Store package from R7,000. You apply for the merchant account in your business name, and the gateway transaction fees are paid by you.',
   },
   {
-    question: 'What is included in website maintenance?',
+    question: 'Is the website price once-off?',
     answer:
-      'Basic Care costs R299 per month and covers uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care costs R499 per month and adds more update time, monthly performance and backup checks, and replies within one business day.',
+      'Yes. Design and development is a once-off project fee: Starter Website R2,500, Business Website from R4,000, Website Redesign from R2,500, Online Store from R7,000 and Custom Web Application from R10,000. Once it is paid in full you own the website and its content. A monthly care plan is optional.',
+  },
+  {
+    question: 'What is included in website care?',
+    answer:
+      `WEB-IN offers three monthly plans: Essential Web Care ${carePlans[0].priceLabel}/month for simple sites, Business Website Care ${carePlans[1].priceLabel}/month for growing businesses, and Advanced Application Management ${carePlans[2].priceLabel}/month for stores, dashboards and custom apps. Each plan includes hosting management, business email within a mailbox allowance, SSL and uptime checks, security updates, backups where supported, content allowances and support.`,
+  },
+  {
+    question: 'Is business email included in the monthly plan?',
+    answer:
+      `Yes. Every care plan includes business email on your own domain within the plan's mailbox allowance: ${emailShort(carePlans[0])} on Essential Web Care, ${emailShort(carePlans[1])} on Business Website Care and ${emailShort(carePlans[2])} on Advanced Application Management. Extra mailboxes, extra storage and premium suites such as Google Workspace or Microsoft 365 are quoted or billed separately. Mailboxes are not unlimited.`,
   },
   {
     question: 'Do I own my website?',
     answer:
-      'Yes. Once the project is paid in full, you own the website and its content. Domains, third-party software and subscriptions stay subject to their own terms, and we can register a domain in your name as an add-on.',
+      'Yes. Once the project is paid in full, you own the website and its content. The domain is registered in your name. Third-party software and subscriptions stay subject to their own terms, and if you end a care plan we agree a migration or handover so you keep your content, domain and access.',
   },
   {
     question: 'What is the difference between a Starter and Business website?',

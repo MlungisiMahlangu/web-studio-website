@@ -192,7 +192,7 @@ Each phase of the project exists for a reason. Skipping steps or rushing through
 
 ## What happens after launch?
 
-Once your website is live, most developers provide a support period (typically 14-30 days) where they fix any bugs or issues that arise. After that, you may want to consider a maintenance plan for ongoing updates, security patches, backups, and technical support.
+Once your website is live, most developers provide a support period (typically 14-30 days) where they fix any bugs or issues that arise. After that, you may want to consider a care plan for ongoing updates, security patches, backups, business email and technical support.
 
 ## Next steps
 
@@ -352,7 +352,7 @@ Websites are not static. Software needs updates, forms need testing, content cha
 
 There are two reasonable answers. Either the site is built so you can update it yourself, or there is a maintenance arrangement with a clear monthly cost. What you want to avoid is a site that can only be changed by one person who is difficult to reach.
 
-Our optional care plans are R299 per month for Basic Care and R499 per month for Business Care. They exist for businesses that would rather not manage updates themselves, but the website does not depend on them.
+Our optional care plans are R149, R299 and R499 per month depending on the site. Each includes business email on your own domain within the plan's mailbox allowance. They exist for businesses that would rather not manage updates themselves, but the website does not depend on them.
 
 ## Ask about ownership and access
 
@@ -734,7 +734,15 @@ Most businesses need occasional small changes: a new phone number, a price updat
 
 These are small individually. Together they are the reason a website stays accurate. A site that is never updated slowly becomes misleading.
 
-Care plans usually include a set amount of update time each month. Basic Care at WEB-IN is R299 per month and covers uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care is R499 per month and adds more update time, monthly performance and backup checks, and replies within one business day.
+Care plans usually include a set amount of update time each month. At WEB-IN, Essential Web Care is R149 per month and covers uptime and security checks, small content updates, minor bug fixes, business email within the plan's mailbox allowance and replies within two business days. Business Website Care is R299 per month and adds more update time, monthly performance and backup checks and replies within one business day. Advanced Application Management is R499 per month for stores and custom applications, with a larger mailbox allowance.
+
+## Business email is part of the plan
+
+A website and business email are separate technical systems, but they belong to the same identity. Customers see one domain: yourwebsite.co.za. If the website is managed but the email is left to chance, the domain ends up split between two providers and nobody owns the whole picture.
+
+That is why the care plans include business email on your own domain within a mailbox allowance. Setup covers creating the mailboxes, configuring MX, SPF, DKIM and DMARC records and basic troubleshooting. It does not promise inbox placement, because deliverability depends on the receiving mail systems.
+
+Two boundaries are worth stating clearly. Mailbox allowances are not unlimited; extra mailboxes or storage are quoted separately. And provider sending limits apply, which rules out bulk marketing blasts from the mailboxes we manage.
 
 ## What is usually not included
 
@@ -744,7 +752,7 @@ Other things that may sit outside a plan:
 
 - Copywriting and photography.
 - Paid software, plugins or subscriptions.
-- Domain and hosting renewals.
+- Domain renewal and premium email suites such as Google Workspace or Microsoft 365.
 - Major content migrations.
 - SEO campaigns and ongoing content marketing.
 

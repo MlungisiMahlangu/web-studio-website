@@ -97,8 +97,8 @@ export default function WebDevelopmentSouthAfricaPage() {
               text: 'Payment gateways, email services, maps, analytics and CRMs connected so information moves without manual copying.',
             },
             {
-              title: 'Maintenance',
-              text: 'Updates, security checks, backups and small content changes after launch, from R299 per month.',
+              title: 'Website care',
+              text: 'Managed hosting, business email within a mailbox allowance, security checks, backups and support after launch. Care plans are R149, R299 or R499 per month.',
             },
           ],
         },

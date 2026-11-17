@@ -8,19 +8,22 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Website Design FAQ',
   description:
-    'Answers about website costs, timelines, ownership, payments and maintenance when working with WEB-IN in Johannesburg, South Africa. Prices from R2,500.',
+    'Answers about website costs, timelines, ownership, payments, business email and care plans when working with WEB-IN in Johannesburg. Websites from R2,500 once-off.',
   keywords: [
     'web development faq',
     'website design questions',
     'web development pricing faq',
     'website ownership faq',
+    'website care plan faq',
+    'business email website',
     'web design timeline',
     'website development process',
   ],
   alternates: alternatesFor('/faq'),
   openGraph: {
     title: 'FAQ | WEB-IN',
-    description: 'Everything you need to know about working with WEB-IN. Pricing, timelines, domains, ownership, support and more.',
+    description:
+      'Everything you need to know about working with WEB-IN: pricing, timelines, domains, ownership, business email, care plans and support.',
     type: 'website',
     url: '/faq',
   },
@@ -31,7 +34,7 @@ const faqJsonLd = [
     path: '/faq',
     name: 'Website design FAQ',
     description:
-      'Answers about website costs, timelines, ownership, payments and maintenance when working with WEB-IN.',
+      'Answers about website costs, timelines, ownership, payments, business email and monthly care plans when working with WEB-IN.',
   }),
   faqSchema(faqCategories.flatMap((category) => category.items)),
 ]
@@ -44,7 +47,7 @@ export default function FAQPage() {
       <PageHero
         eyebrow="FAQ"
         title={<>Good questions<br />deserve clear answers.</>}
-        description="Everything you need to know before starting a project with WEB-IN — from services and timelines to domains, ownership, support and what happens after you get in touch."
+        description="Everything you need to know before starting a project with WEB-IN — from services and timelines to domains, ownership, business email, monthly care plans and what happens after you get in touch."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'FAQ', href: '/faq' },

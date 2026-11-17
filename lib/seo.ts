@@ -17,10 +17,10 @@ import {
   STUDIO_REGION,
   STUDIO_TAGLINE,
   addons,
-  maintenancePlans,
   services,
   type FaqItem,
 } from './constants'
+import { carePlans } from './care-plans'
 
 export const ORG_ID = `${SITE_URL}/#organization`
 export const WEBSITE_ID = `${SITE_URL}/#website`
@@ -30,6 +30,8 @@ export const CATALOG_ID = `${SITE_URL}/#offer-catalog`
 
 export const serviceId = (slug: string) => `${SITE_URL}/#service-${slug}`
 export const offerId = (slug: string) => `${SITE_URL}/#offer-${slug}`
+export const careServiceId = (id: string) => `${SITE_URL}/#care-${id}`
+export const careOfferId = (id: string) => `${SITE_URL}/#care-offer-${id}`
 
 export function absoluteUrl(path: string): string {
   if (path.startsWith('http')) return path
@@ -96,25 +98,25 @@ const offers = [
       },
       itemOffered: { '@type': 'Service', name: addon.name },
     })),
-  ...maintenancePlans.map((plan) => ({
+  ...carePlans.map((plan) => ({
     '@type': 'Offer',
-    '@id': `${SITE_URL}/#maintenance-${plan.priceValue}`,
-    name: `${plan.name} maintenance`,
-    price: plan.priceValue,
+    '@id': careOfferId(plan.id),
+    name: `${plan.name} (monthly care plan)`,
+    price: plan.priceMonthly,
     priceCurrency: 'ZAR',
     priceValidUntil: PRICE_VALID_UNTIL,
+    availability: 'https://schema.org/InStock',
+    url: `${SITE_URL}/pricing#${plan.id}`,
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: plan.priceValue,
+      price: plan.priceMonthly,
       priceCurrency: 'ZAR',
       unitText: 'per month',
+      billingDuration: 'P1M',
+      unitCode: 'MON',
       valueAddedTaxIncluded: false,
     },
-    itemOffered: {
-      '@type': 'Service',
-      name: `${plan.name} website maintenance`,
-      description: plan.description,
-    },
+    itemOffered: { '@id': careServiceId(plan.id) },
   })),
 ]
 
@@ -128,6 +130,18 @@ const serviceNodes = services.map((service) => ({
   provider: { '@id': ORG_ID },
   areaServed,
   offers: { '@id': offerId(service.slug) },
+}))
+
+const careServiceNodes = carePlans.map((plan) => ({
+  '@type': 'Service',
+  '@id': careServiceId(plan.id),
+  name: plan.name,
+  serviceType: 'Website care and management',
+  description: `${plan.description} ${plan.emailLabel}.`,
+  url: `${SITE_URL}/website-care-management#${plan.id}`,
+  provider: { '@id': ORG_ID },
+  areaServed,
+  offers: { '@id': careOfferId(plan.id) },
 }))
 
 export function buildSiteGraph() {
@@ -182,7 +196,7 @@ export function buildSiteGraph() {
         description: STUDIO_DESCRIPTION,
         email: STUDIO_EMAIL,
         telephone: STUDIO_PHONE,
-        priceRange: 'R2,500 - R10,000+',
+        priceRange: 'R2,500 - R10,000+ once-off; care plans R149 - R499 per month',
         currenciesAccepted: 'ZAR',
         paymentAccepted: 'Bank transfer, EFT',
         address: postalAddress,
@@ -209,6 +223,7 @@ export function buildSiteGraph() {
         itemListElement: offers,
       },
       ...serviceNodes,
+      ...careServiceNodes,
     ],
   }
 }

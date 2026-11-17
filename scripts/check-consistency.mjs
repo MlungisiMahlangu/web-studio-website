@@ -193,8 +193,107 @@ const repoFiles = (await walk(root)).filter(
 for (const file of repoFiles) {
   let contents = await read(file)
   for (const allowed of externalHostAllowlist) contents = contents.replace(allowed, '')
-  if (new RegExp('net' + 'lify', 'i').test(contents)) {
-    fail(`${rel(file)} mentions the old host; the site is hosted on Vercel`)
+  // Naming a deployment platform is allowed; claiming WEB-IN's own site is hosted
+  // somewhere other than Vercel is not.
+  const wrongHostClaim = new RegExp('(?:hosted|deployed|running) (?:on|with) net' + 'lify', 'i')
+  if (wrongHostClaim.test(contents)) {
+    fail(`${rel(file)} says the site is hosted on the old host; it is hosted on Vercel`)
+  }
+}
+
+// 10. Care plans: flat prices, mailbox allowances and email wording
+const carePlansSource = await read(join(root, 'lib/care-plans.ts'))
+const expectedCarePlans = {
+  'essential-web-care': { price: 149, mailboxes: 5, storage: 5 },
+  'business-website-care': { price: 299, mailboxes: 10, storage: 15 },
+  'advanced-application-management': { price: 499, mailboxes: 20, storage: 30 },
+}
+for (const [id, expected] of Object.entries(expectedCarePlans)) {
+  const block = carePlansSource.split(`id: '${id}'`)[1]
+  if (!block) {
+    fail(`lib/care-plans.ts: care plan '${id}' not found`)
+    continue
+  }
+  const slice = block.slice(0, 4000)
+  const price = slice.match(/priceMonthly:\s*(\d+)/)?.[1]
+  const priceLabel = slice.match(/priceLabel:\s*'([^']+)'/)?.[1]
+  const mailboxes = slice.match(/emailMailboxes:\s*(\d+)/)?.[1]
+  const storage = slice.match(/storageGb:\s*(\d+)/)?.[1]
+  const emailLabel = slice.match(/emailLabel:\s*'([^']+)'/)?.[1]
+  if (Number(price) !== expected.price) {
+    fail(`lib/care-plans.ts: ${id} priceMonthly is ${price}, expected ${expected.price}`)
+  }
+  if (priceLabel !== `R${expected.price}`) {
+    fail(`lib/care-plans.ts: ${id} priceLabel is ${priceLabel}, expected R${expected.price}`)
+  }
+  if (Number(mailboxes) !== expected.mailboxes) {
+    fail(`lib/care-plans.ts: ${id} emailMailboxes is ${mailboxes}, expected ${expected.mailboxes}`)
+  }
+  if (Number(storage) !== expected.storage) {
+    fail(`lib/care-plans.ts: ${id} storageGb is ${storage}, expected ${expected.storage}`)
+  }
+  if (!slice.includes(`'${expected.storage} GB SSD storage'`)) {
+    fail(`lib/care-plans.ts: ${id} features must include '${expected.storage} GB SSD storage'`)
+  }
+  if (!/emailIncluded:\s*true/.test(slice)) {
+    fail(`lib/care-plans.ts: ${id} must set emailIncluded: true`)
+  }
+  if (!emailLabel || !emailLabel.includes(String(expected.mailboxes))) {
+    fail(`lib/care-plans.ts: ${id} emailLabel does not state the ${expected.mailboxes} mailbox allowance`)
+  }
+}
+
+const careCopyFailures = [
+  { label: 'an old care plan price', pattern: /R199|R349|R548/ },
+  { label: 'an old care plan name', pattern: /\bBasic Care\b|\bBusiness Care\b/ },
+  { label: 'a "from" price on a care plan', pattern: /(?:from|starting at)\s+R(?:149|299|499)\b/i },
+  { label: 'email described as a separate service', pattern: /email(?: hosting)? (?:is|as) (?:a )?separate/i },
+  { label: 'email described as excluded', pattern: /email[^.\n]{0,60}(?:not included|excluded)/i },
+]
+for (const file of sourceFiles) {
+  const contents = await read(file)
+  for (const { label, pattern } of careCopyFailures) {
+    if (pattern.test(contents)) fail(`${rel(file)} contains ${label} (${pattern})`)
+  }
+  for (const line of contents.split('\n')) {
+    if (!/unlimited (?:email|mailbox|mailboxes)/i.test(line)) continue
+    if (/not unlimited|not part of the service|include unlimited email accounts\?/i.test(line)) continue
+    fail(`${rel(file)} claims an unlimited email allowance: ${line.trim().slice(0, 120)}`)
+  }
+}
+
+// Components must read plan prices and mailbox counts from lib/care-plans.ts.
+const careComponents = await read(join(root, 'components/sections/care-plans.tsx'))
+if (/R(?:149|299|499)\b/.test(careComponents)) {
+  fail('components/sections/care-plans.tsx hard-codes a care plan price; read it from lib/care-plans.ts')
+}
+if (/up to \d+ business email/i.test(careComponents)) {
+  fail('components/sections/care-plans.tsx hard-codes a mailbox count; read emailLabel from lib/care-plans.ts')
+}
+if (/\d+ GB SSD/i.test(careComponents)) {
+  fail('components/sections/care-plans.tsx hard-codes a storage allowance; read storageGb from lib/care-plans.ts')
+}
+if (!/label: 'SSD storage'/.test(carePlansSource)) {
+  fail("lib/care-plans.ts: comparison rows must include 'SSD storage'")
+}
+
+const seoSource = await read(join(root, 'lib/seo.ts'))
+if (!/billingDuration:\s*'P1M'/.test(seoSource)) {
+  fail("lib/seo.ts: monthly care offers must declare billingDuration: 'P1M'")
+}
+if (!/carePlans\.map/.test(seoSource)) {
+  fail('lib/seo.ts: monthly care offers must be generated from carePlans')
+}
+
+const llmsTxt = await read(join(root, 'app/llms.txt/route.ts'))
+const llmsFull = await read(join(root, 'app/llms-full.txt/route.ts'))
+for (const [name, contents] of [['llms.txt', llmsTxt], ['llms-full.txt', llmsFull]]) {
+  if (!/carePlans/.test(contents)) fail(`${name} must list the care plans from lib/care-plans.ts`)
+  if (!/emailShort|emailFeature|emailMailboxes/.test(contents)) {
+    fail(`${name} must state the business email mailbox allowance`)
+  }
+  if (!/website-care-management/.test(contents)) {
+    fail(`${name} must link to /website-care-management`)
   }
 }
 

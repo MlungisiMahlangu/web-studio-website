@@ -134,7 +134,7 @@ export default function WebsiteRedesignSouthAfricaPage() {
           heading: 'A redesign is the start of a healthier site.',
           alt: true,
           paragraphs: [
-            'Once the new site is live, it needs the same care as any other. Content changes, software updates and periodic checks keep it useful. Optional care plans from R299 per month cover small updates and routine checks.',
+            'Once the new site is live, it needs the same care as any other. Content changes, software updates and periodic checks keep it useful. Optional care plans are R149, R299 or R499 per month depending on the site, and each includes business email within its mailbox allowance.',
             'You own the new website once the project is paid in full, including the code and content. There is no requirement to stay on a plan to keep the site running.',
             'If the redesign uncovers a bigger need, such as a store or a booking system, we scope that separately rather than quietly expanding the original project.',
           ],

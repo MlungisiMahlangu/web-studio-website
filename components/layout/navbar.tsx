@@ -2,13 +2,17 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowUpRight, Menu, X, MessageCircle } from 'lucide-react'
+import { ArrowUpRight, ChevronDown, Menu, X, MessageCircle } from 'lucide-react'
 import { useScrollDirection } from '@/components/ui/hooks'
 import { clsx } from 'clsx'
 import { STUDIO_WHATSAPP } from '@/lib/constants'
 
+const serviceLinks = [
+  { label: 'Website Design & Development', href: '/pricing' },
+  { label: 'Care & Management', href: '/website-care-management' },
+]
+
 const navLinks = [
-  { label: 'Services', href: '/pricing' },
   { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
   { label: 'Process', href: '/process' },
@@ -17,12 +21,23 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const { scrollDirection, scrollY } = useScrollDirection()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (!servicesOpen) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setServicesOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [servicesOpen])
 
   const isHidden = scrollDirection === 'down' && scrollY > 400 && !menuOpen     
   const isScrolled = mounted && scrollY > 10
@@ -48,6 +63,62 @@ export default function Navbar() {
             </Link>
 
             <div className="hidden lg:flex items-center gap-8">
+              <div
+                className="relative"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                    setServicesOpen(false)
+                  }
+                }}
+              >
+                <button
+                  type="button"
+                  className="flex items-center gap-1.5 text-sm font-medium text-body hover:text-navy transition-colors duration-200"
+                  aria-expanded={servicesOpen}
+                  aria-controls="services-menu"
+                  onClick={() => setServicesOpen((open) => !open)}
+                >
+                  Services
+                  <ChevronDown
+                    size={14}
+                    className={clsx('transition-transform duration-200', servicesOpen && 'rotate-180')}
+                  />
+                </button>
+                <div
+                  id="services-menu"
+                  className={clsx(
+                    'absolute left-0 top-full pt-4 w-72 transition-all duration-200',
+                    servicesOpen
+                      ? 'opacity-100 translate-y-0 pointer-events-auto'
+                      : 'opacity-0 -translate-y-1 pointer-events-none',
+                  )}
+                >
+                  <div className="rounded-2xl border border-line bg-white shadow-xl p-2">
+                    {serviceLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setServicesOpen(false)}
+                        className="block rounded-xl px-3 py-2.5 text-sm text-body hover:text-navy hover:bg-surface transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                    <div className="mt-1 border-t border-line pt-1">
+                      <Link
+                        href="/pricing"
+                        onClick={() => setServicesOpen(false)}
+                        className="flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-brand hover:bg-surface transition-colors"
+                      >
+                        All services and prices
+                        <ArrowUpRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -121,6 +192,46 @@ export default function Navbar() {
             </button>
           </div>
           <nav className="flex flex-col p-6 gap-1">
+            <button
+              type="button"
+              onClick={() => setMobileServicesOpen((open) => !open)}
+              className="flex items-center justify-between text-base font-medium text-body hover:text-navy hover:bg-surface rounded-xl px-4 py-3 transition-all duration-200"
+              aria-expanded={mobileServicesOpen}
+              aria-controls="mobile-services-menu"
+            >
+              Services
+              <ChevronDown
+                size={16}
+                className={clsx('transition-transform duration-200', mobileServicesOpen && 'rotate-180')}
+              />
+            </button>
+            {mobileServicesOpen && (
+              <div id="mobile-services-menu" className="flex flex-col gap-1 pb-2">
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => {
+                      setMenuOpen(false)
+                      setMobileServicesOpen(false)
+                    }}
+                    className="rounded-xl px-4 py-2.5 pl-7 text-sm text-body hover:text-navy hover:bg-surface transition-all duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  href="/pricing"
+                  onClick={() => {
+                    setMenuOpen(false)
+                    setMobileServicesOpen(false)
+                  }}
+                  className="rounded-xl px-4 py-2.5 pl-7 text-sm font-medium text-brand hover:bg-surface transition-all duration-200"
+                >
+                  All services and prices
+                </Link>
+              </div>
+            )}
             {navLinks.map((link) => (
               <Link
                 key={link.href}

@@ -1,0 +1,371 @@
+import Link from 'next/link'
+import { Check, Minus, Wrench } from 'lucide-react'
+import type { Metadata } from 'next'
+import {
+  carePlans,
+  carePlanBillingNote,
+  emailShort,
+} from '@/lib/care-plans'
+import { SITE_URL } from '@/lib/constants'
+import { alternatesFor, breadcrumbSchema, careOfferId, faqSchema, ORG_ID, webPageSchema } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/json-ld'
+import { PageHero } from '@/components/ui/page-hero'
+import { Container } from '@/components/ui/container'
+import { Section } from '@/components/ui/section'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { CTABand } from '@/components/ui/cta-band'
+import { Reveal, RevealStagger } from '@/components/ui/reveal'
+import { CarePlanCards, CarePlanNotes, CareComparisonTable } from '@/components/sections/care-plans'
+
+export const revalidate = 3600
+
+const path = '/website-care-management'
+
+export const metadata: Metadata = {
+  title: 'Website Care & Management South Africa',
+  description:
+    'Website care from WEB-IN: hosting, domain and DNS management, business email within an allowance, security updates, backups and support. R149, R299 or R499 per month.',
+  alternates: alternatesFor(path),
+  openGraph: {
+    title: 'Website Care & Management | WEB-IN',
+    description:
+      'Ongoing website management for South African businesses: hosting, domain and DNS, business email, updates, checks and support on a monthly plan.',
+    type: 'website',
+    locale: 'en_ZA',
+    url: path,
+  },
+}
+
+const covered = [
+  'Website hosting management',
+  'Domain and DNS configuration',
+  'SSL/HTTPS monitoring',
+  'Website uptime monitoring',
+  'Routine website checks',
+  'Security checks and updates where applicable',
+  'Website backups where supported by the hosting platform',
+  'Recovery assistance where covered by the plan and available backups',
+  'Software and dependency updates where applicable',
+  'Website performance checks',
+  'Minor content updates within the plan limits',
+  'Contact form and essential functionality checks',
+  'Technical troubleshooting',
+  'Ongoing support',
+]
+
+const onboarding = [
+  {
+    title: 'Review the website',
+    text: 'We look at the current site, hosting, domain, email and access so we know what we are taking on and what needs attention first.',
+  },
+  {
+    title: 'Agree the plan',
+    text: 'We confirm the plan, the mailbox allowance, the content allowance and the support response target in writing.',
+  },
+  {
+    title: 'Move or manage the setup',
+    text: 'Where needed, we move hosting or email to a suitable platform, configure DNS and HTTPS, and make sure the site keeps working through the change.',
+  },
+  {
+    title: 'Run the schedule',
+    text: 'Checks, updates, backups and support run on the plan schedule. You report problems to one place and we handle the technical side.',
+  },
+]
+
+const notIncluded = [
+  'New pages, new features, redesigns or rebuilding the website',
+  'Unlimited content changes or unlimited development time',
+  'Domain registration and renewal costs, which are disclosed separately',
+  'Extra mailboxes, extra storage and premium email suites',
+  'Database hosting, cloud compute and storage for applications',
+  'Payment gateway fees, external APIs and premium third-party software',
+  'Ongoing SEO campaigns or content marketing',
+  'Guaranteed uptime, search rankings, security or recovery',
+]
+
+const carePageFaqs = [
+  {
+    question: 'What is website care?',
+    answer:
+      'Website care is the ongoing technical work that keeps a site healthy: hosting and domain management, SSL and uptime checks, security updates, backups where the platform supports them, small content changes and support when something breaks.',
+  },
+  {
+    question: 'Do I have to choose a care plan?',
+    answer:
+      'No. You can buy the website as a once-off project and manage it yourself. The monthly plans are for businesses that would rather not manage hosting, email, updates and checks themselves.',
+  },
+  {
+    question: 'What does the monthly fee cover?',
+    answer:
+      'The plan covers the agreed technical services: hosting management, domain and DNS configuration, SSL and uptime monitoring, security checks and updates, backups where supported, the content allowance, business email within the mailbox allowance and support. Third-party costs that vary are quoted or billed separately.',
+  },
+  {
+    question: 'Is business email included?',
+    answer: `Yes, within each plan's mailbox allowance: ${emailShort(carePlans[0])} on Essential Web Care, ${emailShort(carePlans[1])} on Business Website Care and ${emailShort(carePlans[2])} on Advanced Application Management. Extra mailboxes, extra storage and premium suites are quoted separately.`,
+  },
+  {
+    question: 'Which hosting platform will my website use?',
+    answer:
+      'The one that fits the project. Simple sites may use shared cPanel hosting. Stores and applications may need Vercel, Netlify, Supabase or dedicated application infrastructure. We do not force every project onto one provider, and not every feature is available on every platform.',
+  },
+  {
+    question: 'Who owns my domain and website?',
+    answer:
+      'You do. The domain is registered in your name and the website and its content are yours once paid in full. We can manage the configuration and renewal process on your behalf without taking ownership.',
+  },
+  {
+    question: 'What happens if I cancel?',
+    answer:
+      'The plan ends with the notice period in the terms. We agree a handover of files, domain access, DNS and mailboxes so the site can continue elsewhere. Your content and domain do not become hostage to the plan.',
+  },
+  {
+    question: 'Can you manage a site built by someone else?',
+    answer:
+      'Often, yes. We review the code, hosting and access first, then confirm what we can support. If the site cannot be maintained safely, we will say so and quote a rebuild or migration instead.',
+  },
+]
+
+const structuredData = [
+  webPageSchema({
+    path,
+    name: 'Website care and management in South Africa',
+    description:
+      'Monthly website care from WEB-IN: hosting, domain, business email, updates, backups and support.',
+  }),
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: 'Website Care & Management', href: path },
+  ]),
+  faqSchema(carePageFaqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}${path}#service`,
+    name: 'Website care and management',
+    serviceType: 'Website care and management',
+    description:
+      'Ongoing management of websites and web applications, including hosting, domain and DNS, business email within a mailbox allowance, security updates, backups where supported and support.',
+    url: `${SITE_URL}${path}`,
+    provider: { '@id': ORG_ID },
+    areaServed: { '@type': 'Country', name: 'South Africa' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'WEB-IN website care plans',
+      itemListElement: carePlans.map((plan) => ({ '@id': careOfferId(plan.id) })),
+    },
+  },
+]
+
+export default function WebsiteCareManagementPage() {
+  return (
+    <>
+      <JsonLd data={structuredData} />
+
+      <PageHero
+        eyebrow="Website Care & Management"
+        title="We build it. Then we keep it running."
+        description="Your website should not become another thing you have to worry about. We build it, manage the technical side and help keep it running."
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Website Care & Management', href: path },
+        ]}
+        accent="care"
+      />
+
+      <Section>
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20 items-start">
+            <Reveal>
+              <h2 className="text-display-md leading-tight font-bold text-navy">
+                The website goes live. The work does not stop there.
+              </h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="space-y-5 text-lg leading-relaxed text-body">
+                <p>
+                  A live website depends on hosting, a domain, certificates, software and a mailbox
+                  that still sends. Those pieces need attention, and problems usually appear at the
+                  worst possible time.
+                </p>
+                <p>
+                  WEB-IN can take that over. You pay an agreed monthly fee, we manage the agreed
+                  technical services and handle the infrastructure bills included in that
+                  arrangement, and you keep ownership of your domain and your business content.
+                </p>
+                <p>
+                  Care is optional. You can buy the website without a plan and manage it yourself.
+                  This page explains exactly what the plans do and do not cover.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      <Section alt>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="What care covers"
+              title="The technical responsibilities, handled."
+              description="Not every item applies to every website or hosting platform. The plan confirms what is included for your setup."
+              className="mb-10"
+            />
+          </Reveal>
+          <RevealStagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" stagger={40}>
+            {covered.map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-xl border border-line bg-white px-5 py-4 shadow-card">
+                <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                <span className="text-sm font-medium text-navy">{item}</span>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      <Section id="plans">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Monthly plans"
+              title="Three plans. One predictable fee."
+              description="Each plan includes business email within a defined mailbox allowance. Prices are flat monthly fees, billed in advance."
+              className="mb-12"
+            />
+          </Reveal>
+
+          <CarePlanCards />
+          <CarePlanNotes />
+
+          <Reveal>
+            <div className="mt-12 overflow-x-auto">
+              <CareComparisonTable />
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section alt>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Getting started"
+              title="How onboarding works."
+              description="A short, predictable start. Nothing goes live until we understand the setup."
+              className="mb-12"
+            />
+          </Reveal>
+          <RevealStagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={80}>
+            {onboarding.map((step, index) => (
+              <div key={step.title} className="rounded-2xl border border-line bg-white p-6 shadow-card">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="mt-4 text-base font-bold text-navy">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-body">{step.text}</p>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 items-start">
+            <Reveal>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-tint">
+                  <Wrench aria-hidden="true" className="h-5 w-5 text-brand" />
+                </span>
+                <h2 className="text-display-sm leading-tight font-bold text-navy">What is not included</h2>
+              </div>
+              <p className="mt-4 text-base leading-relaxed text-body">
+                A care plan is not a retainer for unlimited development. It keeps the existing
+                website healthy. New work is quoted separately so the monthly fee stays predictable.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <ul className="space-y-3 rounded-2xl border border-line bg-white p-6 shadow-card sm:p-7">
+                {notIncluded.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-body">
+                    <Minus aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-muted" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      <Section alt>
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+            <Reveal>
+              <h2 className="text-display-sm leading-tight font-bold text-navy">
+                Already have a website? Or thinking of leaving?
+              </h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="space-y-5 text-base leading-relaxed text-body">
+                <p>
+                  We can take over an existing website built by another developer. We review the
+                  code, hosting and access first, then confirm what we can support. If a site cannot
+                  be maintained safely, we will say so and quote a rebuild or migration instead.
+                </p>
+                <p>
+                  If you later stop using WEB-IN, we agree a handover: files, domain access, DNS
+                  records and mailbox exports. Your content and domain stay yours. The terms set out
+                  the notice period and what happens to the infrastructure during the change.
+                </p>
+                <p>
+                  The same rules apply to business email. The mailboxes in your allowance belong to
+                  your domain, and mailbox data can be exported during a managed handover.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <Reveal>
+            <SectionHeading title="Questions about care" className="mb-10" />
+          </Reveal>
+          <Reveal delay={60}>
+            <div className="mx-auto max-w-3xl divide-y divide-line rounded-2xl border border-line bg-white shadow-card">
+              {carePageFaqs.map((faq) => (
+                <details key={faq.question} className="group px-6 py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-navy">
+                    {faq.question}
+                  </summary>
+                  <p className="mt-3 pr-8 text-sm leading-relaxed text-body sm:text-base">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal>
+            <p className="mt-8 text-center text-sm text-muted">
+              {carePlanBillingNote}{' '}
+              <Link href="/pricing#care-plans" className="font-medium text-brand hover:underline">
+                See the full price list
+              </Link>
+              .
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <CTABand
+        eyebrow="Ongoing care"
+        title="Hand the technical side to us."
+        description="Tell us what the website runs on and which plan you are considering. We will confirm what is covered before you commit."
+        primaryHref="/contact?service=Business%20Website%20Care"
+        primaryLabel="Ask about a plan"
+        secondaryHref="/pricing"
+        secondaryLabel="Compare plans"
+      />
+    </>
+  )
+}

@@ -1,9 +1,34 @@
 import Link from 'next/link'
-import { ArrowUpRight, Check, Minus, Smartphone, Search, Mail, Globe, Headphones, Shield, FileText, Clock, RefreshCw, LifeBuoy } from 'lucide-react'
-import { services, addons, maintenancePlans, maintenanceNote, comparisonFeatures, keyFaqs, LAST_UPDATED, STUDIO_DESCRIPTION } from '@/lib/constants'
-import { faqSchema, webPageSchema } from '@/lib/seo'
+import {
+  ArrowUpRight,
+  Check,
+  Minus,
+  Smartphone,
+  Search,
+  Mail,
+  Globe,
+  Headphones,
+  Shield,
+  FileText,
+  Clock,
+  RefreshCw,
+  LifeBuoy,
+  Wallet,
+  Repeat,
+} from 'lucide-react'
+import {
+  services,
+  addons,
+  comparisonFeatures,
+  keyFaqs,
+  LAST_UPDATED,
+  STUDIO_DESCRIPTION,
+  ONCE_OFF_NOTE,
+} from '@/lib/constants'
+import { breadcrumbSchema, faqSchema, webPageSchema } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { PricingFaq } from '@/components/sections/pricing-faq'
+import { CarePlanCards, CarePlanNotes } from '@/components/sections/care-plans'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -23,21 +48,13 @@ const everyWebsiteFeatures = [
   { icon: Shield, title: 'Privacy-conscious build', desc: 'POPIA considered; you remain responsible for your own privacy notices.' },
 ]
 
-const howPricingWorks = [
-  'Prices are in rand for the scope listed; extra work is quoted before it starts.',
-  '50% deposit to start, balance before launch; you own the website on full payment.',
-  'Timelines start once we have your deposit and content.',
-  'Payment gateway fees and third-party subscriptions are paid by you.',
-  'You supply text and images unless you add content help.',
-  'A revision round is one consolidated list of changes.',
-]
-
 const whichOneDoINeed = [
-  { need: 'A site for myself or a small business', choose: 'Starter Website', slug: 'starter-website' },
-  { need: 'More pages and a stronger enquiry path', choose: 'Business Website', slug: 'business-website' },
-  { need: 'I already have a website', choose: 'Website Redesign', slug: 'website-redesign' },
-  { need: 'To sell products online', choose: 'Online Store', slug: 'online-store' },
-  { need: 'Logins, dashboards or bookings', choose: 'Custom Web Application', slug: 'custom-web-application' },
+  { need: 'A site for myself or a small business', choose: 'Starter Website', href: '#starter-website' },
+  { need: 'More pages and a stronger enquiry path', choose: 'Business Website', href: '#business-website' },
+  { need: 'I already have a website', choose: 'Website Redesign', href: '#website-redesign' },
+  { need: 'To sell products online', choose: 'Online Store', href: '#online-store' },
+  { need: 'Logins, dashboards or bookings', choose: 'Custom Web Application', href: '#custom-web-application' },
+  { need: 'Someone to run the technical side after launch', choose: 'Website Care & Management', href: '#care-plans' },
 ]
 
 const lastUpdatedLabel = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
@@ -49,10 +66,14 @@ const lastUpdatedLabel = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
 const structuredData = [
   webPageSchema({
     path: '/pricing',
-    name: 'Website design prices in South Africa',
+    name: 'Website design and care prices in South Africa',
     description: STUDIO_DESCRIPTION,
     dateModified: LAST_UPDATED,
   }),
+  breadcrumbSchema([
+    { label: 'Home', href: '/' },
+    { label: 'Services & Pricing', href: '/pricing' },
+  ]),
   faqSchema(keyFaqs),
 ]
 
@@ -60,11 +81,10 @@ export default function PricingPage() {
   return (
     <>
       <JsonLd data={structuredData} />
-      {/* Hero */}
       <PageHero
         eyebrow="Services & Pricing"
         title="Everything your business needs online."
-        description="From a starter website to a full business website or custom application — pick a starting point or let us scope something tailored to exactly what you need."
+        description="Design and development is once-off. Ongoing care is optional. Pick a starting point, or choose a monthly plan and we manage the technical side after launch."
         breadcrumb={[
           { label: 'Home', href: '/' },
           { label: 'Services & Pricing', href: '/pricing' },
@@ -83,22 +103,67 @@ export default function PricingPage() {
         </Container>
       </div>
 
-      {/* Which one do I need? */}
-      <Section>
+      {/* How pricing works */}
+      <Section tight>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Find your service"
-              title="Which one do I need?"
-              className="mb-8"
+              eyebrow="How pricing works"
+              title="Two separate decisions."
+              description="Build the website once. Choose ongoing care only if you want us to run the technical side."
+              className="mb-10"
             />
           </Reveal>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <Reveal>
+              <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card sm:p-8">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-tint">
+                  <Wallet aria-hidden="true" className="h-5 w-5 text-brand" />
+                </span>
+                <p className="mt-5 text-xs font-semibold uppercase text-brand" style={{ letterSpacing: '0.14em' }}>
+                  Step 1 — Once-off
+                </p>
+                <h3 className="mt-2 text-xl font-bold text-navy">Pay once for the build.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-body">
+                  You pay a once-off fee for design and development. When it is paid in full, your
+                  website, its content and your domain are yours. No monthly fee is required to keep
+                  them.
+                </p>
+                <p className="mt-4 text-sm font-medium text-navy">{ONCE_OFF_NOTE}</p>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-card sm:p-8">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-tint">
+                  <Repeat aria-hidden="true" className="h-5 w-5 text-brand" />
+                </span>
+                <p className="mt-5 text-xs font-semibold uppercase text-brand" style={{ letterSpacing: '0.14em' }}>
+                  Step 2 — Optional monthly
+                </p>
+                <h3 className="mt-2 text-xl font-bold text-navy">Add care if you want us to run it.</h3>
+                <p className="mt-3 text-sm leading-relaxed text-body">
+                  A monthly plan covers hosting management, business email within the allowance,
+                  SSL and uptime checks, security updates, backups where supported, small content
+                  changes and support. You can skip it entirely.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Which one do I need? */}
+      <Section alt>
+        <Container>
           <Reveal>
-            <div className="max-w-3xl mx-auto space-y-3">
+            <SectionHeading eyebrow="Find your service" title="Which one do I need?" className="mb-8" />
+          </Reveal>
+          <Reveal>
+            <div className="mx-auto max-w-3xl space-y-3">
               {whichOneDoINeed.map((item) => (
                 <a
-                  key={item.slug}
-                  href={`#${item.slug}`}
+                  key={item.choose}
+                  href={item.href}
                   className="flex items-center justify-between gap-4 rounded-xl border border-line bg-white px-6 py-4 shadow-card transition-all hover:border-brand/20 hover:shadow-lg"
                 >
                   <span className="text-sm text-body">I need... {item.need}</span>
@@ -110,14 +175,14 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Service cards */}
-      <Section alt>
+      {/* Development services */}
+      <Section>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Our services"
-              title="Choose your starting point"
-              description="Each service is a proven starting point. We'll adjust the scope to fit your exact needs."
+              eyebrow="Website design & development"
+              title="Choose your starting point."
+              description="Each service is a proven starting point, quoted once-off with a defined scope. We adjust the scope to fit your exact needs."
               className="mb-12"
             />
           </Reveal>
@@ -154,6 +219,14 @@ export default function PricingPage() {
                         {svc.priceLabel.replace('From ', '')}
                       </h3>
                     </div>
+                    <div className="mt-2">
+                      <span className={`inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase ${isPopular ? 'bg-brand/20 text-white' : 'bg-blue-tint text-brand'}`} style={{ letterSpacing: '0.08em' }}>
+                        Once-off
+                      </span>
+                    </div>
+                    <p className={`mt-3 text-xs ${isPopular ? 'text-white/50' : 'text-muted'}`}>
+                      {ONCE_OFF_NOTE}
+                    </p>
                     <div className="mt-3">
                       <span className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${isPopular ? 'bg-brand/20 text-white/70' : 'bg-surface text-navy'}`}>
                         Best for: {svc.bestFor}
@@ -161,7 +234,6 @@ export default function PricingPage() {
                     </div>
                   </div>
 
-                  {/* Facts grid */}
                   <div className="mt-6 px-7 grid grid-cols-2 gap-3">
                     <div className={`flex items-center gap-2 rounded-lg p-2.5 ${isPopular ? 'bg-white/5' : 'bg-surface'}`}>
                       <FileText size={14} className={isPopular ? 'text-white/40' : 'text-muted'} />
@@ -193,14 +265,13 @@ export default function PricingPage() {
                     </div>
                   </div>
 
-                  {/* Included checklist */}
                   <div className="mt-6 px-7 flex-1">
                     <ul className="space-y-2.5">
                       {svc.included.map((item, idx) => {
                         const isLabel = item.endsWith(':')
                         return (
                           <li key={idx} className="flex items-start gap-3 text-sm">
-                            <Check aria-hidden="true" className={`mt-0.5 h-4 w-4 shrink-0 ${isPopular ? 'text-brand' : 'text-brand'}`} />
+                            <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                             <span className={isLabel ? (isPopular ? 'text-white/50 text-xs italic' : 'text-muted text-xs italic') : (isPopular ? 'text-white/60' : 'text-body')}>
                               {item}
                             </span>
@@ -210,7 +281,6 @@ export default function PricingPage() {
                     </ul>
                   </div>
 
-                  {/* Not included */}
                   {svc.notIncluded.length > 0 && (
                   <div className="mt-6 px-7">
                     <p className={`text-xs font-semibold uppercase mb-2 ${isPopular ? 'text-white/40' : 'text-muted'}`} style={{ letterSpacing: '0.1em' }}>
@@ -230,7 +300,6 @@ export default function PricingPage() {
                   </div>
                   )}
 
-                  {/* Actions */}
                   <div className="p-7 pt-6 flex flex-col gap-3">
                     <Link
                       href={`/contact?service=${encodeURIComponent(svc.name)}`}
@@ -250,13 +319,13 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Price list table */}
-      <Section id="price-list">
+      {/* Price list */}
+      <Section alt id="price-list">
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="Price list"
-              title="All prices at a glance"
+              title="All once-off prices at a glance"
               description="The same list that powers our quotes and structured data. Every price is in South African rand."
               className="mb-10"
             />
@@ -264,15 +333,15 @@ export default function PricingPage() {
 
           <Reveal>
             <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
-              <table className="w-full min-w-[720px] text-left text-sm">
+              <table className="w-full min-w-[760px] text-left text-sm">
                 <caption className="sr-only">
-                  WEB-IN website design prices in South African rand
+                  WEB-IN once-off website design prices in South African rand
                 </caption>
                 <thead>
                   <tr className="border-b border-line bg-surface">
                     <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Service</th>
                     <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
-                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>What is included</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Billing</th>
                     <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Delivery</th>
                   </tr>
                 </thead>
@@ -281,7 +350,7 @@ export default function PricingPage() {
                     <tr key={svc.slug} className="hover:bg-surface/50 transition-colors">
                       <th scope="row" className="px-6 py-4 font-semibold text-navy align-top">{svc.name}</th>
                       <td className="px-6 py-4 whitespace-nowrap text-navy align-top">{svc.priceLabel}</td>
-                      <td className="px-6 py-4 text-body align-top">{svc.summary}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-body align-top">Once-off</td>
                       <td className="px-6 py-4 whitespace-nowrap text-body align-top">{svc.facts.timeline}</td>
                     </tr>
                   ))}
@@ -290,75 +359,83 @@ export default function PricingPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={100}>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
-                <table className="w-full text-left text-sm">
-                  <caption className="sr-only">WEB-IN add-on prices</caption>
-                  <thead>
-                    <tr className="border-b border-line bg-surface">
-                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Add-on</th>
-                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
+          <Reveal delay={80}>
+            <div className="mt-8 overflow-x-auto rounded-2xl border border-line bg-white shadow-card">
+              <table className="w-full text-left text-sm">
+                <caption className="sr-only">WEB-IN add-on prices</caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface">
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Add-on</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Billing</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {addons.map((addon) => (
+                    <tr key={addon.name}>
+                      <th scope="row" className="px-6 py-3 font-medium text-navy">{addon.name}</th>
+                      <td className="px-6 py-3 whitespace-nowrap text-body">{addon.price}</td>
+                      <td className="px-6 py-3 whitespace-nowrap text-muted">
+                        {addon.name.includes('Domain registration') ? 'Renewed annually' : 'Once-off'}
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody className="divide-y divide-line">
-                    {addons.map((addon) => (
-                      <tr key={addon.name}>
-                        <th scope="row" className="px-6 py-3 font-medium text-navy">{addon.name}</th>
-                        <td className="px-6 py-3 whitespace-nowrap text-body">{addon.price}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
-                <table className="w-full text-left text-sm">
-                  <caption className="sr-only">WEB-IN monthly maintenance plans</caption>
-                  <thead>
-                    <tr className="border-b border-line bg-surface">
-                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Maintenance plan</th>
-                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Price</th>
-                      <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted" style={{ letterSpacing: '0.14em' }}>Includes</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-line">
-                    {maintenancePlans.map((plan) => (
-                      <tr key={plan.name}>
-                        <th scope="row" className="px-6 py-3 font-medium text-navy align-top">{plan.name}</th>
-                        <td className="px-6 py-3 whitespace-nowrap text-body align-top">{plan.price}/month</td>
-                        <td className="px-6 py-3 text-body align-top">{plan.description}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </Reveal>
         </Container>
       </Section>
 
-      {/* Comparison table */}
-      <Section id="comparison">
+      {/* Care plans */}
+      <Section id="care-plans">
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Compare services"
-              title="Side by side"
+              eyebrow="Website Care & Management"
+              title="More than a website launch."
+              description="We can continue managing the technical side after the site goes live: hosting, domain and DNS, business email, updates, checks, backups and support. Monthly plans, billed in advance, cancel per the terms."
               className="mb-12"
             />
+          </Reveal>
+
+          <CarePlanCards />
+
+          <CarePlanNotes />
+
+          <Reveal>
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/website-care-management"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-navy px-7 text-sm font-medium text-white transition-colors hover:bg-navy/90"
+              >
+                Compare care plans
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* Comparison table (development) */}
+      <Section alt id="comparison">
+        <Container>
+          <Reveal>
+            <SectionHeading eyebrow="Compare development services" title="Side by side" className="mb-12" />
           </Reveal>
           <Reveal>
             <div className="overflow-x-auto rounded-2xl border border-line shadow-card">
               <table className="w-full min-w-[900px] text-left text-sm">
+                <caption className="sr-only">WEB-IN development services compared</caption>
                 <thead>
                   <tr className="border-b border-line bg-surface">
-                    <th className="px-6 py-4 text-xs font-semibold uppercase text-muted sticky left-0 bg-surface z-10" style={{ letterSpacing: '0.14em' }}>
+                    <th scope="col" className="px-6 py-4 text-xs font-semibold uppercase text-muted sticky left-0 bg-surface z-10" style={{ letterSpacing: '0.14em' }}>
                       Feature
                     </th>
                     {services.map((svc) => (
                       <th
                         key={svc.slug}
+                        scope="col"
                         className={`px-6 py-4 text-xs font-semibold uppercase ${svc.popular ? 'text-brand' : 'text-muted'}`}
                         style={{ letterSpacing: '0.14em' }}
                       >
@@ -370,15 +447,15 @@ export default function PricingPage() {
                 <tbody className="divide-y divide-line">
                   {comparisonFeatures.map((row) => (
                     <tr key={row.feature} className="hover:bg-surface/50 transition-colors">
-                      <td className="px-6 py-4 font-medium text-navy sticky left-0 bg-white z-10">
+                      <th scope="row" className="px-6 py-4 font-medium text-navy sticky left-0 bg-white z-10">
                         {row.feature}
-                      </td>
+                      </th>
                       {(['business', 'starter', 'redesign', 'store', 'app'] as const).map((col) => {
                         const val = row[col]
                         if (val === true)
                           return (
                             <td key={col} className="px-6 py-4">
-                              <Check aria-hidden="true" className="h-4 w-4 text-brand" />
+                              <Check aria-label="Included" className="h-4 w-4 text-brand" />
                             </td>
                           )
                         if (val === false)
@@ -403,13 +480,13 @@ export default function PricingPage() {
       </Section>
 
       {/* Add-ons */}
-      <Section alt>
+      <Section>
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="Add-ons"
-              title="Extend your project"
-              description="Add extra features to any service. All add-ons are quoted before work begins."
+              title="Extend your build."
+              description="Once-off additions to any development package. Everything is quoted before work begins."
               className="mb-12"
             />
           </Reveal>
@@ -427,51 +504,8 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Care plans */}
-      <Section dark>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Care plans"
-              title="Ongoing support"
-              description="Optional monthly plans to keep your website running smoothly after launch."
-              light
-              className="mb-12"
-            />
-          </Reveal>
-          <RevealStagger className="grid gap-6 sm:grid-cols-2" stagger={100}>
-            {maintenancePlans.map((plan) => (
-              <div
-                key={plan.name}
-                className="flex flex-col rounded-2xl bg-white/5 p-8 ring-1 ring-inset ring-white/10"
-              >
-                <h3 className="text-xl font-bold text-white">
-                  {plan.name}
-                </h3>
-                <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-display-sm font-bold text-brand">{plan.price}</span>
-                  <span className="text-xs text-white/40">/month</span>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-white/60">
-                  {plan.description}
-                </p>
-                <ul className="mt-6 flex-1 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
-                      <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </RevealStagger>
-          <p className="mt-8 text-center text-sm text-white/50">{maintenanceNote}</p>
-        </Container>
-      </Section>
-
       {/* Included with every website */}
-      <Section>
+      <Section alt>
         <Container>
           <Reveal>
             <SectionHeading
@@ -495,29 +529,6 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* How pricing works */}
-      <Section alt>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Transparent process"
-              title="How pricing works"
-              className="mb-8"
-            />
-          </Reveal>
-          <Reveal>
-            <ul className="max-w-3xl mx-auto space-y-3">
-              {howPricingWorks.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm text-body">
-                  <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </Container>
-      </Section>
-
       {/* Pricing FAQ */}
       <Section id="pricing-faq">
         <Container>
@@ -525,7 +536,7 @@ export default function PricingPage() {
             <SectionHeading
               eyebrow="FAQ"
               title="Common pricing questions"
-              description="Everything you need to know about costs, timelines and what's included."
+              description="Costs, billing, ownership and what happens after launch."
               className="mb-12"
             />
           </Reveal>
@@ -537,7 +548,6 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* CTA */}
       <CTABand
         eyebrow="Ready to begin?"
         title="Let's build something real."

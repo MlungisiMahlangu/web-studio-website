@@ -116,6 +116,13 @@ export default function PrivacyPolicyPage() {
                 providers. These services have their own privacy policies and we
                 encourage you to review them.
               </p>
+              <p>
+                Where a care plan includes business email, mailboxes are hosted with an
+                email provider suited to the project. Information stored in those mailboxes
+                is processed by that provider under its own terms, and mailbox data remains
+                yours. We use provider access only to set up, configure and troubleshoot the
+                mailboxes within the plan&apos;s allowance.
+              </p>
 
               <h2 id="your-rights">Your rights</h2>
               <p>

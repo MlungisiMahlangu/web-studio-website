@@ -20,7 +20,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Website Design Process',
   description:
-    'How a WEB-IN website gets built: a clear four-phase process from first conversation to launch, with defined scope and feedback at every stage.',
+    'How a WEB-IN website gets built: a clear seven-phase process from the first conversation through design, development, launch and optional ongoing care.',
   keywords: [
     'web development process',
     'website design workflow',
@@ -28,11 +28,13 @@ export const metadata: Metadata = {
     'web project process',
     'website development steps',
     'web design timeline',
+    'website care and maintenance',
   ],
   alternates: alternatesFor('/process'),
   openGraph: {
     title: 'Our Process | WEB-IN Workflow',
-    description: 'A clear 4-phase process: Discover, Define, Create, Launch. Transparent communication throughout your project.',
+    description:
+      'A clear seven-phase process: discover, define, design and develop, review, launch, manage and improve.',
     type: 'website',
     url: 'https://www.web-in.co.za/process',
   },
@@ -43,7 +45,7 @@ export default function ProcessPage() {
     path: '/process',
     name: 'The WEB-IN website process',
     description:
-      'How a WEB-IN website is built: discover, define, create and launch, with a defined scope and feedback at each stage.',
+      'How a WEB-IN website is built: discover, define, design and develop, review and test, launch, manage and improve, with a defined scope and feedback at each stage.',
   })
 
   return (
@@ -62,7 +64,7 @@ export default function ProcessPage() {
         variant="split"
         aside={
           <div className="rounded-2xl border border-line bg-white/80 backdrop-blur-sm shadow-lg p-6">
-            <p className="text-xs font-semibold uppercase text-muted mb-5" style={{ letterSpacing: '0.14em' }}>4 phases</p>
+            <p className="text-xs font-semibold uppercase text-muted mb-5" style={{ letterSpacing: '0.14em' }}>7 phases</p>
             <div className="relative space-y-6">
               <div className="absolute left-[19px] top-3 bottom-3 w-px bg-line" />
               {processPhases.map((phase, i) => (
@@ -267,15 +269,25 @@ export default function ProcessPage() {
 
           <Reveal>
             <p className="text-sm text-body mb-4">
-              Major new work is quoted separately.
+              A care plan is optional. You can buy the website without a monthly plan
+              and manage it yourself, and major new work is quoted separately.
             </p>
-            <Link
-              href="/pricing"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-navy hover:text-brand transition-colors duration-300"
-            >
-              View maintenance plans
-              <ArrowUpRight size={16} />
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link
+                href="/website-care-management"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-navy hover:text-brand transition-colors duration-300"
+              >
+                Compare care plans
+                <ArrowUpRight size={16} />
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-navy hover:text-brand transition-colors duration-300"
+              >
+                See all prices
+                <ArrowUpRight size={16} />
+              </Link>
+            </div>
           </Reveal>
         </Container>
       </Section>

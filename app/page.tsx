@@ -8,6 +8,7 @@ import {
   Layers3,
   Code2,
   Paintbrush,
+  LifeBuoy,
 } from 'lucide-react'
 import {
   services,
@@ -17,6 +18,7 @@ import {
   homepageFaqs,
   STUDIO_WHATSAPP,
 } from '@/lib/constants'
+import { carePlans } from '@/lib/care-plans'
 import { alternatesFor, faqSchema, webPageSchema } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Container } from '@/components/ui/container'
@@ -187,12 +189,13 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="OUR SERVICES"
               title="Digital solutions for every business."
-              description="From starter websites to custom web applications, we build websites that work for your goals, your audience and your growth."
+              description="From starter websites and online stores to custom web applications, plus ongoing care after launch."
             />
           </Reveal>
 
           <RevealStagger stagger={80} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
-            {services.map((service) => {
+            {[
+              ...services.map((service) => {
               const Icon = serviceIcons[service.name] || Globe2
               return (
                 <article
@@ -204,7 +207,10 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-base font-bold text-navy mb-1">{service.name}</h3>
                   <p className="text-sm text-body leading-relaxed mb-3">{service.tagline}</p>
-                  <p className="text-sm font-semibold text-navy mb-4">{service.priceLabel}</p>
+                  <p className="text-sm font-semibold text-navy mb-4">
+                    {service.priceLabel}
+                    <span className="ml-2 text-xs font-medium text-muted">Once-off</span>
+                  </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
                       {service.facts.pages}
@@ -225,7 +231,39 @@ export default function HomePage() {
                   </Link>
                 </article>
               )
-            })}
+            }),
+            <article key="care-management" className="group rounded-2xl bg-white border border-line p-6 shadow-card transition-all duration-300 hover:shadow-lg hover:border-brand/20 hover:-translate-y-0.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-tint flex items-center justify-center mb-4">
+                <LifeBuoy size={20} className="text-brand" />
+              </div>
+              <h3 className="text-base font-bold text-navy mb-1">Care & Management</h3>
+              <p className="text-sm text-body leading-relaxed mb-3">
+                Monthly care that keeps your site running smoothly.
+              </p>
+              <p className="text-sm font-semibold text-navy mb-4">
+                {carePlans[0].priceLabel}–{carePlans[carePlans.length - 1].priceLabel}
+                <span className="ml-2 text-xs font-medium text-muted">/month</span>
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                  Managed hosting
+                </span>
+                <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                  Business email included
+                </span>
+                <span className="inline-block rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-navy">
+                  Month to month
+                </span>
+              </div>
+              <Link
+                href="/website-care-management"
+                className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:text-brand-hover transition-colors"
+              >
+                View care plans
+                <ArrowUpRight size={14} />
+              </Link>
+            </article>,
+            ]}
           </RevealStagger>
         </Container>
       </Section>
@@ -337,7 +375,7 @@ export default function HomePage() {
                 },
                 {
                   title: 'Ongoing support',
-                  text: 'We do not disappear after launch. Maintenance plans and post-launch support keep your site running smoothly.',
+                  text: 'We do not disappear after launch. Post-launch support and optional care plans keep your site running, with business email included.',
                 },
               ].map(({ title, text }) => (
                 <div
@@ -385,9 +423,11 @@ export default function HomePage() {
               <RevealStagger stagger={120} className="flex flex-col gap-8">
                 {[
                   ['01', 'Discover', 'We learn about your business, goals, audience and requirements.'],
-                  ['02', 'Define', 'We establish the scope, direction, timeline and quotation before development begins.'],
-                  ['03', 'Create', 'We design, build and refine the website around the agreed scope.'],
-                  ['04', 'Launch', 'We complete final checks, launch the website and get it ready for the real world.'],
+                  ['02', 'Design', 'We shape the structure, content and look around the agreed direction.'],
+                  ['03', 'Develop', 'We build, test and refine the website against the approved scope.'],
+                  ['04', 'Launch', 'We complete final checks, connect the domain and take the site live.'],
+                  ['05', 'Manage', 'If you choose a care plan, we keep hosting, email, updates and security running.'],
+                  ['06', 'Grow', 'New pages, features and improvements are scoped as the business needs them.'],
                 ].map(([num, title, desc]) => (
                   <div key={num} className="relative flex gap-5 sm:gap-6">
                     <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center text-sm font-bold">

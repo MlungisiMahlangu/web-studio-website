@@ -1,0 +1,149 @@
+import { Check, Database, Globe, Layers3, Mail, Minus, Server, Wrench } from 'lucide-react'
+import { EMAIL_BILLED_SEPARATELY, EMAIL_FAIR_USE } from '@/lib/care-plans'
+
+const parts = [
+  {
+    icon: Layers3,
+    title: 'Website development',
+    text: 'The design and build. A once-off project fee. Once it is paid in full, you own the website and its content.',
+  },
+  {
+    icon: Server,
+    title: 'Website hosting',
+    text: 'Where the site runs. WEB-IN arranges and manages hosting that fits the project: shared cPanel hosting for simple sites, or Vercel, Netlify and dedicated application infrastructure for others.',
+  },
+  {
+    icon: Globe,
+    title: 'Domain registration',
+    text: 'Your address online. Registered in your name. WEB-IN can manage the configuration and the renewal process on your behalf.',
+  },
+  {
+    icon: Mail,
+    title: 'Business email',
+    text: 'Included in every care plan within the mailbox allowance. Shared hosting may include mailboxes; Vercel and Netlify do not host email, so a suitable mail provider is used instead.',
+  },
+  {
+    icon: Database,
+    title: 'Database and application infrastructure',
+    text: 'Databases, authentication, storage and APIs for stores, dashboards and custom apps. These can carry extra third-party costs, quoted per project.',
+  },
+  {
+    icon: Wrench,
+    title: 'Ongoing management',
+    text: 'Monitoring, security updates, backups where supported, content changes within the allowance and support on a monthly plan.',
+  },
+]
+
+const supported = [
+  'Hosting for the website under the plan',
+  'SSL/HTTPS monitoring and uptime checks',
+  'Business email within the plan mailbox allowance',
+  'Security checks and software updates where applicable',
+  'Backups where the hosting platform supports them',
+  'Small content changes within the allowance',
+  'Technical troubleshooting and support',
+]
+
+const separate = [
+  'Domain registration and renewal, disclosed separately',
+  'Extra mailboxes, extra storage and premium email suites',
+  'Payment gateway transaction fees',
+  'Database hosting, cloud compute and storage for applications',
+  'External APIs and premium third-party software',
+  'New pages, features, redesigns and application development',
+]
+
+export function HostingExplainer({ className = '' }: { className?: string }) {
+  return (
+    <div className={className}>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {parts.map(({ icon: Icon, title, text }) => (
+          <div key={title} className="rounded-2xl border border-line bg-white p-6 shadow-card">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-tint">
+              <Icon aria-hidden="true" className="h-5 w-5 text-brand" />
+            </span>
+            <h3 className="mt-4 text-base font-bold text-navy">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-body">{text}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* How the pieces fit together */}
+      <div className="mt-10 overflow-x-auto rounded-2xl border border-line bg-surface/60 p-5 sm:p-7">
+        <div className="flex min-w-[720px] items-stretch gap-3">
+          {[
+            { label: 'Domain', note: 'Yours, in your name' },
+            { label: 'Hosting', note: 'Managed by WEB-IN' },
+            { label: 'Website / App', note: 'Yours once paid' },
+            { label: 'Business email', note: 'Included in the plan' },
+            { label: 'Database', note: 'Quoted per project' },
+          ].map((node, index) => (
+            <div key={node.label} className="flex flex-1 items-center gap-3">
+              <div className="flex-1 rounded-xl border border-line bg-white px-4 py-5 text-center shadow-card">
+                <p className="text-sm font-bold text-navy">{node.label}</p>
+                <p className="mt-1 text-[11px] leading-snug text-muted">{node.note}</p>
+              </div>
+              {index < 4 && (
+                <span aria-hidden="true" className="text-muted">
+                  →
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-6 lg:grid-cols-2">
+        <div className="rounded-2xl border border-line bg-white p-6 shadow-card sm:p-7">
+          <h3 className="text-base font-bold text-navy">Covered by the management fee</h3>
+          <ul className="mt-4 space-y-2.5">
+            {supported.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-sm text-body">
+                <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-2xl border border-line bg-white p-6 shadow-card sm:p-7">
+          <h3 className="text-base font-bold text-navy">Quoted or billed separately</h3>
+          <ul className="mt-4 space-y-2.5">
+            {separate.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-sm text-body">
+                <Minus aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-line bg-blue-tint p-6 sm:p-7">
+        <h3 className="text-base font-bold text-navy">How the arrangement works</h3>
+        <p className="mt-2 text-sm leading-relaxed text-body">
+          You pay WEB-IN an agreed monthly management fee. WEB-IN manages the agreed technical
+          services and handles the infrastructure bills included in that arrangement, so you do not
+          need to manage hosting dashboards, server settings, DNS records or technical updates
+          yourself. You keep ownership of your domain and your business content.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-body">
+          Hosting is chosen to fit the project. Not every website uses the same technology, and we do
+          not force every project onto one provider.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-body">{EMAIL_BILLED_SEPARATELY}</p>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-line bg-white p-6 shadow-card sm:p-7">
+        <h3 className="text-base font-bold text-navy">Business email: fair use</h3>
+        <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+          {EMAIL_FAIR_USE.map((item) => (
+            <li key={item} className="flex items-start gap-2.5 text-sm text-body">
+              <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}

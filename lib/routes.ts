@@ -28,7 +28,16 @@ export const publicRoutes: PublicRoute[] = [
     lastModified: LAST_UPDATED,
     title: 'Services and pricing',
     description:
-      'The full WEB-IN price list: Starter Website R2,500, Business Website from R4,000, Online Store from R7,000, Website Redesign from R2,500, Custom Web Application from R10,000, plus add-ons and monthly maintenance.',
+      'The full WEB-IN price list: Starter Website R2,500, Business Website from R4,000, Online Store from R7,000, Website Redesign from R2,500 and Custom Web Application from R10,000, all once-off, plus optional monthly care plans at R149, R299 or R499.',
+  },
+  {
+    path: '/website-care-management',
+    priority: 0.9,
+    changeFrequency: 'weekly',
+    lastModified: LAST_UPDATED,
+    title: 'Website care and management',
+    description:
+      'Monthly website care at R149, R299 or R499: managed hosting, business email within an allowance, security updates, backups and support, with no requirement to take a plan.',
   },
   {
     path: '/work',
@@ -108,7 +117,7 @@ export const publicRoutes: PublicRoute[] = [
     lastModified: CONTENT_UPDATED,
     title: 'How the process works',
     description:
-      'The four WEB-IN project phases: discover, define, create and launch.',
+      'The seven WEB-IN project phases, from discovery and definition through design, development, launch, monthly care and future improvements.',
   },
   {
     path: '/faq',
@@ -117,7 +126,7 @@ export const publicRoutes: PublicRoute[] = [
     lastModified: CONTENT_UPDATED,
     title: 'Frequently asked questions',
     description:
-      'Answers about website costs, timelines, ownership, payments and maintenance in South Africa.',
+      'Answers about website costs, timelines, ownership, payments, business email and monthly care plans in South Africa.',
   },
   {
     path: '/blog',

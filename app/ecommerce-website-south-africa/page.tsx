@@ -124,7 +124,7 @@ export default function EcommerceWebsiteSouthAfricaPage() {
           alt: false,
           paragraphs: [
             'A store is not finished at launch. Products change, prices move and stock runs out. The system is set up so you can manage the day-to-day parts yourself, and we include a handover session that covers products, orders and basic settings.',
-            'If you would rather not manage it, optional care plans cover small updates and checks, from R299 per month. A store rebuild or new feature is quoted separately.',
+            'If you would rather not manage it, Advanced Application Management is R499 per month and covers the store’s technical side, including business email within the plan’s mailbox allowance. A store rebuild or new feature is quoted separately.',
             'We also keep an eye on the technical side after launch. Payment integrations, shipping settings and software updates are the parts most likely to break quietly, so they are worth checking regularly.',
           ],
         },

@@ -30,12 +30,12 @@ const faqs = [
   {
     question: 'Are hosting and domain included?',
     answer:
-      'Domain registration and hosting are separate from the design and build price. They are usually billed at cost or paid directly by you, so you keep control of the accounts. We can register a domain in your name and help with the setup.',
+      'Domain registration and renewal are separate from the design and build price, and can be registered in your name as an add-on. Website hosting is arranged and managed as part of an optional care plan, or you can pay for hosting directly if you prefer to manage it yourself.',
   },
   {
     question: 'Do you charge monthly fees?',
     answer:
-      'Not by default. A website is a once-off project. If you want ongoing updates, security checks and small changes, Basic Care is R299 per month and Business Care is R499 per month. Both are optional.',
+      'Not by default. A website is a once-off project. If you want ongoing updates, security checks, support and business email, optional care plans are R149, R299 or R499 per month depending on the site.',
   },
   {
     question: 'Why do quotes for the same website vary so much?',
@@ -65,15 +65,15 @@ export default function WebsiteCostSouthAfricaPage() {
         heading: 'The price depends on what the website has to do.',
         paragraphs: [
           'A website is not one product. A four-page site for a consultant and an online store with hundreds of products are both websites, but they require very different amounts of design, development and testing. That is why quotes vary so widely.',
-          'Our starting prices are public. A Starter Website is R2,500, a Business Website starts at R4,000, an Online Store starts at R7,000 and a Custom Web Application starts at R10,000. A Website Redesign starts at R2,500. Those figures cover the scope described on the pricing page.',
+          'Our once-off starting prices are public. A Starter Website is R2,500, a Business Website starts at R4,000, an Online Store starts at R7,000 and a Custom Web Application starts at R10,000. A Website Redesign starts at R2,500. Those figures cover the scope described on the pricing page.',
           'If your project needs more than that scope, we quote the difference before work starts. You should never receive an invoice for work you did not agree to.',
         ],
         points: [
-          'Starter Website: R2,500',
-          'Business Website: from R4,000',
-          'Online Store: from R7,000',
-          'Website Redesign: from R2,500',
-          'Custom Web Application: from R10,000',
+          'Starter Website: R2,500 once-off',
+          'Business Website: from R4,000 once-off',
+          'Online Store: from R7,000 once-off',
+          'Website Redesign: from R2,500 once-off',
+          'Custom Web Application: from R10,000 once-off',
         ],
       }}
       sections={[
@@ -115,7 +115,7 @@ export default function WebsiteCostSouthAfricaPage() {
           paragraphs: [
             'Even the Starter Website includes responsive design, a clear page structure, a tested contact form and the search basics. Those are not upgrades. They are what makes a website usable.',
             'Higher packages add pages, more detailed design, service pages, Google Maps, testimonials, analytics and ecommerce or application functionality. The pricing page lists the inclusions for each service so you can compare them directly.',
-            'We separate the build from external costs. Domain registration, hosting, payment gateway fees and third-party subscriptions are not part of the design price. They are usually paid at cost or directly by you so you keep ownership of the accounts.',
+            'We separate the build from external costs. Domain registration and renewal, payment gateway fees and third-party subscriptions are not part of the design price. A care plan can cover managed hosting and business email within its allowance, and you keep ownership of your domain and content.',
           ],
           points: [
             'Responsive design included at every level',
@@ -130,8 +130,8 @@ export default function WebsiteCostSouthAfricaPage() {
           heading: 'What you pay after launch.',
           alt: false,
           paragraphs: [
-            'A website needs a domain and hosting. Those are annual or monthly costs paid to the providers. If you use paid plugins or subscriptions, those are separate too.',
-            'Maintenance is optional. Basic Care is R299 per month for uptime and security checks, small content updates, minor bug fixes and replies within two business days. Business Care is R499 per month and adds more update time, monthly performance and backup checks, and replies within one business day.',
+            'A website needs a domain, and it needs hosting somewhere. The domain is an annual cost paid to the registrar. Hosting can be arranged and managed as part of an optional care plan, or paid for directly if you prefer. Paid plugins and subscriptions are separate too.',
+            'Care plans are optional and priced flat: Essential Web Care is R149 per month, Business Website Care is R299 per month and Advanced Application Management is R499 per month. Each includes business email within its mailbox allowance, plus hosting management, security checks, backups where supported, small content updates and support.',
             'If you prefer to handle updates yourself, the website still works. The care plans exist for businesses that would rather not think about it.',
           ],
         },
@@ -148,7 +148,7 @@ export default function WebsiteCostSouthAfricaPage() {
             'Prioritise content, speed and contact paths',
             'Reduce pages before reducing quality',
             'Ask for inclusions and exclusions in writing',
-            'Plan for domain and hosting as separate costs',
+            'Plan for the domain as a separate annual cost',
           ],
         },
       ]}
