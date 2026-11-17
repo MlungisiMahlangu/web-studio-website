@@ -439,7 +439,6 @@ function EnquiryFormInner() {
   const serviceParam = searchParams.get('service')
   const buildParam = searchParams.get('build')
   const careParam = searchParams.get('care')
-  const dealParam = searchParams.get('deal')
   const preselect = preselectFromParams({
     service: serviceParam,
     build: buildParam,
@@ -501,8 +500,8 @@ function EnquiryFormInner() {
   const websiteQuestion = showsWebsiteQuestion(values)
   const careOnly = !values.buildService && Boolean(values.careService)
   const buildAndCare = Boolean(values.buildService) && Boolean(values.careService)
-  const promoRequested = dealParam === BLACK_FRIDAY.anchorId && isBlackFridayActive()
-  const promoDeal = promoRequested ? promoDealForBuild(values.buildService) : undefined
+  // Any eligible package selected while the campaign runs carries the deal price.
+  const promoDeal = isBlackFridayActive() ? promoDealForBuild(values.buildService) : undefined
 
   function update<K extends keyof Values>(key: K, value: Values[K]) {
     const next = { ...values, [key]: value }
