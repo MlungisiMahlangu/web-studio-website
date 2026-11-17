@@ -9,12 +9,17 @@ import {
   STUDIO_TAGLINE,
 } from '@/lib/constants'
 import { buildSiteGraph } from '@/lib/seo'
+import { isBlackFridayActive } from '@/lib/promo'
 import { JsonLd } from '@/components/seo/json-ld'
 import Navbar from '@/components/layout/navbar'
 import Footer from '@/components/layout/footer'
 import { ScrollManager } from '@/components/ui/scroll-manager'
 import CookieBanner from '@/components/ui/cookie-banner'
+import { PromoExpiryGuard } from '@/components/promo/expiry-guard'
 import './globals.css'
+
+// Lets the site-wide announcement bar and promo surfaces switch off on their own.
+export const revalidate = 900
 
 const jakarta = Plus_Jakarta_Sans({
   variable: '--font-jakarta',
@@ -109,9 +114,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const promoActive = isBlackFridayActive()
+
   // The inline script below adds the `js` class before hydration; the mismatch is expected.
   return (
-    <html lang="en-ZA" suppressHydrationWarning>
+    <html
+      lang="en-ZA"
+      suppressHydrationWarning
+      className={promoActive ? 'promo-active' : undefined}
+    >
       <head>
         {/* Progressive enhancement flag: reveal animations only hide content when JS runs. */}
         <script
@@ -139,7 +150,8 @@ export default function RootLayout({
           Skip to content
         </a>
         <ScrollManager>
-          <Navbar />
+          {promoActive && <PromoExpiryGuard />}
+          <Navbar promoActive={promoActive} />
           <main id="main-content">{children}</main>
           <Footer />
           <CookieBanner />

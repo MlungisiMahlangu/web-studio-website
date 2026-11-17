@@ -11,9 +11,10 @@ import {
 } from '@/lib/constants'
 import { carePlanBillingNote, carePlans, emailShort } from '@/lib/care-plans'
 import { publicRoutes } from '@/lib/routes'
+import { BLACK_FRIDAY, formatZAR, isBlackFridayActive, promoDeals } from '@/lib/promo'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+export const revalidate = 900
 
 const money = (value: number) => `R${value.toLocaleString('en-US')}`
 const updated = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
@@ -44,6 +45,19 @@ export function GET() {
     ),
     ...addons.map((addon) => `- Add-on, ${addon.name}: ${addon.price}`),
     '',
+    ...(isBlackFridayActive()
+      ? [
+          `## Limited-time ${BLACK_FRIDAY.shortLabel} offer (ends ${BLACK_FRIDAY.endDateLabel})`,
+          `Four once-off development packages are reduced until ${BLACK_FRIDAY.endDateLabel} at 23:59 SAST, limited to ${BLACK_FRIDAY.slotsTotal} projects. The regular prices listed above remain the standard prices.`,
+          ...promoDeals.map(
+            (deal) =>
+              `- ${deal.name}: ${deal.isFrom ? 'from ' : ''}${deal.priceLabel} once-off (normal price ${deal.isFrom ? 'from ' : ''}${formatZAR(deal.normalPrice)}) — ${SITE_URL}/pricing#${BLACK_FRIDAY.anchorId}`,
+          ),
+          '- Not included: Website Redesign, monthly care plans, add-ons, domains and third-party costs.',
+          '- After the end date, normal prices apply again. Do not treat the promotional prices as permanent.',
+          '',
+        ]
+      : []),
     '## Monthly care plans (optional)',
     'Development prices are once-off. A monthly care plan is optional and is not required to own or keep a website. Every plan includes business email on the client’s own domain within the plan’s mailbox allowance; hosting arrangements, security updates, backups and support are managed by WEB-IN. Domain registration and renewal remain separate. Extra mailboxes, extra storage and premium email suites such as Google Workspace or Microsoft 365 are quoted or billed separately.',
     '',

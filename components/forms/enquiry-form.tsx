@@ -18,6 +18,7 @@ import {
   STUDIO_WHATSAPP,
 } from '@/lib/constants'
 import { carePlans, emailShort } from '@/lib/care-plans'
+import { BLACK_FRIDAY, isBlackFridayActive, promoDealForBuild } from '@/lib/promo'
 
 const DRAFT_KEY = 'webin:enquiry-draft'
 
@@ -438,6 +439,7 @@ function EnquiryFormInner() {
   const serviceParam = searchParams.get('service')
   const buildParam = searchParams.get('build')
   const careParam = searchParams.get('care')
+  const dealParam = searchParams.get('deal')
   const preselect = preselectFromParams({
     service: serviceParam,
     build: buildParam,
@@ -499,6 +501,8 @@ function EnquiryFormInner() {
   const websiteQuestion = showsWebsiteQuestion(values)
   const careOnly = !values.buildService && Boolean(values.careService)
   const buildAndCare = Boolean(values.buildService) && Boolean(values.careService)
+  const promoRequested = dealParam === BLACK_FRIDAY.anchorId && isBlackFridayActive()
+  const promoDeal = promoRequested ? promoDealForBuild(values.buildService) : undefined
 
   function update<K extends keyof Values>(key: K, value: Values[K]) {
     const next = { ...values, [key]: value }
@@ -602,6 +606,11 @@ function EnquiryFormInner() {
     payload.append('careService', careValue)
     payload.append('service', combinedService)
     payload.append('planPrice', selectedPlan ? `${selectedPlan.priceLabel}/month` : '')
+    if (promoDeal) {
+      payload.append('promo', BLACK_FRIDAY.code)
+      payload.append('promoPrice', `${promoDeal.priceLabel} once-off`)
+      payload.append('promoNormalPrice', promoDeal.normalLabel)
+    }
     if (serviceParam) {
       // Preserve the exact package the visitor came from (e.g. Starter Website).
       payload.append('requestedService', serviceParam.trim().slice(0, 100))
@@ -615,7 +624,7 @@ function EnquiryFormInner() {
     payload.append('_replyto', values.email.trim())
     payload.append(
       '_subject',
-      `WEB-IN enquiry: ${combinedService || 'General'} from ${values.name.trim()}`,
+      `${promoDeal ? `${BLACK_FRIDAY.subjectTag} ` : ''}WEB-IN enquiry: ${combinedService || 'General'} from ${values.name.trim()}`,
     )
 
     try {
@@ -628,6 +637,12 @@ function EnquiryFormInner() {
 
       try {
         window.sessionStorage.removeItem(DRAFT_KEY)
+        if (promoDeal) {
+          window.sessionStorage.setItem(
+            'webin:promo-enquiry',
+            JSON.stringify({ package: promoDeal.name, price: promoDeal.priceLabel }),
+          )
+        }
       } catch {
         // Ignore storage errors.
       }
@@ -650,6 +665,13 @@ function EnquiryFormInner() {
 
   return (
     <form onSubmit={submit} noValidate className="grid gap-5">
+      {promoDeal && (
+        <>
+          <input type="hidden" name="promo" value={BLACK_FRIDAY.code} />
+          <input type="hidden" name="promoPrice" value={`${promoDeal.priceLabel} once-off`} />
+          <input type="hidden" name="promoNormalPrice" value={promoDeal.normalLabel} />
+        </>
+      )}
       {submitFailed && (
         <div
           role="alert"
@@ -878,6 +900,15 @@ function EnquiryFormInner() {
               ))}
               <option value="Not sure yet">Not sure yet</option>
             </select>
+            {promoDeal && (
+              <div className="mt-2 rounded-lg border border-promo-line bg-promo-tint px-3 py-2 text-xs leading-relaxed text-promo-strong">
+                <span className="font-semibold">{BLACK_FRIDAY.shortLabel} price:</span>{' '}
+                {promoDeal.isFrom ? 'from ' : ''}
+                {promoDeal.priceLabel} once-off{' '}
+                <s className="font-normal text-muted">{promoDeal.normalLabel}</s>. We will
+                confirm the offer and your project slot in our reply.
+              </div>
+            )}
           </Field>
 
           <Field

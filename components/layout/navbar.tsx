@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowUpRight, ChevronDown, Menu, X, MessageCircle } from 'lucide-react'
 import { useScrollDirection } from '@/components/ui/hooks'
+import { AnnouncementBar } from '@/components/promo/announcement-bar'
 import { clsx } from 'clsx'
 import { STUDIO_WHATSAPP } from '@/lib/constants'
 
@@ -19,7 +20,7 @@ const navLinks = [
   { label: 'FAQ', href: '/faq' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ promoActive = false }: { promoActive?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
@@ -63,6 +64,7 @@ export default function Navbar() {
           mounted && isHidden && '-translate-y-full',
         )}
       >
+        {promoActive && <AnnouncementBar />}
         <div className={clsx(
           'bg-white/95 backdrop-blur-xl transition-colors duration-300',
           isScrolled ? 'border-b border-line' : 'border-b border-transparent',  
@@ -193,6 +195,7 @@ export default function Navbar() {
             'absolute top-0 right-0 w-[85%] max-w-[360px] h-full bg-white shadow-xl transition-transform duration-300 ease-out-expo',
             menuOpen ? 'translate-x-0' : 'translate-x-full',
           )}
+          style={{ paddingTop: 'var(--promo-bar-h)' }}
         >
           <div className="flex items-center justify-between px-6 py-5 border-b border-line">
             <div className="flex flex-col">

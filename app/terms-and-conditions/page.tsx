@@ -26,6 +26,7 @@ const tocItems = [
   { id: 'agreement', label: 'Agreement' },
   { id: 'project-scope', label: 'Project scope' },
   { id: 'payment-terms', label: 'Payment terms' },
+  { id: 'promotional-offers', label: 'Promotional offers' },
   { id: 'care-plans', label: 'Care plans' },
   { id: 'business-email', label: 'Business email' },
   { id: 'revisions', label: 'Revisions' },
@@ -114,6 +115,27 @@ export default function TermsPage() {
                 <li>Payment methods include EFT and other agreed-upon methods.</li>
                 <li>Monthly care plans are billed in advance. Prices are in South African rand (ZAR).</li>
               </ul>
+
+              <h2 id="promotional-offers">Promotional offers</h2>
+              <p>
+                From time to time we run promotional offers on once-off development
+                packages. A promotional price applies only during the stated period,
+                only while any stated number of projects remains available, and only to
+                the packages named in the offer.
+              </p>
+              <p>
+                Unless the offer states otherwise, it does not apply to Website Redesign,
+                monthly care plans, add-ons, domains or third-party costs. Promotional
+                offers cannot be combined with other discounts and cannot be applied
+                retroactively to existing quotes, paid projects or work already agreed.
+              </p>
+              <p>
+                The scope, timeline, revision rounds, support period and payment terms
+                for a package stay the same during a promotion. When the offer ends, the
+                normal published prices apply. The specific terms of a promotion are
+                shown with the offer on this website. If those terms conflict with this
+                section, the promotion&apos;s stated terms apply for that promotion.
+              </p>
 
               <h2 id="care-plans">Care plans</h2>
               <p>

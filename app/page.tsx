@@ -26,6 +26,8 @@ import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
 import { HomePageFAQ } from '@/components/sections/homepage-faq'
+import { HomeDealStrip } from '@/components/promo/home-deal-strip'
+import { isBlackFridayActive } from '@/lib/promo'
 
 export const revalidate = 3600
 
@@ -175,6 +177,8 @@ export default function HomePage() {
           </Reveal>
         </Container>
       </Section>
+
+      {isBlackFridayActive() && <HomeDealStrip />}
 
       {/* ─── SERVICES ─── */}
       <Section alt>

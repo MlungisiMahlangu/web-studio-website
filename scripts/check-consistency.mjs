@@ -501,6 +501,104 @@ if (!seoSource.includes('${SITE_URL}/logo.png')) {
   fail('lib/seo.ts: the Organization logo must be the crawlable /logo.png')
 }
 
+// 15. Black Friday campaign: prices, scope and dormancy
+const promoConfigSource = await read(join(root, 'lib/promo-config.ts'))
+const promoSource = await read(join(root, 'lib/promo.ts'))
+const promoEndsAt = promoConfigSource.match(/endsAt:\s*'([^']+)'/)?.[1]
+const promoStartsAt = promoConfigSource.match(/startsAt:\s*(null|'([^']+)')/)
+const promoEnabled = /enabled:\s*true/.test(promoConfigSource)
+const endsAtMs = Date.parse(promoEndsAt ?? '')
+const startsAtMs = promoStartsAt?.[2] ? Date.parse(promoStartsAt[2]) : null
+const promoActive =
+  promoEnabled &&
+  Number.isFinite(endsAtMs) &&
+  Date.now() <= endsAtMs &&
+  (startsAtMs === null || Date.now() >= startsAtMs)
+
+const expectedPromoDeals = {
+  'starter-website': { price: 1499, isFrom: false },
+  'business-website': { price: 2999, isFrom: false },
+  'online-store': { price: 5499, isFrom: false },
+  'custom-web-application': { price: 7999, isFrom: true },
+}
+const dealMatches = [
+  ...promoSource.matchAll(/\{\s*slug:\s*'([^']+)',\s*price:\s*(\d+),\s*isFrom:\s*(true|false)\s*\}/g),
+]
+if (dealMatches.length !== Object.keys(expectedPromoDeals).length) {
+  fail(`lib/promo.ts: expected ${Object.keys(expectedPromoDeals).length} Black Friday deals, found ${dealMatches.length}`)
+}
+for (const [, slug, price, isFrom] of dealMatches) {
+  const expected = expectedPromoDeals[slug]
+  if (!expected) {
+    fail(`lib/promo.ts: '${slug}' is not eligible for the Black Friday offer`)
+    continue
+  }
+  if (Number(price) !== expected.price) {
+    fail(`lib/promo.ts: ${slug} offer price is R${price}, expected R${expected.price}`)
+  }
+  if ((isFrom === 'true') !== expected.isFrom) {
+    fail(`lib/promo.ts: ${slug} isFrom should be ${expected.isFrom}`)
+  }
+}
+if (promoSource.includes('website-redesign')) {
+  fail('lib/promo.ts: Website Redesign must be excluded from the Black Friday offer')
+}
+if (!/slotsTotal:\s*5\b/.test(promoConfigSource)) {
+  fail('lib/promo-config.ts: Black Friday must be limited to 5 projects')
+}
+if (!/startsAt:\s*null\b/.test(promoConfigSource)) {
+  fail('lib/promo-config.ts: the campaign must start immediately and carry no start date')
+}
+if (promoEndsAt !== '2026-12-05T23:59:59+02:00') {
+  fail(`lib/promo-config.ts: endsAt is ${promoEndsAt}, expected 2026-12-05T23:59:59+02:00`)
+}
+
+const salePricePattern = /\bR(?:1,499|2,999|5,499|7,999)\b/
+const promoContextFiles = (file) => {
+  const path = rel(file).replaceAll('\\', '/')
+  return (
+    path === 'lib/promo.ts' ||
+    path === 'lib/promo-config.ts' ||
+    path === 'app/globals.css' ||
+    path.startsWith('components/promo/') ||
+    path.startsWith('docs/') ||
+    path.startsWith('scripts/')
+  )
+}
+const stripComments = (contents) =>
+  contents.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+
+// Sale prices are only allowed inside the promo module, its components or documentation.
+for (const file of repoFiles) {
+  if (promoContextFiles(file)) continue
+  const contents = stripComments(await read(file))
+  if (salePricePattern.test(contents)) {
+    fail(`${rel(file)} hard-codes a Black Friday price; read it from lib/promo.ts`)
+  }
+}
+
+// When the campaign is off, no Black Friday wording may remain in the output.
+if (!promoActive) {
+  for (const file of repoFiles) {
+    if (promoContextFiles(file)) continue
+    const contents = stripComments(await read(file))
+    if (/black[ -]friday/i.test(contents)) {
+      fail(`${rel(file)} mentions Black Friday while the campaign is inactive; remove it or disable it in lib/promo-config.ts`)
+    }
+  }
+}
+
+// Metadata must never carry promo wording, active or not.
+for (const file of sourceFiles) {
+  if (!rel(file).replaceAll('\\', '/').startsWith('app/')) continue
+  for (const line of (await read(file)).split('\n')) {
+    if (!/^\s*(?:title|description):/.test(line)) continue
+    if (/black[ -]friday/i.test(line) || salePricePattern.test(line)) {
+      fail(`${rel(file)} puts promo wording in metadata: ${line.trim().slice(0, 120)}`)
+    }
+  }
+}
+
 // 9. Optional live check
 if (process.argv.includes('--live')) {
   const siteUrl = constants.match(/export const SITE_URL\s*=\s*'([^']+)'/)?.[1]

@@ -49,6 +49,7 @@ export default function WebsiteCostSouthAfricaPage() {
   return (
     <LandingPage
       path="/website-cost-south-africa"
+      promoCallout
       eyebrow="Website costs in South Africa"
       title="What a website actually costs, without the guesswork."
       accent="actually costs"

@@ -8,6 +8,8 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { PageHero } from '@/components/ui/page-hero'
 import { CTABand } from '@/components/ui/cta-band'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
+import { CostPageCallout } from '@/components/promo/cost-page-callout'
+import { isBlackFridayActive } from '@/lib/promo'
 
 export interface LandingSection {
   eyebrow?: string
@@ -41,6 +43,7 @@ export interface LandingPageProps {
     description: string
     primaryLabel: string
   }
+  promoCallout?: boolean
 }
 
 export function LandingPage({
@@ -57,6 +60,7 @@ export function LandingPage({
   sections,
   faqs,
   cta,
+  promoCallout = false,
 }: LandingPageProps) {
   const structuredData = [
     webPageSchema({ path, name: title, description }),
@@ -107,6 +111,8 @@ export function LandingPage({
           </div>
         </Container>
       </Section>
+
+      {promoCallout && isBlackFridayActive() && <CostPageCallout />}
 
       {sections.map((section, index) => (
         <Section key={section.heading} alt={section.alt ?? index % 2 === 0}>

@@ -4,7 +4,19 @@
 /* Header height variables */
 :root {
   --header-h: 72px;
+  --promo-bar-h: 0px;
   --sticky-top: var(--header-h);
+}
+
+/* Black Friday announcement bar reserves its own height above the navbar. */
+html.promo-active:not(.promo-expired) {
+  --promo-bar-h: 44px;
+  --header-h: 116px;
+}
+
+html.promo-expired [data-promo-bar],
+html.promo-expired [data-promo] {
+  display: none !important;
 }
 
 @theme {
@@ -18,6 +30,11 @@
   --color-brand-hover: #0050D6;
   --color-brand-on-dark: #6EA8FF;
   --color-blue-tint: #EAF1FF;
+  --color-promo: #C8102E;
+  --color-promo-strong: #A30D25;
+  --color-promo-tint: #FFF1F3;
+  --color-promo-line: #F5C9D1;
+  --color-promo-on-dark: #FFB3B8;
   --color-dark-panel: #071226;
   --color-white: #FFFFFF;
   --color-black: #000000;

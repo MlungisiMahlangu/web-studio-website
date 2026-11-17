@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { PageHero } from '@/components/ui/page-hero'
 import { Reveal } from '@/components/ui/reveal'
+import { PromoThankYouNote } from '@/components/promo/thank-you-note'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function ThankYouPage() {
       {/* What happens next */}
       <Section>
         <Container narrow>
+          <PromoThankYouNote />
           <Reveal>
             <div className="text-center mb-12">
               <div className="flex justify-center mb-8">

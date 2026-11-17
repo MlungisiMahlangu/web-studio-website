@@ -36,6 +36,8 @@ import { PageHero } from '@/components/ui/page-hero'
 import { CTABand } from '@/components/ui/cta-band'
 import { IconBox } from '@/components/ui/icon-box'
 import { Reveal, RevealStagger } from '@/components/ui/reveal'
+import { PricingDealSection } from '@/components/promo/pricing-deal-section'
+import { isBlackFridayActive, withBlackFridayFaq } from '@/lib/promo'
 
 export const revalidate = 3600
 
@@ -63,21 +65,21 @@ const lastUpdatedLabel = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
   year: 'numeric',
 })
 
-const structuredData = [
-  webPageSchema({
-    path: '/pricing',
-    name: 'Website design and care prices in South Africa',
-    description: STUDIO_DESCRIPTION,
-    dateModified: LAST_UPDATED,
-  }),
-  breadcrumbSchema([
-    { label: 'Home', href: '/' },
-    { label: 'Services & Pricing', href: '/pricing' },
-  ]),
-  faqSchema(keyFaqs),
-]
-
 export default function PricingPage() {
+  const structuredData = [
+    webPageSchema({
+      path: '/pricing',
+      name: 'Website design and care prices in South Africa',
+      description: STUDIO_DESCRIPTION,
+      dateModified: LAST_UPDATED,
+    }),
+    breadcrumbSchema([
+      { label: 'Home', href: '/' },
+      { label: 'Services & Pricing', href: '/pricing' },
+    ]),
+    faqSchema(withBlackFridayFaq(keyFaqs)),
+  ]
+
   return (
     <>
       <JsonLd data={structuredData} />
@@ -186,6 +188,7 @@ export default function PricingPage() {
               className="mb-12"
             />
           </Reveal>
+          {isBlackFridayActive() && <PricingDealSection />}
           <RevealStagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={100}>
             {services.map((svc) => {
               const isPopular = svc.popular === true

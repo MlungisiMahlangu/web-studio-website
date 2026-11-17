@@ -22,6 +22,7 @@ import {
   type FaqItem,
 } from './constants'
 import { carePlans, carePriceRange } from './care-plans'
+import { BLACK_FRIDAY, isBlackFridayActive, promoDeals } from './promo'
 import type { Metadata } from 'next'
 
 export const ORG_ID = `${SITE_URL}/#organization`
@@ -185,7 +186,30 @@ const careServiceNodes = carePlans.map((plan) => ({
   offers: { '@id': careOfferId(plan.id) },
 }))
 
+function blackFridayOffers() {
+  return promoDeals.map((deal) => ({
+    '@type': 'Offer',
+    '@id': `${SITE_URL}/#promo-offer-${deal.slug}`,
+    name: `${deal.name} — ${BLACK_FRIDAY.shortLabel}`,
+    price: deal.price,
+    priceCurrency: 'ZAR',
+    availability: 'https://schema.org/InStock',
+    priceValidUntil: BLACK_FRIDAY.endDateIso,
+    url: `${SITE_URL}/pricing#${BLACK_FRIDAY.anchorId}`,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      ...(deal.isFrom ? { minPrice: deal.price } : { price: deal.price }),
+      priceCurrency: 'ZAR',
+      valueAddedTaxIncluded: false,
+    },
+    itemOffered: { '@id': serviceId(deal.slug) },
+  }))
+}
+
 export function buildSiteGraph() {
+  // Regular offers stay the baseline; sale offers are added only while the campaign runs.
+  const catalogOffers = isBlackFridayActive() ? [...offers, ...blackFridayOffers()] : offers
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -261,8 +285,8 @@ export function buildSiteGraph() {
         '@id': CATALOG_ID,
         name: 'WEB-IN services and prices',
         url: `${SITE_URL}/pricing`,
-        numberOfItems: offers.length,
-        itemListElement: offers,
+        numberOfItems: catalogOffers.length,
+        itemListElement: catalogOffers,
       },
       ...serviceNodes,
       ...careServiceNodes,

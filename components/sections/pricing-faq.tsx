@@ -1,10 +1,12 @@
 import { Plus } from 'lucide-react'
 import { keyFaqs } from '@/lib/constants'
+import { withBlackFridayFaq } from '@/lib/promo'
 
 export function PricingFaq() {
+  const faqs = withBlackFridayFaq(keyFaqs)
   return (
     <div className="space-y-3">
-      {keyFaqs.map((faq) => (
+      {faqs.map((faq) => (
         <details
           key={faq.question}
           className="group rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-300 open:shadow-lg open:border-brand/20"

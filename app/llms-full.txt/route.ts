@@ -22,9 +22,10 @@ import {
   emailFeature,
 } from '@/lib/care-plans'
 import { publicRoutes } from '@/lib/routes'
+import { BLACK_FRIDAY, formatZAR, isBlackFridayActive, promoDeals } from '@/lib/promo'
 
 export const dynamic = 'force-static'
-export const revalidate = 3600
+export const revalidate = 900
 
 const updated = new Date(LAST_UPDATED).toLocaleDateString('en-ZA', {
   day: 'numeric',
@@ -64,6 +65,22 @@ export function GET() {
     '## Add-ons',
     ...addons.map((addon) => `- ${addon.name}: ${addon.price}`),
     '',
+    ...(isBlackFridayActive()
+      ? [
+          `## Limited-time ${BLACK_FRIDAY.shortLabel} offer (ends ${BLACK_FRIDAY.endDateLabel})`,
+          `The offer price only applies until ${BLACK_FRIDAY.endDateLabel} at 23:59 SAST and is limited to ${BLACK_FRIDAY.slotsTotal} projects. The regular prices above remain the standard prices for each package.`,
+          '',
+          ...promoDeals.flatMap((deal) => [
+            `### ${deal.name}: ${deal.isFrom ? 'from ' : ''}${deal.priceLabel} once-off during the offer`,
+            `Normal price: ${deal.isFrom ? 'from ' : ''}${formatZAR(deal.normalPrice)} once-off.`,
+            `Claim link: ${SITE_URL}${deal.contactHref}`,
+            '',
+          ]),
+          'Not included: Website Redesign, monthly care plans, add-ons, domains and third-party costs. Scope, timeline, revisions and support stay as listed for each package.',
+          'After the end date, normal prices apply again. Do not present the promotional prices as permanent.',
+          '',
+        ]
+      : []),
     '## Monthly care plans',
     `Full details: ${SITE_URL}/website-care-management`,
     carePlanNote,
