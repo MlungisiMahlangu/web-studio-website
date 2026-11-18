@@ -7,10 +7,10 @@ Prices in this campaign:
 
 | Package | Normal | Black Friday |
 | --- | --- | --- |
-| Starter Website | R2,500 | R1,499 |
-| Business Website | From R4,000 | R2,999 |
-| Online Store | From R7,000 | R5,499 |
-| Custom Web Application | From R10,000 | From R7,999 |
+| Starter Website | R2,500 | R1,999 |
+| Business Website | From R4,000 | R3,499 |
+| Online Store | From R7,000 | R6,399 |
+| Custom Web Application | From R10,000 | From R9,299 |
 
 Website Redesign is excluded. Monthly care plans are not discounted. All development prices are once-off.
 
@@ -20,10 +20,10 @@ Do not change these numbers in posts. If a price changes, update `lib/promo.ts` 
 
 Hi [Name]. We're running a Black Friday offer on four once-off website packages until 5 December:
 
-- Starter Website: R1,499 (normally R2,500)
-- Business Website: R2,999 (normally from R4,000)
-- Online Store: R5,499 (normally from R7,000)
-- Custom Web Application: from R7,999 (normally from R10,000)
+- Starter Website: R1,999 (normally R2,500)
+- Business Website: R3,499 (normally from R4,000)
+- Online Store: R6,399 (normally from R7,000)
+- Custom Web Application: from R9,299 (normally from R10,000)
 
 Limited to 5 projects, first come, first served. Website Redesign and monthly care plans are not part of the offer. Details: https://www.web-in.co.za/pricing#black-friday
 
@@ -35,10 +35,10 @@ Black Friday: 5 projects, once-off prices
 
 Four development packages are reduced until 5 December 2026:
 
-Starter Website R1,499 (normally R2,500)
-Business Website R2,999 (normally from R4,000)
-Online Store R5,499 (normally from R7,000)
-Custom Web Application from R7,999 (normally from R10,000)
+Starter Website R1,999 (normally R2,500)
+Business Website R3,499 (normally from R4,000)
+Online Store R6,399 (normally from R7,000)
+Custom Web Application from R9,299 (normally from R10,000)
 
 Limited to 5 projects, first come, first served. Website Redesign and monthly care plans are not included. Prices are once-off in ZAR.
 
@@ -50,10 +50,10 @@ Black Friday is live at WEB-IN.
 
 Four once-off website packages, reduced until 5 December:
 
-→ Starter Website R1,499 (normally R2,500)
-→ Business Website R2,999 (normally from R4,000)
-→ Online Store R5,499 (normally from R7,000)
-→ Custom Web Application from R7,999 (normally from R10,000)
+→ Starter Website R1,999 (normally R2,500)
+→ Business Website R3,499 (normally from R4,000)
+→ Online Store R6,399 (normally from R7,000)
+→ Custom Web Application from R9,299 (normally from R10,000)
 
 Limited to 5 projects, first come, first served.
 
@@ -67,10 +67,10 @@ Details and claim form: https://www.web-in.co.za/pricing#black-friday
 
 We're opening 5 project slots for a Black Friday offer on once-off website development, available until 5 December 2026.
 
-Starter Website: R1,499 (normally R2,500)
-Business Website: R2,999 (normally from R4,000)
-Online Store: R5,499 (normally from R7,000)
-Custom Web Application: from R7,999 (normally from R10,000)
+Starter Website: R1,999 (normally R2,500)
+Business Website: R3,499 (normally from R4,000)
+Online Store: R6,399 (normally from R7,000)
+Custom Web Application: from R9,299 (normally from R10,000)
 
 The offer covers design and development only. It is limited to 5 projects on a first-come, first-served basis. Website Redesign, add-ons, domains and monthly care plans are not discounted, and normal prices apply again after 5 December.
 
@@ -84,10 +84,10 @@ Hi [Name],
 
 You enquired with us earlier this year about a website. We're running a Black Friday offer on four once-off packages until 5 December 2026:
 
-- Starter Website: R1,499 (normally R2,500)
-- Business Website: R2,999 (normally from R4,000)
-- Online Store: R5,499 (normally from R7,000)
-- Custom Web Application: from R7,999 (normally from R10,000)
+- Starter Website: R1,999 (normally R2,500)
+- Business Website: R3,499 (normally from R4,000)
+- Online Store: R6,399 (normally from R7,000)
+- Custom Web Application: from R9,299 (normally from R10,000)
 
 It is limited to 5 projects, first come, first served. The offer covers design and development only. Website Redesign, add-ons, domains and monthly care plans are not included, and normal prices apply again after 5 December.
 

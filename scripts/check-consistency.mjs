@@ -516,10 +516,10 @@ const promoActive =
   (startsAtMs === null || Date.now() >= startsAtMs)
 
 const expectedPromoDeals = {
-  'starter-website': { price: 1499, isFrom: false },
-  'business-website': { price: 2999, isFrom: false },
-  'online-store': { price: 5499, isFrom: false },
-  'custom-web-application': { price: 7999, isFrom: true },
+  'starter-website': { price: 1999, isFrom: false },
+  'business-website': { price: 3499, isFrom: false },
+  'online-store': { price: 6399, isFrom: false },
+  'custom-web-application': { price: 9299, isFrom: true },
 }
 const dealMatches = [
   ...promoSource.matchAll(/\{\s*slug:\s*'([^']+)',\s*price:\s*(\d+),\s*isFrom:\s*(true|false)\s*\}/g),
@@ -553,7 +553,7 @@ if (promoEndsAt !== '2026-12-05T23:59:59+02:00') {
   fail(`lib/promo-config.ts: endsAt is ${promoEndsAt}, expected 2026-12-05T23:59:59+02:00`)
 }
 
-const salePricePattern = /\bR(?:1,499|2,999|5,499|7,999)\b/
+const salePricePattern = /\bR(?:1,999|3,499|6,399|9,299)\b/
 const promoContextFiles = (file) => {
   const path = rel(file).replaceAll('\\', '/')
   return (

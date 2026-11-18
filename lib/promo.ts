@@ -23,10 +23,10 @@ interface DealDefinition {
 
 // Normal prices are read from lib/constants.ts. Only the campaign price lives here.
 const DEAL_DEFINITIONS: DealDefinition[] = [
-  { slug: 'starter-website', price: 1499, isFrom: false },
-  { slug: 'business-website', price: 2999, isFrom: false },
-  { slug: 'online-store', price: 5499, isFrom: false },
-  { slug: 'custom-web-application', price: 7999, isFrom: true },
+  { slug: 'starter-website', price: 1999, isFrom: false },
+  { slug: 'business-website', price: 3499, isFrom: false },
+  { slug: 'online-store', price: 6399, isFrom: false },
+  { slug: 'custom-web-application', price: 9299, isFrom: true },
 ]
 
 export function normalPriceLabel(priceValue: number, isFrom: boolean): string {

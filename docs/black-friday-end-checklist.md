@@ -36,7 +36,7 @@ Deploy as usual. Within 15 minutes the promo surfaces and sale offers are gone. 
 4. Open `https://www.web-in.co.za/llms.txt` and confirm the limited-time section is gone.
 5. View the homepage source and confirm there are no sale offers in the JSON-LD (normal `Offer` entries should remain).
 6. Run `pnpm check:seo` and expect no failures. While the campaign is inactive, the checker fails if any Black Friday wording or sale price remains outside the promo module and docs.
-7. Search the repo for `R1,499`, `R2,999`, `R5,499`, `R7,999` and "Black Friday". Only `lib/promo*.ts`, `components/promo/`, `docs/` and the checker should contain them.
+7. Search the repo for `R1,999`, `R3,499`, `R6,399`, `R9,299` and "Black Friday". Only `lib/promo*.ts`, `components/promo/`, `docs/` and the checker should contain them.
 
 ## Off-site cleanup (same week)
 
